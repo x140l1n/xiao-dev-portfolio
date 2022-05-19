@@ -1,17 +1,12 @@
 <template>
   <div
     ref="window"
-    class="window bg-light"
+    class="window resizers bg-light"
     :style="cssRootVars"
     @click="windowClick"
   >
     <div
       ref="windowTilebar"
-      @mousedown="dragMouseDown"
-      @mousemove="dragMouseMove"
-      @mouseup="dragMouseUp"
-      @mouseleave="dragMouseLeave"
-      @mouseenter="dragMouseEnter"
       class="window-tilebar bg-primary text-light d-flex flex-row-reverse"
     >
       <span class="tilebar-item" title="Cerrar ventana" data-action="close">
@@ -38,6 +33,10 @@
     <div class="window-content bg-light">
       <slot></slot>
     </div>
+    <div class="resizer top-left"></div>
+    <div class="resizer top-right"></div>
+    <div class="resizer bottom-left"></div>
+    <div class="resizer bottom-right"></div>
   </div>
 </template>
 
@@ -101,7 +100,14 @@ export default {
       isMouseDown: false,
     };
   },
+  mounted() {
+    this.init();
+  },
   methods: {
+    init() {
+      this.dragElement(this.$refs.windowTilebar, this);
+      this.resizeElement(this.$refs.window, this);
+    },
     windowClick(evt) {
       let action = evt.target.dataset.action;
 
@@ -155,40 +161,149 @@ export default {
 
       this.windows.splice(indexWindowRemove, 1);
     },
-    dragMouseDown(evt) {
-      if (
-        !evt.target.classList.contains("tilebar-item") &&
-        evt.target.tagName != "I"
-      ) {
-        this.pos3 = evt.clientX;
-        this.pos4 = evt.clientY;
-        this.isMouseDown = true;
-      }
+    updateSize() {
+      if (this.isMaximized) {
+        if (!this.$refs.window.classList.contains("no-transition"))
+          this.$refs.window.classList.add("no-transition");
 
-      this.bringFront();
-    },
-    dragMouseMove(evt) {
-      if (this.isMouseDown) {
-        this.isMaximized = false;
-
-        this.pos1 = this.pos3 - evt.clientX;
-        this.pos2 = this.pos4 - evt.clientY;
-        this.pos3 = evt.clientX;
-        this.pos4 = evt.clientY;
-
-        this.position.x = this.position.x  - this.pos1;
-        this.position.y = this.position.y  - this.pos2;
+        this.size.width = Vue.prototype.$widthScreenContent;
+        this.size.height = Vue.prototype.$heightScreenContent;
       }
     },
-    dragMouseUp() {
-      if (this.isMouseDown) this.isMouseDown = false;
+    dragElement(element, me) {
+      element.onmousedown = dragMouseDown;
+
+      function dragMouseDown(evt) {
+        evt = evt || window.event;
+
+        me.pos3 = evt.clientX;
+        me.pos4 = evt.clientY;
+
+        me.$refs.window.parentElement.onmouseup = closeDragElement;
+        me.$refs.window.parentElement.onmouseleave = closeDragElement;
+        me.$refs.window.parentElement.onmousemove = elementDrag;
+
+        me.bringFront();
+      }
+
+      function elementDrag(evt) {
+        if (me.isMaximized) me.isMaximized = false;
+
+        if (!me.$refs.window.classList.contains("no-transition"))
+          me.$refs.window.classList.add("no-transition");
+
+        evt = evt || window.event;
+        evt.preventDefault();
+
+        me.pos1 = me.pos3 - evt.clientX;
+        me.pos2 = me.pos4 - evt.clientY;
+        me.pos3 = evt.clientX;
+        me.pos4 = evt.clientY;
+
+        me.position.x = me.position.x - me.pos1;
+        me.position.y = me.position.y - me.pos2;
+      }
+
+      function closeDragElement() {
+        me.$refs.window.classList.remove("no-transition");
+        me.$refs.window.parentElement.onmouseup = null;
+        me.$refs.window.parentElement.onmousemove = null;
+      }
     },
-    dragMouseLeave(evt) {
-      if (this.isMouseDown) this.isMouseDown = false;
+    resizeElement(element, me) {
+      const resizers = element.querySelectorAll(".resizer");
+
+      const minimum_size = 20;
+
+      let original_width = 0;
+      let original_height = 0;
+      let original_x = 0;
+      let original_y = 0;
+      let original_mouse_x = 0;
+      let original_mouse_y = 0;
+
+      for (let i = 0; i < resizers.length; i++) {
+        const currentResizer = resizers[i];
+
+        currentResizer.addEventListener("mousedown", function (e) {
+          e.preventDefault();
+          original_width = parseFloat(
+            getComputedStyle(element, null)
+              .getPropertyValue("max-width")
+              .replace("px", "")
+          );
+          original_height = parseFloat(
+            getComputedStyle(element, null)
+              .getPropertyValue("max-height")
+              .replace("px", "")
+          );
+
+          original_x = element.getBoundingClientRect().left;
+          original_y = element.getBoundingClientRect().top;
+
+          original_mouse_x = e.pageX;
+          original_mouse_y = e.pageY;
+
+          window.addEventListener("mousemove", resize);
+          window.addEventListener("mouseup", stopResize);
+        });
+
+        // eslint-disable-next-line no-inner-declarations
+        function resize(e) {
+          if (!me.$refs.window.classList.contains("no-transition"))
+            me.$refs.window.classList.add("no-transition");
+
+          if (currentResizer.classList.contains("bottom-right")) {
+            const width = original_width + (e.pageX - original_mouse_x);
+            const height = original_height + (e.pageY - original_mouse_y);
+            if (width > minimum_size) {
+              me.size.width = width;
+            }
+            if (height > minimum_size) {
+              me.size.height = height;
+            }
+          } else if (currentResizer.classList.contains("bottom-left")) {
+            const height = original_height + (e.pageY - original_mouse_y);
+            const width = original_width - (e.pageX - original_mouse_x);
+            if (height > minimum_size) {
+             me.size.height = height;
+            }
+            if (width > minimum_size) {
+              me.size.width = width;
+              me.position.x = original_x + (e.pageX - original_mouse_x);
+            }
+          } else if (currentResizer.classList.contains("top-right")) {
+            const width = original_width + (e.pageX - original_mouse_x);
+            const height = original_height - (e.pageY - original_mouse_y);
+            if (width > minimum_size) {
+              me.size.width = width;
+            }
+            if (height > minimum_size) {
+              me.size.height = height;
+              me.position.y = original_y + (e.pageY - original_mouse_y);
+            }
+          } else {
+            const width = original_width - (e.pageX - original_mouse_x);
+            const height = original_height - (e.pageY - original_mouse_y);
+            if (width > minimum_size) {
+              me.size.width = width;
+              me.position.x = original_x + (e.pageX - original_mouse_x);
+            }
+            if (height > minimum_size) {
+              me.size.height = height;
+              me.position.y = original_y + (e.pageY - original_mouse_y);
+            }
+          }
+        }
+
+        // eslint-disable-next-line no-inner-declarations
+        function stopResize() {
+          if (me.$refs.window) me.$refs.window.classList.remove("no-transition");
+
+          window.removeEventListener("mousemove", resize);
+        }
+      }
     },
-    dragMouseEnter() {
-      if (this.isMouseDown) this.isMouseDown = false;
-    }
   },
   computed: {
     cssRootVars() {
@@ -219,9 +334,13 @@ export default {
 
         this.position.x = 0;
         this.position.y = 0;
+
+        this.$refs.window.classList.remove("resizers");
       } else {
         this.size = { ...this.sizePrev };
         this.position = { ...this.positionPrev };
+
+        this.$refs.window.classList.add("resizers");
       }
     },
   },
@@ -287,5 +406,32 @@ export default {
   left: 0;
   width: 100%;
   height: var(--heightTileBar);
+}
+
+.resizers .resizer {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+}
+
+.resizers .resizer.top-left {
+  left: -5px;
+  top: -5px;
+  cursor: nwse-resize; /*resizer cursor*/
+}
+.resizers .resizer.top-right {
+  right: -5px;
+  top: -5px;
+  cursor: nesw-resize;
+}
+.resizers .resizer.bottom-left {
+  left: -5px;
+  bottom: -5px;
+  cursor: nesw-resize;
+}
+.resizers .resizer.bottom-right {
+  right: -5px;
+  bottom: -5px;
+  cursor: nwse-resize;
 }
 </style>

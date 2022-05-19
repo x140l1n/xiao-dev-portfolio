@@ -1,5 +1,5 @@
 <template>
-  <div class="screen bg-dark bg-image">
+  <div class="screen bg-dark bg-image user-none-select" v-resize="onResize">
     <div ref="screenContent" class="screen-content"></div>
     <TaskBarView ref="taskBarView" />
   </div>
@@ -14,7 +14,6 @@ import moment from "moment";
 export default {
   components: {
     TaskBarView,
-    Window,
   },
   mounted() {
     this.init();
@@ -38,6 +37,12 @@ export default {
 
       Vue.prototype.$widthScreenContent = this.$refs.screenContent.offsetWidth;
       Vue.prototype.$heightScreenContent = this.$refs.screenContent.offsetHeight;
+    },
+    onResize() {
+      Vue.prototype.$widthScreenContent = this.$refs.screenContent.offsetWidth;
+      Vue.prototype.$heightScreenContent = this.$refs.screenContent.offsetHeight;
+
+      this.windows.forEach(window => window.updateSize());
     },
     addWindow(title, _width = 0, _height = 0, _x = 0, _y = 0) {
       const width = _width == 0 ? Vue.prototype.$widthScreenContent : _width;
