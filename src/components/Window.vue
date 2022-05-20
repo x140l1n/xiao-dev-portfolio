@@ -1,12 +1,13 @@
 <template>
   <div
     ref="window"
-    class="window resizers bg-light"
+    class="window resizers bg-light user-select-none"
     :style="cssRootVars"
     @click="windowClick"
   >
     <div
       ref="windowTilebar"
+      @dblclick="windowTilebarDblclick"
       class="window-tilebar bg-primary text-light d-flex flex-row-reverse"
     >
       <span class="tilebar-item" title="Cerrar ventana" data-action="close">
@@ -28,7 +29,7 @@
       >
         <i class="fa-solid fa-minus fa-fw"></i>
       </span>
-      <span class="m-auto ms-2 user-select-none">{{ title }}</span>
+      <span class="m-auto ms-2 text-truncate">{{ title }}</span>
     </div>
     <div class="window-content bg-light">
       <slot></slot>
@@ -107,6 +108,15 @@ export default {
     init() {
       this.dragElement(this.$refs.windowTilebar, this);
       this.resizeElement(this.$refs.window, this);
+    },
+    windowTilebarDblclick(evt) {
+      let action = evt.target.dataset.action;
+
+      if (evt.target.tagName == "I") {
+        action = evt.target.parentElement.dataset.action;
+      }
+
+      if (!action) this.toggleMaximized();
     },
     windowClick(evt) {
       let action = evt.target.dataset.action;
@@ -274,7 +284,7 @@ export default {
             }
           } else if (currentResizer.classList.contains("top-right")) {
             const width = original_width + (e.pageX - original_mouse_x);
-            const height = original_height - (e.pageY - original_mouse_y);
+            const height = original_height + (e.pageY - original_mouse_y);
             if (width > minimum_size) {
               me.size.width = width;
             }

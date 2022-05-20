@@ -46,6 +46,7 @@ export default {
   display: flex;
   flex-direction: column;
   text-align: center;
+  min-width: 7em;
   justify-content: center;
 }
 </style>

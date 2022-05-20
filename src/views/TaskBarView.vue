@@ -1,8 +1,11 @@
 <template>
-  <div class="taskbar bg-primary d-flex flex-row-reverse">
+  <div class="taskbar bg-primary d-flex flex-row-reverse user-select-none">
     <span class="taskbar-item border border-dark border-end-0 border-top-0 border-bottom-0" style="width: 6px">
     </span>
     <Clock class="taskbar-item" />
+    <div class="d-flex w-100">
+      
+    </div>
   </div>
 </template>
 
