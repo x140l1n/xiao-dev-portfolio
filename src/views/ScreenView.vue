@@ -20,52 +20,64 @@ export default {
   },
   data() {
     return {
-      windows: [],
       mouseX: 0,
       mouseY: 0,
     };
   },
   methods: {
-    init() {
-      setTimeout(() => {
-        this.addWindow("Window 1", 250, 150);
-      }, 1000);
-
-      setTimeout(() => {
-        this.addWindow("Window 2", 250, 150, 250, 150);
-      }, 2000);
+    async init() {
+      Vue.prototype.$programs = [];
 
       Vue.prototype.$widthScreenContent = this.$refs.screenContent.offsetWidth;
       Vue.prototype.$heightScreenContent = this.$refs.screenContent.offsetHeight;
+
+      this.openProgram((await import("../programs/Settings.vue")).default);
     },
     onResize() {
       Vue.prototype.$widthScreenContent = this.$refs.screenContent.offsetWidth;
       Vue.prototype.$heightScreenContent = this.$refs.screenContent.offsetHeight;
 
-      this.windows.forEach(window => window.updateSize());
+      Vue.prototype.$programs.forEach(program => program.window.updateSize());
     },
-    addWindow(title, _width = 0, _height = 0, _x = 0, _y = 0) {
-      const width = _width == 0 ? Vue.prototype.$widthScreenContent : _width;
-      const height = _height == 0 ? Vue.prototype.$heightScreenContent : _height;
-
-      const WindowClass = Vue.extend(Window);
-      const window = new WindowClass({
+    openProgram(_program) {
+      const ProgramClass = Vue.extend(_program);
+      const program = new ProgramClass({
         propsData: {
           id: moment().format("DDMMYYYYHHmmssS"),
-          title,
-          width,
-          height,
-          x: _x,
-          y: _y,
-          windows: this.windows,
-        },
+        }
       });
 
-      window.$mount();
+      program.$mount();
 
-      this.$refs.screenContent.appendChild(window.$el);
+      this.addWindow(program);
+    },
+    addWindow(programObject) {
+      const width = programObject.width_default == 0 ? Vue.prototype.$widthScreenContent : programObject.width_default;
+      const height = programObject.height_default == 0 ? Vue.prototype.$heightScreenContent : programObject.height_default;
+      const x = programObject.x_default == 0 ? 0 : programObject.x_default;
+      const y = programObject.y_default == 0 ? 0 : programObject.y_default;
+    
+      const WindowClass = Vue.extend(Window);
+      const windowObject = new WindowClass({
+        propsData: {
+          title: programObject.title,
+          width: parseInt(width),
+          height: parseInt(height),
+          x: parseInt(x),
+          y: parseInt(y),
+        },
+      });
+      
+      programObject.window = windowObject;
+      windowObject.program = programObject;
 
-      this.windows.push(window);
+      windowObject.$mount();
+
+      this.$refs.screenContent.appendChild(windowObject.$el);
+
+      windowObject.addWindowContent(programObject.$el);
+
+      Vue.prototype.$programs.push(programObject);
     },
   },
 };

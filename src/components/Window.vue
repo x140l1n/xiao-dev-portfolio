@@ -31,8 +31,7 @@
       </span>
       <span class="m-auto ms-2 text-truncate">{{ title }}</span>
     </div>
-    <div class="window-content bg-light">
-      <slot></slot>
+    <div class="window-content bg-light overflow-auto" ref="windowContent">
     </div>
     <div class="resizer top-left"></div>
     <div class="resizer top-right"></div>
@@ -46,10 +45,6 @@ import Vue from "vue";
 
 export default {
   props: {
-    id: {
-      type: String,
-      required: true,
-    },
     width: {
       type: Number,
       required: true,
@@ -68,10 +63,6 @@ export default {
     },
     y: {
       type: Number,
-      required: true,
-    },
-    windows: {
-      type: Array,
       required: true,
     },
   },
@@ -93,6 +84,7 @@ export default {
         width: this.width,
         height: this.height,
       },
+      program: null,
       pos1: 0,
       pos2: 0,
       pos3: 0,
@@ -140,11 +132,11 @@ export default {
       this.bringFront();
     },
     bringFront() {
-      this.windows.forEach((window) => {
-        if (window.id != this.id) {
-          window.$el.style.zIndex = 1;
+      Vue.prototype.$programs.forEach((program) => {
+        if (program.id != this.id) {
+          program.window.$el.style.zIndex = 1;
         } else {
-          window.$el.style.zIndex = 2;
+          program.window.$el.style.zIndex = 2;
         }
       });
     },
@@ -162,14 +154,15 @@ export default {
     },
     close() {
       this.$destroy();
+      this.program.$destroy();
 
       this.$el.parentNode.removeChild(this.$el);
 
-      const indexWindowRemove = this.windows.findIndex((window) => {
-        return window.id === this.id;
+      const indexProgramRemove = Vue.prototype.$programs.findIndex((program) => {
+        return program.id === this.program.id;
       });
 
-      this.windows.splice(indexWindowRemove, 1);
+      Vue.prototype.$programs.splice(indexProgramRemove, 1);
     },
     updateSize() {
       if (this.isMaximized) {
@@ -197,10 +190,10 @@ export default {
       }
 
       function elementDrag(evt) {
-        if (me.isMaximized) me.isMaximized = false;
-
         if (!me.$refs.window.classList.contains("no-transition"))
           me.$refs.window.classList.add("no-transition");
+
+        if (me.isMaximized) me.isMaximized = false;
 
         evt = evt || window.event;
         evt.preventDefault();
@@ -215,9 +208,11 @@ export default {
       }
 
       function closeDragElement() {
-        me.$refs.window.classList.remove("no-transition");
-        me.$refs.window.parentElement.onmouseup = null;
-        me.$refs.window.parentElement.onmousemove = null;
+        if (me.$refs.window) {
+          me.$refs.window.classList.remove("no-transition");
+          me.$refs.window.parentElement.onmouseup = null;
+          me.$refs.window.parentElement.onmousemove = null;
+        }
       }
     },
     resizeElement(element, me) {
@@ -248,8 +243,8 @@ export default {
               .replace("px", "")
           );
 
-          original_x = element.getBoundingClientRect().left;
-          original_y = element.getBoundingClientRect().top;
+          original_x = me.position.x;
+          original_y = me.position.y;
 
           original_mouse_x = e.pageX;
           original_mouse_y = e.pageY;
@@ -273,18 +268,18 @@ export default {
               me.size.height = height;
             }
           } else if (currentResizer.classList.contains("bottom-left")) {
-            const height = original_height + (e.pageY - original_mouse_y);
             const width = original_width - (e.pageX - original_mouse_x);
-            if (height > minimum_size) {
-             me.size.height = height;
-            }
+            const height = original_height + (e.pageY - original_mouse_y);
             if (width > minimum_size) {
               me.size.width = width;
+            }
+            if (height > minimum_size) {
+              me.size.height = height;
               me.position.x = original_x + (e.pageX - original_mouse_x);
             }
           } else if (currentResizer.classList.contains("top-right")) {
             const width = original_width + (e.pageX - original_mouse_x);
-            const height = original_height + (e.pageY - original_mouse_y);
+            const height = original_height - (e.pageY - original_mouse_y);
             if (width > minimum_size) {
               me.size.width = width;
             }
@@ -314,6 +309,9 @@ export default {
         }
       }
     },
+    addWindowContent(node) {
+      this.$refs.windowContent.appendChild(node);
+    }
   },
   computed: {
     cssRootVars() {
