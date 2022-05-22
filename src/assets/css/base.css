@@ -8683,4 +8683,7 @@ textarea.form-control-lg {
 * {
   font-family: 'Ubuntu', sans-serif; }
 
+img {
+  image-rendering: -webkit-optimize-contrast; }
+
 /*# sourceMappingURL=base.css.map */

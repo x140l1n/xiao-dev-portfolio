@@ -8,7 +8,7 @@
     <div
       ref="windowTilebar"
       @dblclick="windowTilebarDblclick"
-      class="window-tilebar bg-primary text-light d-flex flex-row-reverse"
+      class="window-tilebar bg-primary text-light d-flex flex-row-reverse border-dark border-bottom"
     >
       <span class="tilebar-item" title="Cerrar ventana" data-action="close">
         <i class="fa-solid fa-xmark fa-fw"></i>
@@ -30,6 +30,7 @@
         <i class="fa-solid fa-minus fa-fw"></i>
       </span>
       <span class="m-auto ms-2 text-truncate">{{ title }}</span>
+      <img :src="program.icon_src" class="program-icon" :alt="`Icono ${program.title}`"/>
     </div>
     <div class="window-content bg-light overflow-auto" ref="windowContent">
     </div>
@@ -100,6 +101,8 @@ export default {
     init() {
       this.dragElement(this.$refs.windowTilebar, this);
       this.resizeElement(this.$refs.window, this);
+
+      this.bringFront();
     },
     windowTilebarDblclick(evt) {
       let action = evt.target.dataset.action;
@@ -132,13 +135,13 @@ export default {
       this.bringFront();
     },
     bringFront() {
-      Vue.prototype.$programs.forEach((program) => {
-        if (program.id != this.id) {
-          program.window.$el.style.zIndex = 1;
-        } else {
-          program.window.$el.style.zIndex = 2;
-        }
+      this.$programs.forEach((program) => {
+        program.window.$el.classList.remove("active");
       });
+
+      this.$el.classList.add("active");
+
+      this.$programActive = this.program;
     },
     minimize() {},
     toggleMaximized() {
@@ -153,16 +156,27 @@ export default {
       this.isMaximized = !this.isMaximized;
     },
     close() {
-      this.$destroy();
-      this.program.$destroy();
+      this.$el.classList.add("closing");
 
-      this.$el.parentNode.removeChild(this.$el);
+      setTimeout(() => {
+        this.$destroy();
+        this.program.$destroy();
 
-      const indexProgramRemove = Vue.prototype.$programs.findIndex((program) => {
-        return program.id === this.program.id;
-      });
+        this.$el.parentNode.removeChild(this.$el);
 
-      Vue.prototype.$programs.splice(indexProgramRemove, 1);
+        const indexProgramRemove = this.$programs.findIndex((program) => {
+          return program.id === this.program.id;
+        });
+
+        this.$programs.splice(indexProgramRemove, 1);
+
+        const lastProgram = this.$programs[this.$programs.length - 1];
+
+        if (lastProgram) {
+          lastProgram.window.bringFront();
+          this.$programs[this.$programs.length - 1] = lastProgram;
+        }  
+      }, 200);    
     },
     updateSize() {
       if (this.isMaximized) {
@@ -255,6 +269,8 @@ export default {
 
         // eslint-disable-next-line no-inner-declarations
         function resize(e) {
+          me.bringFront();
+
           if (!me.$refs.window.classList.contains("no-transition"))
             me.$refs.window.classList.add("no-transition");
 
@@ -369,6 +385,35 @@ export default {
   cursor: default;
   border: 2px solid #000;
   transition: max-width 0.1s, max-height 0.1s, left 0.1s 0.1s, top 0.1s 0.1s;
+  z-index: 1;
+  animation: zoomOut 0.2s;
+}
+
+.window.closing {
+  animation: zoomIn 0.2s;
+  transform: scale(0);
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes zoomOut {
+  0% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.active {
+  z-index: 2;
 }
 
 .no-transition {
@@ -401,6 +446,12 @@ export default {
 .tilebar-item:nth-child(1):hover {
   cursor: default;
   background-color: red;
+}
+
+.program-icon {
+  width: 32px;
+  width: 32px;
+  padding: 2px;
 }
 
 .window-content {

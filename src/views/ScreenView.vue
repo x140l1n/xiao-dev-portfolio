@@ -1,6 +1,11 @@
 <template>
   <div class="screen bg-dark bg-image user-none-select" v-resize="onResize">
-    <div ref="screenContent" class="screen-content"></div>
+    <div ref="screenContent" class="screen-content" @click.self="cleanSelectProgram">
+      <div class="program p-2" title="Ajustes" @click="selectProgram" @dblclick="openProgram('Settings')">
+        <img id="program-settings" src="../assets/icons/settings.png" alt="Logo Ajustes"/>
+        <label class="text-light" for="program-settings">Ajustes</label>
+      </div>
+    </div>
     <TaskBarView ref="taskBarView" />
   </div>
 </template>
@@ -20,18 +25,28 @@ export default {
   },
   data() {
     return {
-      mouseX: 0,
-      mouseY: 0,
+
     };
   },
   methods: {
-    async init() {
-      Vue.prototype.$programs = [];
-
+    init() {
       Vue.prototype.$widthScreenContent = this.$refs.screenContent.offsetWidth;
       Vue.prototype.$heightScreenContent = this.$refs.screenContent.offsetHeight;
 
-      this.openProgram((await import("../programs/Settings.vue")).default);
+    },
+    cleanSelectProgram() {
+      this.$refs.screenContent.querySelectorAll(".program").forEach(program => {
+        program.classList.remove("selected");
+      });
+    },
+    selectProgram(evt) {
+      this.$refs.screenContent.querySelectorAll(".program").forEach(program => {
+        program.classList.remove("selected");
+      });
+
+      if (!evt.currentTarget.classList.contains("selected")) {
+        evt.currentTarget.classList.add("selected");
+      }
     },
     onResize() {
       Vue.prototype.$widthScreenContent = this.$refs.screenContent.offsetWidth;
@@ -40,16 +55,20 @@ export default {
       Vue.prototype.$programs.forEach(program => program.window.updateSize());
     },
     openProgram(_program) {
-      const ProgramClass = Vue.extend(_program);
-      const program = new ProgramClass({
-        propsData: {
-          id: moment().format("DDMMYYYYHHmmssS"),
-        }
+      const program = this.getProgram(_program);
+
+      program.then((result) => {
+        const ProgramClass = Vue.extend(result);
+        const programObject = new ProgramClass({
+          propsData: {
+            id: moment().format("DDMMYYYYHHmmssS"),
+          }
+        });
+
+        programObject.$mount();
+
+        this.addWindow(programObject);
       });
-
-      program.$mount();
-
-      this.addWindow(program);
     },
     addWindow(programObject) {
       const width = programObject.width_default == 0 ? Vue.prototype.$widthScreenContent : programObject.width_default;
@@ -77,8 +96,17 @@ export default {
 
       windowObject.addWindowContent(programObject.$el);
 
-      Vue.prototype.$programs.push(programObject);
+      this.$programs.push(programObject);
     },
+    async getProgram(program) {
+      switch (program) {
+        case "Settings":
+          program = (await import("../programs/Settings.vue")).default;
+          break;
+      }
+
+      return program;
+    }
   },
 };
 </script>
@@ -95,8 +123,26 @@ export default {
 }
 
 .screen-content {
-  padding-bottom: 3rem;
+  padding: 20px 20px 4rem 20px;
   height: 100%;
   position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 1fr);
+}
+
+.program {
+  border-radius: 5px;
+}
+.program:hover,
+.program.selected {
+  background-color: #ffffff48;
+}
+
+.program > * {
+  display: block;
+  margin: auto; 
+  text-align: center;
+  text-shadow: 1px 1px 2px black;
 }
 </style>

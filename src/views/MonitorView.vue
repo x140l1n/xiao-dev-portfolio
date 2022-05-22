@@ -28,7 +28,7 @@ export default {
 </script>
 
 <template>
-  <main class="container-fluid bg-dark vh-100 d-flex">
+  <main class="container-fluid bg-dark vh-100 d-flex user-select-none">
     <div class="card monitor m-auto">
       <div class="card-body monitor-inner">
         <div

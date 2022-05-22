@@ -12,6 +12,32 @@ moment.locale("es");
 
 Vue.directive('resize', resize);
 
+const observablePrograms = Vue.observable({ programs: [] })
+
+Object.defineProperty(Vue.prototype, '$programs', {
+  get () {
+    return observablePrograms.programs;
+  },
+  set (value) {
+    observablePrograms.programs = value;
+  }
+})
+
+const observableProgramActive = Vue.observable({ programActive: null })
+
+Object.defineProperty(Vue.prototype, '$programActive', {
+  get () {
+    return observableProgramActive.programActive;
+  },
+  set (value) {
+    observableProgramActive.programActive = value;
+  }
+})
+
+window.oncontextmenu = function () {
+  return false;
+}
+
 new Vue({
-  render: h => h(App)
+  render: h => h(App),
 }).$mount("#app");

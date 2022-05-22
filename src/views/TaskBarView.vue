@@ -4,7 +4,9 @@
     </span>
     <Clock class="taskbar-item" />
     <div class="d-flex w-100">
-      
+      <div v-for="program in $programs" :key="program.id" :id="`program-${program.id}`" :class="`taskbar-item program ${ getProgramActiveId == program.id ? 'selected' : ''}`" :title="program.title" @click="selectProgram(program)">
+        <img :src="program.icon_src" :alt="`Logo ${program.title}`"/>
+      </div>
     </div>
   </div>
 </template>
@@ -16,6 +18,25 @@ export default {
   components: {
     Clock,
   },
+  methods: {
+    selectProgram(program) {
+      program.window.bringFront();
+    },
+    isProgramInFront(id) {
+      return this.$programs.some(program => {        
+        if (program.id == id && program.window.$el.classList.contains("active")) {
+          return true;
+        }
+      });
+    }
+  },
+  computed: {
+    getProgramActiveId() {
+      return this.$programActive ? this.$programActive.id : 0;
+    }
+  },
+  watch: {
+  }
 };
 </script>
 
@@ -30,6 +51,48 @@ export default {
 
 .taskbar-item:hover {
   cursor: default;
-  background-color: #106379;
+  background-color: #ffffff48;
+}
+
+.taskbar-item.program {
+  display: flex;
+  margin: 5px;
+  border-radius: 5px;
+}
+
+.taskbar-item.program.selected {
+  background-color: #ffffff48; 
+}
+
+.taskbar-item.program > img {
+  animation: bounce 0.5s;
+}
+
+.taskbar-item.program:active > img {
+  transition: transform 0.2s;
+  transform: scale(0.8);
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(-10px);
+  }
+  30% {
+    transform: translateY(5px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  80% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+.taskbar-item.program > img {
+  max-width: 40px;
+  margin: auto;
 }
 </style>
