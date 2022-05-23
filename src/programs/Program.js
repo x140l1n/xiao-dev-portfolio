@@ -8,6 +8,7 @@ export default class Program extends Vue {
     title;
     width_default;
     height_default;
+    maximized_default;
     x_default;
     y_default;
     icon_src;

@@ -1,7 +1,7 @@
 <template>
   <div class="program-content">
     <div class="d-flex align-items-start h-100 fs-6">
-      <div ref="nav" class="nav justify-content-stretch flex-nowrap flex-column nav-pills me-3 shadow h-100 text-trucante" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <div ref="nav" class="nav justify-content-stretch flex-nowrap flex-column nav-pills me-3 shadow text-trucante bg-light" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <button class="nav-link active rounded-0 language" title="Idioma" :id="`v-pills-general-tab-${id}`" data-bs-toggle="pill" :data-bs-target="`#v-pills-general-${id}`" type="button" role="tab" :aria-controls="`v-pills-general-${id}`" aria-selected="true">
           <span>Idioma</span>
         </button>
@@ -12,7 +12,7 @@
           <span>Acerca de</span>
         </button>
       </div>
-      <div class="tab-content w-100">
+      <div ref="tabContent" class="tab-content w-100">
         <div class="tab-pane p-3 fade show active" :id="`v-pills-general-${id}`" role="tabpanel" :aria-labelledby="`v-pills-general-tab-${id}`">
           <h4>Idioma</h4>
         </div>
@@ -21,6 +21,52 @@
         </div>
         <div class="tab-pane p-3 fade" :id="`v-pills-about-${id}`" role="tabpanel" :aria-labelledby="`v-pills-about-tab-${id}`">
           <h4>Acerca de</h4>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Especificaciones del sistema</h5>
+              <table class="table table-borderless mt-4">
+                <tr>
+                  <td class="fw-bold label">Edición</td>
+                  <td>XiaoOS</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold label">Versión</td>
+                  <td>{{ getVersion }}</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold label">Fecha de compilación</td>
+                  <td>{{ getDateVersion }}</td>
+                </tr>
+                <tr>
+                  <td></td><td></td>
+                </tr>
+                <tr>
+                  <td class="fw-bold label">Creado por</td>
+                  <td>Xiaolin Jin Lin</td>
+                </tr>
+                <tr>
+                  <td class="fw-bold label">Github</td>
+                  <td><a href="https://github.com/x140l1n/portfolio-vue" target="_blank" class="p-0">https://github.com/x140l1n/portfolio-vue</a></td>
+                </tr>
+                <tr>
+                  <td></td><td></td>
+                </tr>
+                <tr>
+                  <td class="fw-bold label pe-4">Desarrollado con</td>
+                  <td>
+                    <div class="d-inline-block text-center">
+                      <img src="../assets/icons/vue.png" alt="Vue 2" title="Vue 2" />
+                      <figcaption>Vue 2</figcaption>
+                    </div>
+                    <div class="d-inline-block text-center">
+                      <img src="../assets/icons/bootstrap.png" width="85" alt="Bootstrap 5"/>
+                      <figcaption>Bootstrap 5</figcaption>
+                    </div>
+                  </td>
+                </tr>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -32,6 +78,7 @@ import Program from "./Program";
 import Component from "vue-class-component";
 import icon_settings from "../assets/icons/settings.png";
 import Vue from "vue";
+import { version, date } from "../../package";
 
 @Component({
   props: {
@@ -46,12 +93,22 @@ import Vue from "vue";
   },
   methods: {
     onResize() {
-      if (this.$el.clientWidth < 400) {
+      if (this.$el.clientWidth < 600) {
         this.$refs.nav.classList.add("nav-small");
+        this.$refs.tabContent.classList.add("tab-content-small");
       } else {
         this.$refs.nav.classList.remove("nav-small");
+        this.$refs.tabContent.classList.remove("tab-content-small");
       }
     },
+  },
+  computed: {
+    getVersion() {
+      return version;
+    }, 
+    getDateVersion() {
+      return date;
+    }
   }
 })
 
@@ -61,10 +118,9 @@ export default class Settings extends Program {
     this.title = "Ajustes";
     this.width_default = 550;
     this.height_default = 400;
-    this.x_default =
-      Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
-    this.y_default =
-      Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
+    this.maximized_default = true;
+    this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
+    this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
     this.icon_src = icon_settings;
     this.window = null;
   }
@@ -72,9 +128,27 @@ export default class Settings extends Program {
 </script>
 
 <style scoped>
+.table td {
+  display: inline-block;
+}
+.table td.label {
+  width: 200px;
+}
+.tab-content.tab-content-small {
+  margin-left: 50px;
+}
+.tab-content {
+  margin-left: 200px;
+}
+
 .nav {
+  position: absolute;
+  top: 32px;
+  bottom: 0;
   width: 100%;
+  min-width: 170px;
   max-width: 200px;
+  z-index: 2;
 }
 
 .program-content {
@@ -92,6 +166,7 @@ export default class Settings extends Program {
 }
 
 .nav.nav-small {
+  min-width: 50px;
   max-width: 50px;
 }
 

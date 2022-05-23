@@ -93,6 +93,7 @@ export default {
       pos4: 0,
       isMaximized: false,
       isMouseDown: false,
+      isDragging: false,
     };
   },
   mounted() {
@@ -102,6 +103,8 @@ export default {
     init() {
       this.dragElement(this.$refs.windowTilebar, this);
       this.resizeElement(this.$refs.window, this);
+
+      if (this.program) this.isMaximized = this.program.maximized_default;
 
       this.bringFront();
     },
@@ -127,24 +130,32 @@ export default {
           break;
         case "toggleMaximized":
           this.toggleMaximized();
+          this.bringFront();
           break;
         case "minimized":
           this.minimize();
           break;
+        default: this.bringFront();
       }
-
-      this.bringFront();
     },
     bringFront() {
       this.$programs.forEach((program) => {
         program.window.$el.classList.remove("active");
       });
 
+      this.$el.classList.remove("minimize");
       this.$el.classList.add("active");
 
       this.$programActive = this.program;
     },
-    minimize() {},
+    minimize() {
+      this.$el.classList.remove("active");
+      this.$el.classList.add("minimize");
+
+      this.$programActive = null;
+
+      this.bringFrontLastProgram();
+    },
     toggleMaximized() {
       if (this.isMaximized) {
         this.$refs.window.classList.add("minimized-transition");
@@ -171,13 +182,22 @@ export default {
 
         this.$programs.splice(indexProgramRemove, 1);
 
-        const lastProgram = this.$programs[this.$programs.length - 1];
+        this.bringFrontLastProgram();
+      }, 200);    
+    },
+    bringFrontLastProgram() {
+        let programs_reverse = [...this.$programs];
+
+        programs_reverse = programs_reverse.reverse();
+
+        const lastProgram = programs_reverse.find(program => !program.window.$el.classList.contains("minimize"));
 
         if (lastProgram) {
           lastProgram.window.bringFront();
-          this.$programs[this.$programs.length - 1] = lastProgram;
+
+          let _p = this.$programs.find(program => program.id == lastProgram.id);
+          _p = lastProgram;
         }  
-      }, 200);    
     },
     updateSize() {
       if (this.isMaximized) {
@@ -197,17 +217,27 @@ export default {
       function dragMouseDown(evt) {
         evt = evt || window.event;
 
-        me.pos3 = evt.clientX;
-        me.pos4 = evt.clientY;
+        let action = evt.target.dataset.action;
 
-        me.$refs.window.parentElement.onmouseup = closeDragElement;
-        me.$refs.window.parentElement.onmouseleave = closeDragElement;
-        me.$refs.window.parentElement.onmousemove = elementDrag;
+        if (evt.target.tagName == "I") {
+          action = evt.target.parentElement.dataset.action;
+        }
 
-        me.bringFront();
+        if (!action) {
+          me.pos3 = evt.clientX;
+          me.pos4 = evt.clientY;
+
+          me.$refs.window.parentElement.onmouseup = closeDragElement;
+          me.$refs.window.parentElement.onmouseleave = closeDragElement;
+          me.$refs.window.parentElement.onmousemove = elementDrag;
+
+          me.bringFront();
+        }
       }
 
       function elementDrag(evt) {
+        me.isDragging = true;
+
         if (!me.$refs.window.classList.contains("no-transition"))
           me.$refs.window.classList.add("no-transition");
 
@@ -227,6 +257,8 @@ export default {
 
       function closeDragElement() {
         if (me.$refs.window) {
+          me.isDragging = false;
+
           me.$refs.window.classList.remove("no-transition");
           me.$refs.window.parentElement.onmouseup = null;
           me.$refs.window.parentElement.onmousemove = null;
@@ -341,6 +373,7 @@ export default {
         "--x": this.position.x + "px",
         "--y": this.position.y + "px",
         "--heightTileBar": "32px",
+        "--maxHeight": Vue.prototype.$heightScreenContent + "px"
       };
     },
   },
@@ -366,7 +399,8 @@ export default {
         this.$refs.window.classList.remove("resizers");
       } else {
         this.size = { ...this.sizePrev };
-        this.position = { ...this.positionPrev };
+        
+        if (!this.isDragging) this.position = { ...this.positionPrev };
 
         this.$refs.window.classList.add("resizers");
       }
@@ -391,6 +425,13 @@ export default {
   transition: max-width 0.1s, max-height 0.1s, left 0.1s 0.1s, top 0.1s 0.1s;
   z-index: 1;
   animation: zoomOut 0.2s;
+}
+
+.window.minimize {
+  transition: top 0.5s;
+  animation: zoomIn 0.5s;
+  transform: scale(0);
+  top: var(--maxHeight);
 }
 
 .window.closing {
@@ -468,6 +509,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 1;
   height: var(--heightTileBar);
 }
 

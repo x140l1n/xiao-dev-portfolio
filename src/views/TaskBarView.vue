@@ -20,15 +20,12 @@ export default {
   },
   methods: {
     selectProgram(program) {
-      program.window.bringFront();
+      if (program.window.$el.classList.contains("active")) {
+        program.window.minimize();
+      } else {
+        program.window.bringFront();
+      }
     },
-    isProgramInFront(id) {
-      return this.$programs.some(program => {        
-        if (program.id == id && program.window.$el.classList.contains("active")) {
-          return true;
-        }
-      });
-    }
   },
   computed: {
     getProgramActiveId() {

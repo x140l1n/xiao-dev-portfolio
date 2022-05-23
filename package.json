@@ -1,6 +1,7 @@
 {
   "name": "portfolio",
   "version": "0.1.0",
+  "date": "23/05/2022",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
