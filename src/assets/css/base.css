@@ -8681,7 +8681,7 @@ textarea.form-control-lg {
   .d-print-none {
     display: none !important; } }
 * {
-  font-family: 'Ubuntu', sans-serif; }
+  font-family: "Ubuntu", sans-serif; }
 
 img {
   image-rendering: -webkit-optimize-contrast; }

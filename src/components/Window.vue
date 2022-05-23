@@ -4,6 +4,7 @@
     class="window resizers bg-light user-select-none"
     :style="cssRootVars"
     @click="windowClick"
+    v-resize="onResize"
   >
     <div
       ref="windowTilebar"
@@ -186,6 +187,9 @@ export default {
         this.size.width = Vue.prototype.$widthScreenContent;
         this.size.height = Vue.prototype.$heightScreenContent;
       }
+    },
+    onResize() {
+      if (this.program && typeof this.program.onResize === "function") this.program.onResize();
     },
     dragElement(element, me) {
       element.onmousedown = dragMouseDown;
