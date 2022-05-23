@@ -34,9 +34,56 @@ Object.defineProperty(Vue.prototype, '$programActive', {
   }
 })
 
+const observableThemeSelected = Vue.observable({ themeSelected: null })
+
+Object.defineProperty(Vue.prototype, '$themeSelected', {
+  get () {
+    return observableThemeSelected.themeSelected;
+  },
+  set (value) {
+    observableThemeSelected.themeSelected = value;
+  }
+})
+
+const observableIsFullScreen = Vue.observable({ isFullScreen: false })
+
+Object.defineProperty(Vue.prototype, '$isFullScreen', {
+  get () {
+    return observableIsFullScreen.isFullScreen;
+  },
+  set (value) {
+    observableIsFullScreen.isFullScreen = value;
+  }
+})
+
+const observableIsFullScreenFromToggle = Vue.observable({ isFullScreenFromToggle: true })
+
+Object.defineProperty(Vue.prototype, '$isFullScreenFromToggle', {
+  get () {
+    return observableIsFullScreenFromToggle.isFullScreenFromToggle;
+  },
+  set (value) {
+    observableIsFullScreenFromToggle.isFullScreenFromToggle = value;
+  }
+})
+
 window.oncontextmenu = function () {
   return false;
 }
+
+const eventsFullScreen = ["fullscreenchange", "webkitfullscreenchange", "mozfullscreenchange", "msfullscreenchange"];
+
+eventsFullScreen.forEach(
+  eventType => document.addEventListener(eventType, () => {
+    if (!window.screenTop && !window.screenY) {
+      observableIsFullScreen.isFullScreen = false;
+    } else {
+      observableIsFullScreen.isFullScreen = true;
+    }
+
+    observableIsFullScreenFromToggle.isFullScreenFromToggle = false;
+  }, false)
+);
 
 new Vue({
   render: h => h(App),

@@ -18,18 +18,59 @@ export default {
     isMonitorOn() {
       if (this.isFirstTime) this.isFirstTime = false;
     },
+    $isFullScreen() {
+      console.log(this.$isFullScreen);
+
+      if (this.$isFullScreenFromToggle) this.setFullScreen(this.$isFullScreen);
+
+      if (this.$isFullScreen) {
+        this.$refs.monitor.classList.add("fullscreen");
+      } else {
+        this.$refs.monitor.classList.remove("fullscreen");
+      }
+    },
   },
   methods: {
     init() {
 
     },
+    setFullScreen(fullscreen) {
+      let isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
+          (document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
+          (document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
+          (document.msFullscreenElement && document.msFullscreenElement !== null);
+
+      let docElm = document.documentElement;
+
+      if (!isInFullScreen && fullscreen) {
+          if (docElm.requestFullscreen) {
+              docElm.requestFullscreen();
+          } else if (docElm.mozRequestFullScreen) {
+              docElm.mozRequestFullScreen();
+          } else if (docElm.webkitRequestFullScreen) {
+              docElm.webkitRequestFullScreen();
+          } else if (docElm.msRequestFullscreen) {
+              docElm.msRequestFullscreen();
+          }
+      } else {
+          if (document.exitFullscreen) {
+              document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) {
+              document.webkitExitFullscreen();
+          } else if (document.mozCancelFullScreen) {
+              document.mozCancelFullScreen();
+          } else if (document.msExitFullscreen) {
+              document.msExitFullscreen();
+          }
+      }
+    }
   },
 };
 </script>
 
 <template>
-  <main class="container-fluid bg-dark vh-100 d-flex user-select-none">
-    <div class="card monitor m-auto">
+  <main class="container-fluid bg-dark vh-100 d-flex user-select-none p-0">
+    <div ref="monitor" class="card monitor m-auto">
       <div class="card-body monitor-inner">
         <div
           :class="`layer-on-off ${
@@ -62,6 +103,14 @@ export default {
   max-width: 84em;
   max-height: 52em;
   padding: 0.8em;
+}
+.monitor.fullscreen {
+  width: 100vw;
+  height: 100vh;
+  max-width: 100vw;
+  max-height: 100vh;
+  padding: 0;
+  border: 0;
 }
 
 .monitor-inner {

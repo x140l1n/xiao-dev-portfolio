@@ -397,12 +397,16 @@ export default {
         this.position.y = 0;
 
         this.$refs.window.classList.remove("resizers");
+
+        this.$refs.window.classList.add("maximize");
       } else {
         this.size = { ...this.sizePrev };
         
         if (!this.isDragging) this.position = { ...this.positionPrev };
 
         this.$refs.window.classList.add("resizers");
+
+        this.$refs.window.classList.remove("maximize");
       }
     },
   },
@@ -425,6 +429,9 @@ export default {
   transition: max-width 0.1s, max-height 0.1s, left 0.1s 0.1s, top 0.1s 0.1s;
   z-index: 1;
   animation: zoomOut 0.2s;
+}
+.window.maximize {
+  padding-bottom: 2.4rem;
 }
 
 .window.minimize {

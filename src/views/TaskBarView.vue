@@ -1,9 +1,9 @@
 <template>
   <div class="taskbar bg-primary d-flex flex-row-reverse user-select-none">
-    <span class="taskbar-item border border-dark border-end-0 border-top-0 border-bottom-0" style="width: 6px">
+    <span class="taskbar-item border border-dark border-end-0 border-top-0 border-bottom-0" style="width: 6px" @click="minimizeAll">
     </span>
     <Clock class="taskbar-item" />
-    <div class="taskbar-programs d-flex w-100">
+    <div class="taskbar-programs d-flex justify-content-center w-100">
       <div v-for="program in $programs" :key="program.id" :id="`program-${program.id}`" :class="`taskbar-item program ${ getProgramActiveId == program.id ? 'selected' : ''}`" :title="program.title" @click="selectProgram(program)">
         <img :src="program.icon_src" :alt="`Logo ${program.title}`"/>
       </div>
@@ -25,6 +25,9 @@ export default {
       } else {
         program.window.bringFront();
       }
+    },
+    minimizeAll() {
+      this.$programs.forEach(program => program.window.minimize());
     },
   },
   computed: {
