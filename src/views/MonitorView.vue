@@ -19,8 +19,6 @@ export default {
       if (this.isFirstTime) this.isFirstTime = false;
     },
     $isFullScreen() {
-      console.log(this.$isFullScreen);
-
       if (this.$isFullScreenFromToggle) this.setFullScreen(this.$isFullScreen);
 
       if (this.$isFullScreen) {
@@ -70,13 +68,22 @@ export default {
 
 <template>
   <main class="container-fluid bg-dark vh-100 d-flex user-select-none p-0">
-    <div ref="monitor" class="card monitor m-auto">
+    <div ref="monitor" class="card monitor mt-3 mx-auto bg-light">
       <div class="card-body monitor-inner">
         <div
           :class="`layer-on-off ${
             !isFirstTime ? (isMonitorOn ? 'layer-on' : 'layer-off') : ''
           }`"
         ></div>
+        <div class="wrap-introduction text-light" v-if="!isMonitorOn">
+            <h2 class="fw-bold mb-4">¡Bienvenido a mi portafolio! :D</h2>
+            <p>
+              Para empezar a navegar en mi portafolio
+              pulse el botón <img src="../assets/icons/button-off-on.png" alt="Botón on off" title="Botón on off" class="m-2"/>
+              que está situado en la esquina inferior derecha.
+            </p>
+        </div>
+        <img src="../assets/img/greet.png" alt="Saludo" title="Saludo" class="image-greet" v-if="!isMonitorOn"/>
         <ScreenView ref="screenView" />
       </div>
       <div
@@ -91,16 +98,42 @@ export default {
         >
           <i class="fa-solid fa-power-off fa-fw m-auto"></i>
         </span>
+        
       </div>
     </div>
   </main>
 </template>
 
 <style scoped>
+main {
+  background-image: url("../assets/img/background.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: auto;
+}
+.wrap-introduction {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -40%);
+  z-index: 5;
+  text-align: justify;
+  font-size: 1.2rem;
+}
+
+.image-greet {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-width: 150px;
+  z-index: 5;
+}
+
 .monitor {
   width: 100%;
   height: 100%;
-  max-width: 84em;
+  max-width: 78em;
   max-height: 52em;
   padding: 0.8em;
 }
@@ -109,8 +142,9 @@ export default {
   height: 100vh;
   max-width: 100vw;
   max-height: 100vh;
-  padding: 0;
-  border: 0;
+  padding: 0 !important;
+  margin: 0 !important;
+  border: 0 !important;
 }
 
 .monitor-inner {

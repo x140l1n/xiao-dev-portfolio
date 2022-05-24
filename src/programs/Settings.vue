@@ -88,11 +88,11 @@
                   <td class="fw-bold label pe-4">Desarrollado con</td>
                   <td>
                     <div class="d-inline-block text-center">
-                      <img src="../assets/icons/vue.png" alt="Vue 2" title="Vue 2" />
+                      <img src="../assets/icons/vue.png" alt="Vue" title="Vue" />
                       <figcaption>Vue 2</figcaption>
                     </div>
                     <div class="d-inline-block text-center">
-                      <img src="../assets/icons/bootstrap.png" width="85" alt="Bootstrap 5"/>
+                      <img src="../assets/icons/bootstrap.png" width="85" alt="Bootstrap" title="Bootstrap"/>
                       <figcaption>Bootstrap 5</figcaption>
                     </div>
                   </td>
@@ -232,12 +232,16 @@ export default class Settings extends Program {
   display: none;
 }
 
+.nav.nav-small > button {
+  background-position-x: center !important;
+}
+
 button.general {
   background-image: url("../assets/icons/general.png");
   background-repeat: no-repeat;
   background-position: left;
   background-size: 30px;
-  background-position-x: 10%;
+  background-position-x: 10% !important;
   padding-left: 35px;
 }
 
@@ -246,7 +250,7 @@ button.about {
   background-repeat: no-repeat;
   background-position: left;
   background-size: 30px;
-  background-position-x: 10%;
+  background-position-x: 10% !important;
   padding-left: 52px;
 }
 
@@ -255,7 +259,7 @@ button.theme {
   background-repeat: no-repeat;
   background-position: left;
   background-size: 30px;
-  background-position-x: 10%;
+  background-position-x: 10% !important;
   padding-left: 30px;
 }
 </style>

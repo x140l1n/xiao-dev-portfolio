@@ -23,17 +23,69 @@
         <label class="text-light" for="program-settings">Ajustes</label>
       </div>
       <div
+        class="program program-about-me p-2"
+        title="Ajustes"
+        @click="selectProgram"
+        @dblclick="openProgram('AboutMe')"
+      >
+        <img
+          id="program-about-me"
+          src="../assets/icons/about-me.png"
+          alt="Logo ¿Quién soy?"
+        />
+        <label class="text-light" for="program-about-me">¿Quién soy?</label>
+      </div>
+      <div
+        class="program program-knowledge p-2"
+        title="Ajustes"
+        @click="selectProgram"
+        @dblclick="openProgram('Knowledge')"
+      >
+        <img
+          id="program-knowledge"
+          src="../assets/icons/knowledge.png"
+          alt="Logo Mis habilidades"
+        />
+        <label class="text-light" for="program-knowledge">Mis habilidades</label>
+      </div>
+      <div
+        class="program program-experiences-studies p-2"
+        title="Ajustes"
+        @click="selectProgram"
+        @dblclick="openProgram('ExperiencesStudies')"
+      >
+        <img
+          id="program-experiences-studies"
+          src="../assets/icons/experiences-studies.png"
+          alt="Logo Estudios y experiencias"
+        />
+        <label class="text-light" for="program-experiences-studies">Estudios y experiencias</label>
+      </div>
+      <div
+        class="program program-projects p-2"
+        title="Mis proyectos"
+        @click="selectProgram"
+        @dblclick="openProgram('Projects')"
+      >
+        <img
+          id="program-projects"
+          src="../assets/icons/projects.png"
+          alt="Logo Mis proyectos"
+        />
+        <label class="text-light" for="program-projects">Mis Proyectos</label>
+      </div>
+      <div
         class="program program-browser p-2"
-        title="Navegador"
+        title="Mis proyectos"
         @click="selectProgram"
         @dblclick="openProgram('Browser')"
       >
         <img
-          id="program-navegador"
+          id="program-browser"
           src="../assets/icons/browser.png"
           alt="Logo Navegador"
         />
-        <label class="text-light" for="program-navegador">Navegador</label>
+        <label class="text-light" for="program-browser">Navegador</label>
       </div>
     </div>
     <TaskBarView ref="taskBarView" />
@@ -95,15 +147,17 @@ export default {
 
       Vue.prototype.$programs.forEach((program) => program.window.updateSize());
     },
-    openProgram(_program) {
+    openProgram(_program, default_props = {}) {
       const program = this.getProgram(_program);
+
+      let propsData = {
+        id: moment().format("DDMMYYYYHHmmssS"),
+      };
 
       program.then((result) => {
         const ProgramClass = Vue.extend(result);
         const programObject = new ProgramClass({
-          propsData: {
-            id: moment().format("DDMMYYYYHHmmssS"),
-          },
+          propsData: { ...propsData, ...default_props },
         });
 
         programObject.$mount();
@@ -123,6 +177,8 @@ export default {
       const x = programObject.x_default == 0 ? 0 : programObject.x_default;
       const y = programObject.y_default == 0 ? 0 : programObject.y_default;
 
+      let me = this;
+
       const WindowClass = Vue.extend(Window);
       const windowObject = new WindowClass({
         propsData: {
@@ -132,6 +188,11 @@ export default {
           x: parseInt(x),
           y: parseInt(y),
         },
+        methods: {
+          openProgram(_program, default_props = {}) {
+            me.openProgram(_program, default_props);
+          }
+        }
       });
 
       programObject.window = windowObject;
@@ -146,16 +207,7 @@ export default {
       this.$programs.push(programObject);
     },
     async getProgram(program) {
-      switch (program) {
-        case "Settings":
-          program = (await import("../programs/Settings.vue")).default;
-          break;
-        case "Browser":
-          program = (await import("../programs/Browser.vue")).default;
-          break;
-      }
-
-      return program;
+      return (await import(`../programs/${program}.vue`)).default;
     },
   },
   watch: {
@@ -165,9 +217,14 @@ export default {
           this.$refs.screen.classList.add("theme-1");
           this.$refs.screen.classList.remove("theme-2");
           document.documentElement.style.removeProperty("--bs-primary-rgb");
+          document.documentElement.style.removeProperty("--bs-secondary-rgb");
           document.documentElement.style.setProperty(
             "--bs-primary-rgb",
             "93, 69, 149"
+          );
+          document.documentElement.style.setProperty(
+            "--bs-secondary-rgb",
+            "19, 116, 142"
           );
           break;
 
@@ -175,9 +232,14 @@ export default {
           this.$refs.screen.classList.add("theme-2");
           this.$refs.screen.classList.remove("theme-1");
           document.documentElement.style.removeProperty("--bs-primary-rgb");
+          document.documentElement.style.removeProperty("--bs-secondary-rgb");
           document.documentElement.style.setProperty(
             "--bs-primary-rgb",
             "19, 116, 142"
+          );
+          document.documentElement.style.setProperty(
+            "--bs-secondary-rgb",
+            "93, 69, 149"
           );
           break;
 
@@ -187,6 +249,12 @@ export default {
 
       sessionStorage.setItem("theme", this.$themeSelected);
     },
+    $urlToOpen() {
+      if (this.$urlToOpen) {
+        this.openProgram("Browser", { url_default: this.$urlToOpen });
+        this.$urlToOpen = "";
+      }
+    }
   },
 };
 </script>
@@ -209,8 +277,9 @@ export default {
   background-position: center;
   background-repeat: no-repeat;
 }
+
 .screen.theme-1 {
-  background-color: rgb(189, 224, 228);
+  background-color: rgb(149, 190, 195);
   background-image: url("../svg/xiao-theme-2.svg");
 }
 .screen.theme-2 {
@@ -219,21 +288,18 @@ export default {
 }
 
 .screen-content {
-  padding: 20px 20px 4rem 20px;
-  height: 100%;
+  height: calc(100% - 3rem);
   position: relative;
   display: grid;
+  padding: 5px;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(12, 1fr);
+  grid-template-rows: repeat(9, 1fr);
   grid-template-areas:
-    "browser . . . . . . . . . . settings"
-    ". . . . . . . . . . . ."
-    ". . . . . . . . . . . ."
-    ". . . . . . . . . . . ."
-    ". . . . . . . . . . . ."
-    ". . . . . . . . . . . ."
-    ". . . . . . . . . . . ."
-    ". . . . . . . . . . . ."
+    "about-me . . . . . . . . . . settings"
+    "knowledge . . . . . . . . . . ."
+    "experiences-studies . . . . . . . . . . ."
+    "projects . . . . . . . . . . ."
+    "browser . . . . . . . . . . ."
     ". . . . . . . . . . . ."
     ". . . . . . . . . . . ."
     ". . . . . . . . . . . ."
@@ -241,12 +307,25 @@ export default {
 }
 .program {
   border-radius: 5px;
+  width: 100%;
 }
 .program-settings {
   grid-area: settings;
 }
+.program-about-me {
+  grid-area: about-me;
+}
 .program-browser {
   grid-area: browser;
+}
+.program-knowledge {
+  grid-area: knowledge;
+}
+.program-experiences-studies {
+  grid-area: experiences-studies;
+}
+.program-projects {
+  grid-area: projects;
 }
 .program:hover,
 .program.selected {
@@ -256,7 +335,11 @@ export default {
 .program > * {
   display: block;
   margin: auto;
+}
+
+.program > label {
   text-align: center;
   text-shadow: 1px 1px 4px black;
+  font-size: 0.9em;
 }
 </style>

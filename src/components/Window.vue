@@ -31,10 +31,17 @@
         <i class="fa-solid fa-minus fa-fw"></i>
       </span>
       <span class="m-auto ms-2 text-truncate">{{ title }}</span>
-      <img :src="program.icon_src" class="program-icon" :alt="`Icono ${program.title}`"/>
+      <img
+        :src="program.icon_src"
+        class="program-icon"
+        :alt="`Icono ${program.title}`"
+      />
     </div>
-    <div class="window-content bg-light overflow-auto" ref="windowContent">
-    </div>
+    <div
+      class="window-content bg-light overflow-auto"
+      ref="windowContent"
+      @scroll="onScroll"
+    ></div>
     <div class="resizer top-left"></div>
     <div class="resizer top-right"></div>
     <div class="resizer bottom-left"></div>
@@ -183,7 +190,7 @@ export default {
         this.$programs.splice(indexProgramRemove, 1);
 
         this.bringFrontLastProgram();
-      }, 200);    
+      }, 200);
     },
     bringFrontLastProgram() {
         let programs_reverse = [...this.$programs];
@@ -197,7 +204,7 @@ export default {
 
           let _p = this.$programs.find(program => program.id == lastProgram.id);
           _p = lastProgram;
-        }  
+        }
     },
     updateSize() {
       if (this.isMaximized) {
@@ -210,6 +217,9 @@ export default {
     },
     onResize() {
       if (this.program && typeof this.program.onResize === "function") this.program.onResize();
+    },
+    onScroll() {
+      if (this.program && typeof this.program.onScroll === "function") this.program.onScroll();
     },
     dragElement(element, me) {
       element.onmousedown = dragMouseDown;
@@ -363,6 +373,13 @@ export default {
     },
     addWindowContent(node) {
       this.$refs.windowContent.appendChild(node);
+
+      /*this.$el.querySelectorAll("a").forEach((a) => {
+        a.addEventListener("click", (e) => {
+          e.preventDefault();
+          this.openProgram("Browser", { url_default: a.href });
+        });
+      });*/
     }
   },
   computed: {
@@ -401,7 +418,7 @@ export default {
         this.$refs.window.classList.add("maximize");
       } else {
         this.size = { ...this.sizePrev };
-        
+
         if (!this.isDragging) this.position = { ...this.positionPrev };
 
         this.$refs.window.classList.add("resizers");
@@ -429,9 +446,6 @@ export default {
   transition: max-width 0.1s, max-height 0.1s, left 0.1s 0.1s, top 0.1s 0.1s;
   z-index: 1;
   animation: zoomOut 0.2s;
-}
-.window.maximize {
-  padding-bottom: 2.4rem;
 }
 
 .window.minimize {
@@ -516,7 +530,7 @@ export default {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 1;
+  z-index: 3;
   height: var(--heightTileBar);
 }
 

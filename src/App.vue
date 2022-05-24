@@ -12,4 +12,6 @@ export default {
   <MonitorView />
 </template>
 
-<style></style>
+<style>
+
+</style>
