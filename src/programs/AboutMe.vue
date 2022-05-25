@@ -198,7 +198,7 @@ export default class AboutMe extends Program {
 .header-title {
   font-size: 4vw;
 }
-@media screen and (min-width: 1600px) {
+@media screen and (min-width: 800px) {
   .header-title {
     font-size: 26px;
   }

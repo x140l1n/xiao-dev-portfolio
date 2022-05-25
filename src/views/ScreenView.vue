@@ -119,7 +119,7 @@ export default {
       if (themeSession) {
         this.$themeSelected = themeSession;
       } else {
-        this.$themeSelected = "theme-1";
+        this.$themeSelected = "theme-2";
       }
     },
     cleanSelectProgram() {
@@ -244,7 +244,7 @@ export default {
           break;
 
         default:
-          this.$themeSelected = "theme-1";
+          this.$themeSelected = "theme-2";
       }
 
       sessionStorage.setItem("theme", this.$themeSelected);
