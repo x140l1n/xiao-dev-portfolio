@@ -1,6 +1,6 @@
 <template>
   <div class="w-100 h-100 p-3">
-    <div data-aos="flip-left" class="card shadow-lg m-auto w-100">
+    <div class="card shadow-lg m-auto w-100">
         <div class="card-header bg-primary text-light">
             <span class="fw-bold">Lenguajes de programación y frameworks</span>
         </div>
@@ -30,7 +30,7 @@
             </div>
         </div>
     </div>
-    <div data-aos="flip-left" class="card shadow-lg m-auto w-100 mt-4">
+    <div class="card shadow-lg m-auto w-100 mt-4">
         <div class="card-header bg-primary text-light">
             <span class="fw-bold">Bases de datos</span>
         </div>
@@ -42,7 +42,7 @@
             </div>
         </div>
     </div>
-    <div data-aos="flip-left" class="card shadow-lg m-auto w-100 mt-4">
+    <div class="card shadow-lg m-auto w-100 mt-4">
         <div class="card-header bg-primary text-light">
             <span class="fw-bold">Otros</span>
         </div>
