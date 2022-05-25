@@ -4,7 +4,7 @@
       <div class="flip-card-front">
         <header class="text-light d-flex justify-content-between p-4 pb-0">
           <img src="../assets/icons/coding.png" class="my-auto ms-4" alt="Icono fullstack developer" title="Icono fullstack developer"/>
-          <label class="mt-4 fs-4 text-truncate">FULLSTACK DEVELOPER</label>
+          <label class="mt-4 mx-2 fw-bold text-truncate header-title">FULLSTACK DEVELOPER</label>
           <button
             class="btn btn-transparent btn-flip text-light me-3 my-auto"
             title="Voltear la targeta"
@@ -195,14 +195,20 @@ export default class AboutMe extends Program {
   object-fit: cover;
   border-radius: 25px;
 }
-
+.header-title {
+  font-size: 4vw;
+}
+@media screen and (min-width: 1600px) {
+  .header-title {
+    font-size: 26px;
+  }
+}
 .logo {
   height: 100%;
   width: 100%;
   min-width: 100px;
   max-width: 250px;
 }
-
 .logo > img {
   object-fit: cover;
 }
