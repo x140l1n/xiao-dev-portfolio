@@ -80,10 +80,6 @@ Object.defineProperty(Vue.prototype, "$urlToOpen", {
   }
 })
 
-window.oncontextmenu = function () {
-  return false;
-}
-
 const eventsFullScreen = ["fullscreenchange", "webkitfullscreenchange", "mozfullscreenchange", "msfullscreenchange"];
 
 eventsFullScreen.forEach(

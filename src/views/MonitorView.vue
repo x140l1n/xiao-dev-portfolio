@@ -67,37 +67,39 @@ export default {
 </script>
 
 <template>
-  <main class="container-fluid bg-dark vh-100 d-flex user-select-none p-0">
+  <main class="container-fluid bg-dark vh-100 d-flex p-0">
     <div ref="monitor" class="card monitor mt-3 mx-auto bg-light">
-      <div class="card-body monitor-inner">
+      <div :class="`card-body monitor-inner ${isMonitorOn ? '' : 'bg-dark'}`">
         <div
           :class="`layer-on-off ${
             !isFirstTime ? (isMonitorOn ? 'layer-on' : 'layer-off') : ''
           }`"
         ></div>
         <div class="wrap-introduction text-light" v-if="!isMonitorOn">
-            <h2 class="fw-bold mb-4">¡Bienvenido a mi portafolio! :D</h2>
-            <p>
+            <h2 class="fw-bold mb-4" tabindex="1">¡Bienvenido a mi portafolio! :D</h2>
+            <p tabindex="2">
               Para empezar a navegar en mi portafolio
               pulse el botón <img src="../assets/icons/button-off-on.png" alt="Botón on off" title="Botón on off" class="m-2"/>
               que está situado en la esquina inferior derecha.
             </p>
         </div>
         <img src="../assets/img/greet.png" alt="Saludo" title="Saludo" class="image-greet" v-if="!isMonitorOn"/>
-        <ScreenView ref="screenView" />
+        <ScreenView ref="screenView" v-show="isMonitorOn"/>
       </div>
       <div
         class="card-footer border-0 bg-transparent d-flex flex-row-reverse justify-content-between"
       >
-        <span
-          role="button"
+        <button
+          tabindex="3"
+          title="Botón on off"
+          alt="Botón on off"
           :class="`rounded-circle mt-2 btn-on-off d-flex ${
             isMonitorOn ? 'btn-on' : 'btn-off'
           }`"
           @click="isMonitorOn = !isMonitorOn"
         >
           <i class="fa-solid fa-power-off fa-fw m-auto"></i>
-        </span>
+        </button>
         
       </div>
     </div>
@@ -164,15 +166,18 @@ main {
 
 .btn-on-off:focus {
   outline: none;
-  color: inherit;
 }
 
-.btn-on {
+.btn-on,
+.btn-on:active,
+.btn-on:focus {
   color: rgb(23, 210, 23);
   border: 2px rgb(23, 210, 23) solid;
 }
 
-.btn-off {
+.btn-off, 
+.btn-off:active,
+.btn-off:focus {
   color: rgb(210, 23, 23);
   border: 2px rgb(210, 23, 23) solid;
 }
@@ -192,7 +197,7 @@ main {
 }
 
 .layer-off {
-  animation: off forwards 0.2s ease-in;
+  animation: off forwards 0s ease-in;
 }
 
 @keyframes on {

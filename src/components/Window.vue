@@ -1,7 +1,7 @@
 <template>
   <div
     ref="window"
-    class="window resizers bg-light user-select-none"
+    class="window resizers bg-light"
     :style="cssRootVars"
     @click="windowClick"
     v-resize="onResize"

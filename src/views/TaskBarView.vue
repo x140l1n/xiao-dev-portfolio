@@ -1,10 +1,10 @@
 <template>
-  <div class="taskbar bg-primary d-flex flex-row-reverse user-select-none">
+  <div class="taskbar bg-primary d-flex flex-row-reverse">
     <span class="taskbar-item border border-dark border-end-0 border-top-0 border-bottom-0" style="width: 6px" @click="minimizeAll">
     </span>
     <Clock class="taskbar-item" />
     <div class="taskbar-programs d-flex justify-content-center w-100">
-      <div v-for="program in $programs" :key="program.id" :id="`program-${program.id}`" :class="`taskbar-item program ${ getProgramActiveId == program.id ? 'selected' : ''}`" :title="program.title" @click="selectProgram(program)">
+      <div v-for="(program, index) in $programs" :tabindex="10 + index" :key="program.id" :id="`program-${program.id}`" :class="`taskbar-item program ${ getProgramActiveId == program.id ? 'selected' : ''}`" :title="program.title" @click="selectProgram(program)">
         <img :src="program.icon_src" :alt="`Logo ${program.title}`"/>
       </div>
     </div>

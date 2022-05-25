@@ -9,11 +9,12 @@
       class="screen-content"
       @click.self="cleanSelectProgram"
     >
-      <div
+      <button
         class="program program-settings p-2"
         title="Ajustes"
-        @click="selectProgram"
-        @dblclick="openProgram('Settings')"
+        alt="Ajustes"
+        @click="openProgram('Settings')"
+        tabindex="4"
       >
         <img
           id="program-settings"
@@ -21,12 +22,13 @@
           alt="Logo Ajustes"
         />
         <label class="text-light" for="program-settings">Ajustes</label>
-      </div>
-      <div
+      </button>
+      <button
         class="program program-about-me p-2"
-        title="Ajustes"
-        @click="selectProgram"
-        @dblclick="openProgram('AboutMe')"
+        title="¿Quién soy?"
+        alt="¿Quién soy?"
+        @click="openProgram('AboutMe')"
+        tabindex="5"
       >
         <img
           id="program-about-me"
@@ -34,38 +36,45 @@
           alt="Logo ¿Quién soy?"
         />
         <label class="text-light" for="program-about-me">¿Quién soy?</label>
-      </div>
-      <div
+      </button>
+      <button
         class="program program-knowledge p-2"
-        title="Ajustes"
-        @click="selectProgram"
-        @dblclick="openProgram('Knowledge')"
+        title="Mis conocimientos"
+        alt="Mis conocimientos"
+        @click="openProgram('Knowledge')"
+        tabindex="6"
       >
         <img
           id="program-knowledge"
           src="../assets/icons/knowledge.png"
-          alt="Logo Mis habilidades"
+          alt="Logo Mis conocimientos"
         />
-        <label class="text-light" for="program-knowledge">Mis habilidades</label>
-      </div>
-      <div
+        <label class="text-light" for="program-knowledge"
+          >Mis conocimientos</label
+        >
+      </button>
+      <button
         class="program program-experiences-studies p-2"
-        title="Ajustes"
-        @click="selectProgram"
-        @dblclick="openProgram('ExperiencesStudies')"
+        title="Estudios y experiencias"
+        alt="Estudios y experiencias"
+        @click="openProgram('ExperiencesStudies')"
+        tabindex="7"
       >
         <img
           id="program-experiences-studies"
           src="../assets/icons/experiences-studies.png"
           alt="Logo Estudios y experiencias"
         />
-        <label class="text-light" for="program-experiences-studies">Estudios y experiencias</label>
-      </div>
-      <div
+        <label class="text-light" for="program-experiences-studies"
+          >Estudios y experiencias</label
+        >
+      </button>
+      <button
         class="program program-projects p-2"
         title="Mis proyectos"
-        @click="selectProgram"
-        @dblclick="openProgram('Projects')"
+        alt="Mis proyectos"
+        @click="openProgram('Projects')"
+        tabindex="8"
       >
         <img
           id="program-projects"
@@ -73,12 +82,27 @@
           alt="Logo Mis proyectos"
         />
         <label class="text-light" for="program-projects">Mis Proyectos</label>
-      </div>
-      <div
+      </button>
+      <button
+        class="program program-contactme p-2"
+        title="Contácteme"
+        alt="Contácteme"
+        @click="openProgram('ContactMe')"
+        tabindex="9"
+      >
+        <img
+          id="program-contactme"
+          src="../assets/icons/email.png"
+          alt="Logo Contácteme"
+        />
+        <label class="text-light" for="program-contactme">Contácteme</label>
+      </button>
+      <button
         class="program program-browser p-2"
         title="Mis proyectos"
-        @click="selectProgram"
-        @dblclick="openProgram('Browser')"
+        alt="Mis proyectos"
+        @click="openProgram('Browser')"
+        tabindex="10"
       >
         <img
           id="program-browser"
@@ -86,7 +110,7 @@
           alt="Logo Navegador"
         />
         <label class="text-light" for="program-browser">Navegador</label>
-      </div>
+      </button>
     </div>
     <TaskBarView ref="taskBarView" />
   </div>
@@ -191,8 +215,8 @@ export default {
         methods: {
           openProgram(_program, default_props = {}) {
             me.openProgram(_program, default_props);
-          }
-        }
+          },
+        },
       });
 
       programObject.window = windowObject;
@@ -254,7 +278,7 @@ export default {
         this.openProgram("Browser", { url_default: this.$urlToOpen });
         this.$urlToOpen = "";
       }
-    }
+    },
   },
 };
 </script>
@@ -293,21 +317,21 @@ export default {
   display: grid;
   padding: 5px;
   grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(9, 1fr);
+  grid-template-rows: repeat(7, 1fr);
   grid-template-areas:
-    "about-me . . . . . . . . . . settings"
+    "settings . . . . . . . . . . ."
+    "about-me . . . . . . . . . . ."
     "knowledge . . . . . . . . . . ."
     "experiences-studies . . . . . . . . . . ."
     "projects . . . . . . . . . . ."
-    "browser . . . . . . . . . . ."
-    ". . . . . . . . . . . ."
-    ". . . . . . . . . . . ."
-    ". . . . . . . . . . . ."
-    ". . . . . . . . . . . .";
+    "contactme . . . . . . . . . . ."
+    "browser . . . . . . . . . . .";
 }
 .program {
   border-radius: 5px;
   width: 100%;
+  background-color: transparent;
+  border: none;
 }
 .program-settings {
   grid-area: settings;
@@ -326,6 +350,9 @@ export default {
 }
 .program-projects {
   grid-area: projects;
+}
+.program-contactme {
+  grid-area: contactme;
 }
 .program:hover,
 .program.selected {
