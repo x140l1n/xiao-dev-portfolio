@@ -30,7 +30,7 @@
           <div class="card-body p-0">
             <div ref="timelineStudies" class="timeline text-light">
               <div class="timeline-row">
-                <div class="timeline-time"><a href="https://politecnics.barcelona/" target="_blank">Centre d'Estudis Politècnics, Barcelona (España)</a><small>2019 - 2021</small></div>
+                <div class="timeline-time"><a href="https://politecnics.barcelona/" target="_blank">Centre d'Estudis Politècnics, Barcelona (España)</a><small>2021 - 2022</small></div>
                 <div class="timeline-content">
                   <i class="fa-solid fa-code"></i>
                   <h5 class="fw-bold text-center">DESARROLLO APLICACIONES WEB (DAW)</h5>
