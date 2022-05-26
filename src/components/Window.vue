@@ -142,7 +142,8 @@ export default {
         case "minimized":
           this.minimize();
           break;
-        default: this.bringFront();
+        default:
+          this.bringFront();
       }
     },
     bringFront() {
@@ -193,18 +194,20 @@ export default {
       }, 200);
     },
     bringFrontLastProgram() {
-        let programs_reverse = [...this.$programs];
+      let programs_reverse = [...this.$programs];
 
-        programs_reverse = programs_reverse.reverse();
+      programs_reverse = programs_reverse.reverse();
 
-        const lastProgram = programs_reverse.find(program => !program.window.$el.classList.contains("minimize"));
+      const lastProgram = programs_reverse.find(
+        (program) => !program.window.$el.classList.contains("minimize")
+      );
 
-        if (lastProgram) {
-          lastProgram.window.bringFront();
+      if (lastProgram) {
+        lastProgram.window.bringFront();
 
-          let _p = this.$programs.find(program => program.id == lastProgram.id);
-          _p = lastProgram;
-        }
+        let _p = this.$programs.find((program) => program.id == lastProgram.id);
+        _p = lastProgram;
+      }
     },
     updateSize() {
       if (this.isMaximized) {
@@ -216,19 +219,19 @@ export default {
       }
     },
     onResize() {
-      if (this.program && typeof this.program.onResize === "function") this.program.onResize();
+      if (this.program && typeof this.program.onResize === "function")
+        this.program.onResize();
     },
     onScroll() {
-      if (this.program && typeof this.program.onScroll === "function") this.program.onScroll();
+      if (this.program && typeof this.program.onScroll === "function")
+        this.program.onScroll();
     },
     dragElement(element, me) {
       element.onmousedown = dragMouseDown;
-      element.touchstart = dragMouseDown;
+      element.ontouchstart = dragMouseDown;
 
       function dragMouseDown(evt) {
         evt = evt || window.event;
-
-        console.log(evt);
 
         let action = evt.target.dataset.action;
 
@@ -237,16 +240,22 @@ export default {
         }
 
         if (!action) {
-          me.pos3 = evt.clientX;
-          me.pos4 = evt.clientY;
+          if (!evt.touches) {
+            me.pos3 = evt.clientX;
+            me.pos4 = evt.clientY;
+          } else {
+            me.pos3 = evt.touches[0].clientX;
+            me.pos4 = evt.touches[0].clientY;
+          }
 
           me.$refs.window.parentElement.onmouseup = closeDragElement;
           me.$refs.window.parentElement.onmouseleave = closeDragElement;
           me.$refs.window.parentElement.onmousemove = elementDrag;
 
-          me.$refs.window.parentElement.touchcancel = closeDragElement;
-          me.$refs.window.parentElement.touchleave = closeDragElement;
-          me.$refs.window.parentElement.touchmove = elementDrag;
+          me.$refs.window.parentElement.ontouchcancel = closeDragElement;
+          me.$refs.window.parentElement.ontouchend = closeDragElement;
+          me.$refs.window.parentElement.ontouchleave = closeDragElement;
+          me.$refs.window.parentElement.ontouchmove = elementDrag;
 
           me.bringFront();
         }
@@ -263,10 +272,17 @@ export default {
         evt = evt || window.event;
         evt.preventDefault();
 
-        me.pos1 = me.pos3 - evt.clientX;
-        me.pos2 = me.pos4 - evt.clientY;
-        me.pos3 = evt.clientX;
-        me.pos4 = evt.clientY;
+        if (!evt.touches) {
+          me.pos1 = me.pos3 - evt.clientX;
+          me.pos2 = me.pos4 - evt.clientY;
+          me.pos3 = evt.clientX;
+          me.pos4 = evt.clientY;
+        } else {
+          me.pos1 = me.pos3 - evt.touches[0].clientX;
+          me.pos2 = me.pos4 - evt.touches[0].clientY;
+          me.pos3 = evt.touches[0].clientX;
+          me.pos4 = evt.touches[0].clientY;
+        }
 
         me.position.x = me.position.x - me.pos1;
         me.position.y = me.position.y - me.pos2;
@@ -282,9 +298,10 @@ export default {
           me.$refs.window.parentElement.onmouseleave = null;
           me.$refs.window.parentElement.onmousemove = null;
 
-          me.$refs.window.parentElement.touchcancel = null;
-          me.$refs.window.parentElement.touchleave = null;
-          me.$refs.window.parentElement.touchmove = null;
+          me.$refs.window.parentElement.ontouchcancel = null;
+          me.$refs.window.parentElement.ontouchend = null;
+          me.$refs.window.parentElement.ontouchleave = null;
+          me.$refs.window.parentElement.ontouchmove = null;
         }
       }
     },
@@ -303,7 +320,10 @@ export default {
       for (let i = 0; i < resizers.length; i++) {
         const currentResizer = resizers[i];
 
-        currentResizer.addEventListener("mousedown", function (e) {
+        currentResizer.addEventListener("touchstart", resizeEvent, false);
+        currentResizer.addEventListener("mousedown", resizeEvent, false);
+
+        function resizeEvent(e) {
           e.preventDefault();
           original_width = parseFloat(
             getComputedStyle(element, null)
@@ -318,13 +338,23 @@ export default {
 
           original_x = me.position.x;
           original_y = me.position.y;
+          
+          if (!e.touches) {
+            original_mouse_x = e.pageX;
+            original_mouse_y = e.pageY;
+          } else {
+            original_mouse_x = e.touches[0].pageX;
+            original_mouse_y = e.touches[0].pageY;
+          }
 
-          original_mouse_x = e.pageX;
-          original_mouse_y = e.pageY;
+          window.addEventListener("touchmove", resize);
+          window.addEventListener("touchcancel", stopResize);
+          window.addEventListener("touchleave", stopResize);
+          window.addEventListener("touchend", stopResize);
 
           window.addEventListener("mousemove", resize);
           window.addEventListener("mouseup", stopResize);
-        });
+        }
 
         // eslint-disable-next-line no-inner-declarations
         function resize(e) {
@@ -333,9 +363,17 @@ export default {
           if (!me.$refs.window.classList.contains("no-transition"))
             me.$refs.window.classList.add("no-transition");
 
+          let pageX = e.pageX;
+          let pageY = e.pageY;
+
+          if (e.touches) {
+            pageX = e.touches[0].pageX;
+            pageY = e.touches[0].pageY;
+          }
+
           if (currentResizer.classList.contains("bottom-right")) {
-            const width = original_width + (e.pageX - original_mouse_x);
-            const height = original_height + (e.pageY - original_mouse_y);
+            const width = original_width + (pageX - original_mouse_x);
+            const height = original_height + (pageY - original_mouse_y);
             if (width > minimum_size) {
               me.size.width = width;
             }
@@ -343,44 +381,46 @@ export default {
               me.size.height = height;
             }
           } else if (currentResizer.classList.contains("bottom-left")) {
-            const width = original_width - (e.pageX - original_mouse_x);
-            const height = original_height + (e.pageY - original_mouse_y);
+            const width = original_width - (pageX - original_mouse_x);
+            const height = original_height + (pageY- original_mouse_y);
             if (width > minimum_size) {
               me.size.width = width;
             }
             if (height > minimum_size) {
               me.size.height = height;
-              me.position.x = original_x + (e.pageX - original_mouse_x);
+              me.position.x = original_x + (pageX - original_mouse_x);
             }
           } else if (currentResizer.classList.contains("top-right")) {
-            const width = original_width + (e.pageX - original_mouse_x);
-            const height = original_height - (e.pageY - original_mouse_y);
+            const width = original_width + (pageX- original_mouse_x);
+            const height = original_height - (pageY - original_mouse_y);
             if (width > minimum_size) {
               me.size.width = width;
             }
             if (height > minimum_size) {
               me.size.height = height;
-              me.position.y = original_y + (e.pageY - original_mouse_y);
+              me.position.y = original_y + (pageX - original_mouse_y);
             }
           } else {
-            const width = original_width - (e.pageX - original_mouse_x);
-            const height = original_height - (e.pageY - original_mouse_y);
+            const width = original_width - (pageX - original_mouse_x);
+            const height = original_height - (pageY - original_mouse_y);
             if (width > minimum_size) {
               me.size.width = width;
-              me.position.x = original_x + (e.pageX - original_mouse_x);
+              me.position.x = original_x + (pageX - original_mouse_x);
             }
             if (height > minimum_size) {
               me.size.height = height;
-              me.position.y = original_y + (e.pageY - original_mouse_y);
+              me.position.y = original_y + (pageY - original_mouse_y);
             }
           }
         }
 
         // eslint-disable-next-line no-inner-declarations
         function stopResize() {
-          if (me.$refs.window) me.$refs.window.classList.remove("no-transition");
+          if (me.$refs.window)
+            me.$refs.window.classList.remove("no-transition");
 
           window.removeEventListener("mousemove", resize);
+          window.removeEventListener("touchmove", resize);
         }
       }
     },
@@ -393,7 +433,7 @@ export default {
           this.openProgram("Browser", { url_default: a.href });
         });
       });*/
-    }
+    },
   },
   computed: {
     cssRootVars() {
@@ -403,7 +443,7 @@ export default {
         "--x": this.position.x + "px",
         "--y": this.position.y + "px",
         "--heightTileBar": "32px",
-        "--maxHeight": Vue.prototype.$heightScreenContent + "px"
+        "--maxHeight": Vue.prototype.$heightScreenContent + "px",
       };
     },
   },
@@ -431,7 +471,6 @@ export default {
         this.$refs.window.classList.add("maximize");
       } else {
         this.size = { ...this.sizePrev };
-        console.log(this.isDragging);
 
         if (!this.isDragging) this.position = { ...this.positionPrev };
 

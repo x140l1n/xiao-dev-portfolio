@@ -187,7 +187,7 @@ export default class AboutMe extends Program {
 
 <style scoped>
 header img {
-  width: 7vw;
+  width: 8vw;
 }
 .photo {
   height: 100%;
@@ -199,19 +199,19 @@ header img {
   border-radius: 25px;
 }
 .header-title {
-  font-size: 4vw;
+  font-size: 3.6vw;
 }
 @media screen and (min-width: 800px) {
   .header-title {
-    font-size: 26px;
+    font-size: 26px !important;
   }
 
   header img {
-    width: 50px;
+    width: 50px !important;
   }
 
   .btn-flip {
-    font-size: 26px;
+    font-size: 18px !important;
   }
 }
 .logo {
@@ -327,6 +327,7 @@ header img {
 }
 
 .btn-flip {
+  font-size: 3.6vw;
   animation: glowing 1300ms infinite;
 }
 
