@@ -2,7 +2,7 @@
   <div class="w-100 h-100 p-4">
     <form @submit.prevent="onSubmit" v-if="!showSuccess">
       <div class="mb-3 mx-2">
-        <h5 class="fw-bold">Si necesitas alguna duda no dudes en enviarme un correo ;)</h5>
+        <h5 class="fw-bold">Si tienes alguna duda no dudes en enviarme un correo ;)</h5>
       </div>
       <hr>
       <div class="mb-3 mx-2">
