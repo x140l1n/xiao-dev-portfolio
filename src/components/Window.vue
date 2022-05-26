@@ -382,7 +382,7 @@ export default {
             }
           } else if (currentResizer.classList.contains("bottom-left")) {
             const width = original_width - (pageX - original_mouse_x);
-            const height = original_height + (pageY- original_mouse_y);
+            const height = original_height + (pageY - original_mouse_y);
             if (width > minimum_size) {
               me.size.width = width;
             }
@@ -391,14 +391,14 @@ export default {
               me.position.x = original_x + (pageX - original_mouse_x);
             }
           } else if (currentResizer.classList.contains("top-right")) {
-            const width = original_width + (pageX- original_mouse_x);
+            const width = original_width + (pageX - original_mouse_x);
             const height = original_height - (pageY - original_mouse_y);
             if (width > minimum_size) {
               me.size.width = width;
             }
             if (height > minimum_size) {
               me.size.height = height;
-              me.position.y = original_y + (pageX - original_mouse_y);
+              me.position.y = original_y + (pageY - original_mouse_y);
             }
           } else {
             const width = original_width - (pageX - original_mouse_x);
