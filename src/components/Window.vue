@@ -223,9 +223,12 @@ export default {
     },
     dragElement(element, me) {
       element.onmousedown = dragMouseDown;
+      element.touchstart = dragMouseDown;
 
       function dragMouseDown(evt) {
         evt = evt || window.event;
+
+        console.log(evt);
 
         let action = evt.target.dataset.action;
 
@@ -240,6 +243,10 @@ export default {
           me.$refs.window.parentElement.onmouseup = closeDragElement;
           me.$refs.window.parentElement.onmouseleave = closeDragElement;
           me.$refs.window.parentElement.onmousemove = elementDrag;
+
+          me.$refs.window.parentElement.touchcancel = closeDragElement;
+          me.$refs.window.parentElement.touchleave = closeDragElement;
+          me.$refs.window.parentElement.touchmove = elementDrag;
 
           me.bringFront();
         }
@@ -270,8 +277,14 @@ export default {
           me.isDragging = false;
 
           me.$refs.window.classList.remove("no-transition");
+
           me.$refs.window.parentElement.onmouseup = null;
+          me.$refs.window.parentElement.onmouseleave = null;
           me.$refs.window.parentElement.onmousemove = null;
+
+          me.$refs.window.parentElement.touchcancel = null;
+          me.$refs.window.parentElement.touchleave = null;
+          me.$refs.window.parentElement.touchmove = null;
         }
       }
     },
@@ -418,6 +431,7 @@ export default {
         this.$refs.window.classList.add("maximize");
       } else {
         this.size = { ...this.sizePrev };
+        console.log(this.isDragging);
 
         if (!this.isDragging) this.position = { ...this.positionPrev };
 

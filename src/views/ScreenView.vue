@@ -112,6 +112,17 @@
         <label class="text-light" for="program-browser">Navegador</label>
       </button>
     </div>
+    <div v-if="!$isFullScreen" ref="tipFullScreen" class="toast show position-absolute top-0 end-0 m-2" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <img src="../assets/icons/tips.png" class="rounded me-2" alt="Icono tips" title="Icono tips" width="30px">
+        <strong class="me-auto">Modo pantalla completa</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div class="toast-body">
+        Habilita la pantalla completa para tener una mejor experiencia de navegación.
+        Para habilitar entra en <span class="fw-bold fst-italic"> Ajustes > General > Habilitar modo pantalla completa</span>
+      </div>
+    </div>
     <TaskBarView ref="taskBarView" />
   </div>
 </template>
@@ -130,7 +141,9 @@ export default {
     this.init();
   },
   data() {
-    return {};
+    return {
+      timoutOpenProgram: null
+    };
   },
   methods: {
     init() {
@@ -172,22 +185,28 @@ export default {
       Vue.prototype.$programs.forEach((program) => program.window.updateSize());
     },
     openProgram(_program, default_props = {}) {
-      const program = this.getProgram(_program);
+      if (!this.timoutOpenProgram) {
+        this.timoutOpenProgram = setTimeout(() => {
+          this.timoutOpenProgram = null;
+        }, 1000);
 
-      let propsData = {
-        id: moment().format("DDMMYYYYHHmmssS"),
-      };
+        const program = this.getProgram(_program);
 
-      program.then((result) => {
-        const ProgramClass = Vue.extend(result);
-        const programObject = new ProgramClass({
-          propsData: { ...propsData, ...default_props },
-        });
+        let propsData = {
+          id: moment().format("DDMMYYYYHHmmssS"),
+        };
 
-        programObject.$mount();
+        program.then((result) => {
+          const ProgramClass = Vue.extend(result);
+          const programObject = new ProgramClass({
+            propsData: { ...propsData, ...default_props },
+          });
 
-        this.addWindow(programObject);
-      });
+          programObject.$mount();
+
+          this.addWindow(programObject);
+        }); 
+      }
     },
     addWindow(programObject) {
       const width =
@@ -284,20 +303,11 @@ export default {
 </script>
 
 <style scoped>
-.screen.theme-1 {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  background-size: 16rem;
-  background-position: center;
-  background-repeat: no-repeat;
-}
-
 .screen {
   width: 100%;
   height: 100%;
   position: relative;
-  background-size: 16rem;
+  background-size: 40%;
   background-position: center;
   background-repeat: no-repeat;
 }
@@ -358,15 +368,22 @@ export default {
 .program.selected {
   background-color: #ffffff48;
 }
-
 .program > * {
   display: block;
   margin: auto;
 }
-
 .program > label {
   text-align: center;
   text-shadow: 1px 1px 4px black;
   font-size: 0.9em;
+}
+.toast {
+  text-align: justify;
+  width: 370px;
+}
+@media screen and (max-width: 600px) {
+  .toast {
+    width: 250px;
+  }
 }
 </style>

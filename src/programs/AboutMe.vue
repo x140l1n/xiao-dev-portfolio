@@ -3,7 +3,7 @@
     <div ref="card" class="card flip shadow-lg m-auto w-100">
       <div class="flip-card-front">
         <header class="text-light d-flex justify-content-between p-4 pb-0">
-          <img src="../assets/icons/coding.png" class="my-auto ms-4" alt="Icono fullstack developer" title="Icono fullstack developer"/>
+          <img src="../assets/icons/coding.png" class="my-auto ms-3" alt="Icono fullstack developer" title="Icono fullstack developer"/>
           <label class="mt-4 mx-2 fw-bold text-truncate header-title">FULLSTACK DEVELOPER</label>
           <button
             class="btn btn-transparent btn-flip text-light me-3 my-auto"
@@ -64,7 +64,7 @@
       <div class="flip-card-back d-flex flex-column">
         <header class="text-light d-flex justify-content-end p-4 pb-0">
           <button
-            class="btn btn-transparent btn-flip text-light me-3"
+            class="btn btn-transparent btn-flip text-light me-3 my-auto"
             title="Voltear la targeta"
             @click="flip"
           >
@@ -186,6 +186,9 @@ export default class AboutMe extends Program {
 </script>
 
 <style scoped>
+header img {
+  width: 7vw;
+}
 .photo {
   height: 100%;
   min-width: 100px;
@@ -200,6 +203,14 @@ export default class AboutMe extends Program {
 }
 @media screen and (min-width: 800px) {
   .header-title {
+    font-size: 26px;
+  }
+
+  header img {
+    width: 50px;
+  }
+
+  .btn-flip {
     font-size: 26px;
   }
 }
@@ -316,7 +327,21 @@ export default class AboutMe extends Program {
 }
 
 .btn-flip {
-  font-size: 26px;
+  animation: glowing 1300ms infinite;
 }
 
+@keyframes glowing {
+  0% {
+    background-color: #0091b2;
+    box-shadow: 0 0 3px #0091b2;
+  }
+  50% {
+    background-color: #21c7ed;
+    box-shadow: 0 0 15px #21c7ed;
+  }
+  100% {
+    background-color: #0091b2;
+    box-shadow: 0 0 3px #0091b2;
+  }
+}
 </style>

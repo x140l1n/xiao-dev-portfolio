@@ -50,25 +50,28 @@
         role="tabpanel"
         :aria-labelledby="`v-tab-pane-1-${id}`"
       >
-        <div class="d-flex p-2">
+        <div class="p-2">
           <form
             @submit.prevent="search"
             :ref="`form-tab-pane-1-${id}`"
             :target="`iframe-tab-pane-1-${id}`"
-            class="w-100 d-flex"
+            class="d-flex"
           >
-            <input
-              type="text"
-              name="input-search"
-              class="form-control rounded-pill"
-              placeholder="Escribe para buscar"
-            />
+            <div class="flex-grow-1">
+              <input
+                type="text"
+                name="input-search"
+                class="form-control rounded-pill"
+                placeholder="Escribe para buscar"
+              />
+              <div class="form-text fw-bold text-danger">¡Atención! Algunas páginas están bloqueadas en este navegador por motivos de seguridad.</div>
+            </div>
             <button
-              class="search-button ms-2 d-flex border border-1"
+              class="search-button ms-2 border border-1"
               name="input-submit"
               type="submit"
             >
-              <i class="fa-solid fa-magnifying-glass m-auto"></i>
+              <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </form>
         </div>
@@ -178,7 +181,8 @@ export default class Browser extends Program {
 }
 
 .search-button {
-  width: 50px;
+  width: 38px;
+  height: 38px;
   background-color: #fff;
   border-radius: 50%;
 }

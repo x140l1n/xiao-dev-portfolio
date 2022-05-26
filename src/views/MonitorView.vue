@@ -217,4 +217,10 @@ main {
     transform: scaleY(1);
   }
 }
+
+@media screen and (max-width: 600px) {
+  .card {
+    margin: 0 !important;
+  }
+}
 </style>
