@@ -27,6 +27,7 @@
                 <img src="../assets/icons/laravel.png" class="mx-2 my-auto" title="Laravel" alt="Logo Laravel"/>
                 <img src="../assets/icons/codeigniter.png" class="mx-2 my-auto" title="Codeigniter" alt="Logo Codeigniter"/>
                 <img src="../assets/icons/ado.net.png" class="mx-2 my-auto" title="ADO.NET" alt="Logo ADO.NET"/>
+                <img src="../assets/icons/.net.png" class="mx-2 my-auto" title=".NET Core" alt="Logo .NET Core"/>
             </div>
         </div>
     </div>
@@ -50,6 +51,7 @@
             <div class="d-flex justify-content-center flex-wrap">
                 <img src="../assets/icons/github_96px.png" class="mx-2 my-auto" title="GitHub" alt="Logo GitHub"/>
                 <img src="../assets/icons/android_studio.png" class="mx-2 my-auto" title="Android Studio" alt="Logo Android Studio"/>
+                <img src="../assets/icons/wordpress.png" class="mx-2 my-auto" title="Wordpress" alt="Logo Wordpress"/>
                 <img src="../assets/icons/ubuntu.png" class="mx-2 my-auto" title="Ubuntu" alt="Logo Ubuntu"/>
             </div>
         </div>
