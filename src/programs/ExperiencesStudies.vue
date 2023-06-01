@@ -65,7 +65,7 @@
                   <i class="fa-solid fa-code"></i>
                   <h5 class="fw-bold text-center">DESARROLLO APLICACIONES MULTIPLATAFORMA (DAM)</h5>
                   <p class="text-start">
-                   <ul>
+                    <ul>
                         <li>Desarrollar aplicaciones multiplataforma con distintos lenguajes de programación.</li>
                         <li>Desarrollo de programas para escritorio y Android.</li>
                         <li>Manipulación de base de datos.</li>
@@ -208,9 +208,6 @@ import Vue from "vue";
         this.$refs.timelineStudies.classList.remove("small");
         this.$refs.timelineExperiences.classList.remove("small");
       }
-    },
-    onScroll() {
-        console.log(this.isVisibleElement(this.$el, this.$refs.navbar))
     },
   },
   computed: {},

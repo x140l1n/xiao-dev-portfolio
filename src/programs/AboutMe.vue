@@ -271,18 +271,18 @@ header img {
   width: 80px;
   background: rgba(255, 255, 255, 0.2);
   background-image: linear-gradient(
-      left,
+      to right,
       rgba(255, 255, 255, 0.4) 0%,
       rgba(255, 255, 255, 0.1) 50%,
       rgba(255, 255, 255, 0.4) 100%
     ),
     linear-gradient(
-      bottom,
+      to top,
       rgba(255, 255, 255, 1) 0%,
       rgba(255, 255, 255, 0) 40%
     ),
     linear-gradient(
-      top,
+      to bottom,
       rgba(255, 255, 255, 0.8) 0%,
       rgba(255, 255, 255, 0) 40%
     );

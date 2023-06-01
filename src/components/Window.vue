@@ -204,9 +204,6 @@ export default {
 
       if (lastProgram) {
         lastProgram.window.bringFront();
-
-        let _p = this.$programs.find((program) => program.id == lastProgram.id);
-        _p = lastProgram;
       }
     },
     updateSize() {
