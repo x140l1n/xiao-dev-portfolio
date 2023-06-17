@@ -53,7 +53,7 @@
               </p>
                 <br/>
                 <h6 class="fw-bold">Idiomas</h6>
-                <p>Castellano (Nativo), Catalán (Nativo), Inglés (Medio), Chino (Medio).</p>
+                <p>Castellano (Nativo), Catalán (Nativo), Inglés (Medio), Chino (Nativo).</p>
                 <br/>
                 <h6 class="fw-bold">Hobbies</h6>
                 <p>Baile.</p>
