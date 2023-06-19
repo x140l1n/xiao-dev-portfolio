@@ -13,9 +13,9 @@ if (isset($_GET['send'])) {
 
     $headers = "From: " . $from;
     
-    $message = "Nombre: " . $firstname . "\r\n" .
-               "Apellidos: " . $lastname . "\r\n" . 
-               "Mensaje: " . $message;
+    $message =  "Nombre: " . $firstname . "\r\n" .
+                "Apellidos: " . $lastname . "\r\n" . 
+                "Mensaje: " . $message;
 
     if ($firstname && $lastname && $subject && $message && $from) {
         if (@mail($to, $subject, $message, $headers)) {
