@@ -68,7 +68,7 @@ export default {
 
 <template>
   <main class="container-fluid bg-dark vh-100 d-flex p-0">
-    <div ref="monitor" class="card monitor mt-3 mx-auto bg-light">
+    <div ref="monitor" class="card monitor mx-auto bg-light">
       <div :class="`card-body monitor-inner ${isMonitorOn ? '' : 'bg-dark'}`">
         <div
           :class="`layer-on-off ${
@@ -108,7 +108,6 @@ export default {
 
 <style scoped>
 main {
-  background-image: url("../assets/img/background.jpg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: auto;
@@ -135,8 +134,6 @@ main {
 .monitor {
   width: 100%;
   height: 100%;
-  max-width: 78em;
-  max-height: 52em;
   padding: 0.8em;
 }
 .monitor.fullscreen {
