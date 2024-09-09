@@ -96,7 +96,7 @@
                   ><img src="../assets/icons/github.png" alt="github"
                 /></a>
                 <a
-                  href="mailto:x140l1n@hotmail.com"
+                  href="mailto:info@xiaojl.dev"
                   title="Enviar correo"
                   ><img src="../assets/icons/email.png" alt="email"
                 /></a>

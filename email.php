@@ -1,7 +1,8 @@
 <?php 
+
 header("Content-Type: application/json; charset=utf-8");
 
-define("MAILTO", "x140l1n@hotmail.com");
+define("MAILTO", "info@xiaojl.dev");
 
 if (isset($_GET['send'])) {
     $to = MAILTO;
