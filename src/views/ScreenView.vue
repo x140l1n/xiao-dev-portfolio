@@ -220,7 +220,7 @@ export default {
       const x = programObject.x_default == 0 ? 0 : programObject.x_default;
       const y = programObject.y_default == 0 ? 0 : programObject.y_default;
 
-      let me = this;
+      const self = this;
 
       const WindowClass = Vue.extend(Window);
       const windowObject = new WindowClass({
@@ -233,7 +233,7 @@ export default {
         },
         methods: {
           openProgram(_program, default_props = {}) {
-            me.openProgram(_program, default_props);
+            self.openProgram(_program, default_props);
           },
         },
       });

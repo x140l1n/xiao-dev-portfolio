@@ -223,7 +223,7 @@ export default {
       if (this.program && typeof this.program.onScroll === "function")
         this.program.onScroll();
     },
-    dragElement(element, me) {
+    dragElement(element, self) {
       element.onmousedown = dragMouseDown;
       element.ontouchstart = dragMouseDown;
 
@@ -238,71 +238,71 @@ export default {
 
         if (!action) {
           if (!evt.touches) {
-            me.pos3 = evt.clientX;
-            me.pos4 = evt.clientY;
+            self.pos3 = evt.clientX;
+            self.pos4 = evt.clientY;
           } else {
-            me.pos3 = evt.touches[0].clientX;
-            me.pos4 = evt.touches[0].clientY;
+            self.pos3 = evt.touches[0].clientX;
+            self.pos4 = evt.touches[0].clientY;
           }
 
-          me.$refs.window.parentElement.onmouseup = closeDragElement;
-          me.$refs.window.parentElement.onmouseleave = closeDragElement;
-          me.$refs.window.parentElement.onmousemove = elementDrag;
+          self.$refs.window.parentElement.onmouseup = closeDragElement;
+          self.$refs.window.parentElement.onmouseleave = closeDragElement;
+          self.$refs.window.parentElement.onmousemove = elementDrag;
 
-          me.$refs.window.parentElement.ontouchcancel = closeDragElement;
-          me.$refs.window.parentElement.ontouchend = closeDragElement;
-          me.$refs.window.parentElement.ontouchleave = closeDragElement;
-          me.$refs.window.parentElement.ontouchmove = elementDrag;
+          self.$refs.window.parentElement.ontouchcancel = closeDragElement;
+          self.$refs.window.parentElement.ontouchend = closeDragElement;
+          self.$refs.window.parentElement.ontouchleave = closeDragElement;
+          self.$refs.window.parentElement.ontouchmove = elementDrag;
 
-          me.bringFront();
+          self.bringFront();
         }
       }
 
       function elementDrag(evt) {
-        me.isDragging = true;
+        self.isDragging = true;
 
-        if (!me.$refs.window.classList.contains("no-transition"))
-          me.$refs.window.classList.add("no-transition");
+        if (!self.$refs.window.classList.contains("no-transition"))
+          self.$refs.window.classList.add("no-transition");
 
-        if (me.isMaximized) me.isMaximized = false;
+        if (self.isMaximized) self.isMaximized = false;
 
         evt = evt || window.event;
         evt.preventDefault();
 
         if (!evt.touches) {
-          me.pos1 = me.pos3 - evt.clientX;
-          me.pos2 = me.pos4 - evt.clientY;
-          me.pos3 = evt.clientX;
-          me.pos4 = evt.clientY;
+          self.pos1 = self.pos3 - evt.clientX;
+          self.pos2 = self.pos4 - evt.clientY;
+          self.pos3 = evt.clientX;
+          self.pos4 = evt.clientY;
         } else {
-          me.pos1 = me.pos3 - evt.touches[0].clientX;
-          me.pos2 = me.pos4 - evt.touches[0].clientY;
-          me.pos3 = evt.touches[0].clientX;
-          me.pos4 = evt.touches[0].clientY;
+          self.pos1 = self.pos3 - evt.touches[0].clientX;
+          self.pos2 = self.pos4 - evt.touches[0].clientY;
+          self.pos3 = evt.touches[0].clientX;
+          self.pos4 = evt.touches[0].clientY;
         }
 
-        me.position.x = me.position.x - me.pos1;
-        me.position.y = me.position.y - me.pos2;
+        self.position.x = self.position.x - self.pos1;
+        self.position.y = self.position.y - self.pos2;
       }
 
       function closeDragElement() {
-        if (me.$refs.window) {
-          me.isDragging = false;
+        if (self.$refs.window) {
+          self.isDragging = false;
 
-          me.$refs.window.classList.remove("no-transition");
+          self.$refs.window.classList.remove("no-transition");
 
-          me.$refs.window.parentElement.onmouseup = null;
-          me.$refs.window.parentElement.onmouseleave = null;
-          me.$refs.window.parentElement.onmousemove = null;
+          self.$refs.window.parentElement.onmouseup = null;
+          self.$refs.window.parentElement.onmouseleave = null;
+          self.$refs.window.parentElement.onmousemove = null;
 
-          me.$refs.window.parentElement.ontouchcancel = null;
-          me.$refs.window.parentElement.ontouchend = null;
-          me.$refs.window.parentElement.ontouchleave = null;
-          me.$refs.window.parentElement.ontouchmove = null;
+          self.$refs.window.parentElement.ontouchcancel = null;
+          self.$refs.window.parentElement.ontouchend = null;
+          self.$refs.window.parentElement.ontouchleave = null;
+          self.$refs.window.parentElement.ontouchmove = null;
         }
       }
     },
-    resizeElement(element, me) {
+    resizeElement(element, self) {
       const resizers = element.querySelectorAll(".resizer");
 
       const minimum_size = 20;
@@ -333,8 +333,8 @@ export default {
               .replace("px", "")
           );
 
-          original_x = me.position.x;
-          original_y = me.position.y;
+          original_x = self.position.x;
+          original_y = self.position.y;
           
           if (!e.touches) {
             original_mouse_x = e.pageX;
@@ -355,10 +355,10 @@ export default {
 
         // eslint-disable-next-line no-inner-declarations
         function resize(e) {
-          me.bringFront();
+          self.bringFront();
 
-          if (!me.$refs.window.classList.contains("no-transition"))
-            me.$refs.window.classList.add("no-transition");
+          if (!self.$refs.window.classList.contains("no-transition"))
+            self.$refs.window.classList.add("no-transition");
 
           let pageX = e.pageX;
           let pageY = e.pageY;
@@ -372,49 +372,49 @@ export default {
             const width = original_width + (pageX - original_mouse_x);
             const height = original_height + (pageY - original_mouse_y);
             if (width > minimum_size) {
-              me.size.width = width;
+              self.size.width = width;
             }
             if (height > minimum_size) {
-              me.size.height = height;
+              self.size.height = height;
             }
           } else if (currentResizer.classList.contains("bottom-left")) {
             const width = original_width - (pageX - original_mouse_x);
             const height = original_height + (pageY - original_mouse_y);
             if (width > minimum_size) {
-              me.size.width = width;
+              self.size.width = width;
             }
             if (height > minimum_size) {
-              me.size.height = height;
-              me.position.x = original_x + (pageX - original_mouse_x);
+              self.size.height = height;
+              self.position.x = original_x + (pageX - original_mouse_x);
             }
           } else if (currentResizer.classList.contains("top-right")) {
             const width = original_width + (pageX - original_mouse_x);
             const height = original_height - (pageY - original_mouse_y);
             if (width > minimum_size) {
-              me.size.width = width;
+              self.size.width = width;
             }
             if (height > minimum_size) {
-              me.size.height = height;
-              me.position.y = original_y + (pageY - original_mouse_y);
+              self.size.height = height;
+              self.position.y = original_y + (pageY - original_mouse_y);
             }
           } else {
             const width = original_width - (pageX - original_mouse_x);
             const height = original_height - (pageY - original_mouse_y);
             if (width > minimum_size) {
-              me.size.width = width;
-              me.position.x = original_x + (pageX - original_mouse_x);
+              self.size.width = width;
+              self.position.x = original_x + (pageX - original_mouse_x);
             }
             if (height > minimum_size) {
-              me.size.height = height;
-              me.position.y = original_y + (pageY - original_mouse_y);
+              self.size.height = height;
+              self.position.y = original_y + (pageY - original_mouse_y);
             }
           }
         }
 
         // eslint-disable-next-line no-inner-declarations
         function stopResize() {
-          if (me.$refs.window)
-            me.$refs.window.classList.remove("no-transition");
+          if (self.$refs.window)
+            self.$refs.window.classList.remove("no-transition");
 
           window.removeEventListener("mousemove", resize);
           window.removeEventListener("touchmove", resize);

@@ -116,13 +116,13 @@ import Vue from "vue";
 
       formData.append("send", "send");
 
-      let me = this;
+      const self = this;
 
       this.isSending = true;
 
       const urlParams = new URLSearchParams(formData).toString();
 
-      let fetchOptions = {
+      const fetchOptions = {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -135,24 +135,26 @@ import Vue from "vue";
           return response.json();
         })
         .then((data) => {
-          me.statusMessage = data.status;
-          me.resultMessage = data.msg;
-
-          if (me.statusMessage == 1) {
-            me.showSuccess = true;
+          if (data.status == 1) {
+            self.showSuccess = true;
+            self.statusMessage = 0;
+            self.resultMessage = "";
+          } else {
+            self.statusMessage = data.status;
+            self.resultMessage = data.msg;
           }
         })
         .catch((error) => {
-          me.statusMessage = -1;
-          me.resultMessage = "Error al enviar el mensaje.";
+          self.statusMessage = -1;
+          self.resultMessage = "Error al enviar el formulario.";
           console.error(error);
         })
         .finally(() => {
-          if (me.statusMessage == 1) {
+          if (self.statusMessage == 1) {
             form.reset();
           }
 
-          me.isSending = false;
+          self.isSending = false;
         });
     },
   },
