@@ -1,118 +1,45 @@
 <template>
-  <div
-    ref="screen"
-    class="screen bg-image user-none-select"
-    v-resize="onResize"
-  >
-    <div
-      ref="screenContent"
-      class="screen-content"
-      @click.self="cleanSelectProgram"
-    >
-      <button
-        class="program program-settings p-2"
-        title="Ajustes"
-        alt="Ajustes"
-        @click="openProgram('Settings')"
-        tabindex="4"
-      >
-        <img
-          id="program-settings"
-          src="../assets/icons/settings.png"
-          alt="Logo Ajustes"
-        />
+  <div ref="screen" class="screen bg-image user-none-select" v-resize="onResize">
+    <div ref="screenContent" class="screen-content" @click.self="cleanSelectProgram">
+      <button class="program program-settings p-2" title="Ajustes" alt="Ajustes" @click="openProgram('Settings')"
+        tabindex="4">
+        <img id="program-settings" src="../assets/icons/settings.png" alt="Logo Ajustes" />
         <label class="text-light" for="program-settings">Ajustes</label>
       </button>
-      <button
-        class="program program-about-me p-2"
-        title="¿Quién soy?"
-        alt="¿Quién soy?"
-        @click="openProgram('AboutMe')"
-        tabindex="5"
-      >
-        <img
-          id="program-about-me"
-          src="../assets/icons/about-me.png"
-          alt="Logo ¿Quién soy?"
-        />
+      <button class="program program-about-me p-2" title="¿Quién soy?" alt="¿Quién soy?" @click="openProgram('AboutMe')"
+        tabindex="5">
+        <img id="program-about-me" src="../assets/icons/about-me.png" alt="Logo ¿Quién soy?" />
         <label class="text-light" for="program-about-me">¿Quién soy?</label>
       </button>
-      <button
-        class="program program-knowledge p-2"
-        title="Mis conocimientos"
-        alt="Mis conocimientos"
-        @click="openProgram('Knowledge')"
-        tabindex="6"
-      >
-        <img
-          id="program-knowledge"
-          src="../assets/icons/knowledge.png"
-          alt="Logo Mis conocimientos"
-        />
-        <label class="text-light" for="program-knowledge"
-          >Mis conocimientos</label
-        >
+      <button class="program program-knowledge p-2" title="Mis conocimientos" alt="Mis conocimientos"
+        @click="openProgram('Knowledge')" tabindex="6">
+        <img id="program-knowledge" src="../assets/icons/knowledge.png" alt="Logo Mis conocimientos" />
+        <label class="text-light" for="program-knowledge">Mis conocimientos</label>
       </button>
-      <button
-        class="program program-experiences-studies p-2"
-        title="Estudios y experiencias"
-        alt="Estudios y experiencias"
-        @click="openProgram('ExperiencesStudies')"
-        tabindex="7"
-      >
-        <img
-          id="program-experiences-studies"
-          src="../assets/icons/experiences-studies.png"
-          alt="Logo Estudios y experiencias"
-        />
-        <label class="text-light" for="program-experiences-studies"
-          >Estudios y experiencias</label
-        >
+      <button class="program program-experiences-studies p-2" title="Estudios y experiencias"
+        alt="Estudios y experiencias" @click="openProgram('ExperiencesStudies')" tabindex="7">
+        <img id="program-experiences-studies" src="../assets/icons/experiences-studies.png"
+          alt="Logo Estudios y experiencias" />
+        <label class="text-light" for="program-experiences-studies">Estudios y experiencias</label>
       </button>
-      <button
-        class="program program-projects p-2"
-        title="Mis proyectos"
-        alt="Mis proyectos"
-        @click="openProgram('Projects')"
-        tabindex="8"
-      >
-        <img
-          id="program-projects"
-          src="../assets/icons/projects.png"
-          alt="Logo Mis proyectos"
-        />
+      <button class="program program-projects p-2" title="Mis proyectos" alt="Mis proyectos"
+        @click="openProgram('Projects')" tabindex="8">
+        <img id="program-projects" src="../assets/icons/projects.png" alt="Logo Mis proyectos" />
         <label class="text-light" for="program-projects">Mis Proyectos</label>
       </button>
-      <button
-        class="program program-contactme p-2"
-        title="Contácteme"
-        alt="Contácteme"
-        @click="openProgram('ContactMe')"
-        tabindex="9"
-      >
-        <img
-          id="program-contactme"
-          src="../assets/icons/email.png"
-          alt="Logo Contácteme"
-        />
+      <button class="program program-contactme p-2" title="Contácteme" alt="Contácteme"
+        @click="openProgram('ContactMe')" tabindex="9">
+        <img id="program-contactme" src="../assets/icons/email.png" alt="Logo Contácteme" />
         <label class="text-light" for="program-contactme">Contácteme</label>
       </button>
-      <button
-        class="program program-browser p-2"
-        title="Mis proyectos"
-        alt="Mis proyectos"
-        @click="openProgram('Browser')"
-        tabindex="10"
-      >
-        <img
-          id="program-browser"
-          src="../assets/icons/browser.png"
-          alt="Logo Navegador"
-        />
+      <button class="program program-browser p-2" title="Mis proyectos" alt="Mis proyectos"
+        @click="openProgram('Browser')" tabindex="10">
+        <img id="program-browser" src="../assets/icons/browser.png" alt="Logo Navegador" />
         <label class="text-light" for="program-browser">Navegador</label>
       </button>
     </div>
-    <div v-if="!$isFullScreen" ref="tipFullScreen" class="toast show position-absolute top-0 end-0 m-2" role="alert" aria-live="assertive" aria-atomic="true">
+    <div v-if="!$isFullScreen" ref="tipFullScreen" class="toast show position-absolute top-0 end-0 m-2" role="alert"
+      aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
         <img src="../assets/icons/tips.png" class="rounded me-2" alt="Icono tips" title="Icono tips" width="30px">
         <strong class="me-auto">Modo pantalla completa</strong>
@@ -120,7 +47,8 @@
       </div>
       <div class="toast-body">
         Habilita la pantalla completa para tener una mejor experiencia de navegación.
-        Para habilitar entra en <span class="fw-bold fst-italic"> Ajustes > General > Habilitar modo pantalla completa</span>
+        Para habilitar entra en <span class="fw-bold fst-italic"> Ajustes > General > Habilitar modo pantalla
+          completa</span>
       </div>
     </div>
     <TaskBarView ref="taskBarView" />
@@ -205,7 +133,7 @@ export default {
           programObject.$mount();
 
           this.addWindow(programObject);
-        }); 
+        });
       }
     },
     addWindow(programObject) {
@@ -316,6 +244,7 @@ export default {
   background-color: rgb(149, 190, 195);
   background-image: url("../svg/xiao-theme-2.svg");
 }
+
 .screen.theme-2 {
   background-color: rgb(33, 37, 41);
   background-image: url("../svg/xiao-theme-1.svg");
@@ -324,8 +253,9 @@ export default {
 .screen-content {
   height: calc(100% - 3rem);
   position: relative;
-  display: grid;
   padding: 5px;
+  overflow: auto;
+  display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(7, 1fr);
   grid-template-areas:
@@ -337,50 +267,63 @@ export default {
     "contactme . . . . . . . . . . ."
     "browser . . . . . . . . . . .";
 }
+
 .program {
   border-radius: 5px;
   width: 100%;
   background-color: transparent;
   border: none;
 }
+
 .program-settings {
   grid-area: settings;
 }
+
 .program-about-me {
   grid-area: about-me;
 }
+
 .program-browser {
   grid-area: browser;
 }
+
 .program-knowledge {
   grid-area: knowledge;
 }
+
 .program-experiences-studies {
   grid-area: experiences-studies;
 }
+
 .program-projects {
   grid-area: projects;
 }
+
 .program-contactme {
   grid-area: contactme;
 }
+
 .program:hover,
 .program.selected {
   background-color: #ffffff48;
 }
-.program > * {
+
+.program>* {
   display: block;
   margin: auto;
 }
-.program > label {
+
+.program>label {
   text-align: center;
   text-shadow: 1px 1px 4px black;
   font-size: 0.9em;
 }
+
 .toast {
   text-align: justify;
   width: 370px;
 }
+
 @media screen and (max-width: 600px) {
   .toast {
     width: 250px;
