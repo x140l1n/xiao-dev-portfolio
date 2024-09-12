@@ -1,144 +1,142 @@
 <template>
-  <div class="taskbar bg-primary d-flex flex-row-reverse">
-    <span
-      class="taskbar-item border border-dark border-end-0 border-top-0 border-bottom-0"
-      style="width: 6px"
-      @click="minimizeAll"
-    >
-    </span>
-    <Clock class="taskbar-item" />
-    <div class="taskbar-programs d-flex justify-content-center w-100">
-      <div
-        v-for="(program, index) in $programs"
-        :tabindex="10 + index"
-        :key="program.id"
-        :id="`program-${program.id}`"
-        :class="`taskbar-item program ${
-          getProgramActiveId == program.id ? 'selected' : ''
-        }`"
-        :title="program.title"
-        @click="selectProgram(program)"
-      >
-        <img :src="program.icon_src" :alt="`Logo ${program.title}`" />
-      </div>
+    <div class="taskbar bg-primary d-flex flex-row-reverse">
+        <span
+            class="taskbar-item border border-dark border-end-0 border-top-0 border-bottom-0"
+            style="width: 6px"
+            @click="minimizeAll"
+        >
+        </span>
+        <Clock class="taskbar-item" />
+        <div class="taskbar-programs d-flex justify-content-center w-100">
+            <div
+                v-for="(program, index) in $programs"
+                :tabindex="10 + index"
+                :key="program.id"
+                :id="`program-${program.id}`"
+                :class="`taskbar-item program ${getProgramActiveId == program.id ? 'selected' : ''}`"
+                :title="program.title"
+                @click="selectProgram(program)"
+            >
+                <img :src="program.icon_src" :alt="`Logo ${program.title}`" />
+            </div>
+        </div>
     </div>
-  </div>
 </template>
 
 <script>
-import Clock from "../components/Clock.vue";
+import Clock from '../components/Clock.vue';
 
 export default {
-  components: {
-    Clock,
-  },
-  methods: {
-    selectProgram(program) {
-      if (program.window.$el.classList.contains("active")) {
-        program.window.minimize();
-      } else {
-        program.window.bringFront();
-      }
+    components: {
+        Clock
     },
-    minimizeAll() {
-      this.$programs.forEach((program) => program.window.minimize());
+    methods: {
+        selectProgram(program) {
+            if (program.window.$el.classList.contains('active')) {
+                program.window.minimize();
+            } else {
+                program.window.bringFront();
+            }
+        },
+        minimizeAll() {
+            this.$programs.forEach((program) => program.window.minimize());
+        }
     },
-  },
-  computed: {
-    getProgramActiveId() {
-      return this.$programActive ? this.$programActive.id : 0;
+    computed: {
+        getProgramActiveId() {
+            return this.$programActive ? this.$programActive.id : 0;
+        }
     },
-  },
-  watch: {},
+    watch: {}
 };
 </script>
 
 <style>
 .taskbar {
-  height: 3rem;
-  width: 100%;
-  position: absolute;
-  bottom: 0;
-  z-index: 3;
+    height: 3rem;
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    z-index: 3;
 }
 
 .taskbar-item:hover {
-  cursor: default;
-  background-color: #ffffff48;
+    cursor: default;
+    background-color: #ffffff48;
 }
 
 .taskbar-item.program {
-  display: flex;
-  margin: 5px;
-  border-radius: 5px;
+    display: flex;
+    margin: 5px;
+    border-radius: 5px;
 }
 
 .taskbar-item.program.selected {
-  background-color: #ffffff48;
+    background-color: #ffffff48;
 }
 
 .taskbar-item.program > img {
-  animation: bounce 0.5s;
+    animation: bounce 0.5s;
 }
 
 .taskbar-item.program:active > img {
-  transition: transform 0.2s;
-  transform: scale(0.8);
+    transition: transform 0.2s;
+    transform: scale(0.8);
 }
 
 @keyframes bounce {
-  0% {
-    transform: translateY(-10px);
-  }
-  30% {
-    transform: translateY(5px);
-  }
-  50% {
-    transform: translateY(0px);
-  }
-  80% {
-    transform: translateY(-5px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+    0% {
+        transform: translateY(-10px);
+    }
+    30% {
+        transform: translateY(5px);
+    }
+    50% {
+        transform: translateY(0px);
+    }
+    80% {
+        transform: translateY(-5px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 .taskbar-item.program {
-  width: 100%;
-  height: 100%;
-  max-width: 40px;
-  max-height: 40px;
+    width: 100%;
+    height: 100%;
+    max-width: 40px;
+    max-height: 40px;
 }
 .taskbar-item.program > img {
-  object-fit: fill;
+    object-fit: fill;
 }
 
 .taskbar-programs {
-  overflow-x: auto;
-  overflow-y: hidden;
+    overflow-x: auto;
+    overflow-y: hidden;
 }
 
 .taskbar-programs::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-  border-radius: 5px;
+    width: 5px;
+    height: 5px;
+    border-radius: 5px;
 }
 
 /* Track */
 .taskbar-programs::-webkit-scrollbar-track {
-  border-radius: 5px;
-  background: #f1f1f1;
+    border-radius: 5px;
+    background: #f1f1f1;
 }
 
 /* Handle */
 .taskbar-programs::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 5px;
+    background: #888;
+    border-radius: 5px;
 }
 
 /* Handle on hover */
 .taskbar-programs::-webkit-scrollbar-thumb:hover {
-  background: #555;
+    background: #555;
 }
 </style>

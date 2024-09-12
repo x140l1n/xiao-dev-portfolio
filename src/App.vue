@@ -1,15 +1,15 @@
 <script>
-import MonitorView from "./views/MonitorView.vue";
+import MonitorView from './views/MonitorView.vue';
 
 export default {
-  components: {
-    MonitorView,
-  },
+    components: {
+        MonitorView
+    }
 };
 </script>
 
 <template>
-  <MonitorView />
+    <MonitorView />
 </template>
 
 <style></style>
