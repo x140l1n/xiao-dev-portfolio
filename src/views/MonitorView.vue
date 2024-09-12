@@ -29,39 +29,40 @@ export default {
     },
   },
   methods: {
-    init() {
-
-    },
+    init() {},
     setFullScreen(fullscreen) {
-      let isInFullScreen = (document.fullscreenElement && document.fullscreenElement !== null) ||
-          (document.webkitFullscreenElement && document.webkitFullscreenElement !== null) ||
-          (document.mozFullScreenElement && document.mozFullScreenElement !== null) ||
-          (document.msFullscreenElement && document.msFullscreenElement !== null);
+      let isInFullScreen =
+        (document.fullscreenElement && document.fullscreenElement !== null) ||
+        (document.webkitFullscreenElement &&
+          document.webkitFullscreenElement !== null) ||
+        (document.mozFullScreenElement &&
+          document.mozFullScreenElement !== null) ||
+        (document.msFullscreenElement && document.msFullscreenElement !== null);
 
       let docElm = document.documentElement;
 
       if (!isInFullScreen && fullscreen) {
-          if (docElm.requestFullscreen) {
-              docElm.requestFullscreen();
-          } else if (docElm.mozRequestFullScreen) {
-              docElm.mozRequestFullScreen();
-          } else if (docElm.webkitRequestFullScreen) {
-              docElm.webkitRequestFullScreen();
-          } else if (docElm.msRequestFullscreen) {
-              docElm.msRequestFullscreen();
-          }
+        if (docElm.requestFullscreen) {
+          docElm.requestFullscreen();
+        } else if (docElm.mozRequestFullScreen) {
+          docElm.mozRequestFullScreen();
+        } else if (docElm.webkitRequestFullScreen) {
+          docElm.webkitRequestFullScreen();
+        } else if (docElm.msRequestFullscreen) {
+          docElm.msRequestFullscreen();
+        }
       } else {
-          if (document.exitFullscreen) {
-              document.exitFullscreen();
-          } else if (document.webkitExitFullscreen) {
-              document.webkitExitFullscreen();
-          } else if (document.mozCancelFullScreen) {
-              document.mozCancelFullScreen();
-          } else if (document.msExitFullscreen) {
-              document.msExitFullscreen();
-          }
+        if (document.exitFullscreen) {
+          document.exitFullscreen();
+        } else if (document.webkitExitFullscreen) {
+          document.webkitExitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+          document.mozCancelFullScreen();
+        } else if (document.msExitFullscreen) {
+          document.msExitFullscreen();
+        }
       }
-    }
+    },
   },
 };
 </script>
@@ -76,15 +77,28 @@ export default {
           }`"
         ></div>
         <div class="wrap-introduction text-light" v-if="!isMonitorOn">
-            <h2 class="fw-bold mb-4" tabindex="1">¡Bienvenido a mi portafolio! :D</h2>
-            <p tabindex="2">
-              Para empezar a navegar en mi portafolio
-              pulse el botón <img src="../assets/icons/button-off-on.png" alt="Botón on off" title="Botón on off" class="m-2"/>
-              que está situado en la esquina inferior derecha.
-            </p>
+          <h2 class="fw-bold mb-4" tabindex="1">
+            ¡Bienvenido a mi portafolio! :D
+          </h2>
+          <p tabindex="2">
+            Para empezar a navegar en mi portafolio pulse el botón
+            <img
+              src="../assets/icons/button-off-on.png"
+              alt="Botón on off"
+              title="Botón on off"
+              class="m-2"
+            />
+            que está situado en la esquina inferior derecha.
+          </p>
         </div>
-        <img src="../assets/img/greet.png" alt="Saludo" title="Saludo" class="image-greet" v-if="!isMonitorOn"/>
-        <ScreenView ref="screenView" v-show="isMonitorOn"/>
+        <img
+          src="../assets/img/greet.png"
+          alt="Saludo"
+          title="Saludo"
+          class="image-greet"
+          v-if="!isMonitorOn"
+        />
+        <ScreenView ref="screenView" v-show="isMonitorOn" />
       </div>
       <div
         class="card-footer border-0 bg-transparent d-flex flex-row-reverse justify-content-between"
@@ -100,7 +114,6 @@ export default {
         >
           <i class="fa-solid fa-power-off fa-fw m-auto"></i>
         </button>
-        
       </div>
     </div>
   </main>
@@ -118,7 +131,6 @@ main {
   left: 50%;
   transform: translate(-50%, -40%);
   z-index: 5;
-  text-align: justify;
   font-size: 1.2rem;
 }
 
@@ -172,7 +184,7 @@ main {
   border: 2px rgb(23, 210, 23) solid;
 }
 
-.btn-off, 
+.btn-off,
 .btn-off:active,
 .btn-off:focus {
   color: rgb(210, 23, 23);

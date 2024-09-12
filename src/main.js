@@ -4,7 +4,7 @@ import "./assets/css/base.css";
 import "bootstrap";
 import Moment from "vue-moment";
 import moment from "moment";
-import resize from "vue-resize-directive"
+import resize from "vue-resize-directive";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
@@ -14,88 +14,116 @@ moment.locale("es");
 
 Vue.directive("resize", resize);
 
-const observablePrograms = Vue.observable({ programs: [] })
+const observablePrograms = Vue.observable({ programs: [] });
 
 Object.defineProperty(Vue.prototype, "$programs", {
-  get () {
+  get() {
     return observablePrograms.programs;
   },
-  set (value) {
+  set(value) {
     observablePrograms.programs = value;
-  }
-})
+  },
+});
 
-const observableProgramActive = Vue.observable({ programActive: null })
+const observableProgramsMaximized = Vue.observable({ programsMaximized: [] });
+
+Object.defineProperty(Vue.prototype, "$programsMaximized", {
+  get() {
+    return observableProgramsMaximized.programsMaximized;
+  },
+  set(value) {
+    observableProgramsMaximized.programsMaximized = value;
+  },
+});
+
+const observableProgramActive = Vue.observable({ programActive: null });
 
 Object.defineProperty(Vue.prototype, "$programActive", {
-  get () {
+  get() {
     return observableProgramActive.programActive;
   },
-  set (value) {
+  set(value) {
     observableProgramActive.programActive = value;
-  }
-})
+  },
+});
 
-const observableThemeSelected = Vue.observable({ themeSelected: null })
+const observableThemeSelected = Vue.observable({ themeSelected: null });
 
 Object.defineProperty(Vue.prototype, "$themeSelected", {
-  get () {
+  get() {
     return observableThemeSelected.themeSelected;
   },
-  set (value) {
+  set(value) {
     observableThemeSelected.themeSelected = value;
-  }
-})
+  },
+});
 
-const observableIsFullScreen = Vue.observable({ isFullScreen: false })
+const observableIsFullScreen = Vue.observable({ isFullScreen: false });
 
 Object.defineProperty(Vue.prototype, "$isFullScreen", {
-  get () {
+  get() {
     return observableIsFullScreen.isFullScreen;
   },
-  set (value) {
+  set(value) {
     observableIsFullScreen.isFullScreen = value;
-  }
-})
+  },
+});
 
-const observableIsFullScreenFromToggle = Vue.observable({ isFullScreenFromToggle: true })
+const observableIsFullScreenFromToggle = Vue.observable({
+  isFullScreenFromToggle: true,
+});
 
 Object.defineProperty(Vue.prototype, "$isFullScreenFromToggle", {
-  get () {
+  get() {
     return observableIsFullScreenFromToggle.isFullScreenFromToggle;
   },
-  set (value) {
+  set(value) {
     observableIsFullScreenFromToggle.isFullScreenFromToggle = value;
-  }
-})
+  },
+});
 
-const observableUrlToOpen = Vue.observable({ urlToOpen: "" })
+const observableUrlToOpen = Vue.observable({ urlToOpen: "" });
 
 Object.defineProperty(Vue.prototype, "$urlToOpen", {
-  get () {
+  get() {
     return observableUrlToOpen.urlToOpen;
   },
-  set (value) {
+  set(value) {
     observableUrlToOpen.urlToOpen = value;
-  }
-})
+  },
+});
 
-const eventsFullScreen = ["fullscreenchange", "webkitfullscreenchange", "mozfullscreenchange", "msfullscreenchange"];
+const eventsFullScreen = [
+  "fullscreenchange",
+  "webkitfullscreenchange",
+  "mozfullscreenchange",
+  "msfullscreenchange",
+];
 
-eventsFullScreen.forEach(
-  eventType => document.addEventListener(eventType, () => {
-    if (!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement)) {
-      observableIsFullScreen.isFullScreen = false;
-    } else {
-      observableIsFullScreen.isFullScreen = true;
-    }
+eventsFullScreen.forEach((eventType) =>
+  document.addEventListener(
+    eventType,
+    () => {
+      if (
+        !(
+          document.fullscreenElement ||
+          document.webkitFullscreenElement ||
+          document.mozFullScreenElement
+        )
+      ) {
+        observableIsFullScreen.isFullScreen = false;
+      } else {
+        observableIsFullScreen.isFullScreen = true;
+      }
 
-    observableIsFullScreenFromToggle.isFullScreenFromToggle = false;
-  }, false)
+      observableIsFullScreenFromToggle.isFullScreenFromToggle = false;
+    },
+    false
+  )
 );
 
 AOS.init();
 
 new Vue({
-  render: h => h(App),
+  render: (h) => h(App),
 }).$mount("#app");

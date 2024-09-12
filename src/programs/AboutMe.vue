@@ -1,10 +1,17 @@
 <template>
-  <div class="w-100 h-100 p-3 d-flex">
-    <div ref="card" class="card flip shadow-lg m-auto w-100">
+  <div class="w-100 p-3 d-flex">
+    <div ref="card" class="card flip shadow-lg w-100">
       <div class="flip-card-front">
         <header class="text-light d-flex justify-content-between p-4 pb-0">
-          <img src="../assets/icons/coding.png" class="my-auto ms-3" alt="Icono fullstack developer" title="Icono fullstack developer"/>
-          <label class="mt-4 mx-2 fw-bold text-truncate header-title">FULLSTACK DEVELOPER</label>
+          <img
+            src="../assets/icons/coding.png"
+            class="my-auto ms-3"
+            alt="Icono fullstack developer"
+            title="Icono fullstack developer"
+          />
+          <label class="mt-4 mx-2 fw-bold text-truncate header-title"
+            >FULLSTACK DEVELOPER</label
+          >
           <button
             class="btn btn-transparent btn-flip text-light me-3 my-auto"
             title="Voltear la targeta"
@@ -16,12 +23,14 @@
         <div class="card-body">
           <div ref="contentFront" class="d-flex h-100 p-4">
             <div class="photo m-auto">
-              <img src="../assets/img/me.jpg" class="img-fluid" title="Yo" alt="Foto yo"/>
+              <img
+                src="../assets/img/me.jpg"
+                class="img-fluid"
+                title="Yo"
+                alt="Foto yo"
+              />
             </div>
-            <div
-              ref="descriptionFront"
-              class="flex-grow-1 description mx-4 text-justify"
-            >
+            <div ref="descriptionFront" class="flex-grow-1 description mx-4">
               <h6 class="fw-bold my-2">Presentación</h6>
               <p>
                 ¡Hola! Me llamo Xiaolin Jin Lin y tengo {{ years }} años. Desde
@@ -51,12 +60,15 @@
                 soluciones efectivas para el proyecto. A la vez me gusta ayudar,
                 compartir experiencias y conocimientos con otras personas.
               </p>
-                <br/>
-                <h6 class="fw-bold">Idiomas</h6>
-                <p>Castellano (Nativo), Catalán (Nativo), Inglés (Medio), Chino (Nativo).</p>
-                <br/>
-                <h6 class="fw-bold">Hobbies</h6>
-                <p>Baile.</p>
+              <br />
+              <h6 class="fw-bold">Idiomas</h6>
+              <p>
+                Castellano (Nativo), Catalán (Nativo), Inglés (Medio), Chino
+                (Nativo).
+              </p>
+              <br />
+              <h6 class="fw-bold">Hobbies</h6>
+              <p>Baile.</p>
             </div>
           </div>
         </div>
@@ -95,9 +107,7 @@
                   title="GitHub"
                   ><img src="../assets/icons/github.png" alt="github"
                 /></a>
-                <a
-                  href="mailto:info@xiaojl.dev"
-                  title="Enviar correo"
+                <a href="mailto:info@xiaojl.dev" title="Enviar correo"
                   ><img src="../assets/icons/email.png" alt="email"
                 /></a>
               </div>
@@ -130,9 +140,9 @@ import Vue from "vue";
   },
   methods: {
     init() {
-        setTimeout(() => {
-          this.flip();
-        }, 10);
+      setTimeout(() => {
+        this.flip();
+      }, 10);
     },
     onResize() {
       if (this.$el.clientWidth < 800) {
@@ -186,21 +196,21 @@ export default class AboutMe extends Program {
 </script>
 
 <style scoped>
-header img {
-  width: 8vw;
-}
 .photo {
   height: 100%;
   min-width: 100px;
   max-width: 270px;
 }
+
 .photo > img {
   object-fit: cover;
   border-radius: 25px;
 }
+
 .header-title {
   font-size: 3.6vw;
 }
+
 @media screen and (min-width: 800px) {
   .header-title {
     font-size: 26px !important;
@@ -209,48 +219,48 @@ header img {
   header img {
     width: 50px !important;
   }
-
-  .btn-flip {
-    font-size: 18px !important;
-  }
 }
+
 .logo {
   height: 100%;
   width: 100%;
   min-width: 100px;
   max-width: 250px;
 }
+
 .logo > img {
   object-fit: cover;
 }
+
 .card {
-  border-radius: 50px;
+  border-radius: 25px;
   max-width: 1200px;
+  margin: 40px auto;
   transition: transform 0.6s;
   transform-style: preserve-3d;
 }
+
 .card.flip {
   transform: rotateY(180deg);
 }
+
 .card header {
   position: relative;
   background: rgb(var(--bs-primary-rgb));
   height: 100px;
   width: 100%;
-  border-top-left-radius: 50px;
-  border-top-right-radius: 50px;
+  border-radius: 25px 25px 0 0;
   border-bottom: 2px solid rgba(var(--bs-primary-rgb), 0.5);
   border-top: 1px solid rgba(var(--bs-primary-rgb), 0.8);
   box-shadow: inset 0 1px 0 0 rgb(var(--bs-primary-rgb) / 80%),
     0 1px 2px rgb(0 0 0 / 40%);
   opacity: 0.9;
 }
+
 .flip-card-front,
 .flip-card-back {
   width: 100%;
   height: 100%;
-  -webkit-backface-visibility: hidden;
-  -moz-backface-visibility: hidden;
   backface-visibility: hidden;
   transform: rotateX(0deg);
 }
@@ -265,9 +275,9 @@ header img {
   z-index: 2;
   content: "";
   left: 50%;
-  top: -70px;
+  top: -60px;
   margin: 0 0 0 -40px;
-  height: 100px;
+  height: 90px;
   width: 80px;
   background: rgba(255, 255, 255, 0.2);
   background-image: linear-gradient(
@@ -286,7 +296,7 @@ header img {
       rgba(255, 255, 255, 0.8) 0%,
       rgba(255, 255, 255, 0) 40%
     );
-  border-radius: 6px;
+  border-radius: 5px;
   box-shadow: 0 0 0 1px rgb(0 0 0 / 80%);
   opacity: 0.5;
 }
@@ -297,7 +307,7 @@ header img {
   z-index: 2;
   height: 20px;
   width: 20px;
-  top: -55px;
+  top: -35px;
   left: 50%;
   margin: 0 0 0 -10px;
   border-radius: 50%;
@@ -322,12 +332,10 @@ header img {
 
 .description p {
   margin: 0;
-  text-align: justify;
   font-size: 0.8rem;
 }
 
 .btn-flip {
-  font-size: 3.6vw;
   animation: glowing 1300ms infinite;
 }
 
@@ -336,10 +344,12 @@ header img {
     background-color: #0091b2;
     box-shadow: 0 0 3px #0091b2;
   }
+
   50% {
     background-color: #21c7ed;
     box-shadow: 0 0 15px #21c7ed;
   }
+
   100% {
     background-color: #0091b2;
     box-shadow: 0 0 3px #0091b2;

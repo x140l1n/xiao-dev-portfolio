@@ -154,6 +154,14 @@ export default {
       this.$el.classList.remove("minimize");
       this.$el.classList.add("active");
 
+      if (this.isMaximized) {
+        this.$programsMaximized = this.$programsMaximized.filter(
+          (program) => program.id !== this.program.id
+        );
+
+        this.$programsMaximized.push(this.program);
+      }
+
       this.$programActive = this.program;
     },
     minimize() {
@@ -161,6 +169,9 @@ export default {
       this.$el.classList.add("minimize");
 
       this.$programActive = null;
+      this.$programsMaximized = this.$programsMaximized.filter(
+        (program) => program.id !== this.program.id
+      );
 
       this.bringFrontLastProgram();
     },
@@ -184,19 +195,19 @@ export default {
 
         this.$el.parentNode.removeChild(this.$el);
 
-        const indexProgramRemove = this.$programs.findIndex((program) => {
-          return program.id === this.program.id;
-        });
-
-        this.$programs.splice(indexProgramRemove, 1);
+        this.$programs = this.$programs.filter(
+          (program) => program.id !== this.program.id
+        );
 
         this.bringFrontLastProgram();
       }, 200);
+
+      this.$programsMaximized = this.$programsMaximized.filter(
+        (program) => program.id !== this.program.id
+      );
     },
     bringFrontLastProgram() {
-      let programs_reverse = [...this.$programs];
-
-      programs_reverse = programs_reverse.reverse();
+      const programs_reverse = [...this.$programs].reverse();
 
       const lastProgram = programs_reverse.find(
         (program) => !program.window.$el.classList.contains("minimize")
@@ -335,7 +346,7 @@ export default {
 
           original_x = self.position.x;
           original_y = self.position.y;
-          
+
           if (!e.touches) {
             original_mouse_x = e.pageX;
             original_mouse_y = e.pageY;
@@ -466,6 +477,8 @@ export default {
         this.$refs.window.classList.remove("resizers");
 
         this.$refs.window.classList.add("maximize");
+
+        this.$programsMaximized.push(this.program);
       } else {
         this.size = { ...this.sizePrev };
 
@@ -474,6 +487,10 @@ export default {
         this.$refs.window.classList.add("resizers");
 
         this.$refs.window.classList.remove("maximize");
+
+        this.$programsMaximized = this.$programsMaximized.filter(
+          (program) => program.id !== this.program.id
+        );
       }
     },
   },
@@ -487,6 +504,8 @@ export default {
   height: 100%;
   left: var(--x);
   top: var(--y);
+  display: flex;
+  flex-direction: column;
   max-width: var(--width);
   max-height: var(--height);
   min-width: 170px;
@@ -571,14 +590,10 @@ export default {
 }
 
 .window-content {
-  padding-top: var(--heightTileBar);
-  height: 100%;
+  flex: 1;
 }
 
 .window-tilebar {
-  position: absolute;
-  top: 0;
-  left: 0;
   width: 100%;
   z-index: 3;
   height: var(--heightTileBar);

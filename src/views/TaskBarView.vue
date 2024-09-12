@@ -1,11 +1,25 @@
 <template>
   <div class="taskbar bg-primary d-flex flex-row-reverse">
-    <span class="taskbar-item border border-dark border-end-0 border-top-0 border-bottom-0" style="width: 6px" @click="minimizeAll">
+    <span
+      class="taskbar-item border border-dark border-end-0 border-top-0 border-bottom-0"
+      style="width: 6px"
+      @click="minimizeAll"
+    >
     </span>
     <Clock class="taskbar-item" />
     <div class="taskbar-programs d-flex justify-content-center w-100">
-      <div v-for="(program, index) in $programs" :tabindex="10 + index" :key="program.id" :id="`program-${program.id}`" :class="`taskbar-item program ${ getProgramActiveId == program.id ? 'selected' : ''}`" :title="program.title" @click="selectProgram(program)">
-        <img :src="program.icon_src" :alt="`Logo ${program.title}`"/>
+      <div
+        v-for="(program, index) in $programs"
+        :tabindex="10 + index"
+        :key="program.id"
+        :id="`program-${program.id}`"
+        :class="`taskbar-item program ${
+          getProgramActiveId == program.id ? 'selected' : ''
+        }`"
+        :title="program.title"
+        @click="selectProgram(program)"
+      >
+        <img :src="program.icon_src" :alt="`Logo ${program.title}`" />
       </div>
     </div>
   </div>
@@ -27,16 +41,15 @@ export default {
       }
     },
     minimizeAll() {
-      this.$programs.forEach(program => program.window.minimize());
+      this.$programs.forEach((program) => program.window.minimize());
     },
   },
   computed: {
     getProgramActiveId() {
       return this.$programActive ? this.$programActive.id : 0;
-    }
+    },
   },
-  watch: {
-  }
+  watch: {},
 };
 </script>
 
@@ -61,7 +74,7 @@ export default {
 }
 
 .taskbar-item.program.selected {
-  background-color: #ffffff48; 
+  background-color: #ffffff48;
 }
 
 .taskbar-item.program > img {
@@ -95,7 +108,7 @@ export default {
   width: 100%;
   height: 100%;
   max-width: 40px;
-  max-height: 40px
+  max-height: 40px;
 }
 .taskbar-item.program > img {
   object-fit: fill;

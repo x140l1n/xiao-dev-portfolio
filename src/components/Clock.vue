@@ -1,10 +1,10 @@
 <template>
   <div :title="getFullDate" class="clock text-light px-2">
     <span>
-        {{ datetime.time }}
+      {{ datetime.time }}
     </span>
     <span>
-        {{ datetime.date }}
+      {{ datetime.date }}
     </span>
   </div>
 </template>
@@ -30,13 +30,13 @@ export default {
         this.datetime.time = moment().format("HH:mm:ss");
         this.datetime.date = moment().format("DD-MM-YYYY");
       }, 1000);
-    }
+    },
   },
   computed: {
     getFullDate() {
-      return moment().format('LL');
-    }
-  }
+      return moment().format("LL");
+    },
+  },
 };
 </script>
 

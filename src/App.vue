@@ -4,7 +4,7 @@ import MonitorView from "./views/MonitorView.vue";
 export default {
   components: {
     MonitorView,
-  }
+  },
 };
 </script>
 
@@ -12,6 +12,4 @@ export default {
   <MonitorView />
 </template>
 
-<style>
-
-</style>
+<style></style>

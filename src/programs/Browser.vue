@@ -64,7 +64,10 @@
                 class="form-control rounded-pill"
                 placeholder="Escribe para buscar"
               />
-              <div class="form-text fw-bold text-danger">¡Atención! Algunas páginas están bloqueadas en este navegador por motivos de seguridad.</div>
+              <div class="form-text fw-bold text-danger">
+                ¡Atención! Algunas páginas están bloqueadas en este navegador
+                por motivos de seguridad.
+              </div>
             </div>
             <button
               class="search-button ms-2 border border-1"
@@ -107,9 +110,16 @@ import Vue from "vue";
   },
   methods: {
     init() {
-      this.$refs[`form-tab-pane-1-${this.id}`].elements["input-search"].value = this.url_default;
+      this.$refs[`form-tab-pane-1-${this.id}`].elements["input-search"].value =
+        this.url_default;
 
-      setTimeout(() => this.$refs[`form-tab-pane-1-${this.id}`].elements["input-submit"].click(), 200);
+      setTimeout(
+        () =>
+          this.$refs[`form-tab-pane-1-${this.id}`].elements[
+            "input-submit"
+          ].click(),
+        200
+      );
     },
     onResize() {},
     clickTab() {},
@@ -124,7 +134,10 @@ import Vue from "vue";
           inputSearch.value
         )}`;
       } else {
-        if (!inputSearch.value.startsWith("https://") && !inputSearch.value.startsWith("http://")) {
+        if (
+          !inputSearch.value.startsWith("https://") &&
+          !inputSearch.value.startsWith("http://")
+        ) {
           search = `https://${inputSearch.value}`;
         } else {
           search = inputSearch.value;
@@ -142,12 +155,15 @@ import Vue from "vue";
       };
     },
     isValidHttpUrl(string) {
-      var pattern = new RegExp('^(https?:\\/\\/)?'+ // protocol
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|'+ // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))'+ // OR ip (v4) address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*'+ // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?'+ // query string
-        '(\\#[-a-z\\d_]*)?$','i'); // fragment locator
+      var pattern = new RegExp(
+        "^(https?:\\/\\/)?" + // protocol
+          "((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|" + // domain name
+          "((\\d{1,3}\\.){3}\\d{1,3}))" + // OR ip (v4) address
+          "(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*" + // port and path
+          "(\\?[;&a-z\\d%_.~+=-]*)?" + // query string
+          "(\\#[-a-z\\d_]*)?$",
+        "i"
+      ); // fragment locator
 
       return !!pattern.test(string);
     },

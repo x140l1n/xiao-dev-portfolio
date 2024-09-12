@@ -1,60 +1,186 @@
 <template>
   <div class="w-100 h-100 p-3">
     <div class="card shadow-lg m-auto w-100">
-        <div class="card-header bg-primary text-light">
-            <span class="fw-bold">Lenguajes de programación y frameworks</span>
+      <div class="card-header bg-primary text-light">
+        <span class="fw-bold">Lenguajes de programación y frameworks</span>
+      </div>
+      <div class="card-body">
+        <h6 class="fw-bold">Frontend</h6>
+        <div class="d-flex justify-content-center flex-wrap">
+          <img
+            src="../assets/icons/html.png"
+            class="mx-2 my-auto"
+            title="HTML 5"
+            alt="Logo HTML"
+          />
+          <img
+            src="../assets/icons/css.png"
+            class="mx-2 my-auto"
+            title="CSS"
+            alt="Logo CSS"
+          />
+          <img
+            src="../assets/icons/javascript.png"
+            class="mx-2 my-auto"
+            title="JavaScript"
+            alt="Logo JavaScript"
+          />
+          <img
+            src="../assets/icons/bootstrap.png"
+            class="mx-2 my-auto"
+            title="Bootstrap"
+            alt="Logo Bootstrap"
+            width="75"
+          />
+          <img
+            src="../assets/icons/sass.png"
+            class="mx-2 my-auto"
+            title="Sass"
+            alt="Logo Sass"
+          />
+          <img
+            src="../assets/icons/vue.png"
+            class="mx-2 my-auto"
+            title="Vue"
+            alt="Logo Vue"
+          />
+          <img
+            src="../assets/icons/react.png"
+            class="mx-2 my-auto"
+            title="React"
+            alt="Logo React"
+          />
+          <img
+            src="../assets/icons/ionic.png"
+            class="mx-2 my-auto"
+            title="Ionic"
+            alt="Logo Ionic"
+          />
         </div>
-        <div class="card-body">
-            <h6 class="fw-bold">Frontend</h6>
-            <div class="d-flex justify-content-center flex-wrap">
-                <img src="../assets/icons/html.png" class="mx-2 my-auto" title="HTML 5" alt="Logo HTML"/>
-                <img src="../assets/icons/css.png" class="mx-2 my-auto" title="CSS" alt="Logo CSS"/>
-                <img src="../assets/icons/javascript.png" class="mx-2 my-auto" title="JavaScript" alt="Logo JavaScript"/>
-                <img src="../assets/icons/bootstrap.png" class="mx-2 my-auto" title="Bootstrap" alt="Logo Bootstrap" width="75"/>
-                <img src="../assets/icons/sass.png" class="mx-2 my-auto" title="Sass" alt="Logo Sass"/>
-                <img src="../assets/icons/vue.png" class="mx-2 my-auto" title="Vue" alt="Logo Vue"/>
-                <img src="../assets/icons/react.png" class="mx-2 my-auto" title="React" alt="Logo React"/>
-                <img src="../assets/icons/ionic.png" class="mx-2 my-auto" title="Ionic" alt="Logo Ionic"/>
-            </div>
-            <h6 class="fw-bold">Backend</h6>
-            <div class="d-flex justify-content-center flex-wrap">
-                <img src="../assets/icons/java.png" class="mx-2 my-auto" title="Java" alt="Logo Java"/>
-                <img src="../assets/icons/vb.net.png" class="mx-2 my-auto" title="Visual Basic" alt="Logo Visual Basic"/>
-                <img src="../assets/icons/csharp.png" class="mx-2 my-auto" title="C#" alt="Logo C#"/>
-                <img src="../assets/icons/php.png" class="mx-2 my-auto" title="PHP" alt="Logo PHP"/>
-                <img src="../assets/icons/javascript.png" class="mx-2 my-auto" title="JavaScript" alt="Logo JavaScript"/>
-                <img src="../assets/icons/nodejs.png" class="mx-2 my-auto" title="NodeJS" alt="Logo NodeJS"/>
-                <img src="../assets/icons/laravel.png" class="mx-2 my-auto" title="Laravel" alt="Logo Laravel"/>
-                <img src="../assets/icons/codeigniter.png" class="mx-2 my-auto" title="Codeigniter" alt="Logo Codeigniter"/>
-                <img src="../assets/icons/ado.net.png" class="mx-2 my-auto" title="ADO.NET" alt="Logo ADO.NET"/>
-                <img src="../assets/icons/.net.png" class="mx-2 my-auto" title=".NET Core" alt="Logo .NET Core"/>
-            </div>
+        <h6 class="fw-bold">Backend</h6>
+        <div class="d-flex justify-content-center flex-wrap">
+          <img
+            src="../assets/icons/java.png"
+            class="mx-2 my-auto"
+            title="Java"
+            alt="Logo Java"
+          />
+          <img
+            src="../assets/icons/vb.net.png"
+            class="mx-2 my-auto"
+            title="Visual Basic"
+            alt="Logo Visual Basic"
+          />
+          <img
+            src="../assets/icons/csharp.png"
+            class="mx-2 my-auto"
+            title="C#"
+            alt="Logo C#"
+          />
+          <img
+            src="../assets/icons/php.png"
+            class="mx-2 my-auto"
+            title="PHP"
+            alt="Logo PHP"
+          />
+          <img
+            src="../assets/icons/javascript.png"
+            class="mx-2 my-auto"
+            title="JavaScript"
+            alt="Logo JavaScript"
+          />
+          <img
+            src="../assets/icons/nodejs.png"
+            class="mx-2 my-auto"
+            title="NodeJS"
+            alt="Logo NodeJS"
+          />
+          <img
+            src="../assets/icons/laravel.png"
+            class="mx-2 my-auto"
+            title="Laravel"
+            alt="Logo Laravel"
+          />
+          <img
+            src="../assets/icons/codeigniter.png"
+            class="mx-2 my-auto"
+            title="Codeigniter"
+            alt="Logo Codeigniter"
+          />
+          <img
+            src="../assets/icons/ado.net.png"
+            class="mx-2 my-auto"
+            title="ADO.NET"
+            alt="Logo ADO.NET"
+          />
+          <img
+            src="../assets/icons/.net.png"
+            class="mx-2 my-auto"
+            title=".NET Core"
+            alt="Logo .NET Core"
+          />
         </div>
+      </div>
     </div>
     <div class="card shadow-lg m-auto w-100 mt-4">
-        <div class="card-header bg-primary text-light">
-            <span class="fw-bold">Bases de datos</span>
+      <div class="card-header bg-primary text-light">
+        <span class="fw-bold">Bases de datos</span>
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-center flex-wrap">
+          <img
+            src="../assets/icons/mysql.png"
+            class="mx-2 my-auto"
+            title="MySQL"
+            alt="Logo MySQL"
+          />
+          <img
+            src="../assets/icons/sql-server.png"
+            class="mx-2 my-auto"
+            title="SQL Server"
+            alt="Logo SQL Server"
+          />
+          <img
+            src="../assets/icons/postgresql.png"
+            class="mx-2 my-auto"
+            title="PostgreSQL"
+            alt="Logo PostgreSQL"
+          />
         </div>
-        <div class="card-body">
-            <div class="d-flex justify-content-center flex-wrap">
-                <img src="../assets/icons/mysql.png" class="mx-2 my-auto" title="MySQL" alt="Logo MySQL"/>
-                <img src="../assets/icons/sql-server.png" class="mx-2 my-auto" title="SQL Server" alt="Logo SQL Server"/>
-                <img src="../assets/icons/postgresql.png" class="mx-2 my-auto" title="PostgreSQL" alt="Logo PostgreSQL"/>
-            </div>
-        </div>
+      </div>
     </div>
     <div class="card shadow-lg m-auto w-100 mt-4">
-        <div class="card-header bg-primary text-light">
-            <span class="fw-bold">Otros</span>
+      <div class="card-header bg-primary text-light">
+        <span class="fw-bold">Otros</span>
+      </div>
+      <div class="card-body">
+        <div class="d-flex justify-content-center flex-wrap">
+          <img
+            src="../assets/icons/github_96px.png"
+            class="mx-2 my-auto"
+            title="GitHub"
+            alt="Logo GitHub"
+          />
+          <img
+            src="../assets/icons/android_studio.png"
+            class="mx-2 my-auto"
+            title="Android Studio"
+            alt="Logo Android Studio"
+          />
+          <img
+            src="../assets/icons/wordpress.png"
+            class="mx-2 my-auto"
+            title="Wordpress"
+            alt="Logo Wordpress"
+          />
+          <img
+            src="../assets/icons/ubuntu.png"
+            class="mx-2 my-auto"
+            title="Ubuntu"
+            alt="Logo Ubuntu"
+          />
         </div>
-        <div class="card-body">
-            <div class="d-flex justify-content-center flex-wrap">
-                <img src="../assets/icons/github_96px.png" class="mx-2 my-auto" title="GitHub" alt="Logo GitHub"/>
-                <img src="../assets/icons/android_studio.png" class="mx-2 my-auto" title="Android Studio" alt="Logo Android Studio"/>
-                <img src="../assets/icons/wordpress.png" class="mx-2 my-auto" title="Wordpress" alt="Logo Wordpress"/>
-                <img src="../assets/icons/ubuntu.png" class="mx-2 my-auto" title="Ubuntu" alt="Logo Ubuntu"/>
-            </div>
-        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -80,13 +206,9 @@ import Vue from "vue";
   },
   methods: {
     init() {},
-    onResize() {
-
-    },
-
+    onResize() {},
   },
-  computed: {
-  },
+  computed: {},
 })
 export default class Knowledge extends Program {
   //Initialize the variables of superclass Program.
@@ -107,6 +229,6 @@ export default class Knowledge extends Program {
 
 <style scoped>
 .card {
-    max-width: 1200px;
+  max-width: 1200px;
 }
 </style>

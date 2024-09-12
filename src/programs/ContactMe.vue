@@ -1,10 +1,12 @@
 <template>
-  <div class="w-100 h-100 p-4">
+  <div class="w-100 p-4">
     <form @submit.prevent="onSubmit" v-if="!showSuccess">
       <div class="mb-3 mx-2">
-        <h5 class="fw-bold">Si tienes alguna duda no dudes en enviarme un correo ;)</h5>
+        <h5 class="fw-bold">
+          Si tienes alguna duda no dudes en enviarme un correo ;)
+        </h5>
       </div>
-      <hr>
+      <hr />
       <div class="mb-3 mx-2">
         <label for="input-email" class="form-label">Email *</label>
         <input
@@ -75,10 +77,18 @@
         </button>
       </div>
     </form>
-    <div class="d-flex flex-column justify-content-center h-100 text-center" v-else>
-      <img src="../assets/img/contactme.png" class="img-fluid mx-auto"/>
-      <h3 class="mx-auto fw-bold my-4">¡Muchas gracias por contactar conmigo!</h3>
-      <a role="button" @click="showSuccess = false"><i class="fa-solid fa-angle-left me-3"></i>Volver al formulario de contacto</a>
+    <div
+      class="d-flex flex-column justify-content-center h-100 text-center"
+      v-else
+    >
+      <img src="../assets/img/contactme.png" class="img-fluid mx-auto" />
+      <h3 class="mx-auto fw-bold my-4">
+        ¡Muchas gracias por contactar conmigo!
+      </h3>
+      <a role="button" @click="showSuccess = false"
+        ><i class="fa-solid fa-angle-left me-3"></i>Volver al formulario de
+        contacto</a
+      >
     </div>
   </div>
 </template>
