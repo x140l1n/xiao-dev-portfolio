@@ -347,49 +347,50 @@ import icon_projects from '../assets/icons/projects.png';
 import Vue from 'vue';
 
 @Component({
-    props: {
-        id: {
-            type: String,
-            required: true
-        }
-    },
-    mounted() {
-        this.init();
-    },
-    data() {
-        return {};
-    },
-    methods: {
-        init() {},
-        onResize() {
-            if (this.$el.clientWidth < 800) {
-                this.$refs.content.querySelectorAll('.card-body').forEach((element) => {
-                    element.classList.add('flex-column');
-                });
-            } else {
-                this.$refs.content.querySelectorAll('.card-body').forEach((element) => {
-                    element.classList.remove('flex-column');
-                });
-            }
-        },
-        openBrowser(url) {
-            this.$urlToOpen = url;
-        }
-    },
-    computed: {}
-})
-export default class Projects extends Program {
-    //Initialize the variables of superclass Program.
-    created() {
-        this.title = 'Mis proyectos';
-        this.width_default = 550;
-        this.height_default = 400;
-        this.maximized_default = true;
-        this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
-        this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
-        this.icon_src = icon_projects;
-        this.window = null;
+  props: {
+    id: {
+      type: String,
+      required: true
     }
+  },
+  mounted() {
+    this.init();
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    init() {},
+    onResize() {
+      if (this.$el.clientWidth < 800) {
+        this.$refs.content.querySelectorAll('.card-body').forEach((element) => {
+          element.classList.add('flex-column');
+        });
+      } else {
+        this.$refs.content.querySelectorAll('.card-body').forEach((element) => {
+          element.classList.remove('flex-column');
+        });
+      }
+    },
+    openBrowser(url) {
+      this.$urlToOpen = url;
+    }
+  },
+  computed: {}
+})
+
+export default class Projects extends Program {
+  //Initialize the variables of superclass Program.
+  created() {
+    this.title = 'Mis proyectos';
+    this.width_default = 550;
+    this.height_default = 400;
+    this.maximized_default = true;
+    this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
+    this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
+    this.icon_src = icon_projects;
+    this.window = null;
+  }
 }
 </script>
 
@@ -397,21 +398,25 @@ export default class Projects extends Program {
 .card {
     max-width: 800px;
 }
+
 a {
     color: #1a233a;
     text-decoration: none;
     font-size: 0.9rem;
 }
+
 .badge {
     margin: 2px;
     color: #ffffff;
     background: linear-gradient(120deg, #00b5fd 0%, #0047b1 100%);
 }
+
 .logo {
     width: 100%;
     min-width: 150px;
     max-width: 200px;
 }
+
 .description p {
     margin: 0;
     font-size: 0.8rem;

@@ -59,88 +59,94 @@ import icon_email from '../assets/icons/email.png';
 import Vue from 'vue';
 
 @Component({
-    props: {
-        id: {
-            type: String,
-            required: true
-        }
-    },
-    mounted() {
-        this.init();
-    },
-    data() {
-        return {
-            statusMessage: 0,
-            resultMessage: '',
-            isSending: false,
-            showSuccess: false
-        };
-    },
-    methods: {
-        init() {},
-        onResize() {},
-        onSubmit(evt) {
-            const form = evt.target;
-            const formData = new FormData(form);
-
-            formData.append('send', 'send');
-
-            const self = this;
-
-            this.isSending = true;
-
-            const urlParams = new URLSearchParams(formData).toString();
-
-            const fetchOptions = {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                    Accept: 'application/json'
-                }
-            };
-
-            fetch(`/email.php?${urlParams}`, fetchOptions)
-                .then((response) => {
-                    return response.json();
-                })
-                .then((data) => {
-                    if (data.status == 1) {
-                        self.showSuccess = true;
-                        self.statusMessage = 0;
-                        self.resultMessage = '';
-                    } else {
-                        self.statusMessage = data.status;
-                        self.resultMessage = data.msg;
-                    }
-                })
-                .catch((error) => {
-                    self.statusMessage = -1;
-                    self.resultMessage = 'Error al enviar el formulario.';
-                    console.error(error);
-                })
-                .finally(() => {
-                    if (self.statusMessage == 1) {
-                        form.reset();
-                    }
-
-                    self.isSending = false;
-                });
-        }
-    },
-    computed: {}
-})
-export default class ContactMe extends Program {
-    //Initialize the variables of superclass Program.
-    created() {
-        this.title = 'Contácteme';
-        this.width_default = 550;
-        this.height_default = 400;
-        this.maximized_default = true;
-        this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
-        this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
-        this.icon_src = icon_email;
-        this.window = null;
+  props: {
+    id: {
+      type: String,
+      required: true
     }
+  },
+  mounted() {
+    this.init();
+  },
+  data() {
+    return {
+      statusMessage: 0,
+      resultMessage: '',
+      isSending: false,
+      showSuccess: false
+    };
+  },
+  methods: {
+    init() {},
+    onResize() {
+      console.log('Resizing...');
+    },
+    onSubmit(evt) {
+      const form = evt.target;
+      const formData = new FormData(form);
+
+      formData.append('send', 'send');
+
+      const self = this;
+
+      this.isSending = true;
+
+      const urlParams = new URLSearchParams(formData).toString();
+
+      const fetchOptions = {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        }
+      };
+
+      fetch(`/email.php?${urlParams}`, fetchOptions)
+        .then((response) => {
+          return response.json();
+        })
+        .then((data) => {
+          if (data.status == 1) {
+            self.showSuccess = true;
+            self.statusMessage = 0;
+            self.resultMessage = '';
+          } else {
+            self.showSuccess = false;
+            self.statusMessage = data.status;
+            self.resultMessage = data.msg;
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+
+          self.showSuccess = false;
+          self.statusMessage = -1;
+          self.resultMessage = 'Error al enviar el formulario.';
+        })
+        .finally(() => {
+          if (self.statusMessage == 1) {
+            form.reset();
+          }
+
+          self.isSending = false;
+        });
+    }
+  },
+  computed: {}
+})
+
+export default class ContactMe extends Program {
+  //Initialize the variables of superclass Program.
+  created() {
+    this.title = 'Contácteme';
+    this.width_default = 550;
+    this.height_default = 400;
+    this.maximized_default = true;
+    this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
+    this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
+    this.icon_src = icon_email;
+    this.window = null;
+  }
 }
 </script>
 

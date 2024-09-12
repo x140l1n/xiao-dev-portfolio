@@ -1,5 +1,5 @@
 <template>
-    <div class="w-100 h-100 p-3">
+    <div class="w-100 p-3">
         <div class="card shadow-lg m-auto w-100">
             <div class="card-header bg-primary text-light">
                 <span class="fw-bold">Lenguajes de programación y frameworks</span>
@@ -16,6 +16,12 @@
                         alt="Logo JavaScript"
                     />
                     <img
+                        src="../assets/icons/typescript.png"
+                        class="mx-2 my-auto"
+                        title="TypeScript"
+                        alt="Logo TypeScript"
+                    />
+                    <img
                         src="../assets/icons/bootstrap.png"
                         class="mx-2 my-auto"
                         title="Bootstrap"
@@ -23,6 +29,7 @@
                         width="75"
                     />
                     <img src="../assets/icons/sass.png" class="mx-2 my-auto" title="Sass" alt="Logo Sass" />
+                    <img src="../assets/icons/tailwind.png" class="mx-2 my-auto" title="Tailwind" alt="Logo Tailwind" />
                     <img src="../assets/icons/vue.png" class="mx-2 my-auto" title="Vue" alt="Logo Vue" />
                     <img src="../assets/icons/react.png" class="mx-2 my-auto" title="React" alt="Logo React" />
                     <img src="../assets/icons/ionic.png" class="mx-2 my-auto" title="Ionic" alt="Logo Ionic" />
@@ -39,10 +46,10 @@
                     <img src="../assets/icons/csharp.png" class="mx-2 my-auto" title="C#" alt="Logo C#" />
                     <img src="../assets/icons/php.png" class="mx-2 my-auto" title="PHP" alt="Logo PHP" />
                     <img
-                        src="../assets/icons/javascript.png"
+                        src="../assets/icons/express.png"
                         class="mx-2 my-auto"
-                        title="JavaScript"
-                        alt="Logo JavaScript"
+                        title="Express"
+                        alt="Logo Express"
                     />
                     <img src="../assets/icons/nodejs.png" class="mx-2 my-auto" title="NodeJS" alt="Logo NodeJS" />
                     <img src="../assets/icons/laravel.png" class="mx-2 my-auto" title="Laravel" alt="Logo Laravel" />
@@ -85,6 +92,7 @@
             </div>
             <div class="card-body">
                 <div class="d-flex justify-content-center flex-wrap">
+                    <img src="../assets/icons/git.png" class="mx-2 my-auto" title="Git" alt="Logo Git" />
                     <img src="../assets/icons/github_96px.png" class="mx-2 my-auto" title="GitHub" alt="Logo GitHub" />
                     <img
                         src="../assets/icons/android_studio.png"
@@ -112,36 +120,37 @@ import icon_knowledge from '../assets/icons/knowledge.png';
 import Vue from 'vue';
 
 @Component({
-    props: {
-        id: {
-            type: String,
-            required: true
-        }
-    },
-    mounted() {
-        this.init();
-    },
-    data() {
-        return {};
-    },
-    methods: {
-        init() {},
-        onResize() {}
-    },
-    computed: {}
-})
-export default class Knowledge extends Program {
-    //Initialize the variables of superclass Program.
-    created() {
-        this.title = 'Mis conocimientos';
-        this.width_default = 550;
-        this.height_default = 400;
-        this.maximized_default = true;
-        this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
-        this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
-        this.icon_src = icon_knowledge;
-        this.window = null;
+  props: {
+    id: {
+      type: String,
+      required: true
     }
+  },
+  mounted() {
+    this.init();
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    init() {},
+    onResize() {}
+  },
+  computed: {}
+})
+
+export default class Knowledge extends Program {
+  //Initialize the variables of superclass Program.
+  created() {
+    this.title = 'Mis conocimientos';
+    this.width_default = 550;
+    this.height_default = 400;
+    this.maximized_default = true;
+    this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
+    this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
+    this.icon_src = icon_knowledge;
+    this.window = null;
+  }
 }
 </script>
 

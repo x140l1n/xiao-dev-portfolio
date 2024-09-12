@@ -27,27 +27,27 @@
 import Clock from '../components/Clock.vue';
 
 export default {
-    components: {
-        Clock
+  components: {
+    Clock
+  },
+  methods: {
+    selectProgram(program) {
+      if (program.window.$el.classList.contains('active')) {
+        program.window.minimize();
+      } else {
+        program.window.bringFront();
+      }
     },
-    methods: {
-        selectProgram(program) {
-            if (program.window.$el.classList.contains('active')) {
-                program.window.minimize();
-            } else {
-                program.window.bringFront();
-            }
-        },
-        minimizeAll() {
-            this.$programs.forEach((program) => program.window.minimize());
-        }
-    },
-    computed: {
-        getProgramActiveId() {
-            return this.$programActive ? this.$programActive.id : 0;
-        }
-    },
-    watch: {}
+    minimizeAll() {
+      this.$programs.forEach((program) => program.window.minimize());
+    }
+  },
+  computed: {
+    getProgramActiveId() {
+      return this.$programActive ? this.$programActive.id : 0;
+    }
+  },
+  watch: {}
 };
 </script>
 
@@ -108,6 +108,7 @@ export default {
     max-width: 40px;
     max-height: 40px;
 }
+
 .taskbar-item.program > img {
     object-fit: fill;
 }

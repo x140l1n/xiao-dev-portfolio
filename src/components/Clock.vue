@@ -13,30 +13,30 @@
 import moment from 'moment';
 
 export default {
-    mounted() {
-        this.init();
-    },
-    data() {
-        return {
-            datetime: {
-                time: moment().format('HH:mm:ss'),
-                date: moment().format('DD-MM-YYYY')
-            }
-        };
-    },
-    methods: {
-        init() {
-            setInterval(() => {
-                this.datetime.time = moment().format('HH:mm:ss');
-                this.datetime.date = moment().format('DD-MM-YYYY');
-            }, 1000);
-        }
-    },
-    computed: {
-        getFullDate() {
-            return moment().format('LL');
-        }
+  mounted() {
+    this.init();
+  },
+  data() {
+    return {
+      datetime: {
+        time: moment().format('HH:mm:ss'),
+        date: moment().format('DD-MM-YYYY')
+      }
+    };
+  },
+  methods: {
+    init() {
+      setInterval(() => {
+        this.datetime.time = moment().format('HH:mm:ss');
+        this.datetime.date = moment().format('DD-MM-YYYY');
+      }, 1000);
     }
+  },
+  computed: {
+    getFullDate() {
+      return moment().format('LL');
+    }
+  }
 };
 </script>
 

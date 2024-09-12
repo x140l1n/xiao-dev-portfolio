@@ -19,12 +19,12 @@
                 aria-orientation="vertical"
             >
                 <button
+                    type="button"
                     class="nav-link active rounded-0 general"
                     title="General"
                     :id="`v-pills-general-tab-${id}`"
                     data-bs-toggle="pill"
                     :data-bs-target="`#v-pills-general-${id}`"
-                    type="button"
                     role="tab"
                     :aria-controls="`v-pills-general-${id}`"
                     aria-selected="true"
@@ -32,12 +32,12 @@
                     <span>General</span>
                 </button>
                 <button
+                    type="button"
                     class="nav-link rounded-0 theme"
                     title="Temas"
                     :id="`v-pills-personalization-tab-${id}`"
                     data-bs-toggle="pill"
                     :data-bs-target="`#v-pills-personalization-${id}`"
-                    type="button"
                     role="tab"
                     :aria-controls="`v-pills-personalization-${id}`"
                     aria-selected="false"
@@ -45,12 +45,12 @@
                     <span>Temas</span>
                 </button>
                 <button
+                    type="button"
                     class="nav-link rounded-0 about"
                     title="Acerca de"
                     :id="`v-pills-about-tab-${id}`"
                     data-bs-toggle="pill"
                     :data-bs-target="`#v-pills-about-${id}`"
-                    type="button"
                     role="tab"
                     :aria-controls="`v-pills-about-${id}`"
                     aria-selected="false"
@@ -106,7 +106,9 @@
                                             value="theme-2"
                                             :id="`rdb-theme-2-${id}`"
                                         />
-                                        <label class="form-check-label" :for="`rdb-theme-2-${id}`"> Tema azul </label>
+                                        <label class="form-check-label" :for="`rdb-theme-2-${id}`">
+                                            Tema azul oscuro 
+                                        </label>
                                     </div>
                                 </div>
                                 <div class="theme-selector theme-2 p-3 my-2">
@@ -119,7 +121,9 @@
                                             value="theme-1"
                                             :id="`rdb-theme-1-${id}`"
                                         />
-                                        <label class="form-check-label" :for="`rdb-theme-1-${id}`"> Tema morado </label>
+                                        <label class="form-check-label" :for="`rdb-theme-1-${id}`">
+                                            Tema morado
+                                        </label>
                                     </div>
                                 </div>
                             </div>
@@ -204,54 +208,55 @@ import Vue from 'vue';
 import { version, date } from '../../package';
 
 @Component({
-    props: {
-        id: {
-            type: String,
-            required: true
-        }
-    },
-    mounted() {
-        this.init();
-    },
-    data() {
-        return {};
-    },
-    methods: {
-        init() {},
-        onResize() {
-            if (this.$el.clientWidth < 600) {
-                this.$refs.nav.classList.add('nav-small');
-                this.$refs.tabContent.classList.add('tab-content-small');
-            } else {
-                this.$refs.nav.classList.remove('nav-small');
-                this.$refs.tabContent.classList.remove('tab-content-small');
-            }
-        }
-    },
-    computed: {
-        getVersion() {
-            return version;
-        },
-        getDateVersion() {
-            return date;
-        },
-        selectTheme(theme) {
-            this.$themeSelected = theme;
-        }
+  props: {
+    id: {
+      type: String,
+      required: true
     }
+  },
+  mounted() {
+    this.init();
+  },
+  data() {
+    return {};
+  },
+  methods: {
+    init() {},
+    onResize() {
+      if (this.$el.clientWidth < 600) {
+        this.$refs.nav.classList.add('nav-small');
+        this.$refs.tabContent.classList.add('tab-content-small');
+      } else {
+        this.$refs.nav.classList.remove('nav-small');
+        this.$refs.tabContent.classList.remove('tab-content-small');
+      }
+    }
+  },
+  computed: {
+    getVersion() {
+      return version;
+    },
+    getDateVersion() {
+      return date;
+    },
+    selectTheme(theme) {
+      this.$themeSelected = theme;
+    }
+  }
 })
+
 export default class Settings extends Program {
-    //Initialize the variables of superclass Program.
-    created() {
-        this.title = 'Ajustes';
-        this.width_default = 550;
-        this.height_default = 400;
-        this.maximized_default = true;
-        this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
-        this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
-        this.icon_src = icon_settings;
-        this.window = null;
-    }
+  //Initialize the variables of superclass Program.
+  created() {
+    this.title = 'Ajustes';
+    this.width_default = 550;
+    this.height_default = 400;
+    this.maximized_default = true;
+    this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
+    this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
+    this.icon_src = icon_settings;
+    this.window = null;
+  }
 }
 </script>
 
@@ -261,25 +266,31 @@ export default class Settings extends Program {
     height: 200px;
     margin: auto;
 }
+
 .theme-selector.theme-1 {
     background-image: url('../assets/img/theme-1.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
+
 .theme-selector.theme-2 {
     background-image: url('../assets/img/theme-2.png');
     background-size: contain;
     background-repeat: no-repeat;
 }
+
 .table td {
     display: inline-block;
 }
+
 .table td.label {
     width: 200px;
 }
+
 .tab-content.tab-content-small {
     margin-left: 50px;
 }
+
 .tab-content {
     margin-left: 200px;
 }
@@ -293,6 +304,7 @@ export default class Settings extends Program {
     max-width: 200px;
     z-index: 2;
 }
+
 .nav-link:not(.active):hover {
     background-color: #13738e4b;
 }

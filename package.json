@@ -1,17 +1,12 @@
 {
-  "name": "portfolio",
+  "name": "xiao-dev-portfolio",
   "version": "1.0.0",
-  "date": "23/05/2022",
+  "date": "12/09/2024",
   "private": true,
-  "engines": {
-    "npm": ">=7.0.0 <9.0.0",
-    "node": ">=16.0.0 <17.0.0"
-  },
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "format": "prettier --write \"src/**/*.{js,vue}\""
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.5",
@@ -34,34 +29,5 @@
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "vue-template-compiler": "^2.6.10"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/essential",
-      "eslint:recommended"
-    ],
-    "rules": {
-      "no-inner-declarations": 0,
-      "no-console": 0
-    },
-    "parserOptions": {
-      "parser": "babel-eslint",
-      "ecmaFeatures": {
-        "legacyDecorators": true
-      }
-    }
-  },
-  "postcss": {
-    "plugins": {
-      "autoprefixer": {}
-    }
-  },
-  "browserslist": [
-    "> 1%",
-    "last 2 versions"
-  ]
+  }
 }
