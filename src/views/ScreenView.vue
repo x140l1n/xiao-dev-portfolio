@@ -117,9 +117,9 @@
 
 <script>
 import Vue from 'vue';
-import TaskBarView from './TaskBarView.vue';
-import Window from '../components/Window.vue';
-import moment from 'moment';
+import TaskBarView from '@views/TaskBarView.vue';
+import Window from '@components/Window.vue';
+import { v4 } from 'uuid';
 
 export default {
   components: {
@@ -172,22 +172,17 @@ export default {
           this.timoutOpenProgram = null;
         }, 1000);
 
-        const program = this.getProgram(_program);
+        this.getProgram(_program)
+          .then((result) => {
+            const ProgramClass = Vue.extend(result);
+            const programObject = new ProgramClass({
+              propsData: { id: v4(), ...default_props }
+            });
 
-        let propsData = {
-          id: moment().format('DDMMYYYYHHmmssS')
-        };
+            programObject.$mount();
 
-        program.then((result) => {
-          const ProgramClass = Vue.extend(result);
-          const programObject = new ProgramClass({
-            propsData: { ...propsData, ...default_props }
+            this.addWindow(programObject);
           });
-
-          programObject.$mount();
-
-          this.addWindow(programObject);
-        });
       }
     },
     addWindow(programObject) {
@@ -234,26 +229,26 @@ export default {
   watch: {
     $themeSelected() {
       switch (this.$themeSelected) {
-      case 'theme-1':
-        this.$refs.screen.classList.add('theme-1');
-        this.$refs.screen.classList.remove('theme-2');
-        document.documentElement.style.removeProperty('--bs-primary-rgb');
-        document.documentElement.style.removeProperty('--bs-secondary-rgb');
-        document.documentElement.style.setProperty('--bs-primary-rgb', '93, 69, 149');
-        document.documentElement.style.setProperty('--bs-secondary-rgb', '19, 116, 142');
-        break;
+        case 'theme-1':
+          this.$refs.screen.classList.add('theme-1');
+          this.$refs.screen.classList.remove('theme-2');
+          document.documentElement.style.removeProperty('--bs-primary-rgb');
+          document.documentElement.style.removeProperty('--bs-secondary-rgb');
+          document.documentElement.style.setProperty('--bs-primary-rgb', '93, 69, 149');
+          document.documentElement.style.setProperty('--bs-secondary-rgb', '19, 116, 142');
+          break;
 
-      case 'theme-2':
-        this.$refs.screen.classList.add('theme-2');
-        this.$refs.screen.classList.remove('theme-1');
-        document.documentElement.style.removeProperty('--bs-primary-rgb');
-        document.documentElement.style.removeProperty('--bs-secondary-rgb');
-        document.documentElement.style.setProperty('--bs-primary-rgb', '19, 116, 142');
-        document.documentElement.style.setProperty('--bs-secondary-rgb', '93, 69, 149');
-        break;
+        case 'theme-2':
+          this.$refs.screen.classList.add('theme-2');
+          this.$refs.screen.classList.remove('theme-1');
+          document.documentElement.style.removeProperty('--bs-primary-rgb');
+          document.documentElement.style.removeProperty('--bs-secondary-rgb');
+          document.documentElement.style.setProperty('--bs-primary-rgb', '19, 116, 142');
+          document.documentElement.style.setProperty('--bs-secondary-rgb', '93, 69, 149');
+          break;
 
-      default:
-        this.$themeSelected = 'theme-2';
+        default:
+          this.$themeSelected = 'theme-2';
       }
 
       sessionStorage.setItem('theme', this.$themeSelected);

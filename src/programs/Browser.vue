@@ -88,9 +88,9 @@
 </template>
 
 <script>
-import Program from './Program';
 import Component from 'vue-class-component';
-import icon_browser from '../assets/icons/browser.png';
+import Program from '@programs/Program';
+import IconBrowser from '@assets/icons/browser.png';
 import Vue from 'vue';
 
 @Component({
@@ -184,7 +184,7 @@ export default class Browser extends Program {
       Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
     this.y_default =
       Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
-    this.icon_src = icon_browser;
+    this.icon_src = IconBrowser;
     this.window = null;
   }
 }

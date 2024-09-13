@@ -228,9 +228,9 @@
 </template>
 
 <script>
-import Program from './Program';
 import Component from 'vue-class-component';
-import icon_experiences_studies from '../assets/icons/experiences-studies.png';
+import Program from '@programs/Program';
+import IconExperiencesStudies from '@assets/icons/experiences-studies.png';
 import Vue from 'vue';
 
 @Component({
@@ -271,7 +271,7 @@ export default class ExperiencesStudies extends Program {
       Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
     this.y_default =
       Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
-    this.icon_src = icon_experiences_studies;
+    this.icon_src = IconExperiencesStudies;
     this.window = null;
   }
 }

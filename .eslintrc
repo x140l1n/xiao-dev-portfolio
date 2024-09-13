@@ -3,17 +3,23 @@
   "env": {
     "node": true
   },
-  "extends": [
-    "plugin:vue/essential",
-    "eslint:recommended"
-  ],
+  "extends": ["plugin:vue/essential", "eslint:recommended"],
   "rules": {
     "no-inner-declarations": 0,
     "no-console": 0,
-    "indent": ["error", 2],
+    "indent": ["error", 2, { "SwitchCase": 1 }],
     "quotes": ["error", "single"],
-    "max-len": ["error", { "code": 120, "ignoreComments": true, "ignoreUrls": true }],
-    "comma-dangle" : ["error", "never"],
+    "max-len": [
+      "error",
+      { "code": 200, "ignoreComments": true, "ignoreUrls": true }
+    ],
+    "comma-dangle": ["error", "never"],
+    "padding-line-between-statements": [
+      "error",
+      { "blankLine": "always", "prev": "*", "next": "return" },
+      { "blankLine": "always", "prev": "directive", "next": "*" },
+      { "blankLine": "any", "prev": "directive", "next": "directive" }
+    ],
     "no-irregular-whitespace": 0
   },
   "parserOptions": {

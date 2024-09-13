@@ -32,7 +32,7 @@
             <div ref="descriptionFront" class="flex-grow-1 description p-2">
               <h6 class="fw-bold my-2">Presentación</h6>
               <p>
-                ¡Hola! Soy Xiaolin Jin Lin y tengo {{ years }} años. Desde
+                ¡Hola! Soy Xiaolin Jin Lin y tengo {{ getYearsOld }} años. Desde
                 pequeño siempre me ha atraído el mundo de la tecnología, y a los
                 19 decidí meterme de lleno en la informática, eligiendo la
                 programación como mi camino.
@@ -113,7 +113,7 @@
                   title="GitHub"
                   ><img src="../assets/icons/github.png" alt="github"
                 /></a>
-                <a href="mailto:info@xiaojl.dev" title="Enviar correo"
+                <a :href="`mailto:${getEmail}`" title="Enviar correo"
                   ><img src="../assets/icons/email.png" alt="email"
                 /></a>
               </div>
@@ -126,9 +126,10 @@
 </template>
 
 <script>
-import Program from './Program';
 import Component from 'vue-class-component';
-import icon_about_me from '../assets/icons/about-me.png';
+import Program from '@programs/Program';
+import icon_about_me from '@assets/icons/about-me.png';
+import { author } from '@root/package';
 import Vue from 'vue';
 
 @Component({
@@ -170,17 +171,20 @@ import Vue from 'vue';
     }
   },
   computed: {
-    years() {
-      var today = new Date();
-      var birthDate = new Date('1997-10-26');
-      var age = today.getFullYear() - birthDate.getFullYear();
-      var m = today.getMonth() - birthDate.getMonth();
-
-      if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-        age--;
+    getEmail() {
+      return author.email;
+    },
+    getYearsOld() {
+      const birthdate = new Date('1997-10-26');
+      const today = new Date();
+      const months = today.getMonth() - birthdate.getMonth();
+      let years = today.getFullYear() - birthdate.getFullYear();
+      
+      if (months < 0 || (months === 0 && today.getDate() < birthdate.getDate())) {
+        years--;
       }
 
-      return age;
+      return years;
     }
   }
 })
@@ -206,7 +210,7 @@ export default class AboutMe extends Program {
 .photo {
   height: 100%;
   min-width: 100px;
-  max-width: 270px;
+  max-width: 280px;
 }
 
 .photo > img {

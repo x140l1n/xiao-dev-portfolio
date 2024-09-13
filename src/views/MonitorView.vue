@@ -1,5 +1,5 @@
 <script>
-import ScreenView from './ScreenView.vue';
+import ScreenView from '@views/ScreenView.vue';
 
 export default {
   components: {

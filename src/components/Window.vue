@@ -112,18 +112,18 @@ export default {
       }
 
       switch (action) {
-      case 'close':
-        this.close();
-        break;
-      case 'toggleMaximized':
-        this.toggleMaximized();
-        this.bringFront();
-        break;
-      case 'minimized':
-        this.minimize();
-        break;
-      default:
-        this.bringFront();
+        case 'close':
+          this.close();
+          break;
+        case 'toggleMaximized':
+          this.toggleMaximized();
+          this.bringFront();
+          break;
+        case 'minimized':
+          this.minimize();
+          break;
+        default:
+          this.bringFront();
       }
     },
     bringFront() {
@@ -134,9 +134,7 @@ export default {
       this.$el.classList.remove('minimize');
       this.$el.classList.add('active');
 
-      if (this.isMaximized) {
-        this.$programsMaximized = this.$programsMaximized.filter((program) => program.id !== this.program.id);
-
+      if (this.isMaximized && !this.$programsMaximized.find((program) => program.id === this.program.id)) {
         this.$programsMaximized.push(this.program);
       }
 
@@ -147,7 +145,10 @@ export default {
       this.$el.classList.add('minimize');
 
       this.$programActive = null;
-      this.$programsMaximized = this.$programsMaximized.filter((program) => program.id !== this.program.id);
+
+      setTimeout(() => {
+        this.$programsMaximized = this.$programsMaximized.filter((program) => program.id !== this.program.id);
+      }, 500);
 
       this.bringFrontLastProgram();
     },
@@ -185,6 +186,8 @@ export default {
 
       if (lastProgram) {
         lastProgram.window.bringFront();
+      } else {
+        this.$programActive = null;
       }
     },
     updateSize() {
@@ -346,6 +349,7 @@ export default {
           if (currentResizer.classList.contains('bottom-right')) {
             const width = original_width + (pageX - original_mouse_x);
             const height = original_height + (pageY - original_mouse_y);
+
             if (width > minimum_size) {
               self.size.width = width;
             }
@@ -355,6 +359,7 @@ export default {
           } else if (currentResizer.classList.contains('bottom-left')) {
             const width = original_width - (pageX - original_mouse_x);
             const height = original_height + (pageY - original_mouse_y);
+
             if (width > minimum_size) {
               self.size.width = width;
             }
@@ -365,6 +370,7 @@ export default {
           } else if (currentResizer.classList.contains('top-right')) {
             const width = original_width + (pageX - original_mouse_x);
             const height = original_height - (pageY - original_mouse_y);
+
             if (width > minimum_size) {
               self.size.width = width;
             }
@@ -375,6 +381,7 @@ export default {
           } else {
             const width = original_width - (pageX - original_mouse_x);
             const height = original_height - (pageY - original_mouse_y);
+
             if (width > minimum_size) {
               self.size.width = width;
               self.position.x = original_x + (pageX - original_mouse_x);
@@ -397,13 +404,6 @@ export default {
     },
     addWindowContent(node) {
       this.$refs.windowContent.appendChild(node);
-
-      /*this.$el.querySelectorAll("a").forEach((a) => {
-        a.addEventListener("click", (e) => {
-          e.preventDefault();
-          this.openProgram("Browser", { url_default: a.href });
-        });
-      });*/
     }
   },
   computed: {

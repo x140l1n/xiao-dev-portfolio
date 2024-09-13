@@ -341,9 +341,9 @@
 </template>
 
 <script>
-import Program from './Program';
 import Component from 'vue-class-component';
-import icon_projects from '../assets/icons/projects.png';
+import Program from '@programs/Program';
+import IconProjects from '@assets/icons/projects.png';
 import Vue from 'vue';
 
 @Component({
@@ -388,7 +388,7 @@ export default class Projects extends Program {
     this.maximized_default = true;
     this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
     this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
-    this.icon_src = icon_projects;
+    this.icon_src = IconProjects;
     this.window = null;
   }
 }
