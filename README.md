@@ -9,7 +9,7 @@ This repository contains my personal portfolio, developed using **Vue 2**. The p
 - **Name**: XiaoDev Portfolio
 - **Version**: 1.0.0
 - **Creation Date**: 12/09/2024
-- **Author**: Xiao
+- **Author**: Xiaolin Jin Lin
 - **Email**: [dev@xiaojl.dev](mailto:dev@xiaojl.dev)
 
 ## ⚙️ Technologies Used
