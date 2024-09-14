@@ -84,27 +84,17 @@ import IconEmail from '@assets/icons/email.png';
     onSubmit(evt) {
       const form = evt.target;
       const formData = new FormData(form);
-
-      formData.append('send', 'send');
+      formData.append('send', true);
 
       const self = this;
 
       this.isSending = true;
 
-      const urlParams = new URLSearchParams(formData).toString();
-
-      const fetchOptions = {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          Accept: 'application/json'
-        }
-      };
-
-      fetch(`http://localhost:8000/email.php?${urlParams}`, fetchOptions)
-        .then((response) => {
-          return response.json();
-        })
+      fetch(`${this.$env.API_ENDPOINT}email.php`, {
+        method: 'POST',
+        body: formData
+      })
+        .then((response) => response.json())
         .then((data) => {
           if (data.status == 1) {
             self.showSuccess = true;

@@ -7,6 +7,10 @@ import 'bootstrap/dist/js/bootstrap.bundle.min';
 import '@assets/css/base.css';
 import 'aos/dist/aos.css';
 
+Vue.prototype.$env = {
+  API_ENDPOINT: process.env.VUE_APP_API_ENDPOINT
+};
+
 Vue.config.productionTip = false;
 
 Vue.use(VueMoment, { moment });
