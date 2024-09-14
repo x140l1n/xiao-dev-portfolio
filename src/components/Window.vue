@@ -192,8 +192,7 @@ export default {
     },
     updateSize() {
       if (this.isMaximized) {
-        if (!this.$refs.window.classList.contains('no-transition'))
-          this.$refs.window.classList.add('no-transition');
+        if (!this.$refs.window.classList.contains('no-transition')) this.$refs.window.classList.add('no-transition');
 
         this.size.width = Vue.prototype.$widthScreenContent;
         this.size.height = Vue.prototype.$heightScreenContent;
@@ -458,7 +457,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang='css' scoped>
 .window {
     position: absolute;
     width: 100%;

@@ -202,7 +202,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
 import icon_settings from '@assets/icons/settings.png';
-import { version, date } from '@root/package';
+import { date, version } from '@root/package';
 
 @Component({
   props: {
@@ -258,7 +258,7 @@ export default class Settings extends Program {
 }
 </script>
 
-<style scoped>
+<style lang='css' scoped>
 .theme-selector {
   width: 300px;
   height: 200px;

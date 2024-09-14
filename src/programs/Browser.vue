@@ -88,10 +88,10 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
 import IconBrowser from '@assets/icons/browser.png';
-import Vue from 'vue';
 
 @Component({
   props: {
@@ -190,7 +190,7 @@ export default class Browser extends Program {
 }
 </script>
 
-<style scoped>
+<style lang='css' scoped>
 .nav-link {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;

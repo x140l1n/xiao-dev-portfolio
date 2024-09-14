@@ -43,7 +43,7 @@
                 class="program program-experiences-studies p-2"
                 title="Estudios y experiencias"
                 alt="Estudios y experiencias"
-                @click="openProgram('ExperiencesStudies')"
+                @click="openProgram('StudiesExperiences')"
                 tabindex="7"
             >
                 <img
@@ -106,8 +106,7 @@
                 <strong class="me-auto">Modo pantalla completa</strong>
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
-            <div class="toast-body">
-                Habilita la pantalla completa para tener una mejor experiencia de navegación. Para habilitar entra en
+            <div class="toast-body">Habilita la pantalla completa para tener una mejor experiencia de navegación. Para habilitar entra en
                 <span class="fw-bold fst-italic"> Ajustes > General > Habilitar modo pantalla completa</span>
             </div>
         </div>
@@ -256,7 +255,8 @@ export default {
     $urlToOpen() {
       if (this.$urlToOpen) {
         this.openProgram('Browser', { url_default: this.$urlToOpen });
-        this.$urlToOpen = '';
+
+        this.$urlToOpen = null;
       }
     }
   },
@@ -268,7 +268,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang='css' scoped>
 .screen {
     width: 100%;
     height: 100%;

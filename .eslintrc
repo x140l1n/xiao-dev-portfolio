@@ -10,16 +10,10 @@
     "indent": ["error", 2, { "SwitchCase": 1 }],
     "quotes": ["error", "single"],
     "max-len": [
-      "error",
+      "warn",
       { "code": 200, "ignoreComments": true, "ignoreUrls": true }
     ],
     "comma-dangle": ["error", "never"],
-    "padding-line-between-statements": [
-      "error",
-      { "blankLine": "always", "prev": "*", "next": "return" },
-      { "blankLine": "always", "prev": "directive", "next": "*" },
-      { "blankLine": "any", "prev": "directive", "next": "directive" }
-    ],
     "no-irregular-whitespace": 0
   },
   "parserOptions": {

@@ -204,10 +204,10 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
 import IconKnowledge from '@assets/icons/knowledge.png';
-import Vue from 'vue';
 
 @Component({
   props: {
@@ -245,7 +245,7 @@ export default class Knowledge extends Program {
 }
 </script>
 
-<style scoped>
+<style lang='css' scoped>
 .card {
   max-width: 1200px;
 }

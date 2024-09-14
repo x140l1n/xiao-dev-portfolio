@@ -68,7 +68,7 @@ export default {
 </script>
 
 <template>
-  <main class="container-fluid bg-dark vh-100 d-flex p-0">
+  <div class="container-fluid bg-dark vh-100 d-flex p-0">
     <div ref="monitor" class="card monitor mx-auto bg-light border-0">
       <div :class="`card-body monitor-inner ${isMonitorOn ? '' : 'bg-dark'}`">
         <div
@@ -119,16 +119,10 @@ export default {
         </button>
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
-<style scoped>
-main {
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: auto;
-}
-
+<style lang='css' scoped>
 .btn-power-desc {
   width: 30px;
   height: 30px;

@@ -1,16 +1,15 @@
 import Vue from 'vue';
-import App from './App.vue';
-import './assets/css/base.css';
-import 'bootstrap';
-import Moment from 'vue-moment';
-import moment from 'moment';
+import App from '@src/App.vue';
+import VueMoment from 'vue-moment';
+import moment from 'moment-timezone'
 import resize from 'vue-resize-directive';
-import AOS from 'aos';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
+import '@assets/css/base.css';
 import 'aos/dist/aos.css';
 
 Vue.config.productionTip = false;
-Vue.use(Moment);
-moment.locale('es');
+
+Vue.use(VueMoment, { moment });
 
 Vue.directive('resize', resize);
 
@@ -82,7 +81,7 @@ Object.defineProperty(Vue.prototype, '$isFullScreenFromToggle', {
   }
 });
 
-const observableUrlToOpen = Vue.observable({ urlToOpen: '' });
+const observableUrlToOpen = Vue.observable({ urlToOpen: null });
 
 Object.defineProperty(Vue.prototype, '$urlToOpen', {
   get() {
@@ -110,8 +109,6 @@ eventsFullScreen.forEach((eventType) =>
     false
   )
 );
-
-AOS.init();
 
 new Vue({
   render: (h) => h(App)

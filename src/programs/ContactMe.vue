@@ -53,10 +53,10 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
 import IconEmail from '@assets/icons/email.png';
-import Vue from 'vue';
 
 @Component({
   props: {
@@ -101,7 +101,7 @@ import Vue from 'vue';
         }
       };
 
-      fetch(`/email.php?${urlParams}`, fetchOptions)
+      fetch(`http://localhost:8000/email.php?${urlParams}`, fetchOptions)
         .then((response) => {
           return response.json();
         })

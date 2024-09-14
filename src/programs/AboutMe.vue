@@ -126,11 +126,11 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
 import icon_about_me from '@assets/icons/about-me.png';
 import { author } from '@root/package';
-import Vue from 'vue';
 
 @Component({
   props: {
@@ -206,7 +206,7 @@ export default class AboutMe extends Program {
 }
 </script>
 
-<style scoped>
+<style lang='css' scoped>
 .photo {
   height: 100%;
   min-width: 100px;

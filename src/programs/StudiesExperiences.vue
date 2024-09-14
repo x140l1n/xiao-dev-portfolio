@@ -1,7 +1,7 @@
 <template>
   <div
     ref="content"
-    class="w-100 h-100 d-flex flex-column position-relative overflow-hidden"
+    class="w-100 h-100 d-flex flex-column"
   >
     <ul ref="navbar" class="nav nav-pills nav-fill">
       <li class="nav-item">
@@ -27,8 +27,8 @@
         </a>
       </li>
     </ul>
-    <div class="tab-content border-top border-dark flex-grow-1">
-      <div :id="`studies-${id}`" class="tab-pane fade active show h-100">
+    <div ref="tabContent" class="tab-content border-top border-dark">
+      <div :id="`studies-${id}`" class="tab-pane fade active show">
         <div class="card">
           <div class="card-body p-0">
             <div ref="timelineStudies" class="timeline text-light">
@@ -158,7 +158,7 @@
           </div>
         </div>
       </div>
-      <div :id="`experiences-${id}`" class="tab-pane fade h-100">
+      <div :id="`experiences-${id}`" class="tab-pane fade">
         <div class="card">
           <div class="card-body p-0">
             <div ref="timelineExperiences" class="timeline text-light">
@@ -228,10 +228,11 @@
 </template>
 
 <script>
+import Vue from 'vue';
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
-import IconExperiencesStudies from '@assets/icons/experiences-studies.png';
-import Vue from 'vue';
+import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
+//import AOS from 'aos';
 
 @Component({
   props: {
@@ -247,7 +248,16 @@ import Vue from 'vue';
     return {};
   },
   methods: {
-    init() {},
+    init() {
+      /*AOS.init({
+        duration: 1200,
+        once: false
+      });
+
+      this.$refs.timelineStudies.addEventListener('scroll', () => {
+        AOS.refresh();
+      });*/
+    },
     onResize() {
       if (this.$el.clientWidth < 992) {
         this.$refs.timelineStudies.classList.add('small');
@@ -260,7 +270,7 @@ import Vue from 'vue';
   },
   computed: {}
 })
-export default class ExperiencesStudies extends Program {
+export default class StudiesExperiences extends Program {
   //Initialize the variables of superclass Program.
   created() {
     this.title = 'Estudios y experiencias';
@@ -271,13 +281,13 @@ export default class ExperiencesStudies extends Program {
       Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
     this.y_default =
       Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
-    this.icon_src = IconExperiencesStudies;
+    this.icon_src = IconStudiesExperiences;
     this.window = null;
   }
 }
 </script>
 
-<style scoped>
+<style lang='css' scoped>
 a {
   color: #1a233a;
 }
@@ -306,8 +316,7 @@ small {
 .timeline {
   position: relative;
   border-radius: 4px;
-  padding: 5rem;
-  overflow: hidden;
+  padding: 2rem;
 }
 
 .timeline:after {

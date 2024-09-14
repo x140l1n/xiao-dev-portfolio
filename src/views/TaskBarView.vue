@@ -53,7 +53,7 @@ export default {
 };
 </script>
 
-<style>
+<style lang='css' scoped>
 .taskbar {
   height: 3rem;
   width: 100%;

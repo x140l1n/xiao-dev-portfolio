@@ -19,17 +19,26 @@ export default {
   data() {
     return {
       datetime: {
-        time: moment().format('HH:mm:ss'),
-        date: moment().format('DD-MM-YYYY')
+        time: null,
+        date: null
       }
     };
   },
   methods: {
     init() {
-      setInterval(() => {
-        this.datetime.time = moment().format('HH:mm:ss');
-        this.datetime.date = moment().format('DD-MM-YYYY');
-      }, 1000);
+      const remainingMilliseconds = 1000 - moment().milliseconds();
+
+      setTimeout(() => {
+        this.updateDateTime();
+        setInterval(() => {
+          this.updateDateTime();
+        }, 1000);
+      }, remainingMilliseconds);
+
+    },
+    updateDateTime() {
+      this.datetime.time = moment().format('H:mm');
+      this.datetime.date = moment().format('DD/MM/YYYY');
     }
   },
   computed: {
@@ -40,13 +49,13 @@ export default {
 };
 </script>
 
-<style scoped>
+<style lang='css' scoped>
 .clock {
+    min-width: 7em;
     font-size: 0.8rem;
     display: flex;
     flex-direction: column;
-    text-align: center;
-    min-width: 7em;
     justify-content: center;
+    align-items: flex-end;
 }
 </style>
