@@ -32,6 +32,7 @@ The project has the following scripts defined in the `package.json`:
 
 ## 🗂️ Project Structure
 
+- `api/`: Contains the `email.php` file, which handles sending emails.
 - `src/`: Contains the main components, views, and project files.
 - `public/`: Static files and the `index.html`.
 - `dist/`: Folder generated after the build, ready for production deployment.

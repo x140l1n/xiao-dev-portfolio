@@ -129,9 +129,7 @@ import IconEmail from '@assets/icons/email.png';
 
       const self = this;
 
-      form
-        .querySelectorAll('input, textarea, button')
-        .forEach((element) => (element.disabled = true));
+      form.querySelectorAll('input, textarea, button').forEach((element) => (element.disabled = true));
 
       this.resultMessage = null;
 
@@ -160,10 +158,8 @@ import IconEmail from '@assets/icons/email.png';
           self.resultMessage = 'Error al enviar el formulario.';
         })
         .finally(() => {
+          form.querySelectorAll('input, textarea, button').forEach((element) => (element.disabled = false));
           if (self.statusMessage == 1) {
-            form
-              .querySelectorAll('input, textarea, button')
-              .forEach((element) => (element.disabled = false));
             form.reset();
           }
 

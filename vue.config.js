@@ -1,4 +1,5 @@
 const path = require('path');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devServer: {
@@ -15,6 +16,15 @@ module.exports = {
         '@programs': path.resolve(__dirname, 'src/programs/'),
         '@svg': path.resolve(__dirname, 'src/svg/')
       }
-    }
+    },
+    plugins: [
+      new CopyWebpackPlugin([
+        {
+          from: path.resolve(__dirname, 'api/'),
+          to: path.resolve(__dirname, 'dist/api/'),
+          noErrorOnMissing: false
+        }
+      ])
+    ]
   }
 };
