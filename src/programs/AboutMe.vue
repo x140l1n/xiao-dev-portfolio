@@ -1,10 +1,10 @@
 <template>
-  <div class="w-100 p-3 d-flex">
-    <div ref="card" class="card flip shadow-lg w-100">
+  <div ref="content" class="h-100 overflow-auto p-4">
+    <div ref="card" class="card flip shadow-lg">
       <div class="flip-card-front">
         <header class="text-light d-flex justify-content-between p-4 pb-0">
           <img
-            src="../assets/icons/coding.png"
+            src="@assets/icons/coding.png"
             class="my-auto ms-3 d-none d-md-block"
             title="Icono fullstack developer"
             alt="Icono fullstack developer"
@@ -19,17 +19,17 @@
             <i class="fa-solid fa-repeat fa-fw"></i>
           </button>
         </header>
-        <div class="card-body">
-          <div ref="contentFront" class="d-flex gap-4 h-100 p-4">
-            <div class="photo m-auto">
+        <div class="card-body p-0">
+          <div ref="contentFront" class="d-flex gap-4 p-4">
+            <div ref="photo" class="photo">
               <img
-                src="../assets/img/me.jpg"
+                src="@assets/img/me.jpg"
                 class="img-fluid"
                 title="Yo"
                 alt="Yo"
               />
             </div>
-            <div ref="descriptionFront" class="flex-grow-1 description p-2">
+            <div ref="presentationFront" class="flex-grow-1 presentation">
               <h6 class="fw-bold my-2">Presentación</h6>
               <p>
                 ¡Hola! Soy Xiaolin Jin Lin y tengo {{ getYearsOld }} años. Desde
@@ -37,7 +37,6 @@
                 19 decidí meterme de lleno en la informática, eligiendo la
                 programación como mi camino.
               </p>
-              <br />
               <p>
                 Estudié DAM (Desarrollo de Aplicaciones Multiplataforma) y luego
                 DAW (Desarrollo de Aplicaciones Web) en el
@@ -47,26 +46,22 @@
                 me gusta más este mundo. Tengo muchas ganas de seguir mejorando
                 y aprendiendo nuevas cosas.
               </p>
-              <br />
               <p>
                 Aparte de la programación, también me gusta la danza, y eso me
-                ha ayudado a ser más constante y disciplinado, algo que aplico
+                ha ayudado a ser más constante, disciplinado y a fijarme en todos los detalles, algo que aplico
                 tanto en mi vida personal como en la profesional.
               </p>
-              <br />
               <p>
                 Me encanta trabajar en equipo, proponer ideas y soluciones, y
                 siempre busco compartir lo que sé con los demás. Disfruto de
                 crear un buen ambiente y colaborar para sacar los proyectos
                 adelante.
               </p>
-              <br />
               <h6 class="fw-bold">Idiomas</h6>
               <p>
                 Español (Nativo), Catalán (Nativo), Inglés (Intermedio), Chino
                 (Intermedio).
               </p>
-              <br />
               <h6 class="fw-bold">Hobbies</h6>
               <p>Danza.</p>
             </div>
@@ -85,38 +80,37 @@
           </button>
         </header>
         <div class="card-body flex-grow-1">
-          <div ref="contentBack" class="d-flex h-100 p-4">
-            <div class="logo d-flex flex-column m-auto">
-              <img
-                src="../svg/xiao-theme-2.svg"
-                class="img-fluid m-auto"
-                title="Logo Xiao"
-                alt="Logo Xiao"
-              />
-              <label class="fw-bold text-center my-2">Redes sociales</label>
-              <div class="d-flex justify-content-center">
-                <a
-                  href="https://www.instagram.com/_xiao_97_/"
-                  target="_blank"
-                  title="Instgram"
-                  ><img src="../assets/icons/instagram.png" alt="instagram"
-                /></a>
-                <a
-                  href="https://www.linkedin.com/in/xiaolin-jin-lin-017287173/"
-                  target="_blank"
-                  title="Linkedin"
-                  ><img src="../assets/icons/linkedin.png" alt="linkedin"
-                /></a>
-                <a
-                  href="https://github.com/x140l1n"
-                  target="_blank"
-                  title="GitHub"
-                  ><img src="../assets/icons/github.png" alt="github"
-                /></a>
-                <a :href="`mailto:${getEmail}`" title="Enviar correo"
-                  ><img src="../assets/icons/email.png" alt="email"
-                /></a>
-              </div>
+          <div
+            ref="contentBack"
+            class="d-flex flex-column justify-content-center align-items-center h-100 p-4"
+          >
+            <img
+              ref="logo"
+              src="@svg/xiao-theme-2.svg"
+              class="logo img-fluid"
+              title="Logo Xiao"
+              alt="Logo Xiao"
+            />
+            <label class="fw-bold text-center my-2">Redes sociales</label>
+            <div class="d-flex justify-content-center">
+              <a
+                href="https://www.instagram.com/_xiao_97_/"
+                target="_blank"
+                title="Instgram"
+                ><img src="@assets/icons/instagram.png" alt="instagram"
+              /></a>
+              <a
+                href="https://www.linkedin.com/in/xiaolin-jin-lin-017287173/"
+                target="_blank"
+                title="Linkedin"
+                ><img src="@assets/icons/linkedin.png" alt="linkedin"
+              /></a>
+              <a
+                href="https://github.com/x140l1n"
+                target="_blank"
+                title="GitHub"
+                ><img src="@assets/icons/github.png" alt="github"
+              /></a>
             </div>
           </div>
         </div>
@@ -153,21 +147,25 @@ import { author } from '@root/package';
     },
     onResize() {
       if (this.$el.clientWidth < 800) {
-        this.$refs.contentFront.classList.remove('p-4');
-        this.$refs.contentBack.classList.remove('p-4');
-        this.$refs.contentFront.classList.add('flex-column', 'p-1');
-        this.$refs.contentBack.classList.add('flex-column', 'p-1');
-        this.$refs.descriptionFront.classList.add('mt-5');
+        this.$refs.photo.classList.add('photo-sm');
+        this.$refs.contentFront.classList.remove('gap-4');
+        this.$refs.contentFront.classList.add('flex-column', 'gap-2');
       } else {
-        this.$refs.contentFront.classList.add('p-4');
-        this.$refs.contentBack.classList.add('p-4');
-        this.$refs.contentFront.classList.remove('flex-column', 'p-1');
-        this.$refs.contentBack.classList.remove('flex-column', 'p-1');
-        this.$refs.descriptionFront.classList.remove('mt-5');
+        this.$refs.photo.classList.remove('photo-sm');
+        this.$refs.contentFront.classList.add('gap-4');
+        this.$refs.contentFront.classList.remove('flex-column', 'gap-2');
       }
     },
     flip() {
       this.$refs.card.classList.toggle('flip');
+
+      this.$nextTick(() => {
+        if (this.$refs.card.classList.contains('flip')) {
+          this.$refs.content.scrollTo({
+            top: (this.$refs.logo.offsetTop - this.$refs.content.clientHeight / 2) +100
+          });
+        }
+      });
     }
   },
   computed: {
@@ -179,8 +177,11 @@ import { author } from '@root/package';
       const today = new Date();
       const months = today.getMonth() - birthdate.getMonth();
       let years = today.getFullYear() - birthdate.getFullYear();
-      
-      if (months < 0 || (months === 0 && today.getDate() < birthdate.getDate())) {
+
+      if (
+        months < 0 ||
+        (months === 0 && today.getDate() < birthdate.getDate())
+      ) {
         years--;
       }
 
@@ -188,11 +189,10 @@ import { author } from '@root/package';
     }
   }
 })
-
 export default class AboutMe extends Program {
   //Initialize the variables of superclass Program.
   created() {
-    this.title = '¿Quién soy?';
+    this.title = 'Sobre mi';
     this.width_default = 550;
     this.height_default = 400;
     this.maximized_default = true;
@@ -208,20 +208,28 @@ export default class AboutMe extends Program {
 
 <style lang='css' scoped>
 .photo {
-  height: 100%;
-  min-width: 100px;
   max-width: 280px;
 }
 
+.photo.photo-sm {
+  max-width: 100%;
+  height: 500px;
+} 
+
 .photo > img {
   object-fit: cover;
-  border-radius: 25px;
+  border-radius: 15px;
+  height: 100%;
+}
+
+.photo.photo-sm > img {
+  width: 100%;
+  object-fit: cover;
+  object-position: 0px -100px;
 }
 
 .logo {
-  height: 100%;
   width: 100%;
-  min-width: 100px;
   max-width: 250px;
 }
 
@@ -229,10 +237,14 @@ export default class AboutMe extends Program {
   object-fit: cover;
 }
 
+.presentation {
+  font-size: 0.9rem;
+}
+
 .card {
   border-radius: 25px;
   max-width: 1200px;
-  margin: 40px auto;
+  margin: 30px auto auto auto;
   transition: transform 0.6s;
   transform-style: preserve-3d;
 }
@@ -325,11 +337,6 @@ export default class AboutMe extends Program {
   background-color: #333;
   box-shadow: inset 1px 1px 0 1px rgb(0 0 0 / 30%),
     inset -1px -1px 0 0 rgb(255 255 255 / 50%);
-}
-
-.description p {
-  margin: 0;
-  font-size: 0.8rem;
 }
 
 .btn-flip {

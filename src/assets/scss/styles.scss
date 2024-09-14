@@ -1,0 +1,83 @@
+$btn-box-shadow: none;
+$btn-focus-width: none;
+$btn-focus-box-shadow: none;
+$btn-active-box-shadow: none;
+
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu&display=swap');
+@import 'bootstrap/scss/bootstrap';
+
+* {
+  font-family: 'Ubuntu', sans-serif;
+  scroll-behavior: smooth;
+}
+
+img {
+  image-rendering: -webkit-optimize-contrast;
+}
+
+.nav-link.active {
+  background-color: rgb(var(--bs-primary-rgb)) !important;
+  color: white !important;
+}
+
+.nav-link {
+  color: rgb(var(--bs-primary-rgb)) !important;
+}
+
+@keyframes slide-right {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slide-left {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes zoom-out {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  border-radius: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}

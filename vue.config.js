@@ -13,7 +13,7 @@ module.exports = {
         '@components': path.resolve(__dirname, 'src/components/'),
         '@views': path.resolve(__dirname, 'src/views/'),
         '@programs': path.resolve(__dirname, 'src/programs/'),
-        '@svg': path.resolve(__dirname, 'src/assets/svg/')
+        '@svg': path.resolve(__dirname, 'src/svg/')
       }
     }
   }

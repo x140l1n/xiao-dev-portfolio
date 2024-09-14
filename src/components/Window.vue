@@ -21,7 +21,7 @@
             <span class="m-auto ms-2 text-truncate">{{ title }}</span>
             <img :src="program.icon_src" class="program-icon" :alt="`Icono ${program.title}`" />
         </div>
-        <div class="window-content bg-light overflow-auto" ref="windowContent" @scroll="onScroll"></div>
+        <div class="window-content bg-light overflow-hidden" ref="windowContent" @scroll="onScroll"></div>
         <div class="resizer top-left"></div>
         <div class="resizer top-right"></div>
         <div class="resizer bottom-left"></div>
@@ -392,7 +392,6 @@ export default {
           }
         }
 
-        // eslint-disable-next-line no-inner-declarations
         function stopResize() {
           if (self.$refs.window) self.$refs.window.classList.remove('no-transition');
 

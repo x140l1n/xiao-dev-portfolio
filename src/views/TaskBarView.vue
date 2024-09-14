@@ -1,8 +1,7 @@
 <template>
   <div class="taskbar bg-primary d-flex flex-row-reverse">
     <span
-      class="taskbar-item border border-dark border-end-0 border-top-0 border-bottom-0"
-      style="width: 6px"
+      class="taskbar-item taskbar-item-minimize-all border border-dark border-end-0 border-top-0 border-bottom-0"
       @click="minimizeAll"
     >
     </span>
@@ -65,6 +64,10 @@ export default {
 .taskbar-item:hover {
   cursor: default;
   background-color: #ffffff48;
+}
+
+.taskbar-item.taskbar-item-minimize-all {
+  width: 6px;
 }
 
 .taskbar-item.program {

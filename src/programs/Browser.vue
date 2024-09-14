@@ -180,10 +180,8 @@ export default class Browser extends Program {
     this.width_default = 600;
     this.height_default = 400;
     this.maximized_default = true;
-    this.x_default =
-      Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
-    this.y_default =
-      Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
+    this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
+    this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
     this.icon_src = IconBrowser;
     this.window = null;
   }

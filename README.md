@@ -18,9 +18,7 @@ The portfolio is built with the following technologies and dependencies:
 
 - **Vue 2**: Main framework.
 - **Vue Router**: For route management.
-- **Vuex**: For state management.
 - **Bootstrap**: For styles and UI components.
-- **AOS**: Scroll animations.
 - **UUID**: For generating unique identifiers.
 - **Popper.js**: For managing popper elements.
 

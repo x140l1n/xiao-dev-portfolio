@@ -3,9 +3,8 @@ import App from '@src/App.vue';
 import VueMoment from 'vue-moment';
 import moment from 'moment-timezone'
 import resize from 'vue-resize-directive';
-import 'bootstrap/dist/js/bootstrap.bundle.min';
-import '@assets/css/base.css';
-import 'aos/dist/aos.css';
+import 'bootstrap/dist/js/bootstrap';
+import '@src/assets/scss/styles.scss';
 
 Vue.prototype.$env = {
   API_ENDPOINT: process.env.VUE_APP_API_ENDPOINT

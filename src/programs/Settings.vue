@@ -19,6 +19,7 @@
           :aria-controls="`v-pills-general-${id}`"
           aria-selected="true"
         >
+          <img src="@assets/icons/settings.png" class="icon" alt="General" />
           <span>General</span>
         </button>
         <button
@@ -32,6 +33,7 @@
           :aria-controls="`v-pills-personalization-${id}`"
           aria-selected="false"
         >
+          <img src="@assets/icons/theme.png" class="icon" alt="Temas" />
           <span>Temas</span>
         </button>
         <button
@@ -45,6 +47,7 @@
           :aria-controls="`v-pills-about-${id}`"
           aria-selected="false"
         >
+          <img src="@assets/icons/info.png" class="icon" alt="Acerca de" />
           <span>Acerca de</span>
         </button>
       </div>
@@ -133,7 +136,7 @@
               <table class="table table-borderless mt-4">
                 <tr>
                   <td class="fw-bold label">Edición</td>
-                  <td>XiaoOS</td>
+                  <td>XiaoDev OS</td>
                 </tr>
                 <tr>
                   <td class="fw-bold label">Versión</td>
@@ -171,7 +174,7 @@
                   <td>
                     <div class="d-inline-block text-center">
                       <img
-                        src="../assets/icons/vue.png"
+                        src="@assets/icons/vue.png"
                         alt="Vue"
                         title="Vue"
                       />
@@ -179,7 +182,7 @@
                     </div>
                     <div class="d-inline-block text-center">
                       <img
-                        src="../assets/icons/bootstrap.png"
+                        src="@assets/icons/bootstrap.png"
                         width="85"
                         alt="Bootstrap"
                         title="Bootstrap"
@@ -248,10 +251,8 @@ export default class Settings extends Program {
     this.width_default = 550;
     this.height_default = 400;
     this.maximized_default = true;
-    this.x_default =
-      Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
-    this.y_default =
-      Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
+    this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
+    this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
     this.icon_src = icon_settings;
     this.window = null;
   }
@@ -266,13 +267,13 @@ export default class Settings extends Program {
 }
 
 .theme-selector.theme-1 {
-  background-image: url("../assets/img/theme-1.png");
+  background-image: url('../assets/img/theme-1.png');
   background-size: contain;
   background-repeat: no-repeat;
 }
 
 .theme-selector.theme-2 {
-  background-image: url("../assets/img/theme-2.png");
+  background-image: url('../assets/img/theme-2.png');
   background-size: contain;
   background-repeat: no-repeat;
 }
@@ -309,6 +310,9 @@ export default class Settings extends Program {
 
 .nav-link {
   min-height: 50px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
 }
 
 .nav.nav-small {
@@ -317,8 +321,13 @@ export default class Settings extends Program {
 }
 
 .nav.nav-small > .nav-link {
-  background-position: center;
-  padding-left: 0;
+  padding: 0;
+  justify-content: center;
+}
+
+.nav.nav-small > .nav-link img {
+  width: 30px;
+  height: 30px;
 }
 
 .nav.nav-small > .nav-link span {
@@ -327,32 +336,5 @@ export default class Settings extends Program {
 
 .nav.nav-small > button {
   background-position-x: center !important;
-}
-
-button.general {
-  background-image: url("../assets/icons/general.png");
-  background-repeat: no-repeat;
-  background-position: left;
-  background-size: 30px;
-  background-position-x: 10% !important;
-  padding-left: 35px;
-}
-
-button.about {
-  background-image: url("../assets/icons/info.png");
-  background-repeat: no-repeat;
-  background-position: left;
-  background-size: 30px;
-  background-position-x: 10% !important;
-  padding-left: 52px;
-}
-
-button.theme {
-  background-image: url("../assets/icons/theme.png");
-  background-repeat: no-repeat;
-  background-position: left;
-  background-size: 30px;
-  background-position-x: 10% !important;
-  padding-left: 30px;
 }
 </style>

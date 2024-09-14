@@ -1,29 +1,29 @@
 <?php 
 
 header('Access-Control-Allow-Origin: *');
-header("Access-Control-Allow-Methods: POST, OPTIONS");
+header('Access-Control-Allow-Methods: POST');
 
-if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") {
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     http_response_code(200);
     exit;
 }
 
-header("Content-Type: application/json; charset=utf-8");
-
-define("MAILTO", "info@xiaojl.dev");
+header('Content-Type: application/json; charset=utf-8');
 
 if (isset($_POST['send'])) {
+    define('MAILTO', 'info@xiaojl.dev');
+
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $subject = $_POST['subject'];
     $message = $_POST['message'];
     $from = $_POST['from'];
 
-    $headers = "From: " . $from;
+    $headers = 'From: ' . $from;
     
-    $message =  "Nombre: " . $firstname . "\r\n" .
-                "Apellidos: " . $lastname . "\r\n" . 
-                "Mensaje: " . $message;
+    $message =  'Nombre: ' . $firstname . '\r\n' .
+                'Apellidos: ' . $lastname . '\r\n' . 
+                'Mensaje: ' . $message;
 
     if ($firstname && $lastname && $subject && $message && $from) {
         if (@mail(MAILTO, $subject, $message, $headers)) {

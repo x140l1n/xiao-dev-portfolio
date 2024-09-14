@@ -3,7 +3,7 @@
     ref="content"
     class="w-100 h-100 d-flex flex-column"
   >
-    <ul ref="navbar" class="nav nav-pills nav-fill">
+    <ul ref="navbar" class="nav nav-pills nav-fill bg-light">
       <li class="nav-item">
         <a
           class="nav-link active"
@@ -27,197 +27,189 @@
         </a>
       </li>
     </ul>
-    <div ref="tabContent" class="tab-content border-top border-dark">
+    <div ref="tabContent" class="tab-content border-top border-dark flex-fill overflow-x-hidden overflow-y-auto">
       <div :id="`studies-${id}`" class="tab-pane fade active show">
-        <div class="card">
-          <div class="card-body p-0">
-            <div ref="timelineStudies" class="timeline text-light">
-              <div class="timeline-row">
-                <div class="timeline-time">
-                  <a href="https://politecnics.barcelona/" target="_blank"
-                    >Centre d'Estudis Politècnics, Barcelona (España)</a
-                  ><small>2021 - 2022</small>
-                </div>
-                <div class="timeline-content">
-                  <i class="fa-solid fa-code"></i>
-                  <h5 class="fw-bold text-center">
-                    DESARROLLO APLICACIONES WEB (DAW)
-                  </h5>
-                  <ul>
-                    <li>
-                      Desarrollar aplicaciones web con distintos frameworks
-                      tanto el frontend como el backend.
-                    </li>
-                    <li>Manipulación de base de datos.</li>
-                    <li>Configurar servidores web en Ubuntu.</li>
-                    <li>Aprendizaje basado en proyectos.</li>
-                  </ul>
-                  <div class="d-flex flex-wrap">
-                    <span class="badge badge-pill">HTML</span>
-                    <span class="badge badge-pill">CSS</span>
-                    <span class="badge badge-pill">JS</span>
-                    <span class="badge badge-pill">PHP</span>
-                    <span class="badge badge-pill">MySQL</span>
-                    <span class="badge badge-pill">Laravel</span>
-                    <span class="badge badge-pill">Eloquent</span>
-                    <span class="badge badge-pill">Vue</span>
-                    <span class="badge badge-pill">React</span>
-                    <span class="badge badge-pill">Ionic</span>
-                    <span class="badge badge-pill">Bootstrap</span>
-                    <span class="badge badge-pill">Sass</span>
-                  </div>
-                </div>
+        <div ref="timelineStudies" class="timeline text-light">
+          <div class="timeline-row">
+            <div class="timeline-time">
+              <a href="https://politecnics.barcelona/" target="_blank"
+                >Centre d'Estudis Politècnics, Barcelona (España)</a
+              ><small>2021 - 2022</small>
+            </div>
+            <div class="timeline-content">
+              <i class="fa-solid fa-code"></i>
+              <h5 class="fw-bold text-center">
+                DESARROLLO APLICACIONES WEB (DAW)
+              </h5>
+              <ul>
+                <li>
+                  Desarrollar aplicaciones web con distintos frameworks
+                  tanto el frontend como el backend.
+                </li>
+                <li>Manipulación de base de datos.</li>
+                <li>Configurar servidores web en Ubuntu.</li>
+                <li>Aprendizaje basado en proyectos.</li>
+              </ul>
+              <div class="d-flex flex-wrap">
+                <span class="badge badge-pill">HTML</span>
+                <span class="badge badge-pill">CSS</span>
+                <span class="badge badge-pill">JS</span>
+                <span class="badge badge-pill">PHP</span>
+                <span class="badge badge-pill">MySQL</span>
+                <span class="badge badge-pill">Laravel</span>
+                <span class="badge badge-pill">Eloquent</span>
+                <span class="badge badge-pill">Vue</span>
+                <span class="badge badge-pill">React</span>
+                <span class="badge badge-pill">Ionic</span>
+                <span class="badge badge-pill">Bootstrap</span>
+                <span class="badge badge-pill">Sass</span>
               </div>
-              <div class="timeline-row">
-                <div class="timeline-time">
-                  <a href="https://politecnics.barcelona/" target="_blank"
-                    >Centre d'Estudis Politècnics, Barcelona (España)</a
-                  ><small>2019 - 2021</small>
-                </div>
-                <div class="timeline-content">
-                  <i class="fa-solid fa-code"></i>
-                  <h5 class="fw-bold text-center">
-                    DESARROLLO APLICACIONES MULTIPLATAFORMA (DAM)
-                  </h5>
-                  <ul>
-                    <li>
-                      Desarrollar aplicaciones multiplataforma con distintos
-                      lenguajes de programación.
-                    </li>
-                    <li>Desarrollo de programas para escritorio y Android.</li>
-                    <li>Manipulación de base de datos.</li>
-                    <li>Programación de videojuegos.</li>
-                    <li>Programación en BASH.</li>
-                    <li>Aprendizaje basado en proyectos.</li>
-                  </ul>
-                  <div class="d-flex flex-wrap">
-                    <span class="badge badge-pill">Java</span>
-                    <span class="badge badge-pill">C#</span>
-                    <span class="badge badge-pill">C++</span>
-                    <span class="badge badge-pill">Android</span>
-                    <span class="badge badge-pill">Windows Forms .NET</span>
-                    <span class="badge badge-pill">ADO.NET</span>
-                    <span class="badge badge-pill">LIBGDX</span>
-                    <span class="badge badge-pill">SQL Server</span>
-                    <span class="badge badge-pill">MySQL</span>
-                  </div>
-                </div>
+            </div>
+          </div>
+          <div class="timeline-row">
+            <div class="timeline-time">
+              <a href="https://politecnics.barcelona/" target="_blank"
+                >Centre d'Estudis Politècnics, Barcelona (España)</a
+              ><small>2019 - 2021</small>
+            </div>
+            <div class="timeline-content">
+              <i class="fa-solid fa-code"></i>
+              <h5 class="fw-bold text-center">
+                DESARROLLO APLICACIONES MULTIPLATAFORMA (DAM)
+              </h5>
+              <ul>
+                <li>
+                  Desarrollar aplicaciones multiplataforma con distintos
+                  lenguajes de programación.
+                </li>
+                <li>Desarrollo de programas para escritorio y Android.</li>
+                <li>Manipulación de base de datos.</li>
+                <li>Programación de videojuegos.</li>
+                <li>Programación en BASH.</li>
+                <li>Aprendizaje basado en proyectos.</li>
+              </ul>
+              <div class="d-flex flex-wrap">
+                <span class="badge badge-pill">Java</span>
+                <span class="badge badge-pill">C#</span>
+                <span class="badge badge-pill">C++</span>
+                <span class="badge badge-pill">Android</span>
+                <span class="badge badge-pill">Windows Forms .NET</span>
+                <span class="badge badge-pill">ADO.NET</span>
+                <span class="badge badge-pill">LIBGDX</span>
+                <span class="badge badge-pill">SQL Server</span>
+                <span class="badge badge-pill">MySQL</span>
               </div>
-              <div class="timeline-row">
-                <div class="timeline-time">
-                  <a
-                    href="https://serveiocupacio.gencat.cat/es/Formacio-i-qualificacio/centres-propis-de-formacio/centres-dinnovacio-i-formacio-ocupacional-cifo/CIFO-de-Barcelona-La-Violeta/"
-                    target="_blank"
-                    >SOC CIFO VIOLETA</a
-                  ><small>2018-2019</small>
-                </div>
-                <div class="timeline-content">
-                  <i class="fa-solid fa-code"></i>
-                  <h5 class="fw-bold text-center">
-                    CERTIFICADO DE PROFESIONALIDAD EN POO (630H)
-                  </h5>
-                  <ul>
-                    <li>Sistemas operativos y aplicaciones informáticas.</li>
-                    <li>Programación orientada a objetos.</li>
-                    <li>Programación de base de datos relacionales.</li>
-                  </ul>
-                  <div>
-                    <span class="badge badge-pill">Java</span>
-                    <span class="badge badge-pill">HTML</span>
-                    <span class="badge badge-pill">CSS</span>
-                    <span class="badge badge-pill">PHP</span>
-                    <span class="badge badge-pill">MySQL</span>
-                    <span class="badge badge-pill">SQL Server</span>
-                    <span class="badge badge-pill">Sistemas operativos</span>
-                  </div>
-                </div>
+            </div>
+          </div>
+          <div class="timeline-row">
+            <div class="timeline-time">
+              <a
+                href="https://serveiocupacio.gencat.cat/es/Formacio-i-qualificacio/centres-propis-de-formacio/centres-dinnovacio-i-formacio-ocupacional-cifo/CIFO-de-Barcelona-La-Violeta/"
+                target="_blank"
+                >SOC CIFO VIOLETA</a
+              ><small>2018-2019</small>
+            </div>
+            <div class="timeline-content">
+              <i class="fa-solid fa-code"></i>
+              <h5 class="fw-bold text-center">
+                CERTIFICADO DE PROFESIONALIDAD EN POO (630H)
+              </h5>
+              <ul>
+                <li>Sistemas operativos y aplicaciones informáticas.</li>
+                <li>Programación orientada a objetos.</li>
+                <li>Programación de base de datos relacionales.</li>
+              </ul>
+              <div>
+                <span class="badge badge-pill">Java</span>
+                <span class="badge badge-pill">HTML</span>
+                <span class="badge badge-pill">CSS</span>
+                <span class="badge badge-pill">PHP</span>
+                <span class="badge badge-pill">MySQL</span>
+                <span class="badge badge-pill">SQL Server</span>
+                <span class="badge badge-pill">Sistemas operativos</span>
               </div>
-              <div class="timeline-row">
-                <div class="timeline-time">
-                  <a href="https://institutxxvolimpiada.cat/" target="_blank"
-                    >Instituto XXV Olimpiada</a
-                  ><small>2014-2016</small>
-                </div>
-                <div class="timeline-content">
-                  <i class="fa-solid fa-school"></i>
-                  <h5 class="fw-bold text-center">BACHILLERATO TECNOLÓGICO</h5>
-                </div>
-              </div>
-              <div class="timeline-row">
-                <div class="timeline-time">
-                  <a href="https://institutxxvolimpiada.cat/" target="_blank"
-                    >Instituto XXV Olimpiada</a
-                  ><small>2010-2014</small>
-                </div>
-                <div class="timeline-content">
-                  <i class="fa-solid fa-school"></i>
-                  <h5 class="fw-bold text-center">ESO</h5>
-                </div>
-              </div>
+            </div>
+          </div>
+          <div class="timeline-row">
+            <div class="timeline-time">
+              <a href="https://institutxxvolimpiada.cat/" target="_blank"
+                >Instituto XXV Olimpiada</a
+              ><small>2014-2016</small>
+            </div>
+            <div class="timeline-content">
+              <i class="fa-solid fa-school"></i>
+              <h5 class="fw-bold text-center">BACHILLERATO TECNOLÓGICO</h5>
+            </div>
+          </div>
+          <div class="timeline-row">
+            <div class="timeline-time">
+              <a href="https://institutxxvolimpiada.cat/" target="_blank"
+                >Instituto XXV Olimpiada</a
+              ><small>2010-2014</small>
+            </div>
+            <div class="timeline-content">
+              <i class="fa-solid fa-school"></i>
+              <h5 class="fw-bold text-center">ESO</h5>
             </div>
           </div>
         </div>
       </div>
       <div :id="`experiences-${id}`" class="tab-pane fade">
-        <div class="card">
-          <div class="card-body p-0">
-            <div ref="timelineExperiences" class="timeline text-light">
-              <div class="timeline-row">
-                <div class="timeline-time">
-                  <a href="https://tkmservicios.com" target="_blank"
-                    >TKM Consultores S.L, Barcelona (España)</a
-                  ><small>2019 - Presente</small>
-                </div>
-                <div class="timeline-content">
-                  <i class="fa-solid fa-code"></i>
-                  <h5 class="fw-bold text-center">
-                    DESARROLLADOR FULLSTACK / HELPDESK
-                  </h5>
-                  <ul>
-                    <li>
-                      Creación y mantenimiento aplicaciones web con: HTML, CSS,
-                      JavaScript, PHP, Ruby On Rails, Wordpress.
-                    </li>
-                    <li>Creación y mantenimiento de aplicaciones: .NET</li>
-                    <li>
-                      Creación y mantenimiento de base de datos: Microsoft SQL
-                      Server, MySQL, PostgreSQL.
-                    </li>
-                    <li>
-                      Técnico de sistemas: Windows Server, Active Directory,
-                      Microsoft Exchange, Microsoft SQL Server, etc.
-                    </li>
-                    <li>
-                      Técnico en redes: Análisis de redes, configuración de
-                      Routers y Switch.
-                    </li>
-                    <li>
-                      Hardware: Análisis, mantenimiento y cambio de componentes.
-                    </li>
-                    <li>
-                      Helpdesk: Apoyo a usuarios finales. Programas
-                      especializados, ofimática, etc.
-                    </li>
-                    <li>
-                      Manejo de programas A3ERP, A3, Fastbroker, VisualSeg.
-                    </li>
-                  </ul>
-                  <div class="d-flex flex-wrap">
-                    <span class="badge badge-pill">HTML</span>
-                    <span class="badge badge-pill">CSS</span>
-                    <span class="badge badge-pill">JS</span>
-                    <span class="badge badge-pill">PHP</span>
-                    <span class="badge badge-pill">Wordpress</span>
-                    <span class="badge badge-pill">JQuery</span>
-                    <span class="badge badge-pill">MySQL</span>
-                    <span class="badge badge-pill">Bootstrap</span>
-                    <span class="badge badge-pill">Ruby</span>
-                    <span class="badge badge-pill">A3ERP</span>
-                    <span class="badge badge-pill">PostgreSQL</span>
-                    <span class="badge badge-pill">.NET</span>
-                    <span class="badge badge-pill">Windows Server</span>
-                  </div>
-                </div>
+        <div ref="timelineExperiences" class="timeline text-light">
+          <div class="timeline-row">
+            <div class="timeline-time">
+              <a href="https://tkmservicios.com" target="_blank"
+                >TKM Consultores S.L, Barcelona (España)</a
+              ><small>2019 - Presente</small>
+            </div>
+            <div class="timeline-content">
+              <i class="fa-solid fa-code"></i>
+              <h5 class="fw-bold text-center">
+                DESARROLLADOR FULLSTACK / HELPDESK
+              </h5>
+              <ul>
+                <li>
+                  Creación y mantenimiento aplicaciones web con: HTML, CSS,
+                  JavaScript, PHP, Ruby On Rails, Wordpress.
+                </li>
+                <li>Creación y mantenimiento de aplicaciones: .NET</li>
+                <li>
+                  Creación y mantenimiento de base de datos: Microsoft SQL
+                  Server, MySQL, PostgreSQL.
+                </li>
+                <li>
+                  Técnico de sistemas: Windows Server, Active Directory,
+                  Microsoft Exchange, Microsoft SQL Server, etc.
+                </li>
+                <li>
+                  Técnico en redes: Análisis de redes, configuración de
+                  Routers y Switch.
+                </li>
+                <li>
+                  Hardware: Análisis, mantenimiento y cambio de componentes.
+                </li>
+                <li>
+                  Helpdesk: Apoyo a usuarios finales. Programas
+                  especializados, ofimática, etc.
+                </li>
+                <li>
+                  Manejo de programas A3ERP, A3, Fastbroker, VisualSeg.
+                </li>
+              </ul>
+              <div class="d-flex flex-wrap">
+                <span class="badge badge-pill">HTML</span>
+                <span class="badge badge-pill">CSS</span>
+                <span class="badge badge-pill">JS</span>
+                <span class="badge badge-pill">PHP</span>
+                <span class="badge badge-pill">Wordpress</span>
+                <span class="badge badge-pill">JQuery</span>
+                <span class="badge badge-pill">MySQL</span>
+                <span class="badge badge-pill">Bootstrap</span>
+                <span class="badge badge-pill">Ruby</span>
+                <span class="badge badge-pill">A3ERP</span>
+                <span class="badge badge-pill">PostgreSQL</span>
+                <span class="badge badge-pill">.NET</span>
+                <span class="badge badge-pill">Windows Server</span>
               </div>
             </div>
           </div>
@@ -232,7 +224,6 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
 import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
-//import AOS from 'aos';
 
 @Component({
   props: {
@@ -245,18 +236,31 @@ import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
     this.init();
   },
   data() {
-    return {};
+    return {
+      animationObserver: null
+    };
   },
   methods: {
     init() {
-      /*AOS.init({
-        duration: 1200,
-        once: false
+      this.initAnimationCards();
+    },
+    initAnimationCards() {
+      const cards = this.$refs.content.querySelectorAll('.timeline-row');
+      
+      this.animationObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('animate');
+          } else {
+            entry.target.classList.remove('animate');
+          }
+        });
+      }, {
       });
 
-      this.$refs.timelineStudies.addEventListener('scroll', () => {
-        AOS.refresh();
-      });*/
+      cards.forEach((card) => {
+        this.animationObserver.observe(card);
+      });
     },
     onResize() {
       if (this.$el.clientWidth < 992) {
@@ -268,7 +272,10 @@ import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
       }
     }
   },
-  computed: {}
+  computed: {},
+  beforeDestroy() {
+    if (this.animationObserver) this.animationObserver.disconnect();
+  }
 })
 export default class StudiesExperiences extends Program {
   //Initialize the variables of superclass Program.
@@ -277,10 +284,8 @@ export default class StudiesExperiences extends Program {
     this.width_default = 550;
     this.height_default = 400;
     this.maximized_default = true;
-    this.x_default =
-      Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
-    this.y_default =
-      Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
+    this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
+    this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
     this.icon_src = IconStudiesExperiences;
     this.window = null;
   }
@@ -301,12 +306,8 @@ small {
   top: 0;
   left: 0;
   right: 0;
-  margin: 10px;
+  padding: 10px;
   z-index: 2;
-}
-
-.tab-content {
-  overflow: auto;
 }
 
 .badge {
@@ -328,6 +329,14 @@ small {
   border-right: 2px dashed #4b546f;
   height: 100%;
   display: block;
+}
+
+.timeline > .timeline-row:nth-child(odd).animate {
+  animation: slide-right 1s;
+}
+
+.timeline > .timeline-row:nth-child(even).animate {
+  animation: slide-left 1s;
 }
 
 .timeline-row {

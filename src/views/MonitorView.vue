@@ -115,7 +115,7 @@ export default {
           :alt="isMonitorOn ? 'Botón on' : 'Botón off'"
           @click="isMonitorOn = !isMonitorOn"
         >
-          <i class="fa-solid fa-power-off fa-fw m-auto"></i>
+          <i class="fa-solid fa-power-off"></i>
         </button>
       </div>
     </div>
@@ -168,7 +168,16 @@ export default {
   width: 50px;
   height: 50px;
   background-color: #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  font-size: 1.4rem;
   z-index: 5;
+}
+
+.btn-on-off > i {
+  line-height: 0;
 }
 
 .btn-on-off:focus {
@@ -179,14 +188,14 @@ export default {
 .btn-on:active,
 .btn-on:focus {
   color: rgb(23, 210, 23);
-  border: 2px rgb(23, 210, 23) solid;
+  box-shadow: 0 0 10px rgb(23, 210, 23);
 }
 
 .btn-off,
 .btn-off:active,
 .btn-off:focus {
   color: rgb(210, 23, 23);
-  border: 2px rgb(210, 23, 23) solid;
+  box-shadow: 0 0 10px rgb(210, 23, 23);
 }
 
 .layer-on-off {
