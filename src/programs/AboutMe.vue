@@ -123,7 +123,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
-import icon_about_me from '@assets/icons/about-me.png';
+import IconAboutMe from '@assets/icons/about-me.png';
 import { author } from '@root/package';
 
 @Component({
@@ -200,7 +200,7 @@ export default class AboutMe extends Program {
       Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
     this.y_default =
       Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
-    this.icon_src = icon_about_me;
+    this.icon_src = IconAboutMe;
     this.window = null;
   }
 }

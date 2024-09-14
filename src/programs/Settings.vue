@@ -204,7 +204,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
-import icon_settings from '@assets/icons/settings.png';
+import IconSettings from '@assets/icons/settings.png';
 import { date, version } from '@root/package';
 
 @Component({
@@ -253,7 +253,7 @@ export default class Settings extends Program {
     this.maximized_default = true;
     this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
     this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
-    this.icon_src = icon_settings;
+    this.icon_src = IconSettings;
     this.window = null;
   }
 }
@@ -315,6 +315,11 @@ export default class Settings extends Program {
   align-items: center;
 }
 
+.nav > .nav-link .icon {
+  width: 40px;
+  height: 40px;
+}
+
 .nav.nav-small {
   min-width: 50px;
   max-width: 50px;
@@ -325,7 +330,7 @@ export default class Settings extends Program {
   justify-content: center;
 }
 
-.nav.nav-small > .nav-link img {
+.nav.nav-small > .nav-link .icon {
   width: 30px;
   height: 30px;
 }
