@@ -158,10 +158,10 @@
                   <td class="fw-bold label">Github</td>
                   <td>
                     <a
-                      href="https://github.com/x140l1n/portfolio-vue"
+                      href="https://github.com/x140l1n/portfolio"
                       target="_blank"
                       class="p-0"
-                      >https://github.com/x140l1n/portfolio-vue</a
+                      >https://github.com/x140l1n/portfolio</a
                     >
                   </td>
                 </tr>
