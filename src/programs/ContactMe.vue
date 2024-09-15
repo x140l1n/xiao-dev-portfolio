@@ -119,9 +119,7 @@ import IconEmail from '@assets/icons/email.png';
   },
   methods: {
     init() {},
-    onResize() {
-      console.log('Resizing...');
-    },
+    onResize() {},
     onSubmit(evt) {
       const form = evt.target;
       const formData = new FormData(form);

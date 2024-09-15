@@ -26,5 +26,21 @@ module.exports = {
         }
       ])
     ]
+  },
+  chainWebpack: config => {
+    config.module
+      .rule('scss')
+      .oneOf('normal')
+      .use('sass-loader')
+      .loader('sass-loader')
+      .tap(options => {
+
+        return {
+          ...options,
+          sassOptions: {
+            quietDeps: true
+          }
+        };
+      });
   }
 };
