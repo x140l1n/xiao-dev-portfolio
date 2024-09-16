@@ -1,32 +1,24 @@
 <template>
-    <div ref="window" class="window resizers bg-light" :style="cssRootVars" @click="windowClick" v-resize="onResize">
-        <div
-            ref="windowTilebar"
-            @dblclick="windowTilebarDblclick"
-            class="window-tilebar bg-primary text-light d-flex flex-row-reverse border-dark border-bottom"
-        >
-            <span class="tilebar-item" title="Cerrar ventana" data-action="close">
-                <i class="fa-solid fa-xmark fa-fw"></i>
-            </span>
-            <span
-                class="tilebar-item"
-                :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`"
-                data-action="toggleMaximized"
-            >
-                <i :class="`fa-solid ${isMaximized ? 'fa-compress' : 'fa-expand'}`"></i>
-            </span>
-            <span class="tilebar-item" title="Minimizar ventana" data-action="minimized">
-                <i class="fa-solid fa-minus fa-fw"></i>
-            </span>
-            <span class="m-auto ms-2 text-truncate">{{ title }}</span>
-            <img :src="program.icon_src" class="program-icon" :alt="`Icono ${program.title}`" />
-        </div>
-        <div class="window-content bg-light overflow-hidden" ref="windowContent" @scroll="onScroll"></div>
-        <div class="resizer top-left"></div>
-        <div class="resizer top-right"></div>
-        <div class="resizer bottom-left"></div>
-        <div class="resizer bottom-right"></div>
+  <div ref="window" class="window resizers bg-light" :style="cssRootVars" @click="windowClick" v-resize="onResize">
+    <div ref="windowTilebar" @dblclick="windowTilebarDblclick" class="window-tilebar bg-primary text-light d-flex flex-row-reverse border-dark border-bottom">
+      <span class="tilebar-item" title="Cerrar ventana" data-action="close">
+        <i class="fa-solid fa-xmark fa-fw"></i>
+      </span>
+      <span class="tilebar-item" :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`" data-action="toggleMaximized">
+        <i :class="`fa-solid ${isMaximized ? 'fa-compress' : 'fa-expand'}`"></i>
+      </span>
+      <span class="tilebar-item" title="Minimizar ventana" data-action="minimized">
+        <i class="fa-solid fa-minus fa-fw"></i>
+      </span>
+      <span class="m-auto ms-2 text-truncate">{{ title }}</span>
+      <img :src="program.icon_src" class="program-icon" :alt="`Icono ${program.title}`" />
     </div>
+    <div class="window-content bg-light overflow-hidden" ref="windowContent" @scroll="onScroll"></div>
+    <div class="resizer top-left"></div>
+    <div class="resizer top-right"></div>
+    <div class="resizer bottom-left"></div>
+    <div class="resizer bottom-right"></div>
+  </div>
 </template>
 
 <script>
@@ -242,8 +234,7 @@ export default {
       function elementDrag(evt) {
         self.isDragging = true;
 
-        if (!self.$refs.window.classList.contains('no-transition'))
-          self.$refs.window.classList.add('no-transition');
+        if (!self.$refs.window.classList.contains('no-transition')) self.$refs.window.classList.add('no-transition');
 
         self.isMaximized = false;
 
@@ -304,10 +295,14 @@ export default {
         function resizeEvent(e) {
           e.preventDefault();
           original_width = parseFloat(
-            getComputedStyle(element, null).getPropertyValue('max-width').replace('px', '')
+            getComputedStyle(element, null)
+              .getPropertyValue('max-width')
+              .replace('px', '')
           );
           original_height = parseFloat(
-            getComputedStyle(element, null).getPropertyValue('max-height').replace('px', '')
+            getComputedStyle(element, null)
+              .getPropertyValue('max-height')
+              .replace('px', '')
           );
 
           original_x = self.position.x;
@@ -334,8 +329,7 @@ export default {
         function resize(e) {
           self.bringFront();
 
-          if (!self.$refs.window.classList.contains('no-transition'))
-            self.$refs.window.classList.add('no-transition');
+          if (!self.$refs.window.classList.contains('no-transition')) self.$refs.window.classList.add('no-transition');
 
           let pageX = e.pageX;
           let pageY = e.pageY;
@@ -456,135 +450,116 @@ export default {
 };
 </script>
 
-<style lang='css' scoped>
+<style lang="css" scoped>
 .window {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: var(--x);
-    top: var(--y);
-    display: flex;
-    flex-direction: column;
-    max-width: var(--width);
-    max-height: var(--height);
-    min-width: 170px;
-    min-height: var(--heightTileBar);
-    cursor: default;
-    border: 2px solid #000;
-    transition: max-width 0.1s, max-height 0.1s, left 0.1s 0.1s, top 0.1s 0.1s;
-    z-index: 1;
-    animation: zoomOut 0.2s;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: var(--x);
+  top: var(--y);
+  display: flex;
+  flex-direction: column;
+  max-width: var(--width);
+  max-height: var(--height);
+  min-width: 170px;
+  min-height: var(--heightTileBar);
+  cursor: default;
+  border: 2px solid #000;
+  transition: max-width 0.1s, max-height 0.1s, left 0.1s 0.1s, top 0.1s 0.1s;
+  z-index: 1;
+  animation: zoom-out-only-transform 0.2s;
 }
 
 .window.minimize {
-    transition: top 0.5s;
-    animation: zoomIn 0.5s;
-    transform: scale(0);
-    top: var(--maxHeight);
+  top: var(--maxHeight);
+  transition: top 0.5s;
+  animation: zoom-in-only-transform 0.5s;
+  transform: scale(0);
 }
 
 .window.closing {
-    animation: zoomIn 0.2s;
-    transform: scale(0);
-}
-
-@keyframes zoomIn {
-    0% {
-        transform: scale(1);
-    }
-    100% {
-        transform: scale(0);
-    }
-}
-
-@keyframes zoomOut {
-    0% {
-        transform: scale(0);
-    }
-    100% {
-        transform: scale(1);
-    }
+  animation: zoom-in-only-transform 0.2s;
 }
 
 .active {
-    z-index: 2;
+  z-index: 2;
 }
 
 .no-transition {
-    transition: none !important;
+  transition: none !important;
 }
 
 .maximized-transition {
-    transition: max-width 0.1s 0.1s, max-height 0.1s 0.1s, left 0.1s, top 0.1s;
+  transition: max-width 0.1s 0.1s, max-height 0.1s 0.1s, left 0.1s, top 0.1s;
 }
 
 .minimized-transition {
-    transition: max-width 0.1s, max-height 0.1s, left 0.1s, top 0.1s;
+  transition: max-width 0.1s, max-height 0.1s, left 0.1s, top 0.1s;
 }
 
 .tilebar-item {
-    width: 50px;
-    display: flex;
+  width: 50px;
+  display: flex;
 }
 
 .tilebar-item > i {
-    font-size: 0.9rem;
-    margin: auto;
+  font-size: 0.9rem;
+  margin: auto;
 }
 
 .tilebar-item:hover {
-    cursor: default;
-    background-color: #106379;
+  cursor: default;
+  background-color: #106379;
 }
 
 .tilebar-item:nth-child(1):hover {
-    cursor: default;
-    background-color: red;
+  cursor: default;
+  background-color: red;
 }
 
 .program-icon {
-    width: 32px;
-    width: 32px;
-    padding: 2px;
+  width: 32px;
+  width: 32px;
+  padding: 2px;
 }
 
 .window-content {
-    flex: 1;
+  flex: 1;
 }
 
 .window-tilebar {
-    width: 100%;
-    z-index: 3;
-    height: var(--heightTileBar);
+  width: 100%;
+  z-index: 3;
+  height: var(--heightTileBar);
 }
 
 .resizers .resizer {
-    position: absolute;
-    width: 10px;
-    height: 10px;
+  position: absolute;
+  width: 10px;
+  height: 10px;
 }
 
 .resizers .resizer.top-left {
-    left: -5px;
-    top: -5px;
-    cursor: nwse-resize; /*resizer cursor*/
+  left: -5px;
+  top: -5px;
+  cursor: nwse-resize; /*resizer cursor*/
 }
 
 .resizers .resizer.top-right {
-    right: -5px;
-    top: -5px;
-    cursor: nesw-resize;
+  right: -5px;
+  top: -5px;
+  cursor: nesw-resize;
 }
 
 .resizers .resizer.bottom-left {
-    left: -5px;
-    bottom: -5px;
-    cursor: nesw-resize;
+  left: -5px;
+  bottom: -5px;
+  cursor: nesw-resize;
 }
 
 .resizers .resizer.bottom-right {
-    right: -5px;
-    bottom: -5px;
-    cursor: nwse-resize;
+  right: -5px;
+  bottom: -5px;
+  cursor: nwse-resize;
 }
 </style>

@@ -12,9 +12,9 @@ This repository contains my personal portfolio, developed using **Vue 2**. The p
 - **Author**: Xiaolin Jin Lin
 - **Email**: [dev@xiaojl.dev](mailto:dev@xiaojl.dev)
 
-## ⚙️ Technologies Used
+## ⚙️ Stack
 
-The portfolio is built with the following technologies and dependencies:
+The portfolio is built with the following stack:
 
 - **Vue 2**: Main framework.
 - **Vue Router**: For route management.

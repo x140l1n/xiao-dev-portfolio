@@ -15,73 +15,30 @@
             :aria-controls="`v-tab-1-${id}`"
             aria-selected="true"
           >
-            <span class="text-truncate" :ref="`title-iframe-tab-pane-1-${id}`"
-              >Nueva pestaña</span
-            >
-            <span
-              class="btn-close-tab ms-2"
-              type="button"
-              title="Eliminar esta pestaña"
-              data-action="close-tab"
-              ><i class="fa-solid fa-xmark fa-fw"></i
-            ></span>
+            <span class="text-truncate" :ref="`title-iframe-tab-pane-1-${id}`">Nueva pestaña</span>
+            <span class="btn-close-tab ms-2" type="button" title="Eliminar esta pestaña" data-action="close-tab"><i class="fa-solid fa-xmark fa-fw"></i></span>
           </a>
         </li>
       </div>
       <li class="nav-item d-flex">
-        <a
-          class="add-tab ms-2 d-flex m-auto text-dark"
-          title="Añadir nueva pestaña"
-          aria-current="page"
-          href="#"
-          :id="`v-add-tab-${id}`"
-          type="button"
-          role="tab"
-          :aria-controls="`v-add-tab-`"
-        >
+        <a class="add-tab ms-2 d-flex m-auto text-dark" title="Añadir nueva pestaña" aria-current="page" href="#" :id="`v-add-tab-${id}`" type="button" role="tab" :aria-controls="`v-add-tab-`">
           <i class="fa-solid fa-plus m-auto"></i>
         </a>
       </li>
     </ul>
     <div ref="tabContent" class="tab-content flex-grow-1">
-      <div
-        class="tab-pane show active d-flex flex-column h-100"
-        :id="`v-tab-pane-1-${id}`"
-        role="tabpanel"
-        :aria-labelledby="`v-tab-pane-1-${id}`"
-      >
+      <div class="tab-pane show active d-flex flex-column h-100" :id="`v-tab-pane-1-${id}`" role="tabpanel" :aria-labelledby="`v-tab-pane-1-${id}`">
         <div class="p-2">
-          <form
-            @submit.prevent="search"
-            :ref="`form-tab-pane-1-${id}`"
-            :target="`iframe-tab-pane-1-${id}`"
-            class="d-flex gap-2"
-          >
+          <form @submit.prevent="search" :ref="`form-tab-pane-1-${id}`" :target="`iframe-tab-pane-1-${id}`" class="d-flex gap-2">
             <div class="flex-grow-1">
-              <input
-                type="text"
-                name="input-search"
-                class="form-control form-control-sm rounded-pill"
-                placeholder="Escribe para buscar"
-              />
+              <input type="text" name="input-search" class="form-control form-control-sm rounded-pill" placeholder="Escribe para buscar" />
             </div>
-            <button
-              type="submit"
-              title="Buscar"
-              class="btn bg-primary text-light btn-sm rounded-circle border border-1"
-              name="input-submit"
-            >
+            <button type="submit" title="Buscar" class="btn bg-primary text-light btn-sm rounded-circle border border-1" name="input-submit">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </form>
         </div>
-        <iframe
-          class="flex-grow-1"
-          :ref="`iframe-tab-pane-1-${id}`"
-          frameborder="0"
-          scrolling="auto"
-        >
-        </iframe>
+        <iframe class="flex-grow-1" :ref="`iframe-tab-pane-1-${id}`" frameborder="0" scrolling="auto"> </iframe>
       </div>
     </div>
   </div>
@@ -113,16 +70,9 @@ import IconBrowser from '@assets/icons/browser.png';
   },
   methods: {
     init() {
-      this.$refs[`form-tab-pane-1-${this.id}`].elements['input-search'].value =
-        this.url_default;
+      this.$refs[`form-tab-pane-1-${this.id}`].elements['input-search'].value = this.url_default;
 
-      setTimeout(
-        () =>
-          this.$refs[`form-tab-pane-1-${this.id}`].elements[
-            'input-submit'
-          ].click(),
-        200
-      );
+      setTimeout(() => this.$refs[`form-tab-pane-1-${this.id}`].elements['input-submit'].click(), 200);
     },
     onResize() {},
     clickTab() {},
@@ -133,14 +83,9 @@ import IconBrowser from '@assets/icons/browser.png';
       let search;
 
       if (!this.isValidHttpUrl(inputSearch.value)) {
-        search = `https://www.google.com/search?igu=1&ei=&q=${encodeURI(
-          inputSearch.value
-        )}`;
+        search = `https://www.google.com/search?igu=1&ei=&q=${encodeURI(inputSearch.value)}`;
       } else {
-        if (
-          !inputSearch.value.startsWith('https://') &&
-          !inputSearch.value.startsWith('http://')
-        ) {
+        if (!inputSearch.value.startsWith('https://') && !inputSearch.value.startsWith('http://')) {
           search = `https://${inputSearch.value}`;
         } else {
           search = inputSearch.value;
@@ -152,18 +97,16 @@ import IconBrowser from '@assets/icons/browser.png';
       this.$refs[targetIframe].onload = (evt) => {
         let iframe = evt.currentTarget;
 
-        this.$refs[`title-${targetIframe}`].innerText = (
-          iframe.contentDocument || iframe.contentWindow.document
-        ).title;
+        this.$refs[`title-${targetIframe}`].innerText = (iframe.contentDocument || iframe.contentWindow.document).title;
       };
     },
     isValidHttpUrl(string) {
       var pattern = new RegExp(
         '^(https?:\\/\\/)?' + // protocol
-          '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-          '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-          '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-          '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
           '(\\#[-a-z\\d_]*)?$',
         'i'
       ); // fragment locator
@@ -188,7 +131,7 @@ export default class Browser extends Program {
 }
 </script>
 
-<style lang='css' scoped>
+<style lang="css" scoped>
 .nav-link {
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;

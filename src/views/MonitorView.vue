@@ -1,3 +1,32 @@
+<template>
+  <div class="container-fluid bg-dark vh-100 d-flex p-0">
+    <div ref="monitor" class="card monitor mx-auto bg-light border-0">
+      <div :class="`card-body monitor-inner ${isMonitorOn ? '' : 'bg-dark'}`">
+        <div :class="`layer-on-off ${!isFirstTime ? (isMonitorOn ? 'layer-on' : 'layer-off') : ''}`"></div>
+        <div class="wrap-introduction text-light" v-if="!isMonitorOn">
+          <div class="row g-4">
+            <div class="col-md-8">
+              <h2 class="fw-bold mb-4" tabindex="1">
+                ¡Bienvenido a mi portfolio! 😁
+              </h2>
+              <p tabindex="2">
+                Para comenzar a explorar, solo tienes que hacer clic en el siguiente botón 👉
+              </p>
+            </div>
+            <div class="col-md-4 d-flex flex-column gap-5 justify-content-center align-items-center">
+              <button type="button" tabindex="3" :class="`btn-on-off d-inline rounded-circle mb-2 ${isMonitorOn ? 'btn-on' : 'btn-off'}`" title="Encender monitor" @click="isMonitorOn = !isMonitorOn">
+                <i class="fa-solid fa-power-off"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+        <img src="@assets/img/greet.png" alt="Saludo" title="Saludo" class="image-greet" v-if="!isMonitorOn" />
+        <ScreenView ref="screenView" v-show="isMonitorOn" />
+      </div>
+    </div>
+  </div>
+</template>
+
 <script>
 import ScreenView from '@views/ScreenView.vue';
 
@@ -14,122 +43,78 @@ export default {
       isFirstTime: true
     };
   },
-  watch: {
-    isMonitorOn() {
-      if (this.isFirstTime) this.isFirstTime = false;
+  methods: {
+    init() {
+      this.startFullscreenListener();
     },
-    $isFullScreen() {
-      if (this.$isFullScreenFromToggle) this.setFullScreen(this.$isFullScreen);
+    startFullscreenListener() {
+      document.addEventListener('fullscreenchange', this.checkFullscreen);
+      document.addEventListener('webkitfullscreenchange', this.checkFullscreen);
+      document.addEventListener('mozfullscreenchange', this.checkFullscreen);
+      document.addEventListener('MSFullscreenChange', this.checkFullscreen);
+      window.addEventListener('resize', this.checkFullscreen);
 
-      if (this.$isFullScreen) {
-        this.$refs.monitor.classList.add('fullscreen');
-      } else {
-        this.$refs.monitor.classList.remove('fullscreen');
-      }
+      this.checkFullscreen();
+    },
+    checkFullscreen() {
+      this.$nextTick(() => {
+        let isCurrentFullscreen = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullscreenElement || document.msFullscreenElement;
+
+        if (isCurrentFullscreen === undefined) {
+          isCurrentFullscreen = window.innerWidth === screen.width && window.innerHeight === screen.height;
+        } else if (this.$isFullscreenFromSettings && typeof isCurrentFullscreen !== 'boolean') {
+          isCurrentFullscreen = false;
+        }
+
+        this.$isFullscreen = isCurrentFullscreen ? true : false;
+
+        this.$isFullscreenFromSettings = false;
+      });
     }
   },
-  methods: {
-    init() {},
-    setFullScreen(fullscreen) {
-      let isInFullScreen =
-        (document.fullscreenElement && document.fullscreenElement !== null) ||
-        (document.webkitFullscreenElement &&
-          document.webkitFullscreenElement !== null) ||
-        (document.mozFullScreenElement &&
-          document.mozFullScreenElement !== null) ||
-        (document.msFullscreenElement && document.msFullscreenElement !== null);
+  watch: {
+    $isFullscreen(value) {
+      if (!this.$isFullscreenFromSettings) return;
 
-      let docElm = document.documentElement;
-
-      if (!isInFullScreen && fullscreen) {
-        if (docElm.requestFullscreen) {
-          docElm.requestFullscreen();
-        } else if (docElm.mozRequestFullScreen) {
-          docElm.mozRequestFullScreen();
-        } else if (docElm.webkitRequestFullScreen) {
-          docElm.webkitRequestFullScreen();
-        } else if (docElm.msRequestFullscreen) {
-          docElm.msRequestFullscreen();
+      if (value === 'true') {
+        if (document.documentElement.requestFullscreen) {
+          document.documentElement.requestFullscreen();
+        } else if (document.documentElement.mozRequestFullscreen) {
+          document.documentElement.mozRequestFullscreen();
+        } else if (document.documentElement.webkitRequestFullscreen) {
+          document.documentElement.webkitRequestFullscreen();
+        } else if (document.documentElement.msRequestFullscreen) {
+          document.documentElement.msRequestFullscreen();
         }
       } else {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
+        if (document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+          }
         }
+      }
+    },
+    isMonitorOn() {
+      if (this.isFirstTime) {
+        this.isFirstTime = false;
       }
     }
   }
 };
 </script>
 
-<template>
-  <div class="container-fluid bg-dark vh-100 d-flex p-0">
-    <div ref="monitor" class="card monitor mx-auto bg-light border-0">
-      <div :class="`card-body monitor-inner ${isMonitorOn ? '' : 'bg-dark'}`">
-        <div
-          :class="`layer-on-off ${
-            !isFirstTime ? (isMonitorOn ? 'layer-on' : 'layer-off') : ''
-          }`"
-        ></div>
-        <div class="wrap-introduction text-light" v-if="!isMonitorOn">
-          <h2 class="fw-bold mb-4" tabindex="1">
-            ¡Bienvenido a mi portafolio! 🙂
-          </h2>
-          <p tabindex="2">
-            Para comenzar a explorar, solo tienes que hacer clic en el botón
-            <img
-              src="../assets/icons/button-off-on.png"
-              class="btn-power-desc m-2"
-              title="Botón on off"
-              alt="Botón on off"
-            />
-            que está en la justo debajo.
-          </p>
-
-          <p tabindex="3">Tómate tu tiempo para mirar todo con calma. 😉</p>
-        </div>
-        <img
-          src="../assets/img/greet.png"
-          alt="Saludo"
-          title="Saludo"
-          class="image-greet"
-          v-if="!isMonitorOn"
-        />
-        <ScreenView ref="screenView" v-show="isMonitorOn" />
-      </div>
-      <div
-        class="card-footer border-0 bg-transparent d-flex justify-content-center align-items-center"
-      >
-        <button
-          type="button"
-          tabindex="4"
-          :class="`rounded-circle btn-on-off d-flex ${
-            isMonitorOn ? 'btn-on' : 'btn-off'
-          }`"
-          :title="isMonitorOn ? 'Apagar monitor' : 'Encender monitor'"
-          :alt="isMonitorOn ? 'Botón on' : 'Botón off'"
-          @click="isMonitorOn = !isMonitorOn"
-        >
-          <i class="fa-solid fa-power-off"></i>
-        </button>
-      </div>
-    </div>
-  </div>
-</template>
-
-<style lang='css' scoped>
-.btn-power-desc {
-  width: 30px;
-  height: 30px;
-}
-
+<style lang="css" scoped>
 .wrap-introduction {
   position: absolute;
+  width: 100%;
+  max-width: 800px;
+  padding: 3rem;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -40%);
@@ -146,12 +131,13 @@ export default {
   z-index: 5;
 }
 
-.monitor {
-  width: 100%;
-  height: 100%;
+.btn-on-off {
+  min-width: 100px;
+  min-height: 100px;
+  font-size: 3rem;
 }
 
-.monitor.fullscreen {
+.monitor {
   width: 100vw;
   height: 100vh;
 }
@@ -162,33 +148,6 @@ export default {
   height: 100%;
   overflow: hidden;
   padding: 0;
-}
-
-.btn-on-off {
-  width: 50px;
-  height: 50px;
-  background-color: #000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border-radius: 50%;
-  font-size: 1.4rem;
-  z-index: 5;
-}
-
-.btn-on-off > i {
-  line-height: 0;
-}
-
-.btn-on-off:focus {
-  outline: none;
-}
-
-.btn-on,
-.btn-on:active,
-.btn-on:focus {
-  color: rgb(23, 210, 23);
-  box-shadow: 0 0 10px rgb(23, 210, 23);
 }
 
 .btn-off,
@@ -209,34 +168,10 @@ export default {
 }
 
 .layer-on {
-  animation: on forwards 0.2s ease-in;
+  animation: monitor-on 0.2s forwards ease-in;
 }
 
 .layer-off {
-  animation: off forwards 0s ease-in;
-}
-
-@keyframes on {
-  0% {
-    transform: scaleY(1);
-  }
-  100% {
-    transform: scaleY(0);
-  }
-}
-
-@keyframes off {
-  0% {
-    transform: scaleY(0);
-  }
-  100% {
-    transform: scaleY(1);
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .card {
-    margin: 0 !important;
-  }
+  animation: monitor-off 0.2s forwards ease-in;
 }
 </style>

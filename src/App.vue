@@ -9,7 +9,7 @@ export default {
 </script>
 
 <template>
-    <MonitorView />
+  <MonitorView />
 </template>
 
 <style></style>

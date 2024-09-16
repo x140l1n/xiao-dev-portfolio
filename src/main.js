@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import App from '@src/App.vue';
 import VueMoment from 'vue-moment';
-import moment from 'moment-timezone'
+import moment from 'moment-timezone';
 import resize from 'vue-resize-directive';
 import 'bootstrap/dist/js/bootstrap';
 import '@src/assets/scss/styles.scss';
@@ -15,6 +15,46 @@ Vue.config.productionTip = false;
 Vue.use(VueMoment, { moment });
 
 Vue.directive('resize', resize);
+
+Vue.directive('init-animation', {
+  bind(el, binding) {
+    const animations = el.querySelectorAll('[data-animation]');
+
+    if (animations.length === 0) {
+      return;
+    }
+
+    let options = null;
+
+    try {
+      options = eval(`(${binding.expression})`);
+      /* eslint-disable no-empty */
+    } catch {}
+
+    Object.assign(options, { duration: 1, threshold: 0.5 });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !entry.target.classList.contains('animated')) {
+            entry.target.style.animation = `${entry.target.dataset.animation} ${options.duration}s forwards`;
+            entry.target.classList.add('animated');
+          }
+        });
+      },
+      { root: el, threshold: options.threshold }
+    );
+
+    animations.forEach((animation) => {
+      observer.observe(animation);
+    });
+
+    binding.value = observer;
+  },
+  unbind(el, binding) {
+    binding.value.disconnect();
+  }
+});
 
 const observablePrograms = Vue.observable({ programs: [] });
 
@@ -60,27 +100,27 @@ Object.defineProperty(Vue.prototype, '$themeSelected', {
   }
 });
 
-const observableIsFullScreen = Vue.observable({ isFullScreen: false });
+const observableIsFullscreen = Vue.observable({ isFullscreen: false });
 
-Object.defineProperty(Vue.prototype, '$isFullScreen', {
+Object.defineProperty(Vue.prototype, '$isFullscreen', {
   get() {
-    return observableIsFullScreen.isFullScreen;
+    return observableIsFullscreen.isFullscreen;
   },
   set(value) {
-    observableIsFullScreen.isFullScreen = value;
+    observableIsFullscreen.isFullscreen = value;
   }
 });
 
-const observableIsFullScreenFromToggle = Vue.observable({
-  isFullScreenFromToggle: true
+const observableIsFullscreenFromSettings = Vue.observable({
+  isFullscreenFromSettings: false
 });
 
-Object.defineProperty(Vue.prototype, '$isFullScreenFromToggle', {
+Object.defineProperty(Vue.prototype, '$isFullscreenFromSettings', {
   get() {
-    return observableIsFullScreenFromToggle.isFullScreenFromToggle;
+    return observableIsFullscreenFromSettings.isFullscreenFromSettings;
   },
   set(value) {
-    observableIsFullScreenFromToggle.isFullScreenFromToggle = value;
+    observableIsFullscreenFromSettings.isFullscreenFromSettings = value;
   }
 });
 
@@ -94,24 +134,6 @@ Object.defineProperty(Vue.prototype, '$urlToOpen', {
     observableUrlToOpen.urlToOpen = value;
   }
 });
-
-const eventsFullScreen = ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'msfullscreenchange'];
-
-eventsFullScreen.forEach((eventType) =>
-  document.addEventListener(
-    eventType,
-    () => {
-      if (!(document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement)) {
-        observableIsFullScreen.isFullScreen = false;
-      } else {
-        observableIsFullScreen.isFullScreen = true;
-      }
-
-      observableIsFullScreenFromToggle.isFullScreenFromToggle = false;
-    },
-    false
-  )
-);
 
 new Vue({
   render: (h) => h(App)

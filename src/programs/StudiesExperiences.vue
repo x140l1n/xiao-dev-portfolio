@@ -1,50 +1,34 @@
 <template>
-  <div
-    ref="content"
-    class="w-100 h-100 d-flex flex-column"
-  >
+  <div ref="content" class="w-100 h-100 d-flex flex-column">
     <ul ref="navbar" class="nav nav-pills nav-fill bg-light">
       <li class="nav-item">
-        <a
-          class="nav-link active"
-          role="tab"
-          data-bs-toggle="tab"
-          :href="`#studies-${id}`"
-        >
+        <a class="nav-link active" role="tab" data-bs-toggle="tab" :href="`#studies-${id}`">
           <i class="fa-solid fa-graduation-cap me-2 fa-fw"></i>
           Estudios
         </a>
       </li>
       <li class="nav-item">
-        <a
-          class="nav-link"
-          role="tab"
-          data-bs-toggle="tab"
-          :href="`#experiences-${id}`"
-        >
+        <a class="nav-link" role="tab" data-bs-toggle="tab" :href="`#experiences-${id}`">
           <i class="fa-solid fa-briefcase me-2 fa-fw"></i>
           Experiencias laboral
         </a>
       </li>
     </ul>
-    <div ref="tabContent" class="tab-content border-top border-dark flex-fill overflow-x-hidden overflow-y-auto">
+    <div ref="tabContent" class="tab-content border-top border-dark flex-fill overflow-x-hidden overflow-y-auto" v-init-animation="{ threshold: 0.2 }">
       <div :id="`studies-${id}`" class="tab-pane fade active show">
         <div ref="timelineStudies" class="timeline text-light">
           <div class="timeline-row">
-            <div class="timeline-time">
-              <a href="https://politecnics.barcelona/" target="_blank"
-                >Centre d'Estudis Politècnics, Barcelona (España)</a
-              ><small>2021 - 2022</small>
+            <div data-animation="slide-left" class="timeline-time">
+              <a href="https://politecnics.barcelona/" target="_blank">Centre d'Estudis Politècnics, Barcelona (España)</a><small>2021 - 2022</small>
             </div>
-            <div class="timeline-content">
+            <div data-animation="slide-right" class="timeline-content">
               <i class="fa-solid fa-code"></i>
               <h5 class="fw-bold text-center">
                 DESARROLLO APLICACIONES WEB (DAW)
               </h5>
               <ul>
                 <li>
-                  Desarrollar aplicaciones web con distintos frameworks
-                  tanto el frontend como el backend.
+                  Desarrollar aplicaciones web con distintos frameworks tanto el frontend como el backend.
                 </li>
                 <li>Manipulación de base de datos.</li>
                 <li>Configurar servidores web en Ubuntu.</li>
@@ -67,20 +51,17 @@
             </div>
           </div>
           <div class="timeline-row">
-            <div class="timeline-time">
-              <a href="https://politecnics.barcelona/" target="_blank"
-                >Centre d'Estudis Politècnics, Barcelona (España)</a
-              ><small>2019 - 2021</small>
-            </div>
-            <div class="timeline-content">
+            <di data-animation="slide-right" class="timeline-time"
+              ><a href="https://politecnics.barcelona/" target="_blank">Centre d'Estudis Politècnics, Barcelona (España)</a><small>2019 - 2021</small></di
+            >
+            <div data-animation="slide-left" class="timeline-content">
               <i class="fa-solid fa-code"></i>
               <h5 class="fw-bold text-center">
                 DESARROLLO APLICACIONES MULTIPLATAFORMA (DAM)
               </h5>
               <ul>
                 <li>
-                  Desarrollar aplicaciones multiplataforma con distintos
-                  lenguajes de programación.
+                  Desarrollar aplicaciones multiplataforma con distintos lenguajes de programación.
                 </li>
                 <li>Desarrollo de programas para escritorio y Android.</li>
                 <li>Manipulación de base de datos.</li>
@@ -102,14 +83,14 @@
             </div>
           </div>
           <div class="timeline-row">
-            <div class="timeline-time">
+            <div data-animation="slide-left" class="timeline-time">
               <a
                 href="https://serveiocupacio.gencat.cat/es/Formacio-i-qualificacio/centres-propis-de-formacio/centres-dinnovacio-i-formacio-ocupacional-cifo/CIFO-de-Barcelona-La-Violeta/"
                 target="_blank"
                 >SOC CIFO VIOLETA</a
               ><small>2018-2019</small>
             </div>
-            <div class="timeline-content">
+            <div data-animation="slide-right" class="timeline-content">
               <i class="fa-solid fa-code"></i>
               <h5 class="fw-bold text-center">
                 CERTIFICADO DE PROFESIONALIDAD EN POO (630H)
@@ -131,23 +112,15 @@
             </div>
           </div>
           <div class="timeline-row">
-            <div class="timeline-time">
-              <a href="https://institutxxvolimpiada.cat/" target="_blank"
-                >Instituto XXV Olimpiada</a
-              ><small>2014-2016</small>
-            </div>
-            <div class="timeline-content">
+            <div data-animation="slide-right" class="timeline-time"><a href="https://institutxxvolimpiada.cat/" target="_blank">Instituto XXV Olimpiada</a><small>2014-2016</small></div>
+            <div data-animation="slide-left" class="timeline-content">
               <i class="fa-solid fa-school"></i>
               <h5 class="fw-bold text-center">BACHILLERATO TECNOLÓGICO</h5>
             </div>
           </div>
           <div class="timeline-row">
-            <div class="timeline-time">
-              <a href="https://institutxxvolimpiada.cat/" target="_blank"
-                >Instituto XXV Olimpiada</a
-              ><small>2010-2014</small>
-            </div>
-            <div class="timeline-content">
+            <div data-animation="slide-left" class="timeline-time"><a href="https://institutxxvolimpiada.cat/" target="_blank">Instituto XXV Olimpiada</a><small>2010-2014</small></div>
+            <div data-animation="slide-right" class="timeline-content">
               <i class="fa-solid fa-school"></i>
               <h5 class="fw-bold text-center">ESO</h5>
             </div>
@@ -157,40 +130,31 @@
       <div :id="`experiences-${id}`" class="tab-pane fade">
         <div ref="timelineExperiences" class="timeline text-light">
           <div class="timeline-row">
-            <div class="timeline-time">
-              <a href="https://tkmservicios.com" target="_blank"
-                >TKM Consultores S.L, Barcelona (España)</a
-              ><small>2019 - Presente</small>
-            </div>
-            <div class="timeline-content">
+            <div data-animation="slide-left" class="timeline-time"><a href="https://tkmservicios.com" target="_blank">TKM Consultores S.L, Barcelona (España)</a><small>2019 - Presente</small></div>
+            <div data-animation="slide-right" class="timeline-content">
               <i class="fa-solid fa-code"></i>
               <h5 class="fw-bold text-center">
                 DESARROLLADOR FULLSTACK / HELPDESK
               </h5>
               <ul>
                 <li>
-                  Creación y mantenimiento aplicaciones web con: HTML, CSS,
-                  JavaScript, PHP, Ruby On Rails, Wordpress.
+                  Creación y mantenimiento aplicaciones web con: HTML, CSS, JavaScript, PHP, Ruby On Rails, Wordpress.
                 </li>
                 <li>Creación y mantenimiento de aplicaciones: .NET</li>
                 <li>
-                  Creación y mantenimiento de base de datos: Microsoft SQL
-                  Server, MySQL, PostgreSQL.
+                  Creación y mantenimiento de base de datos: Microsoft SQL Server, MySQL, PostgreSQL.
                 </li>
                 <li>
-                  Técnico de sistemas: Windows Server, Active Directory,
-                  Microsoft Exchange, Microsoft SQL Server, etc.
+                  Técnico de sistemas: Windows Server, Active Directory, Microsoft Exchange, Microsoft SQL Server, etc.
                 </li>
                 <li>
-                  Técnico en redes: Análisis de redes, configuración de
-                  Routers y Switch.
+                  Técnico en redes: Análisis de redes, configuración de Routers y Switch.
                 </li>
                 <li>
                   Hardware: Análisis, mantenimiento y cambio de componentes.
                 </li>
                 <li>
-                  Helpdesk: Apoyo a usuarios finales. Programas
-                  especializados, ofimática, etc.
+                  Helpdesk: Apoyo a usuarios finales. Programas especializados, ofimática, etc.
                 </li>
                 <li>
                   Manejo de programas A3ERP, A3, Fastbroker, VisualSeg.
@@ -236,32 +200,10 @@ import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
     this.init();
   },
   data() {
-    return {
-      animationObserver: null
-    };
+    return {};
   },
   methods: {
-    init() {
-      this.initAnimationCards();
-    },
-    initAnimationCards() {
-      const cards = this.$refs.content.querySelectorAll('.timeline-row');
-      
-      this.animationObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('animate');
-          } else {
-            entry.target.classList.remove('animate');
-          }
-        });
-      }, {
-      });
-
-      cards.forEach((card) => {
-        this.animationObserver.observe(card);
-      });
-    },
+    init() {},
     onResize() {
       if (this.$el.clientWidth < 992) {
         this.$refs.timelineStudies.classList.add('small');
@@ -272,10 +214,7 @@ import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
       }
     }
   },
-  computed: {},
-  beforeDestroy() {
-    if (this.animationObserver) this.animationObserver.disconnect();
-  }
+  computed: {}
 })
 export default class StudiesExperiences extends Program {
   //Initialize the variables of superclass Program.
@@ -292,7 +231,7 @@ export default class StudiesExperiences extends Program {
 }
 </script>
 
-<style lang='css' scoped>
+<style lang="css" scoped>
 a {
   color: #1a233a;
 }
@@ -321,7 +260,7 @@ small {
 }
 
 .timeline:after {
-  content: "";
+  content: '';
   position: absolute;
   top: 0;
   left: 50%;
@@ -329,14 +268,6 @@ small {
   border-right: 2px dashed #4b546f;
   height: 100%;
   display: block;
-}
-
-.timeline > .timeline-row:nth-child(odd).animate {
-  animation: slide-right 1s;
-}
-
-.timeline > .timeline-row:nth-child(even).animate {
-  animation: slide-left 1s;
 }
 
 .timeline-row {
@@ -372,7 +303,7 @@ small {
 }
 
 .timeline-row .timeline-content:after {
-  content: "";
+  content: '';
   position: absolute;
   top: 20px;
   height: 16px;
@@ -381,7 +312,7 @@ small {
 }
 
 .timeline-row .timeline-content:before {
-  content: "";
+  content: '';
   position: absolute;
   top: 20px;
   right: -49px;

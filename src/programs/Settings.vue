@@ -1,13 +1,7 @@
 <template>
   <div class="w-100">
     <div class="d-flex align-items-start h-100 fs-6">
-      <div
-        ref="nav"
-        class="nav justify-content-stretch flex-nowrap flex-column nav-pills me-3 shadow text-trucante bg-light overflow-auto"
-        id="v-pills-tab"
-        role="tablist"
-        aria-orientation="vertical"
-      >
+      <div ref="nav" class="nav justify-content-stretch flex-nowrap flex-column nav-pills me-3 shadow text-trucante bg-light overflow-auto" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <button
           type="button"
           class="nav-link active rounded-0 general"
@@ -52,12 +46,7 @@
         </button>
       </div>
       <div ref="tabContent" class="tab-content w-100">
-        <div
-          class="tab-pane p-3 fade show active"
-          :id="`v-pills-general-${id}`"
-          role="tabpanel"
-          :aria-labelledby="`v-pills-general-tab-${id}`"
-        >
+        <div class="tab-pane p-3 fade show active" :id="`v-pills-general-${id}`" role="tabpanel" :aria-labelledby="`v-pills-general-tab-${id}`">
           <h4>General</h4>
           <div class="card">
             <div class="card-body">
@@ -70,20 +59,15 @@
                     :id="`switch-fullscreen-${id}`"
                     true-value="true"
                     false-value="false"
-                    @click="$isFullScreenFromToggle = true"
-                    v-model="$isFullScreen"
+                    @click="$isFullscreenFromSettings = true"
+                    v-model="$isFullscreen"
                   />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div
-          class="tab-pane p-3 fade"
-          :id="`v-pills-personalization-${id}`"
-          role="tabpanel"
-          :aria-labelledby="`v-pills-personalization-tab-${id}`"
-        >
+        <div class="tab-pane p-3 fade" :id="`v-pills-personalization-${id}`" role="tabpanel" :aria-labelledby="`v-pills-personalization-tab-${id}`">
           <h4>Temas</h4>
           <div class="card">
             <div class="card-body">
@@ -91,14 +75,7 @@
               <div class="d-flex flex-wrap mt-5">
                 <div class="theme-selector theme-1 p-3 my-2">
                   <div class="form-check fw-bold text-light">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      :name="`selector-theme-${id}`"
-                      v-model="$themeSelected"
-                      value="theme-2"
-                      :id="`rdb-theme-2-${id}`"
-                    />
+                    <input class="form-check-input" type="radio" :name="`selector-theme-${id}`" v-model="$themeSelected" value="theme-2" :id="`rdb-theme-2-${id}`" />
                     <label class="form-check-label" :for="`rdb-theme-2-${id}`">
                       Tema azul oscuro
                     </label>
@@ -106,14 +83,7 @@
                 </div>
                 <div class="theme-selector theme-2 p-3 my-2">
                   <div class="form-check fw-bold text-dark">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      :name="`selector-theme-${id}`"
-                      v-model="$themeSelected"
-                      value="theme-1"
-                      :id="`rdb-theme-1-${id}`"
-                    />
+                    <input class="form-check-input" type="radio" :name="`selector-theme-${id}`" v-model="$themeSelected" value="theme-1" :id="`rdb-theme-1-${id}`" />
                     <label class="form-check-label" :for="`rdb-theme-1-${id}`">
                       Tema morado
                     </label>
@@ -123,12 +93,7 @@
             </div>
           </div>
         </div>
-        <div
-          class="tab-pane p-3 fade"
-          :id="`v-pills-about-${id}`"
-          role="tabpanel"
-          :aria-labelledby="`v-pills-about-tab-${id}`"
-        >
+        <div class="tab-pane p-3 fade" :id="`v-pills-about-${id}`" role="tabpanel" :aria-labelledby="`v-pills-about-tab-${id}`">
           <h4>Acerca de</h4>
           <div class="card">
             <div class="card-body">
@@ -157,12 +122,7 @@
                 <tr>
                   <td class="fw-bold label">Github</td>
                   <td>
-                    <a
-                      href="https://github.com/x140l1n/portfolio"
-                      target="_blank"
-                      class="p-0"
-                      >https://github.com/x140l1n/portfolio</a
-                    >
+                    <a href="https://github.com/x140l1n/portfolio" target="_blank" class="p-0">https://github.com/x140l1n/portfolio</a>
                   </td>
                 </tr>
                 <tr>
@@ -173,20 +133,11 @@
                   <td class="fw-bold label pe-4">Desarrollado con</td>
                   <td>
                     <div class="d-inline-block text-center">
-                      <img
-                        src="@assets/icons/vue.png"
-                        alt="Vue"
-                        title="Vue"
-                      />
+                      <img src="@assets/icons/vue.png" alt="Vue" title="Vue" />
                       <figcaption>Vue 2</figcaption>
                     </div>
                     <div class="d-inline-block text-center">
-                      <img
-                        src="@assets/icons/bootstrap.png"
-                        width="85"
-                        alt="Bootstrap"
-                        title="Bootstrap"
-                      />
+                      <img src="@assets/icons/bootstrap.png" width="85" alt="Bootstrap" title="Bootstrap" />
                       <figcaption>Bootstrap 5</figcaption>
                     </div>
                   </td>
@@ -259,7 +210,7 @@ export default class Settings extends Program {
 }
 </script>
 
-<style lang='css' scoped>
+<style lang="css" scoped>
 .theme-selector {
   width: 300px;
   height: 200px;

@@ -1,8 +1,8 @@
 <template>
-    <div class="w-100 h-100 overflow-hidden">
-        <!--display pdf from @assets/documents/cv.pdf-->
-        <embed src="/cv.pdf" type="application/pdf" width="100%" height="100%">
-    </div>
+  <div class="w-100 h-100 overflow-hidden">
+    <!--display pdf from @assets/documents/cv.pdf-->
+    <embed src="/cv.pdf" type="application/pdf" width="100%" height="100%" />
+  </div>
 </template>
 
 <script>
@@ -45,4 +45,4 @@ export default class Knowledge extends Program {
 }
 </script>
 
-<style lang='css' scoped></style>
+<style lang="css" scoped></style>

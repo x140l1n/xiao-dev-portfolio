@@ -1,65 +1,22 @@
 <template>
-  <div
-    ref="screen"
-    class="screen bg-image user-none-select"
-    v-resize="onResize"
-  >
-    <div
-      ref="screenContent"
-      :class="['screen-content', someProgramMaximized ? '' : 'overflow-auto']"
-      @click.self="cleanSelectProgram"
-    >
+  <div ref="screen" class="screen bg-image user-none-select" v-resize="onResize">
+    <div ref="screenContent" :class="['screen-content', someProgramMaximized ? '' : 'overflow-auto']" @click.self="cleanSelectProgram">
       <div class="program p-2">
-        <button
-          type="button"
-          class="program-inner program-knowledge p-2"
-          title="Ajustes"
-          alt="Ajustes"
-          @click="openProgram('Settings')"
-          tabindex="4"
-        >
-          <img
-            id="program-settings"
-            src="@assets/icons/settings.png"
-            alt="Logo ajustes"
-          />
+        <button type="button" class="program-inner program-knowledge p-2" title="Ajustes" alt="Ajustes" @click="openProgram('Settings')" tabindex="4">
+          <img id="program-settings" src="@assets/icons/settings.png" alt="Logo ajustes" />
           <label class="text-light" for="program-settings">Ajustes</label>
         </button>
       </div>
       <div class="program p-2">
-        <button
-          type="button"
-          class="program-inner p-2"
-          title="Sobre mi"
-          alt="Sobre mi"
-          @click="openProgram('AboutMe')"
-          tabindex="5"
-        >
-            <img
-              id="program-about-me"
-              src="@assets/icons/about-me.png"
-              alt="Logo sobre mi"
-            />
-            <label class="text-light" for="program-about-me">Sobre mi</label>
+        <button type="button" class="program-inner p-2" title="Sobre mi" alt="Sobre mi" @click="openProgram('AboutMe')" tabindex="5">
+          <img id="program-about-me" src="@assets/icons/about-me.png" alt="Logo sobre mi" />
+          <label class="text-light" for="program-about-me">Sobre mi</label>
         </button>
       </div>
       <div class="program p-2">
-        <button
-          type="button"
-          class="program-inner program-knowledge p-2"
-          title="Mis conocimientos"
-          alt="Mis conocimientos"
-          @click="openProgram('Knowledge')"
-          tabindex="6"
-        >
-          <img
-            id="program-knowledge"
-            src="@assets/icons/knowledge.png"
-            alt="Logo mis conocimientos"
-          />
-          <label class="text-light" for="program-knowledge"
-            >Mis conocimientos</label
-          >
+        <button type="button" class="program-inner program-knowledge p-2" title="Mis conocimientos" alt="Mis conocimientos" @click="openProgram('Knowledge')" tabindex="6">
+          <img id="program-knowledge" src="@assets/icons/knowledge.png" alt="Logo mis conocimientos" />
+          <label class="text-light" for="program-knowledge">Mis conocimientos</label>
         </button>
       </div>
       <div class="program p-2">
@@ -71,115 +28,44 @@
           @click="openProgram('StudiesExperiences')"
           tabindex="7"
         >
-          <img
-            id="program-experiences-studies"
-            src="@assets/icons/experiences-studies.png"
-            alt="Logo estudios y experiencias"
-          />
-          <label class="text-light" for="program-experiences-studies"
-            >Estudios y experiencias</label
-          >
+          <img id="program-experiences-studies" src="@assets/icons/experiences-studies.png" alt="Logo estudios y experiencias" />
+          <label class="text-light" for="program-experiences-studies">Estudios y experiencias</label>
         </button>
       </div>
       <div class="program p-2">
-        <button
-          type="button"
-          class="program-inner program-projects p-2"
-          title="Mis proyectos"
-          alt="Mis proyectos"
-          @click="openProgram('Projects')"
-          tabindex="8"
-        >
-          <img
-            id="program-projects"
-            src="@assets/icons/projects.png"
-            alt="Logo Mis proyectos"
-          />
+        <button type="button" class="program-inner program-projects p-2" title="Mis proyectos" alt="Mis proyectos" @click="openProgram('Projects')" tabindex="8">
+          <img id="program-projects" src="@assets/icons/projects.png" alt="Logo Mis proyectos" />
           <label class="text-light" for="program-projects">Mis proyectos</label>
         </button>
       </div>
       <div class="program p-2">
-        <button
-          type="button"
-          class="program-inner program-contactme p-2"
-          title="Contáctame"
-          alt="Contáctame"
-          @click="openProgram('ContactMe')"
-          tabindex="9"
-        >
-          <img
-            id="program-contactme"
-            src="@assets/icons/email.png"
-            alt="Logo contáctame"
-          />
+        <button type="button" class="program-inner program-contactme p-2" title="Contáctame" alt="Contáctame" @click="openProgram('ContactMe')" tabindex="9">
+          <img id="program-contactme" src="@assets/icons/email.png" alt="Logo contáctame" />
           <label class="text-light" for="program-contactme">Contáctame</label>
         </button>
       </div>
       <div class="program p-2">
-        <button
-          type="button"
-          class="program-inner program-browser p-2"
-          title="Mis proyectos"
-          alt="Mis proyectos"
-          @click="openProgram('Browser')"
-          tabindex="10"
-        >
-          <img
-            id="program-browser"
-            src="@assets/icons/browser.png"
-            alt="Logo Navegador"
-          />
+        <button type="button" class="program-inner program-browser p-2" title="Mis proyectos" alt="Mis proyectos" @click="openProgram('Browser')" tabindex="10">
+          <img id="program-browser" src="@assets/icons/browser.png" alt="Logo Navegador" />
           <label class="text-light" for="program-browser">Navegador</label>
         </button>
       </div>
       <div class="program p-2">
-        <button
-          type="button"
-          class="program-inner program-cv p-2"
-          title="Mi portafolio"
-          alt="Mi portafolio"
-          @click="openProgram('CV')"
-          tabindex="11"
-        >
-          <img
-            id="program-cv"
-            src="@assets/icons/pdf.png"
-            alt="Logo Currículum Vitae"
-          />
+        <button type="button" class="program-inner program-cv p-2" title="Currículum vitae" alt="Currículum vitae" @click="openProgram('CV')" tabindex="11">
+          <img id="program-cv" src="@assets/icons/pdf.png" alt="Logo PDF" />
           <label class="text-light" for="program-cv">Currículum Vitae</label>
         </button>
       </div>
     </div>
-    <div
-      v-if="!$isFullScreen"
-      ref="tipFullScreen"
-      class="toast show position-absolute top-0 end-0 m-2"
-      role="alert"
-      aria-live="assertive"
-      aria-atomic="true"
-    >
+    <div v-if="!$isFullscreen" ref="tipFullscreen" class="toast show position-absolute top-0 end-0 m-2" role="alert" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
-        <img
-          src="@assets/icons/tips.png"
-          class="rounded me-2"
-          alt="Icono tips"
-          title="Icono tips"
-          width="30px"
-        />
+        <img src="@assets/icons/tips.png" class="rounded me-2" alt="Icono tips" title="Icono tips" width="30px" />
         <strong class="me-auto">Modo pantalla completa</strong>
-        <button
-          type="button"
-          class="btn-close"
-          data-bs-dismiss="toast"
-          aria-label="Close"
-        ></button>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
       </div>
       <div class="toast-body">
-        Habilita la pantalla completa para tener una mejor experiencia de
-        navegación. Para habilitar entra en
-        <span class="fw-bold fst-italic">
-          Ajustes > General > Habilitar modo pantalla completa</span
-        >
+        Habilita la pantalla completa para tener una mejor experiencia de navegación. Para habilitar entra en
+        <span class="fw-bold fst-italic"> Ajustes > General > Habilitar modo pantalla completa</span>
       </div>
     </div>
     <TaskBarView ref="taskBarView" />
@@ -207,8 +93,7 @@ export default {
   methods: {
     init() {
       Vue.prototype.$widthScreenContent = this.$refs.screenContent.offsetWidth;
-      Vue.prototype.$heightScreenContent =
-        this.$refs.screenContent.offsetHeight;
+      Vue.prototype.$heightScreenContent = this.$refs.screenContent.offsetHeight;
 
       let themeSession = sessionStorage.getItem('theme');
 
@@ -219,18 +104,14 @@ export default {
       }
     },
     cleanSelectProgram() {
-      this.$refs.screenContent
-        .querySelectorAll('.program')
-        .forEach((program) => {
-          program.classList.remove('selected');
-        });
+      this.$refs.screenContent.querySelectorAll('.program').forEach((program) => {
+        program.classList.remove('selected');
+      });
     },
     selectProgram(evt) {
-      this.$refs.screenContent
-        .querySelectorAll('.program')
-        .forEach((program) => {
-          program.classList.remove('selected');
-        });
+      this.$refs.screenContent.querySelectorAll('.program').forEach((program) => {
+        program.classList.remove('selected');
+      });
 
       if (!evt.currentTarget.classList.contains('selected')) {
         evt.currentTarget.classList.add('selected');
@@ -238,8 +119,7 @@ export default {
     },
     onResize() {
       Vue.prototype.$widthScreenContent = this.$refs.screenContent.offsetWidth;
-      Vue.prototype.$heightScreenContent =
-        this.$refs.screenContent.offsetHeight;
+      Vue.prototype.$heightScreenContent = this.$refs.screenContent.offsetHeight;
 
       Vue.prototype.$programs.forEach((program) => program.window.updateSize());
     },
@@ -262,14 +142,8 @@ export default {
       }
     },
     addWindow(programObject) {
-      const width =
-        programObject.width_default == 0
-          ? Vue.prototype.$widthScreenContent
-          : programObject.width_default;
-      const height =
-        programObject.height_default == 0
-          ? Vue.prototype.$heightScreenContent
-          : programObject.height_default;
+      const width = programObject.width_default == 0 ? Vue.prototype.$widthScreenContent : programObject.width_default;
+      const height = programObject.height_default == 0 ? Vue.prototype.$heightScreenContent : programObject.height_default;
       const x = programObject.x_default == 0 ? 0 : programObject.x_default;
       const y = programObject.y_default == 0 ? 0 : programObject.y_default;
 
@@ -315,14 +189,8 @@ export default {
 
           document.documentElement.style.removeProperty('--bs-primary-rgb');
           document.documentElement.style.removeProperty('--bs-secondary-rgb');
-          document.documentElement.style.setProperty(
-            '--bs-primary-rgb',
-            '93, 69, 149'
-          );
-          document.documentElement.style.setProperty(
-            '--bs-seconbndary-rgb',
-            '19, 116, 142'
-          );
+          document.documentElement.style.setProperty('--bs-primary-rgb', '93, 69, 149');
+          document.documentElement.style.setProperty('--bs-seconbndary-rgb', '19, 116, 142');
           break;
 
         case 'theme-2':
@@ -331,14 +199,8 @@ export default {
 
           document.documentElement.style.removeProperty('--bs-primary-rgb');
           document.documentElement.style.removeProperty('--bs-secondary-rgb');
-          document.documentElement.style.setProperty(
-            '--bs-primary-rgb',
-            '19, 116, 142'
-          );
-          document.documentElement.style.setProperty(
-            '--bs-secondary-rgb',
-            '93, 69, 149'
-          );
+          document.documentElement.style.setProperty('--bs-primary-rgb', '19, 116, 142');
+          document.documentElement.style.setProperty('--bs-secondary-rgb', '93, 69, 149');
           break;
 
         default:
@@ -363,7 +225,7 @@ export default {
 };
 </script>
 
-<style lang='css' scoped>
+<style lang="css" scoped>
 .screen {
   width: 100%;
   height: 100%;
@@ -375,12 +237,12 @@ export default {
 
 .screen.theme-1 {
   background-color: rgb(149, 190, 195);
-  background-image: url("../svg/xiao-theme-2.svg");
+  background-image: url('../svg/xiao-theme-2.svg');
 }
 
 .screen.theme-2 {
   background-color: rgb(33, 37, 41);
-  background-image: url("../svg/xiao-theme-1.svg");
+  background-image: url('../svg/xiao-theme-1.svg');
 }
 
 .screen-content {
@@ -405,7 +267,7 @@ export default {
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
 }
 

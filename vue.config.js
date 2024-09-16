@@ -27,14 +27,13 @@ module.exports = {
       ])
     ]
   },
-  chainWebpack: config => {
+  chainWebpack: (config) => {
     config.module
       .rule('scss')
       .oneOf('normal')
       .use('sass-loader')
       .loader('sass-loader')
-      .tap(options => {
-
+      .tap((options) => {
         return {
           ...options,
           sassOptions: {

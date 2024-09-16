@@ -3,64 +3,39 @@
     <div ref="card" class="card flip shadow-lg">
       <div class="flip-card-front">
         <header class="text-light d-flex justify-content-between p-4 pb-0">
-          <img
-            src="@assets/icons/coding.png"
-            class="my-auto ms-3 d-none d-md-block"
-            title="Icono fullstack developer"
-            alt="Icono fullstack developer"
-          />
+          <img src="@assets/icons/coding.png" class="my-auto ms-3 d-none d-md-block" title="Icono fullstack developer" alt="Icono fullstack developer" />
           <h4 class="mt-4 mx-2 fw-bold text-truncate">FULLSTACK DEVELOPER</h4>
-          <button
-            type="button"
-            class="btn btn-transparent btn-flip text-light me-3 my-auto"
-            title="Voltear la targeta"
-            @click="flip"
-          >
+          <button type="button" class="btn btn-transparent btn-flip text-light me-3 my-auto" title="Voltear la targeta" @click="flip">
             <i class="fa-solid fa-repeat fa-fw"></i>
           </button>
         </header>
         <div class="card-body p-0">
           <div ref="contentFront" class="d-flex gap-4 p-4">
             <div ref="photo" class="photo">
-              <img
-                src="@assets/img/me.jpg"
-                class="img-fluid"
-                title="Yo"
-                alt="Yo"
-              />
+              <img src="@assets/img/me.jpg" class="img-fluid" title="Yo" alt="Yo" />
             </div>
             <div ref="presentationFront" class="flex-grow-1 presentation">
               <h6 class="fw-bold my-2">Presentación</h6>
               <p>
-                ¡Hola! Soy Xiaolin Jin Lin y tengo {{ getYearsOld }} años. Desde
-                pequeño siempre me ha atraído el mundo de la tecnología, y a los
-                19 decidí meterme de lleno en la informática, eligiendo la
-                programación como mi camino.
+                ¡Hola! Soy Xiaolin Jin Lin y tengo {{ getYearsOld }} años. Desde pequeño siempre me ha atraído el mundo de la tecnología, y a los 19 decidí meterme de lleno en la informática,
+                eligiendo la programación como mi camino.
               </p>
               <p>
-                Estudié DAM (Desarrollo de Aplicaciones Multiplataforma) y luego
-                DAW (Desarrollo de Aplicaciones Web) en el
-                <a href="https://politecnics.barcelona/" target="_blank"
-                  >Centro de Estudios Politécnicos</a
-                >. A lo largo de estos años, he aprendido un montón y cada día
-                me gusta más este mundo. Tengo muchas ganas de seguir mejorando
-                y aprendiendo nuevas cosas.
+                Estudié DAM (Desarrollo de Aplicaciones Multiplataforma) y luego DAW (Desarrollo de Aplicaciones Web) en el
+                <a href="https://politecnics.barcelona/" target="_blank">Centro de Estudios Politécnicos</a>. A lo largo de estos años, he aprendido un montón y cada día me gusta más este mundo. Tengo
+                muchas ganas de seguir mejorando y aprendiendo nuevas cosas.
               </p>
               <p>
-                Aparte de la programación, también me gusta la danza, y eso me
-                ha ayudado a ser más constante, disciplinado y a fijarme en todos los detalles, algo que aplico
-                tanto en mi vida personal como en la profesional.
+                Aparte de la programación, también me gusta la danza, y eso me ha ayudado a ser más constante, disciplinado y a fijarme en todos los detalles, algo que aplico tanto en mi vida personal
+                como en la profesional.
               </p>
               <p>
-                Me encanta trabajar en equipo, proponer ideas y soluciones, y
-                siempre busco compartir lo que sé con los demás. Disfruto de
-                crear un buen ambiente y colaborar para sacar los proyectos
+                Me encanta trabajar en equipo, proponer ideas y soluciones, y siempre busco compartir lo que sé con los demás. Disfruto de crear un buen ambiente y colaborar para sacar los proyectos
                 adelante.
               </p>
               <h6 class="fw-bold">Idiomas</h6>
               <p>
-                Español (Nativo), Catalán (Nativo), Inglés (Intermedio), Chino
-                (Intermedio).
+                Español (Nativo), Catalán (Nativo), Inglés (Intermedio), Chino (Intermedio).
               </p>
               <h6 class="fw-bold">Hobbies</h6>
               <p>Danza.</p>
@@ -70,47 +45,18 @@
       </div>
       <div class="flip-card-back d-flex flex-column">
         <header class="text-light d-flex justify-content-end p-4 pb-0">
-          <button
-            type="button"
-            class="btn btn-transparent btn-flip text-light me-3 my-auto"
-            title="Voltear la targeta"
-            @click="flip"
-          >
+          <button type="button" class="btn btn-transparent btn-flip text-light me-3 my-auto" title="Voltear la targeta" @click="flip">
             <i class="fa-solid fa-repeat fa-fw"></i>
           </button>
         </header>
         <div class="card-body flex-grow-1">
-          <div
-            ref="contentBack"
-            class="d-flex flex-column justify-content-center align-items-center h-100 p-4"
-          >
-            <img
-              ref="logo"
-              src="@svg/xiao-theme-2.svg"
-              class="logo img-fluid"
-              title="Logo Xiao"
-              alt="Logo Xiao"
-            />
+          <div ref="contentBack" class="d-flex flex-column justify-content-center align-items-center h-100 p-4">
+            <img ref="logo" src="@svg/xiao-theme-2.svg" class="logo img-fluid" title="Logo Xiao" alt="Logo Xiao" />
             <label class="fw-bold text-center my-2">Redes sociales</label>
             <div class="d-flex justify-content-center">
-              <a
-                href="https://www.instagram.com/_xiao_97_/"
-                target="_blank"
-                title="Instgram"
-                ><img src="@assets/icons/instagram.png" alt="instagram"
-              /></a>
-              <a
-                href="https://www.linkedin.com/in/xiaolin-jin-lin-017287173/"
-                target="_blank"
-                title="Linkedin"
-                ><img src="@assets/icons/linkedin.png" alt="linkedin"
-              /></a>
-              <a
-                href="https://github.com/x140l1n"
-                target="_blank"
-                title="GitHub"
-                ><img src="@assets/icons/github.png" alt="github"
-              /></a>
+              <a href="https://www.instagram.com/_xiao_97_/" target="_blank" title="Instgram"><img src="@assets/icons/instagram.png" alt="instagram"/></a>
+              <a href="https://www.linkedin.com/in/xiaolin-jin-lin-017287173/" target="_blank" title="Linkedin"><img src="@assets/icons/linkedin.png" alt="linkedin"/></a>
+              <a href="https://github.com/x140l1n" target="_blank" title="GitHub"><img src="@assets/icons/github.png" alt="github"/></a>
             </div>
           </div>
         </div>
@@ -162,7 +108,7 @@ import { author } from '@root/package';
       this.$nextTick(() => {
         if (this.$refs.card.classList.contains('flip')) {
           this.$refs.content.scrollTo({
-            top: (this.$refs.logo.offsetTop - this.$refs.content.clientHeight / 2) +100
+            top: this.$refs.logo.offsetTop - this.$refs.content.clientHeight / 2 + 100
           });
         }
       });
@@ -178,10 +124,7 @@ import { author } from '@root/package';
       const months = today.getMonth() - birthdate.getMonth();
       let years = today.getFullYear() - birthdate.getFullYear();
 
-      if (
-        months < 0 ||
-        (months === 0 && today.getDate() < birthdate.getDate())
-      ) {
+      if (months < 0 || (months === 0 && today.getDate() < birthdate.getDate())) {
         years--;
       }
 
@@ -196,17 +139,15 @@ export default class AboutMe extends Program {
     this.width_default = 550;
     this.height_default = 400;
     this.maximized_default = true;
-    this.x_default =
-      Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
-    this.y_default =
-      Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
+    this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
+    this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
     this.icon_src = IconAboutMe;
     this.window = null;
   }
 }
 </script>
 
-<style lang='css' scoped>
+<style lang="css" scoped>
 .photo {
   max-width: 280px;
 }
@@ -214,7 +155,7 @@ export default class AboutMe extends Program {
 .photo.photo-sm {
   max-width: 100%;
   height: 500px;
-} 
+}
 
 .photo > img {
   object-fit: cover;
@@ -261,8 +202,7 @@ export default class AboutMe extends Program {
   border-radius: 25px 25px 0 0;
   border-bottom: 2px solid rgba(var(--bs-primary-rgb), 0.5);
   border-top: 1px solid rgba(var(--bs-primary-rgb), 0.8);
-  box-shadow: inset 0 1px 0 0 rgb(var(--bs-primary-rgb) / 80%),
-    0 1px 2px rgb(0 0 0 / 40%);
+  box-shadow: inset 0 1px 0 0 rgb(var(--bs-primary-rgb) / 80%), 0 1px 2px rgb(0 0 0 / 40%);
   opacity: 0.9;
 }
 
@@ -282,29 +222,15 @@ export default class AboutMe extends Program {
 .card:before {
   position: absolute;
   z-index: 2;
-  content: "";
+  content: '';
   left: 50%;
   top: -60px;
   margin: 0 0 0 -40px;
   height: 90px;
   width: 80px;
   background: rgba(255, 255, 255, 0.2);
-  background-image: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0.4) 0%,
-      rgba(255, 255, 255, 0.1) 50%,
-      rgba(255, 255, 255, 0.4) 100%
-    ),
-    linear-gradient(
-      to top,
-      rgba(255, 255, 255, 1) 0%,
-      rgba(255, 255, 255, 0) 40%
-    ),
-    linear-gradient(
-      to bottom,
-      rgba(255, 255, 255, 0.8) 0%,
-      rgba(255, 255, 255, 0) 40%
-    );
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.4) 100%),
+    linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 40%), linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 40%);
   border-radius: 5px;
   box-shadow: 0 0 0 1px rgb(0 0 0 / 80%);
   opacity: 0.5;
@@ -312,7 +238,7 @@ export default class AboutMe extends Program {
 
 .card:after {
   position: absolute;
-  content: "";
+  content: '';
   z-index: 2;
   height: 20px;
   width: 20px;
@@ -320,14 +246,13 @@ export default class AboutMe extends Program {
   left: 50%;
   margin: 0 0 0 -10px;
   border-radius: 50%;
-  box-shadow: 0 0 0 5px rgb(51 51 51 / 60%), 0 0 10px rgb(0 0 0 / 70%),
-    inset 2px 2px 2px rgb(0 0 0 / 50%);
+  box-shadow: 0 0 0 5px rgb(51 51 51 / 60%), 0 0 10px rgb(0 0 0 / 70%), inset 2px 2px 2px rgb(0 0 0 / 50%);
 }
 
 .card header:before {
   position: absolute;
   z-index: 1;
-  content: "";
+  content: '';
   left: 50%;
   top: 20px;
   margin: 0 0 0 -50px;
@@ -335,28 +260,10 @@ export default class AboutMe extends Program {
   width: 100px;
   border-radius: 25px;
   background-color: #333;
-  box-shadow: inset 1px 1px 0 1px rgb(0 0 0 / 30%),
-    inset -1px -1px 0 0 rgb(255 255 255 / 50%);
+  box-shadow: inset 1px 1px 0 1px rgb(0 0 0 / 30%), inset -1px -1px 0 0 rgb(255 255 255 / 50%);
 }
 
 .btn-flip {
   animation: glowing 1300ms infinite;
-}
-
-@keyframes glowing {
-  0% {
-    background-color: #0091b2;
-    box-shadow: 0 0 3px #0091b2;
-  }
-
-  50% {
-    background-color: #21c7ed;
-    box-shadow: 0 0 15px #21c7ed;
-  }
-
-  100% {
-    background-color: #0091b2;
-    box-shadow: 0 0 3px #0091b2;
-  }
 }
 </style>

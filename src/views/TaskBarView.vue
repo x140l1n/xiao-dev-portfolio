@@ -1,26 +1,20 @@
 <template>
-  <div class="taskbar bg-primary d-flex flex-row-reverse">
-    <span
-      class="taskbar-item taskbar-item-minimize-all border border-dark border-end-0 border-top-0 border-bottom-0"
-      @click="minimizeAll"
-    >
-    </span>
-    <Clock class="taskbar-item" />
+  <div class="taskbar bg-primary d-flex">
     <div class="taskbar-programs d-flex gap-2 justify-content-center align-items-center flex-grow-1">
       <div
         v-for="(program, index) in $programs"
         :tabindex="10 + index"
         :key="program.id"
         :id="`program-${program.id}`"
-        :class="`taskbar-item program ${
-          getProgramActiveId === program.id ? 'selected' : ''
-        }`"
+        :class="`taskbar-item program ${getProgramActiveId === program.id ? 'selected' : ''}`"
         :title="program.title"
         @click="selectProgram(program)"
       >
         <img class="img-fluid" :src="program.icon_src" :title="program.title" :alt="program.title" />
       </div>
     </div>
+    <Clock class="taskbar-item" />
+    <span class="taskbar-item taskbar-item-minimize-all border border-dark border-end-0 border-top-0 border-bottom-0" @click="minimizeAll"> </span>
   </div>
 </template>
 
@@ -52,7 +46,7 @@ export default {
 };
 </script>
 
-<style lang='css' scoped>
+<style lang="css" scoped>
 .taskbar {
   height: 3rem;
   width: 100%;
@@ -87,24 +81,6 @@ export default {
 .taskbar-item.program:active > img {
   transition: transform 0.2s;
   transform: scale(0.8);
-}
-
-@keyframes bounce {
-  0% {
-    transform: translateY(-10px);
-  }
-  30% {
-    transform: translateY(5px);
-  }
-  50% {
-    transform: translateY(0px);
-  }
-  80% {
-    transform: translateY(-5px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
 }
 
 .taskbar-item.program {
