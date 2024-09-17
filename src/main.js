@@ -4,7 +4,7 @@ import VueMoment from 'vue-moment';
 import resize from 'vue-resize-directive';
 import 'bootstrap/dist/js/bootstrap';
 import '@src/assets/scss/styles.scss';
-import 'moment/locale/es'
+import 'moment/locale/es';
 
 Vue.prototype.$env = {
   API_ENDPOINT: process.env.VUE_APP_API_ENDPOINT
@@ -12,7 +12,7 @@ Vue.prototype.$env = {
 
 Vue.config.productionTip = false;
 
-Vue.use(VueMoment, { locale: 'es' }); 
+Vue.use(VueMoment, { locale: 'es' });
 
 Vue.directive('resize', resize);
 

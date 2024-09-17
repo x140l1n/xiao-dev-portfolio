@@ -53,14 +53,7 @@
               <div class="d-flex justify-content-between">
                 <label class="fw-bold">Habilitar modo pantalla completa</label>
                 <div class="form-check form-switch">
-                  <input
-                    :id="`switch-fullscreen-${id}`"
-                    class="form-check-input"
-                    type="checkbox"
-                    :true-value="true"
-                    :false-value="false"
-                    v-model="$isFullscreen"
-                  />
+                  <input :id="`switch-fullscreen-${id}`" class="form-check-input" type="checkbox" :true-value="true" :false-value="false" v-model="$isFullscreen" />
                 </div>
               </div>
             </div>
