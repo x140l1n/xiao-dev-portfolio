@@ -4,11 +4,11 @@
       <div ref="tabsList" class="d-flex flex-nowrap">
         <li class="nav-item">
           <a
+            :id="`v-tab-1-${id}`"
             class="nav-link active d-flex"
             data-bs-toggle="tab"
             aria-current="page"
             href="#"
-            :id="`v-tab-1-${id}`"
             :data-bs-target="`#v-tab-pane-1-${id}`"
             type="button"
             role="tab"
@@ -21,13 +21,13 @@
         </li>
       </div>
       <li class="nav-item d-flex">
-        <a class="add-tab ms-2 d-flex m-auto text-dark" title="Añadir nueva pestaña" aria-current="page" href="#" :id="`v-add-tab-${id}`" type="button" role="tab" :aria-controls="`v-add-tab-`">
+        <a :id="`v-add-tab-${id}`" class="add-tab ms-2 d-flex m-auto text-dark" title="Añadir nueva pestaña" aria-current="page" href="#" type="button" role="tab" :aria-controls="`v-add-tab-`">
           <i class="fa-solid fa-plus m-auto"></i>
         </a>
       </li>
     </ul>
     <div ref="tabContent" class="tab-content flex-grow-1">
-      <div class="tab-pane show active d-flex flex-column h-100" :id="`v-tab-pane-1-${id}`" role="tabpanel" :aria-labelledby="`v-tab-pane-1-${id}`">
+      <div :id="`v-tab-pane-1-${id}`" class="tab-pane show active d-flex flex-column h-100" role="tabpanel" :aria-labelledby="`v-tab-pane-1-${id}`">
         <div class="p-2">
           <form @submit.prevent="search" :ref="`form-tab-pane-1-${id}`" :target="`iframe-tab-pane-1-${id}`" class="d-flex gap-2">
             <div class="flex-grow-1">

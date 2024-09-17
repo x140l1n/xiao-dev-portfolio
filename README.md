@@ -16,11 +16,10 @@ This repository contains my personal portfolio, developed using **Vue 2**. The p
 
 The portfolio is built with the following stack:
 
-- **Vue 2**: Main framework.
-- **Vue Router**: For route management.
+- **PHP**: Handles server-side logic for processing email submissions through the email.php file in the api/ folder.
+- **Vue 2**: Frontend framework.
 - **Bootstrap**: For styles and UI components.
 - **UUID**: For generating unique identifiers.
-- **Popper.js**: For managing popper elements.
 
 ## 🚀 Scripts
 

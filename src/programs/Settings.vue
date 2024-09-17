@@ -3,10 +3,10 @@
     <div class="d-flex align-items-start h-100 fs-6">
       <div ref="nav" class="nav justify-content-stretch flex-nowrap flex-column nav-pills me-3 shadow text-trucante bg-light overflow-auto" id="v-pills-tab" role="tablist" aria-orientation="vertical">
         <button
+          :id="`v-pills-general-tab-${id}`"
           type="button"
           class="nav-link active rounded-0 general"
           title="General"
-          :id="`v-pills-general-tab-${id}`"
           data-bs-toggle="pill"
           :data-bs-target="`#v-pills-general-${id}`"
           role="tab"
@@ -17,10 +17,10 @@
           <span>General</span>
         </button>
         <button
+          :id="`v-pills-personalization-tab-${id}`"
           type="button"
           class="nav-link rounded-0 theme"
           title="Temas"
-          :id="`v-pills-personalization-tab-${id}`"
           data-bs-toggle="pill"
           :data-bs-target="`#v-pills-personalization-${id}`"
           role="tab"
@@ -31,10 +31,10 @@
           <span>Temas</span>
         </button>
         <button
+          :id="`v-pills-about-tab-${id}`"
           type="button"
           class="nav-link rounded-0 about"
           title="Acerca de"
-          :id="`v-pills-about-tab-${id}`"
           data-bs-toggle="pill"
           :data-bs-target="`#v-pills-about-${id}`"
           role="tab"
@@ -46,7 +46,7 @@
         </button>
       </div>
       <div ref="tabContent" class="tab-content w-100">
-        <div class="tab-pane p-3 fade show active" :id="`v-pills-general-${id}`" role="tabpanel" :aria-labelledby="`v-pills-general-tab-${id}`">
+        <div :id="`v-pills-general-${id}`" class="tab-pane p-3 fade show active" role="tabpanel" :aria-labelledby="`v-pills-general-tab-${id}`">
           <h4>General</h4>
           <div class="card">
             <div class="card-body">
@@ -54,12 +54,11 @@
                 <label class="fw-bold">Habilitar modo pantalla completa</label>
                 <div class="form-check form-switch">
                   <input
+                    :id="`switch-fullscreen-${id}`"
                     class="form-check-input"
                     type="checkbox"
-                    :id="`switch-fullscreen-${id}`"
-                    true-value="true"
-                    false-value="false"
-                    @click="$isFullscreenFromSettings = true"
+                    :true-value="true"
+                    :false-value="false"
                     v-model="$isFullscreen"
                   />
                 </div>
@@ -67,7 +66,7 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane p-3 fade" :id="`v-pills-personalization-${id}`" role="tabpanel" :aria-labelledby="`v-pills-personalization-tab-${id}`">
+        <div :id="`v-pills-personalization-${id}`" class="tab-pane p-3 fade" role="tabpanel" :aria-labelledby="`v-pills-personalization-tab-${id}`">
           <h4>Temas</h4>
           <div class="card">
             <div class="card-body">
@@ -75,7 +74,7 @@
               <div class="d-flex flex-wrap mt-5">
                 <div class="theme-selector theme-1 p-3 my-2">
                   <div class="form-check fw-bold text-light">
-                    <input class="form-check-input" type="radio" :name="`selector-theme-${id}`" v-model="$themeSelected" value="theme-2" :id="`rdb-theme-2-${id}`" />
+                    <input :id="`rdb-theme-2-${id}`" class="form-check-input" type="radio" :name="`selector-theme-${id}`" v-model="$themeSelected" value="theme-2" />
                     <label class="form-check-label" :for="`rdb-theme-2-${id}`">
                       Tema azul oscuro
                     </label>
@@ -83,7 +82,7 @@
                 </div>
                 <div class="theme-selector theme-2 p-3 my-2">
                   <div class="form-check fw-bold text-dark">
-                    <input class="form-check-input" type="radio" :name="`selector-theme-${id}`" v-model="$themeSelected" value="theme-1" :id="`rdb-theme-1-${id}`" />
+                    <input :id="`rdb-theme-1-${id}`" class="form-check-input" type="radio" :name="`selector-theme-${id}`" v-model="$themeSelected" value="theme-1" />
                     <label class="form-check-label" :for="`rdb-theme-1-${id}`">
                       Tema morado
                     </label>
@@ -93,7 +92,7 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane p-3 fade" :id="`v-pills-about-${id}`" role="tabpanel" :aria-labelledby="`v-pills-about-tab-${id}`">
+        <div :id="`v-pills-about-${id}`" class="tab-pane p-3 fade" role="tabpanel" :aria-labelledby="`v-pills-about-tab-${id}`">
           <h4>Acerca de</h4>
           <div class="card">
             <div class="card-body">
@@ -189,9 +188,6 @@ import { date, version } from '@root/package';
     },
     getDateVersion() {
       return date;
-    },
-    selectTheme(theme) {
-      this.$themeSelected = theme;
     }
   }
 })

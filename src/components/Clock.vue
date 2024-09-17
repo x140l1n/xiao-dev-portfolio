@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     getFullDate() {
-      return moment().format('LL');
+      return `${moment().format('dddd, LL | h:mm')} (Hora local)`;
     }
   }
 };

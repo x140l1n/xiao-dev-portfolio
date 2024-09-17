@@ -51,9 +51,9 @@
             </div>
           </div>
           <div class="timeline-row">
-            <di data-animation="slide-right" class="timeline-time"
-              ><a href="https://politecnics.barcelona/" target="_blank">Centre d'Estudis Politècnics, Barcelona (España)</a><small>2019 - 2021</small></di
-            >
+            <div data-animation="slide-right" class="timeline-time">
+              <a href="https://politecnics.barcelona/" target="_blank">Centre d'Estudis Politècnics, Barcelona (España)</a><small>2019 - 2021</small>
+            </div>
             <div data-animation="slide-left" class="timeline-content">
               <i class="fa-solid fa-code"></i>
               <h5 class="fw-bold text-center">
@@ -134,7 +134,7 @@
             <div data-animation="slide-right" class="timeline-content">
               <i class="fa-solid fa-code"></i>
               <h5 class="fw-bold text-center">
-                DESARROLLADOR FULLSTACK / HELPDESK
+                DEVELOPER FULLSTACK / HELPDESK
               </h5>
               <ul>
                 <li>

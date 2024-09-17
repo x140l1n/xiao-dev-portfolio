@@ -119,6 +119,8 @@ export default {
       }
     },
     bringFront() {
+      this.onBringFront();
+
       this.$programs.forEach((program) => {
         program.window.$el.classList.remove('active');
       });
@@ -133,6 +135,8 @@ export default {
       this.$programActive = this.program;
     },
     minimize() {
+      this.onMinimize();
+
       this.$el.classList.remove('active');
       this.$el.classList.add('minimize');
 
@@ -193,8 +197,14 @@ export default {
     onResize() {
       if (this.program && typeof this.program.onResize === 'function') this.program.onResize();
     },
+    onMinimize() {
+      if (this.program && typeof this.program.onMinimize === 'function') this.program.onMinimize();
+    },
     onScroll() {
       if (this.program && typeof this.program.onScroll === 'function') this.program.onScroll();
+    },
+    onBringFront() {
+      if (this.program && typeof this.program.onBringFront === 'function') this.program.onBringFront();
     },
     dragElement(element, self) {
       element.onmousedown = dragMouseDown;
@@ -478,7 +488,8 @@ export default {
 }
 
 .window.closing {
-  animation: zoom-in-only-transform 0.2s;
+  animation: zoom-in-only-transform 0.5s;
+  transform: scale(0);
 }
 
 .active {

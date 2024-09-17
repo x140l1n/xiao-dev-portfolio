@@ -3,9 +3,9 @@
     <div class="taskbar-programs d-flex gap-2 justify-content-center align-items-center flex-grow-1">
       <div
         v-for="(program, index) in $programs"
-        :tabindex="10 + index"
-        :key="program.id"
         :id="`program-${program.id}`"
+        :key="program.id"
+        :tabindex="10 + index"
         :class="`taskbar-item program ${getProgramActiveId === program.id ? 'selected' : ''}`"
         :title="program.title"
         @click="selectProgram(program)"

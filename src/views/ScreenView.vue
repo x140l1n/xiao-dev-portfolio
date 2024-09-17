@@ -87,7 +87,7 @@ export default {
   },
   data() {
     return {
-      timoutOpenProgram: null
+      idTimeoutOpenProgram: null
     };
   },
   methods: {
@@ -124,9 +124,9 @@ export default {
       Vue.prototype.$programs.forEach((program) => program.window.updateSize());
     },
     openProgram(_program, default_props = {}) {
-      if (!this.timoutOpenProgram) {
-        this.timoutOpenProgram = setTimeout(() => {
-          this.timoutOpenProgram = null;
+      if (!this.idTimeoutOpenProgram) {
+        this.idTimeoutOpenProgram = setTimeout(() => {
+          this.idTimeoutOpenProgram = null;
         }, 1000);
 
         this.getProgram(_program).then((result) => {

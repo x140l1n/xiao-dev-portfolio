@@ -1,7 +1,6 @@
 <template>
   <div class="w-100 h-100 overflow-hidden">
-    <!--display pdf from @assets/documents/cv.pdf-->
-    <embed src="/cv.pdf" type="application/pdf" width="100%" height="100%" />
+    <embed v-if="!isMinimized" src="/cv.pdf" type="application/pdf" width="100%" height="100%" />
   </div>
 </template>
 
@@ -22,11 +21,18 @@ import IconPdf from '@assets/icons/pdf.png';
     this.init();
   },
   data() {
-    return {};
+    return {
+      isMinimized: false
+    };
   },
   methods: {
     init() {},
-    onResize() {}
+    onMinimize() {
+      this.isMinimized = true;
+    },
+    onBringFront() {
+      this.isMinimized = false;
+    }
   },
   computed: {}
 })
