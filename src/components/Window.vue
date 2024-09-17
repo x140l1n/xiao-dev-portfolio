@@ -128,10 +128,6 @@ export default {
       this.$el.classList.remove('minimize');
       this.$el.classList.add('active');
 
-      if (this.isMaximized && !this.$programsMaximized.find((program) => program.id === this.program.id)) {
-        this.$programsMaximized.push(this.program);
-      }
-
       this.$programActive = this.program;
     },
     minimize() {
@@ -141,10 +137,6 @@ export default {
       this.$el.classList.add('minimize');
 
       this.$programActive = null;
-
-      setTimeout(() => {
-        this.$programsMaximized = this.$programsMaximized.filter((program) => program.id !== this.program.id);
-      }, 500);
 
       this.bringFrontLastProgram();
     },
@@ -172,8 +164,6 @@ export default {
 
         this.bringFrontLastProgram();
       }, 200);
-
-      this.$programsMaximized = this.$programsMaximized.filter((program) => program.id !== this.program.id);
     },
     bringFrontLastProgram() {
       const programs_reverse = [...this.$programs].reverse();
@@ -442,8 +432,6 @@ export default {
         this.$refs.window.classList.remove('resizers');
 
         this.$refs.window.classList.add('maximize');
-
-        this.$programsMaximized.push(this.program);
       } else {
         this.size = { ...this.sizePrev };
 
@@ -452,8 +440,6 @@ export default {
         this.$refs.window.classList.add('resizers');
 
         this.$refs.window.classList.remove('maximize');
-
-        this.$programsMaximized = this.$programsMaximized.filter((program) => program.id !== this.program.id);
       }
     }
   }

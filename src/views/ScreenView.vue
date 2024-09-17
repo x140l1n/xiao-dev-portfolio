@@ -1,6 +1,6 @@
 <template>
   <div ref="screen" class="screen bg-image user-none-select" v-resize="onResize">
-    <div ref="screenContent" :class="['screen-content', someProgramMaximized ? '' : 'overflow-auto']" @click.self="cleanSelectProgram">
+    <div ref="screenContent" class="screen-content" @click.self="cleanSelectProgram">
       <div class="program p-2">
         <button type="button" class="program-inner program-knowledge p-2" title="Ajustes" alt="Ajustes" @click="openProgram('Settings')" tabindex="4">
           <img id="program-settings" src="@assets/icons/settings.png" alt="Logo ajustes" />
@@ -216,11 +216,6 @@ export default {
 
         this.$urlToOpen = null;
       }
-    }
-  },
-  computed: {
-    someProgramMaximized() {
-      return this.$programsMaximized.length > 0;
     }
   }
 };

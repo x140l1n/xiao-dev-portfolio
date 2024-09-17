@@ -68,17 +68,6 @@ Object.defineProperty(Vue.prototype, '$programs', {
   }
 });
 
-const observableProgramsMaximized = Vue.observable({ programsMaximized: [] });
-
-Object.defineProperty(Vue.prototype, '$programsMaximized', {
-  get() {
-    return observableProgramsMaximized.programsMaximized;
-  },
-  set(value) {
-    observableProgramsMaximized.programsMaximized = value;
-  }
-});
-
 const observableProgramActive = Vue.observable({ programActive: null });
 
 Object.defineProperty(Vue.prototype, '$programActive', {
