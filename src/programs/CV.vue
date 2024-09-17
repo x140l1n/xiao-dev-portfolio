@@ -1,11 +1,10 @@
 <template>
   <div class="w-100 h-100 overflow-hidden">
-    <embed v-if="!isMinimized" src="/cv.pdf" type="application/pdf" width="100%" height="100%" />
+    <iframe src="/cv.pdf" width="100%" height="100%" />
   </div>
 </template>
 
 <script>
-import Vue from 'vue';
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
 import IconPdf from '@assets/icons/pdf.png';
@@ -40,12 +39,12 @@ export default class Knowledge extends Program {
   //Initialize the variables of superclass Program.
   created() {
     this.title = 'Currículum Vitae';
-    this.width_default = 400;
-    this.height_default = 600;
-    this.maximized_default = true;
-    this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
-    this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
-    this.icon_src = IconPdf;
+    this.widthDefault = 400;
+    this.heightDefault = 600;
+    this.maximizedDefault = true;
+    this.xDefault = this.$widthScreenContent / 2 - this.widthDefault / 2;
+    this.yDefault = this.$heightScreenContent / 2 - this.heightDefault / 2;
+    this.iconSrc = IconPdf;
     this.window = null;
   }
 }

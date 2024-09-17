@@ -46,9 +46,7 @@ Vue.directive('init-animation', {
       { root: el, threshold: options.threshold }
     );
 
-    animations.forEach((animation) => {
-      observer.observe(animation);
-    });
+    animations.forEach((animation) => observer.observe(animation));
 
     binding.value = observer;
   },
@@ -65,6 +63,28 @@ Object.defineProperty(Vue.prototype, '$programs', {
   },
   set(value) {
     observablePrograms.programs = value;
+  }
+});
+
+const observableWidthScreenContent = Vue.observable({ widthScreenContent: null });
+
+Object.defineProperty(Vue.prototype, '$widthScreenContent', {
+  get() {
+    return observableWidthScreenContent.widthScreenContent;
+  },
+  set(value) {
+    observableWidthScreenContent.widthScreenContent = value;
+  }
+});
+
+const observableHeightScreenContent = Vue.observable({ heightScreenContent: null });
+
+Object.defineProperty(Vue.prototype, '$heightScreenContent', {
+  get() {
+    return observableHeightScreenContent.heightScreenContent;
+  },
+  set(value) {
+    observableHeightScreenContent.heightScreenContent = value;
   }
 });
 

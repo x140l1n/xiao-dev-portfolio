@@ -12,17 +12,48 @@ $btn-active-box-shadow: none;
   scroll-behavior: smooth;
 }
 
+.screen.theme-1 {
+  --bs-primary-rgb: 93, 69, 149;
+  --bs-primary-light-rgb: 123, 99, 179;
+
+  --bs-secondary-rgb: 19, 116, 142;
+  --bs-secondary-light-rgb: 49, 146, 172;
+
+  --bs-nav-link-primary-color: #5d4595 !important;
+  --bs-nav-link-active-primary-color: #ffffff !important;
+}
+
+.screen.theme-2 {
+  --bs-primary-rgb: 19, 116, 142;
+  --bs-primary-light-rgb: 149, 190, 195;
+
+  --bs-secondary-rgb: 93, 69, 149;
+  --bs-secondary-light-rgb: 49, 146, 172;
+
+  --bs-nav-link-primary-color: #13748e !important;
+  --bs-nav-link-active-primary-color: #ffffff !important;
+}
+
 img {
   image-rendering: -webkit-optimize-contrast;
 }
 
-.nav-link.active {
-  background-color: rgb(var(--bs-primary-rgb)) !important;
-  color: white !important;
+.no-transition {
+  transition: none !important;
 }
 
 .nav-link {
-  color: rgb(var(--bs-primary-rgb)) !important;
+  color: var(--bs-nav-link-primary-color) !important;
+}
+
+.nav-link.active {
+  background-color: rgb(var(--bs-primary-rgb)) !important;
+  color: var(--bs-nav-link-active-primary-color) !important;
+}
+
+.nav-link:not(.active):hover {
+  background-color: rgb(var(--bs-primary-light-rgb)) !important;
+  color: var(--bs-nav-link-active-primary-color) !important;
 }
 
 [data-animation='slide-up'].animated {

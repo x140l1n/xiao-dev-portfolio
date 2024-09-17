@@ -4,7 +4,7 @@
       <div class="card mx-auto shadow">
         <div class="card-body d-flex">
           <div class="logo m-auto">
-            <img src="@assets/icons/logo_arkanoid.png" alt="Logo Arkanoid" title="Arkanoid" class="img-fluid" />
+            <img src="@assets/icons/logo_arkanoid.png" alt="Logo Arkanoid" title="Arkanoid" class="img-fluid" draggable="false" />
           </div>
           <div class="flex-grow-1 description p-4">
             <h5 class="fw-bold">Arkanoid</h5>
@@ -13,11 +13,11 @@
             </p>
             <div class="d-flex flex-wrap mt-4">
               <a role="button" @click="openBrowser('https://x140l1n.github.io/Arkanoid/')" class="mx-2" alt="Jugar arkanoid" title="Jugar arkanoid">
-                <img src="@assets/icons/play.png" alt="Jugar arkanoid" class="me-2" title="Jugar arkanoid" />
+                <img src="@assets/icons/play.png" alt="Jugar arkanoid" class="me-2" title="Jugar arkanoid" draggable="false" />
                 Jugar
               </a>
               <a href="https://github.com/x140l1n/Arkanoid" target="_blank" class="mx-2" alt="GitHub arkanoid" title="GitHub arkanoid">
-                <img src="@assets/icons/github.png" alt="GitHub arkanoid" class="me-2" title="GitHub arkanoid" />
+                <img src="@assets/icons/github.png" alt="GitHub arkanoid" class="me-2" title="GitHub arkanoid" draggable="false" />
                 GitHub arkanoid
               </a>
             </div>
@@ -34,7 +34,7 @@
       <div class="card mx-auto shadow">
         <div class="card-body d-flex">
           <div class="logo m-auto">
-            <img src="@assets/icons/logo_ibroggi.png" alt="Logo IBroggi" title="IBroggi" class="img-fluid" />
+            <img src="@assets/icons/logo_ibroggi.png" alt="Logo IBroggi" title="IBroggi" class="img-fluid" draggable="false" />
           </div>
           <div class="flex-grow-1 description p-4">
             <h5 class="fw-bold">IBroggi 112</h5>
@@ -44,15 +44,15 @@
             </p>
             <div class="d-flex flex-wrap mt-4">
               <a href="https://youtu.be/kF6py0E8ma0" target="_blank" class="mx-2" alt="Vídeo ibroggi 1" title="Vídeo ibroggi 1">
-                <img src="@assets/icons/youtube.png" alt="Vídeo ibroggi 1" class="me-2" title="Vídeo ibroggi 1" />
+                <img src="@assets/icons/youtube.png" alt="Vídeo ibroggi 1" class="me-2" title="Vídeo ibroggi 1" draggable="false" />
                 Vídeo ibroggi 1
               </a>
               <a href="https://youtu.be/VhKQIjMSxzg" target="_blank" class="mx-2" alt="Vídeo ibroggi 2" title="Vídeo ibroggi 2">
-                <img src="@assets/icons/youtube.png" alt="Vídeo ibroggi 2" class="me-2" title="Vídeo ibroggi 2" />
+                <img src="@assets/icons/youtube.png" alt="Vídeo ibroggi 2" class="me-2" title="Vídeo ibroggi 2" draggable="false" />
                 Vídeo ibroggi 2
               </a>
               <a href="https://github.com/DevinSJ/project-broggi" target="_blank" class="mx-2" alt="GitHub ibroggi" title="GitHub ibroggi">
-                <img src="@assets/icons/github.png" alt="GitHub ibroggi" class="me-2" title="GitHub ibroggi" />
+                <img src="@assets/icons/github.png" alt="GitHub ibroggi" class="me-2" title="GitHub ibroggi" draggable="false" />
                 GitHub ibroggi
               </a>
             </div>
@@ -73,7 +73,7 @@
       <div class="card mx-auto shadow">
         <div class="card-body d-flex">
           <div class="logo m-auto">
-            <img src="@assets/icons/logo_ecoarts.png" alt="Logo ECOARTS" title="ECOARTS" class="img-fluid" />
+            <img src="@assets/icons/logo_ecoarts.png" alt="Logo ECOARTS" title="ECOARTS" class="img-fluid" draggable="false" />
           </div>
           <div class="flex-grow-1 description p-4">
             <h5 class="fw-bold">Ecoarts</h5>
@@ -94,19 +94,19 @@
             </p>
             <div class="d-flex flex-wrap mt-4">
               <a href="https://www.youtube.com/watch?v=wfosd7CLt9s&ab_channel=DevinSchlippe" class="mx-2" target="_blank" alt="Vídeo ecoarts android" title="Vídeo ecoarts android">
-                <img src="@assets/icons/youtube.png" alt="Vídeo ecoarts android" class="me-2" title="Vídeo ecoarts android" />
+                <img src="@assets/icons/youtube.png" alt="Vídeo ecoarts android" class="me-2" title="Vídeo ecoarts android" draggable="false" />
                 Vídeo ecoarts android
               </a>
               <a href="https://www.youtube.com/watch?v=b-FnBSv8TRY&ab_channel=DevinSchlippe" class="mx-2" target="_blank" alt="Vídeo ecoarts android" title="Vídeo ecoarts android">
-                <img src="@assets/icons/youtube.png" alt="Vídeo ecoarts escritorio" class="me-2" title="Vídeo ecoarts escritorio" />
+                <img src="@assets/icons/youtube.png" alt="Vídeo ecoarts escritorio" class="me-2" title="Vídeo ecoarts escritorio" draggable="false" />
                 Vídeo ecoarts escritorio
               </a>
               <a href="https://github.com/x140l1n/ECOARTS-ANDROID" class="mx-2" alt="GitHub ecoarts android" target="_blank" title="GitHub ecoarts android">
-                <img src="@assets/icons/github.png" alt="GitHub ecoarts android" class="me-2" title="GitHub ecoarts android" />
+                <img src="@assets/icons/github.png" alt="GitHub ecoarts android" class="me-2" title="GitHub ecoarts android" draggable="false" />
                 GitHub ecoarts android
               </a>
               <a href="https://github.com/x140l1n/ECOARTS-DESKTOP" class="mx-2" alt="GitHub ecoarts android" target="_blank" title="GitHub ecoarts android">
-                <img src="@assets/icons/github.png" alt="GitHub ecoarts escritorio" class="me-2" title="GitHub ecoarts escritorio" />
+                <img src="@assets/icons/github.png" alt="GitHub ecoarts escritorio" class="me-2" title="GitHub ecoarts escritorio" draggable="false" />
                 GitHub ecoarts escritorio
               </a>
             </div>
@@ -125,7 +125,7 @@
       <div class="card mx-auto shadow">
         <div class="card-body d-flex">
           <div class="logo m-auto">
-            <img src="@assets/icons/logo_chrysallis.png" alt="Logo Chrysallis" title="Chrysallis" class="img-fluid" />
+            <img src="@assets/icons/logo_chrysallis.png" alt="Logo Chrysallis" title="Chrysallis" class="img-fluid" draggable="false" />
           </div>
           <div class="flex-grow-1 description p-4">
             <h5 class="fw-bold">Chrysallis</h5>
@@ -139,11 +139,11 @@
             </p>
             <div class="d-flex flex-wrap mt-4">
               <a href="https://www.youtube.com/watch?v=O_hz8wCR060&ab_channel=DanielSorianoBarber%C3%A1n" target="_blank" class="mx-2" alt="Vídeo chrysallis android" title="Vídeo chrysallis android">
-                <img src="@assets/icons/youtube.png" alt="Vídeo chrysallis android" class="me-2" title="Vídeo chrysallis android" />
+                <img src="@assets/icons/youtube.png" alt="Vídeo chrysallis android" class="me-2" title="Vídeo chrysallis android" draggable="false" />
                 Vídeo chrysallis android
               </a>
               <a href="https://www.youtube.com/watch?v=l6Po2-P1JEg&ab_channel=DanielSorianoBarber%C3%A1n" target="_blank" class="mx-2" alt="Vídeo chrysallis android" title="Vídeo chrysallis android">
-                <img src="@assets/icons/youtube.png" alt="Vídeo chrysallis escritorio" class="me-2" title="Vídeo chrysallis escritorio" />
+                <img src="@assets/icons/youtube.png" alt="Vídeo chrysallis escritorio" class="me-2" title="Vídeo chrysallis escritorio" draggable="false" />
                 Vídeo chrysallis escritorio
               </a>
             </div>
@@ -163,7 +163,7 @@
       <div class="card mx-auto shadow">
         <div class="card-body d-flex">
           <div class="logo m-auto">
-            <img src="@assets/icons/logo_space_invaders.png" alt="Logo Space Invaders" title="Space Invaders" class="img-fluid" />
+            <img src="@assets/icons/logo_space_invaders.png" alt="Logo Space Invaders" title="Space Invaders" class="img-fluid" draggable="false" />
           </div>
           <div class="flex-grow-1 description p-4">
             <h5 class="fw-bold">Space Invaders</h5>
@@ -173,11 +173,11 @@
             <p>El juego es compatible con Android y Windows.</p>
             <div class="d-flex flex-wrap mt-4">
               <a href="https://www.youtube.com/watch?v=LxX2LFaD8xw&ab_channel=XiaolinJinLin" target="_blank" class="mx-2" alt="Vídeo space invaders" title="Vídeo space invaders">
-                <img src="@assets/icons/youtube.png" alt="Vídeo space invaders" class="me-2" title="Vídeo space invaders" />
+                <img src="@assets/icons/youtube.png" alt="Vídeo space invaders" class="me-2" title="Vídeo space invaders" draggable="false" />
                 Vídeo space invaders
               </a>
               <a href="https://github.com/x140l1n/SPACE-INVADERS-GDX" target="_blank" class="mx-2" alt="GitHub space invaders" title="GitHub space invaders">
-                <img src="@assets/icons/github.png" alt="GitHub space invaders" class="me-2" title="GitHub space invaders" />
+                <img src="@assets/icons/github.png" alt="GitHub space invaders" class="me-2" title="GitHub space invaders" draggable="false" />
                 GitHub space invaders
               </a>
             </div>
@@ -196,7 +196,7 @@
             Para ver más proyectos, visita mi perfil de GitHub 😎
           </p>
           <a href="https://github.com/x140l1n/" target="_blank" class="p-0">
-            <img src="@assets/icons/github_96px.png" alt="GitHub" />
+            <img src="@assets/icons/github_96px.png" alt="GitHub" draggable="false" />
           </a>
         </div>
       </div>
@@ -205,7 +205,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
 import IconProjects from '@assets/icons/projects.png';
@@ -227,13 +226,9 @@ import IconProjects from '@assets/icons/projects.png';
     init() {},
     onResize() {
       if (this.$el.clientWidth < 576) {
-        this.$refs.content.querySelectorAll('.card.project > .card-body').forEach((element) => {
-          element.classList.add('flex-column');
-        });
+        this.$refs.content.querySelectorAll('.card > .card-body').forEach((element) => element.classList.add('flex-column'));
       } else {
-        this.$refs.content.querySelectorAll('.card.project > .card-body').forEach((element) => {
-          element.classList.remove('flex-column');
-        });
+        this.$refs.content.querySelectorAll('.card > .card-body').forEach((element) => element.classList.remove('flex-column'));
       }
     },
     openBrowser(url) {
@@ -246,12 +241,12 @@ export default class Projects extends Program {
   //Initialize the variables of superclass Program.
   created() {
     this.title = 'Mis proyectos';
-    this.width_default = 550;
-    this.height_default = 400;
-    this.maximized_default = true;
-    this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
-    this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
-    this.icon_src = IconProjects;
+    this.widthDefault = 550;
+    this.heightDefault = 400;
+    this.maximizedDefault = true;
+    this.xDefault = this.$widthScreenContent / 2 - this.widthDefault / 2;
+    this.yDefault = this.$heightScreenContent / 2 - this.heightDefault / 2;
+    this.iconSrc = IconProjects;
     this.window = null;
   }
 }

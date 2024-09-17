@@ -1,5 +1,5 @@
 <template>
-  <div class="h-100">
+  <div class="w-100 h-100">
     <form @submit.prevent="onSubmit" v-if="!showSuccess" class="overflow-auto h-100 p-4">
       <div class="mb-3 mx-2">
         <h5 class="fw-bold">
@@ -45,7 +45,7 @@
       </div>
     </form>
     <div class="d-flex flex-column justify-content-center h-100 text-center" v-else>
-      <img src="@assets/img/contactme.png" class="img-fluid mx-auto" />
+      <img src="@assets/img/contactme.png" class="img-fluid mx-auto" title="Contáctame" draggable="false" />
       <h3 class="mx-auto fw-bold my-4">
         ¡Muchas gracias por contactar conmigo!
       </h3>
@@ -55,7 +55,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
 import IconEmail from '@assets/icons/email.png';
@@ -130,12 +129,12 @@ export default class ContactMe extends Program {
   //Initialize the variables of superclass Program.
   created() {
     this.title = 'Contáctame';
-    this.width_default = 550;
-    this.height_default = 400;
-    this.maximized_default = true;
-    this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
-    this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
-    this.icon_src = IconEmail;
+    this.widthDefault = 550;
+    this.heightDefault = 400;
+    this.maximizedDefault = true;
+    this.xDefault = this.$widthScreenContent / 2 - this.widthDefault / 2;
+    this.yDefault = this.$heightScreenContent / 2 - this.heightDefault / 2;
+    this.iconSrc = IconEmail;
     this.window = null;
   }
 }

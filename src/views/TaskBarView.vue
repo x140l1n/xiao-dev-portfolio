@@ -10,7 +10,7 @@
         :title="program.title"
         @click="selectProgram(program)"
       >
-        <img class="img-fluid" :src="program.icon_src" :title="program.title" :alt="program.title" />
+        <img class="img-fluid" :src="program.iconSrc" :title="program.title" :alt="program.title" draggable="false" />
       </div>
     </div>
     <Clock class="taskbar-item" />
@@ -88,33 +88,5 @@ export default {
 
 .taskbar-item.program > img {
   object-fit: fill;
-}
-
-.taskbar-programs {
-  overflow-x: auto;
-  overflow-y: hidden;
-}
-
-.taskbar-programs::-webkit-scrollbar {
-  width: 5px;
-  height: 5px;
-  border-radius: 5px;
-}
-
-/* Track */
-.taskbar-programs::-webkit-scrollbar-track {
-  border-radius: 5px;
-  background: #f1f1f1;
-}
-
-/* Handle */
-.taskbar-programs::-webkit-scrollbar-thumb {
-  background: #888;
-  border-radius: 5px;
-}
-
-/* Handle on hover */
-.taskbar-programs::-webkit-scrollbar-thumb:hover {
-  background: #555;
 }
 </style>

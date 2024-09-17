@@ -14,13 +14,13 @@
               </p>
             </div>
             <div class="col-md-4 d-flex flex-column gap-5 justify-content-center align-items-center">
-              <button type="button" tabindex="3" :class="`btn-on-off d-inline rounded-circle mb-2 ${isMonitorOn ? 'btn-on' : 'btn-off'}`" title="Encender monitor" @click="isMonitorOn = !isMonitorOn">
+              <button type="button" tabindex="3" class="btn-on d-inline rounded-circle mb-2" title="Encender monitor" @click="isMonitorOn = true">
                 <i class="fa-solid fa-power-off"></i>
               </button>
             </div>
           </div>
         </div>
-        <img src="@assets/img/greet.png" alt="Saludo" title="Saludo" class="image-greet" v-if="!isMonitorOn" />
+        <img v-if="!isMonitorOn" src="@assets/img/greet.png" alt="Saludo" title="Saludo" class="image-greet" draggable="false" />
         <ScreenView ref="screenView" v-show="isMonitorOn" />
       </div>
     </div>
@@ -55,7 +55,7 @@ export default {
       this.checkFullscreen();
     },
     checkFullscreen() {
-      this.$isFullscreen = !!(window.screenTop && window.screenY);
+      this.$isFullscreen = !!(window.screenTop && window.screenY) || document.fullscreenElement || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement;
     }
   },
   watch: {
@@ -70,7 +70,7 @@ export default {
         } else if (document.documentElement.msRequestFullscreen) {
           document.documentElement.msRequestFullscreen();
         }
-      } else {
+      } else if (document.fullscreenElement || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement) {
         if (document.exitFullscreen) {
           document.exitFullscreen();
         } else if (document.webkitExitFullscreen) {
@@ -113,10 +113,19 @@ export default {
   z-index: 5;
 }
 
-.btn-on-off {
+.btn-on {
+  border: 0;
   min-width: 100px;
   min-height: 100px;
   font-size: 3rem;
+  box-shadow: 0 0 10px rgb(210, 23, 23);
+  color: rgb(210, 23, 23);
+}
+
+.btn-on:active,
+.btn-off:active {
+  box-shadow: inset 0px 0px 20px 1px rgba(0,0,0,0.75) !important;
+  outline: none;
 }
 
 .monitor {
@@ -130,13 +139,6 @@ export default {
   height: 100%;
   overflow: hidden;
   padding: 0;
-}
-
-.btn-off,
-.btn-off:active,
-.btn-off:focus {
-  color: rgb(210, 23, 23);
-  box-shadow: 0 0 10px rgb(210, 23, 23);
 }
 
 .layer-on-off {

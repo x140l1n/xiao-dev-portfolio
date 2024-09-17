@@ -3,19 +3,19 @@
     <div ref="screenContent" class="screen-content" @click.self="cleanSelectProgram">
       <div class="program p-2">
         <button type="button" class="program-inner program-knowledge p-2" title="Ajustes" alt="Ajustes" @click="openProgram('Settings')" tabindex="4">
-          <img id="program-settings" src="@assets/icons/settings.png" alt="Logo ajustes" />
+          <img id="program-settings" src="@assets/icons/settings.png" alt="Logo ajustes" draggable="false" />
           <label class="text-light" for="program-settings">Ajustes</label>
         </button>
       </div>
       <div class="program p-2">
         <button type="button" class="program-inner p-2" title="Sobre mi" alt="Sobre mi" @click="openProgram('AboutMe')" tabindex="5">
-          <img id="program-about-me" src="@assets/icons/about-me.png" alt="Logo sobre mi" />
+          <img id="program-about-me" src="@assets/icons/about-me.png" alt="Logo sobre mi" draggable="false" />
           <label class="text-light" for="program-about-me">Sobre mi</label>
         </button>
       </div>
       <div class="program p-2">
         <button type="button" class="program-inner program-knowledge p-2" title="Mis conocimientos" alt="Mis conocimientos" @click="openProgram('Knowledge')" tabindex="6">
-          <img id="program-knowledge" src="@assets/icons/knowledge.png" alt="Logo mis conocimientos" />
+          <img id="program-knowledge" src="@assets/icons/knowledge.png" alt="Logo mis conocimientos" draggable="false" />
           <label class="text-light" for="program-knowledge">Mis conocimientos</label>
         </button>
       </div>
@@ -28,47 +28,47 @@
           @click="openProgram('StudiesExperiences')"
           tabindex="7"
         >
-          <img id="program-experiences-studies" src="@assets/icons/experiences-studies.png" alt="Logo estudios y experiencias" />
+          <img id="program-experiences-studies" src="@assets/icons/experiences-studies.png" alt="Logo estudios y experiencias" draggable="false" />
           <label class="text-light" for="program-experiences-studies">Estudios y experiencias</label>
         </button>
       </div>
       <div class="program p-2">
         <button type="button" class="program-inner program-projects p-2" title="Mis proyectos" alt="Mis proyectos" @click="openProgram('Projects')" tabindex="8">
-          <img id="program-projects" src="@assets/icons/projects.png" alt="Logo Mis proyectos" />
+          <img id="program-projects" src="@assets/icons/projects.png" alt="Logo Mis proyectos" draggable="false" />
           <label class="text-light" for="program-projects">Mis proyectos</label>
         </button>
       </div>
       <div class="program p-2">
         <button type="button" class="program-inner program-contactme p-2" title="Contáctame" alt="Contáctame" @click="openProgram('ContactMe')" tabindex="9">
-          <img id="program-contactme" src="@assets/icons/email.png" alt="Logo contáctame" />
+          <img id="program-contactme" src="@assets/icons/email.png" alt="Logo contáctame" draggable="false" />
           <label class="text-light" for="program-contactme">Contáctame</label>
         </button>
       </div>
       <div class="program p-2">
         <button type="button" class="program-inner program-browser p-2" title="Mis proyectos" alt="Mis proyectos" @click="openProgram('Browser')" tabindex="10">
-          <img id="program-browser" src="@assets/icons/browser.png" alt="Logo Navegador" />
+          <img id="program-browser" src="@assets/icons/browser.png" alt="Logo Navegador" draggable="false" />
           <label class="text-light" for="program-browser">Navegador</label>
         </button>
       </div>
       <div class="program p-2">
         <button type="button" class="program-inner program-cv p-2" title="Currículum vitae" alt="Currículum vitae" @click="openProgram('CV')" tabindex="11">
-          <img id="program-cv" src="@assets/icons/pdf.png" alt="Logo PDF" />
+          <img id="program-cv" src="@assets/icons/pdf.png" alt="Logo PDF" draggable="false" />
           <label class="text-light" for="program-cv">Currículum Vitae</label>
         </button>
       </div>
     </div>
-    <div v-if="!$isFullscreen" ref="tipFullscreen" class="toast show position-absolute top-0 end-0 m-2" role="alert" aria-live="assertive" aria-atomic="true">
+    <div v-if="!isClosedToast" ref="tipFullscreen" role="alert" class="toast show position-fixed top-0 end-0 m-2 user-select-none" draggable="false" tabindex="-1" aria-live="assertive" aria-atomic="true">
       <div class="toast-header">
-        <img src="@assets/icons/tips.png" class="rounded me-2" alt="Icono tips" title="Icono tips" width="30px" />
+        <img src="@assets/icons/tips.png" class="rounded me-2" alt="Icono tips" title="Icono tips" width="30px" draggable="false" />
         <strong class="me-auto">Modo pantalla completa</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        <button type="button" class="btn-close" title="Cerrar tips" @click="isClosedToast = true"> </button>
       </div>
       <div class="toast-body">
         Habilita la pantalla completa para tener una mejor experiencia de navegación. Para habilitar entra en
         <span class="fw-bold fst-italic"> Ajustes > General > Habilitar modo pantalla completa</span>
       </div>
     </div>
-    <TaskBarView ref="taskBarView" />
+    <TaskBarView ref="taskBarView" draggable="false" />
   </div>
 </template>
 
@@ -85,43 +85,33 @@ export default {
   },
   data() {
     return {
-      idTimeoutOpenProgram: null
+      idTimeoutOpenProgram: null,
+      isClosedToast: false,
     };
   },
   methods: {
     init() {
-      Vue.prototype.$widthScreenContent = this.$refs.screenContent.offsetWidth;
-      Vue.prototype.$heightScreenContent = this.$refs.screenContent.offsetHeight;
+      const themeSelected = sessionStorage.getItem('theme') || 'theme-2';
 
-      let themeSession = sessionStorage.getItem('theme');
+      this.$themeSelected = themeSelected;
 
-      if (themeSession) {
-        this.$themeSelected = themeSession;
-      } else {
-        this.$themeSelected = 'theme-2';
-      }
+      this.onResize();
     },
     cleanSelectProgram() {
-      this.$refs.screenContent.querySelectorAll('.program').forEach((program) => {
-        program.classList.remove('selected');
-      });
+      this.$refs.screenContent.querySelectorAll('.program').forEach((program) => program.classList.remove('selected'));
     },
     selectProgram(evt) {
-      this.$refs.screenContent.querySelectorAll('.program').forEach((program) => {
-        program.classList.remove('selected');
-      });
+      this.$refs.screenContent.querySelectorAll('.program').forEach((program) => program.classList.remove('selected'));
 
-      if (!evt.currentTarget.classList.contains('selected')) {
-        evt.currentTarget.classList.add('selected');
-      }
+      evt.currentTarget.classList.add('selected');
     },
     onResize() {
-      Vue.prototype.$widthScreenContent = this.$refs.screenContent.offsetWidth;
-      Vue.prototype.$heightScreenContent = this.$refs.screenContent.offsetHeight;
+      this.$widthScreenContent = this.$refs.screenContent.offsetWidth;
+      this.$heightScreenContent = this.$refs.screenContent.offsetHeight;
 
-      Vue.prototype.$programs.forEach((program) => program.window.updateSize());
+      this.$programs.forEach((program) => program.window.updateSize());
     },
-    openProgram(_program, default_props = {}) {
+    openProgram(_program, defaultProps = {}) {
       if (!this.idTimeoutOpenProgram) {
         this.idTimeoutOpenProgram = setTimeout(() => {
           this.idTimeoutOpenProgram = null;
@@ -130,7 +120,7 @@ export default {
         this.getProgram(_program).then((result) => {
           const ProgramClass = Vue.extend(result);
           const programObject = new ProgramClass({
-            propsData: { id: v4(), ...default_props }
+            propsData: { id: v4(), ...defaultProps }
           });
 
           programObject.$mount();
@@ -140,10 +130,10 @@ export default {
       }
     },
     async addWindow(programObject) {
-      const width = programObject.width_default == 0 ? Vue.prototype.$widthScreenContent : programObject.width_default;
-      const height = programObject.height_default == 0 ? Vue.prototype.$heightScreenContent : programObject.height_default;
-      const x = programObject.x_default == 0 ? 0 : programObject.x_default;
-      const y = programObject.y_default == 0 ? 0 : programObject.y_default;
+      const width = programObject.widthDefault == 0 ? this.$widthScreenContent : programObject.widthDefault;
+      const height = programObject.heightDefault == 0 ? this.$heightScreenContent : programObject.heightDefault;
+      const x = programObject.xDefault == 0 ? 0 : programObject.xDefault;
+      const y = programObject.yDefault == 0 ? 0 : programObject.yDefault;
 
       const self = this;
 
@@ -157,8 +147,8 @@ export default {
           y: parseInt(y)
         },
         methods: {
-          openProgram(_program, default_props = {}) {
-            self.openProgram(_program, default_props);
+          openProgram(_program, defaultProps = {}) {
+            self.openProgram(_program, defaultProps);
           }
         }
       });
@@ -170,7 +160,7 @@ export default {
 
       this.$refs.screenContent.appendChild(windowObject.$el);
 
-      windowObject.addWindowContent(programObject.$el);
+      windowObject.appendWindowNode(programObject.$el);
 
       this.$programs.push(programObject);
     },
@@ -182,26 +172,21 @@ export default {
     }
   },
   watch: {
-    $themeSelected() {
-      switch (this.$themeSelected) {
+    $isFullscreen(value) {
+      this.isClosedToast = value;
+    },
+    $themeSelected(value) {
+      switch (value) {
         case 'theme-1':
           this.$refs.screen.classList.add('theme-1');
           this.$refs.screen.classList.remove('theme-2');
 
-          document.documentElement.style.removeProperty('--bs-primary-rgb');
-          document.documentElement.style.removeProperty('--bs-secondary-rgb');
-          document.documentElement.style.setProperty('--bs-primary-rgb', '93, 69, 149');
-          document.documentElement.style.setProperty('--bs-seconbndary-rgb', '19, 116, 142');
           break;
 
         case 'theme-2':
           this.$refs.screen.classList.add('theme-2');
           this.$refs.screen.classList.remove('theme-1');
 
-          document.documentElement.style.removeProperty('--bs-primary-rgb');
-          document.documentElement.style.removeProperty('--bs-secondary-rgb');
-          document.documentElement.style.setProperty('--bs-primary-rgb', '19, 116, 142');
-          document.documentElement.style.setProperty('--bs-secondary-rgb', '93, 69, 149');
           break;
 
         default:
@@ -212,7 +197,7 @@ export default {
     },
     $urlToOpen() {
       if (this.$urlToOpen) {
-        this.openProgram('Browser', { url_default: this.$urlToOpen });
+        this.openProgram('Browser', { urlDefault: this.$urlToOpen });
 
         this.$urlToOpen = null;
       }

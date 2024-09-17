@@ -1,17 +1,17 @@
 <template>
   <div ref="window" class="window resizers bg-light" :style="cssRootVars" @click="windowClick" v-resize="onResize">
-    <div ref="windowTilebar" @dblclick="windowTilebarDblclick" class="window-tilebar bg-primary text-light d-flex flex-row-reverse border-dark border-bottom">
-      <span class="tilebar-item" title="Cerrar ventana" data-action="close">
+    <div ref="windowTilebar" @dblclick="windowTilebarDblclick" class="window-tilebar bg-primary text-light d-flex flex-row-reverse align-items-center user-select-none">
+      <span role="button" class="tilebar-item" title="Cerrar ventana" @click="windowClick" data-action="close">
         <i class="fa-solid fa-xmark fa-fw"></i>
       </span>
-      <span class="tilebar-item" :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`" data-action="toggleMaximized">
+      <span role="button" class="tilebar-item" :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`" @click="windowClick" data-action="toggleMaximized">
         <i :class="`fa-solid ${isMaximized ? 'fa-compress' : 'fa-expand'}`"></i>
       </span>
-      <span class="tilebar-item" title="Minimizar ventana" data-action="minimized">
+      <span role="button" class="tilebar-item" title="Minimizar ventana" @click="windowClick" data-action="minimized">
         <i class="fa-solid fa-minus fa-fw"></i>
       </span>
       <span class="m-auto ms-2 text-truncate">{{ title }}</span>
-      <img :src="program.icon_src" class="program-icon" :alt="`Icono ${program.title}`" />
+      <img :src="program.iconSrc" class="program-icon" :alt="`Icono ${program.title}`" draggable="false" />
     </div>
     <div class="window-content bg-light overflow-hidden" ref="windowContent" @scroll="onScroll"></div>
     <div class="resizer top-left"></div>
@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
-
 export default {
   props: {
     width: {
@@ -57,6 +55,14 @@ export default {
         width: this.width,
         height: this.height
       },
+      positionIniDrag: {
+        x: this.x,
+        y: this.y
+      },
+      sizeIniDrag: {
+        width: this.width,
+        height: this.height
+      },
       positionPrev: {
         x: this.x,
         y: this.y
@@ -80,28 +86,24 @@ export default {
   },
   methods: {
     init() {
-      this.dragElement(this.$refs.windowTilebar, this);
-      this.resizeElement(this.$refs.window, this);
-
-      if (this.program) this.isMaximized = this.program.maximized_default;
+      if (this.program) this.isMaximized = this.program.maximizedDefault;
 
       this.bringFront();
+
+      this.initDrag(this.$refs.windowTilebar, this);
+      this.initResize(this.$refs.window, this);
     },
     windowTilebarDblclick(evt) {
-      let action = evt.target.dataset.action;
+      evt.stopPropagation();
 
-      if (evt.target.tagName == 'I') {
-        action = evt.target.parentElement.dataset.action;
-      }
+      const action = evt.target.dataset.action;
 
       if (!action) this.toggleMaximized();
     },
     windowClick(evt) {
-      let action = evt.target.dataset.action;
+      evt.stopPropagation();
 
-      if (evt.target.tagName == 'I') {
-        action = evt.target.parentElement.dataset.action;
-      }
+      const action = evt.currentTarget.dataset.action;
 
       switch (action) {
         case 'close':
@@ -121,9 +123,7 @@ export default {
     bringFront() {
       this.onBringFront();
 
-      this.$programs.forEach((program) => {
-        program.window.$el.classList.remove('active');
-      });
+      this.$programs.forEach((program) => program.window.$el.classList.remove('active'));
 
       this.$el.classList.remove('minimize');
       this.$el.classList.add('active');
@@ -135,8 +135,6 @@ export default {
 
       this.$el.classList.remove('active');
       this.$el.classList.add('minimize');
-
-      this.$programActive = null;
 
       this.bringFrontLastProgram();
     },
@@ -159,16 +157,16 @@ export default {
         this.program.$destroy();
 
         this.$el.parentNode.removeChild(this.$el);
+      }, 500);
 
-        this.$programs = this.$programs.filter((program) => program.id !== this.program.id);
+      this.$programs = this.$programs.filter((program) => program.id !== this.program.id);
 
-        this.bringFrontLastProgram();
-      }, 200);
+      this.bringFrontLastProgram();
     },
     bringFrontLastProgram() {
-      const programs_reverse = [...this.$programs].reverse();
+      const programsReverse = [...this.$programs].reverse();
 
-      const lastProgram = programs_reverse.find((program) => !program.window.$el.classList.contains('minimize'));
+      const lastProgram = programsReverse.find((program) => !program.window.$el.classList.contains('minimize'));
 
       if (lastProgram) {
         lastProgram.window.bringFront();
@@ -178,10 +176,10 @@ export default {
     },
     updateSize() {
       if (this.isMaximized) {
-        if (!this.$refs.window.classList.contains('no-transition')) this.$refs.window.classList.add('no-transition');
+        this.$refs.window.classList.add('no-transition');
 
-        this.size.width = Vue.prototype.$widthScreenContent;
-        this.size.height = Vue.prototype.$heightScreenContent;
+        this.size.width = this.$widthScreenContent;
+        this.size.height = this.$heightScreenContent;
       }
     },
     onResize() {
@@ -196,205 +194,176 @@ export default {
     onBringFront() {
       if (this.program && typeof this.program.onBringFront === 'function') this.program.onBringFront();
     },
-    dragElement(element, self) {
-      element.onmousedown = dragMouseDown;
-      element.ontouchstart = dragMouseDown;
+    initDrag(element, self) {
+      element.addEventListener('mousedown', startDrag);
+      element.addEventListener('touchstart', startDrag, { passive: true });
 
-      function dragMouseDown(evt) {
-        evt = evt || window.event;
-
-        let action = evt.target.dataset.action;
-
-        if (evt.target.tagName == 'I') {
-          action = evt.target.parentElement.dataset.action;
-        }
+      function startDrag(evt) {
+        const action = evt.target.dataset.action;
 
         if (!action) {
-          if (!evt.touches) {
-            self.pos3 = evt.clientX;
-            self.pos4 = evt.clientY;
-          } else {
-            self.pos3 = evt.touches[0].clientX;
-            self.pos4 = evt.touches[0].clientY;
-          }
+          self.pos3 = evt.touches ? evt.touches[0].clientX : evt.clientX;
+          self.pos4 = evt.touches ? evt.touches[0].clientY : evt.clientY;
 
-          self.$refs.window.parentElement.onmouseup = closeDragElement;
-          self.$refs.window.parentElement.onmouseleave = closeDragElement;
-          self.$refs.window.parentElement.onmousemove = elementDrag;
+          self.positionIniDrag = { x: self.pos3, y: self.pos4 };
 
-          self.$refs.window.parentElement.ontouchcancel = closeDragElement;
-          self.$refs.window.parentElement.ontouchend = closeDragElement;
-          self.$refs.window.parentElement.ontouchleave = closeDragElement;
-          self.$refs.window.parentElement.ontouchmove = elementDrag;
+          self.$refs.window.parentElement.addEventListener('mouseup', endDrag);
+          self.$refs.window.parentElement.addEventListener('mouseleave', endDrag);
+          self.$refs.window.parentElement.addEventListener('mousemove', onDrag);
+
+          self.$refs.window.parentElement.addEventListener('touchcancel', endDrag, { passive: true });
+          self.$refs.window.parentElement.addEventListener('touchend', endDrag, { passive: true });
+          self.$refs.window.parentElement.addEventListener('touchleave', endDrag, { passive: true });
+          self.$refs.window.parentElement.addEventListener('touchmove', onDrag, { passive: true });
 
           self.bringFront();
         }
       }
 
-      function elementDrag(evt) {
-        self.isDragging = true;
+      function onDrag(evt) {
+        self.$refs.window.classList.add('no-transition');
 
-        if (!self.$refs.window.classList.contains('no-transition')) self.$refs.window.classList.add('no-transition');
-
-        self.isMaximized = false;
-
-        evt = evt || window.event;
-        evt.preventDefault();
-
-        if (!evt.touches) {
-          self.pos1 = self.pos3 - evt.clientX;
-          self.pos2 = self.pos4 - evt.clientY;
-          self.pos3 = evt.clientX;
-          self.pos4 = evt.clientY;
-        } else {
-          self.pos1 = self.pos3 - evt.touches[0].clientX;
-          self.pos2 = self.pos4 - evt.touches[0].clientY;
-          self.pos3 = evt.touches[0].clientX;
-          self.pos4 = evt.touches[0].clientY;
-        }
+        self.pos1 = evt.touches ? self.pos3 - evt.touches[0].clientX : self.pos3 - evt.clientX;
+        self.pos2 = evt.touches ? self.pos4 - evt.touches[0].clientY : self.pos4 - evt.clientY;
+        self.pos3 = evt.touches ? evt.touches[0].clientX : evt.clientX;
+        self.pos4 = evt.touches ? evt.touches[0].clientY : evt.clientY;
 
         self.position.x = self.position.x - self.pos1;
         self.position.y = self.position.y - self.pos2;
+
+        self.isMaximized = false;
+        self.isDragging = true;
       }
 
-      function closeDragElement() {
-        if (self.$refs.window) {
-          self.isDragging = false;
+      function endDrag() {
+        self.isDragging = false;
 
-          self.$refs.window.classList.remove('no-transition');
+        self.$refs.window.classList.remove('no-transition');
 
-          self.$refs.window.parentElement.onmouseup = null;
-          self.$refs.window.parentElement.onmouseleave = null;
-          self.$refs.window.parentElement.onmousemove = null;
+        self.$refs.window.parentElement.removeEventListener('mouseup', endDrag);
+        self.$refs.window.parentElement.removeEventListener('mouseleave', endDrag);
+        self.$refs.window.parentElement.removeEventListener('mousemove', onDrag);
 
-          self.$refs.window.parentElement.ontouchcancel = null;
-          self.$refs.window.parentElement.ontouchend = null;
-          self.$refs.window.parentElement.ontouchleave = null;
-          self.$refs.window.parentElement.ontouchmove = null;
-        }
+        self.$refs.window.parentElement.removeEventListener('touchcancel', endDrag, { passive: true });
+        self.$refs.window.parentElement.removeEventListener('touchend', endDrag, { passive: true });
+        self.$refs.window.parentElement.removeEventListener('touchleave', endDrag, { passive: true });
+        self.$refs.window.parentElement.removeEventListener('touchmove', onDrag, { passive: true });
       }
     },
-    resizeElement(element, self) {
+    initResize(element, self) {
       const resizers = element.querySelectorAll('.resizer');
 
-      const minimum_size = 20;
+      const minimumSize = 20;
 
-      let original_width = 0;
-      let original_height = 0;
-      let original_x = 0;
-      let original_y = 0;
-      let original_mouse_x = 0;
-      let original_mouse_y = 0;
+      let originalWidth = 0;
+      let originalHeight = 0;
+      let originalX = 0;
+      let originalY = 0;
+      let originalMouseX = 0;
+      let originalMouseY = 0;
 
       for (let i = 0; i < resizers.length; i++) {
-        const currentResizer = resizers[i];
+        const resizer = resizers[i];
 
-        currentResizer.addEventListener('touchstart', resizeEvent, false);
-        currentResizer.addEventListener('mousedown', resizeEvent, false);
+        resizer.addEventListener('touchstart', startResize, { passive: true });
+        resizer.addEventListener('mousedown', startResize);
 
-        function resizeEvent(e) {
-          e.preventDefault();
-          original_width = parseFloat(
+        function startResize(evt) {
+          originalWidth = parseFloat(
             getComputedStyle(element, null)
               .getPropertyValue('max-width')
               .replace('px', '')
           );
-          original_height = parseFloat(
+          originalHeight = parseFloat(
             getComputedStyle(element, null)
               .getPropertyValue('max-height')
               .replace('px', '')
           );
 
-          original_x = self.position.x;
-          original_y = self.position.y;
+          originalX = self.position.x;
+          originalY = self.position.y;
 
-          if (!e.touches) {
-            original_mouse_x = e.pageX;
-            original_mouse_y = e.pageY;
-          } else {
-            original_mouse_x = e.touches[0].pageX;
-            original_mouse_y = e.touches[0].pageY;
-          }
+          originalMouseX = evt.touches ? evt.touches[0].pageX : evt.pageX;
+          originalMouseY = evt.touches ? evt.touches[0].pageY : evt.pageY;
 
-          window.addEventListener('touchmove', resize);
-          window.addEventListener('touchcancel', stopResize);
-          window.addEventListener('touchleave', stopResize);
-          window.addEventListener('touchend', stopResize);
+          window.addEventListener('touchmove', onResize, { passive: true });
+          window.addEventListener('touchcancel', endResize, { passive: true });
+          window.addEventListener('touchleave', endResize, { passive: true });
+          window.addEventListener('touchend', endResize, { passive: true });
 
-          window.addEventListener('mousemove', resize);
-          window.addEventListener('mouseup', stopResize);
+          window.addEventListener('mousemove', onResize);
+          window.addEventListener('mouseup', endResize);
         }
 
-        // eslint-disable-next-line no-inner-declarations
-        function resize(e) {
+        function onResize(evt) {
           self.bringFront();
 
-          if (!self.$refs.window.classList.contains('no-transition')) self.$refs.window.classList.add('no-transition');
+          self.$refs.window.classList.add('no-transition');
 
-          let pageX = e.pageX;
-          let pageY = e.pageY;
+          const pageX = evt.touches ? evt.touches[0].pageX : evt.pageX;
+          const pageY = evt.touches ? evt.touches[0].pageY : evt.pageY;
 
-          if (e.touches) {
-            pageX = e.touches[0].pageX;
-            pageY = e.touches[0].pageY;
-          }
+          if (resizer.classList.contains('bottom-right')) {
+            const width = originalWidth + (pageX - originalMouseX);
+            const height = originalHeight + (pageY - originalMouseY);
 
-          if (currentResizer.classList.contains('bottom-right')) {
-            const width = original_width + (pageX - original_mouse_x);
-            const height = original_height + (pageY - original_mouse_y);
-
-            if (width > minimum_size) {
+            if (width > minimumSize) {
               self.size.width = width;
             }
-            if (height > minimum_size) {
+            if (height > minimumSize) {
               self.size.height = height;
             }
-          } else if (currentResizer.classList.contains('bottom-left')) {
-            const width = original_width - (pageX - original_mouse_x);
-            const height = original_height + (pageY - original_mouse_y);
+          } else if (resizer.classList.contains('bottom-left')) {
+            const width = originalWidth - (pageX - originalMouseX);
+            const height = originalHeight + (pageY - originalMouseY);
 
-            if (width > minimum_size) {
+            if (width > minimumSize) {
               self.size.width = width;
             }
-            if (height > minimum_size) {
+            if (height > minimumSize) {
               self.size.height = height;
-              self.position.x = original_x + (pageX - original_mouse_x);
+              self.position.x = originalX + (pageX - originalMouseX);
             }
-          } else if (currentResizer.classList.contains('top-right')) {
-            const width = original_width + (pageX - original_mouse_x);
-            const height = original_height - (pageY - original_mouse_y);
+          } else if (resizer.classList.contains('top-right')) {
+            const width = originalWidth + (pageX - originalMouseX);
+            const height = originalHeight - (pageY - originalMouseY);
 
-            if (width > minimum_size) {
+            if (width > minimumSize) {
               self.size.width = width;
             }
-            if (height > minimum_size) {
+            if (height > minimumSize) {
               self.size.height = height;
-              self.position.y = original_y + (pageY - original_mouse_y);
+              self.position.y = originalY + (pageY - originalMouseY);
             }
           } else {
-            const width = original_width - (pageX - original_mouse_x);
-            const height = original_height - (pageY - original_mouse_y);
+            const width = originalWidth - (pageX - originalMouseX);
+            const height = originalHeight - (pageY - originalMouseY);
 
-            if (width > minimum_size) {
+            if (width > minimumSize) {
               self.size.width = width;
-              self.position.x = original_x + (pageX - original_mouse_x);
+              self.position.x = originalX + (pageX - originalMouseX);
             }
-            if (height > minimum_size) {
+            if (height > minimumSize) {
               self.size.height = height;
-              self.position.y = original_y + (pageY - original_mouse_y);
+              self.position.y = originalY + (pageY - originalMouseY);
             }
           }
         }
 
-        function stopResize() {
-          if (self.$refs.window) self.$refs.window.classList.remove('no-transition');
+        function endResize() {
+          self.$refs.window.classList.remove('no-transition');
 
-          window.removeEventListener('mousemove', resize);
-          window.removeEventListener('touchmove', resize);
+          window.removeEventListener('touchmove', onResize, { passive: true });
+          window.removeEventListener('touchcancel', endResize, { passive: true });
+          window.removeEventListener('touchleave', endResize, { passive: true });
+          window.removeEventListener('touchend', endResize, { passive: true });
+
+          window.removeEventListener('mousemove', onResize);
+          window.removeEventListener('mouseup', endResize);
         }
       }
     },
-    addWindowContent(node) {
+    appendWindowNode(node) {
       this.$refs.windowContent.appendChild(node);
     }
   },
@@ -406,40 +375,42 @@ export default {
         '--x': this.position.x + 'px',
         '--y': this.position.y + 'px',
         '--heightTileBar': '32px',
-        '--maxHeight': Vue.prototype.$heightScreenContent + 'px'
+        '--minHeight': '100px',
+        '--maxHeight': this.$heightScreenContent + 'px'
       };
     }
   },
   watch: {
-    isMouseDown(newValue) {
-      if (newValue) {
+    isMouseDown(value) {
+      if (value) {
         this.$refs.window.classList.add('no-transition');
       } else {
         this.$refs.window.classList.remove('no-transition');
       }
     },
-    isMaximized(newValue) {
-      if (newValue) {
+    isMaximized(value) {
+      if (value) {
         this.sizePrev = { ...this.size };
+        this.size = { width: this.$widthScreenContent, height: this.$heightScreenContent };
+
         this.positionPrev = { ...this.position };
-
-        this.size.width = Vue.prototype.$widthScreenContent;
-        this.size.height = Vue.prototype.$heightScreenContent;
-
-        this.position.x = 0;
-        this.position.y = 0;
+        this.position = { x: 0, y: 0 };
 
         this.$refs.window.classList.remove('resizers');
-
-        this.$refs.window.classList.add('maximize');
       } else {
-        this.size = { ...this.sizePrev };
+        if (!this.isDragging) {
+          this.position = { ...this.positionPrev };
+        } else {
+          const deltaX = this.positionIniDrag.x - this.positionPrev.x;
+          const deltaY = this.positionIniDrag.y - this.positionPrev.y;
 
-        if (!this.isDragging) this.position = { ...this.positionPrev };
+          this.size = { ...this.sizePrev };
+
+          this.position.x = this.positionIniDrag.x - deltaX;
+          this.position.y = this.positionIniDrag.y - deltaY;
+        }
 
         this.$refs.window.classList.add('resizers');
-
-        this.$refs.window.classList.remove('maximize');
       }
     }
   }
@@ -456,14 +427,18 @@ export default {
   display: flex;
   flex-direction: column;
   max-width: var(--width);
-  max-height: var(--height);
   min-width: 170px;
-  min-height: var(--heightTileBar);
+  max-height: var(--height);
+  min-height: var(--minHeight);
   cursor: default;
   border: 2px solid #000;
   transition: max-width 0.1s, max-height 0.1s, left 0.1s 0.1s, top 0.1s 0.1s;
   z-index: 1;
   animation: zoom-out-only-transform 0.2s;
+}
+
+.window-content {
+  flex: 1;
 }
 
 .window.minimize {
@@ -482,10 +457,6 @@ export default {
   z-index: 2;
 }
 
-.no-transition {
-  transition: none !important;
-}
-
 .maximized-transition {
   transition: max-width 0.1s 0.1s, max-height 0.1s 0.1s, left 0.1s, top 0.1s;
 }
@@ -494,14 +465,22 @@ export default {
   transition: max-width 0.1s, max-height 0.1s, left 0.1s, top 0.1s;
 }
 
+.window-tilebar {
+  width: 100%;
+  z-index: 3;
+  height: var(--heightTileBar);
+}
+
 .tilebar-item {
   width: 50px;
+  height: 100%;
   display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .tilebar-item > i {
   font-size: 0.9rem;
-  margin: auto;
 }
 
 .tilebar-item:hover {
@@ -520,20 +499,11 @@ export default {
   padding: 2px;
 }
 
-.window-content {
-  flex: 1;
-}
-
-.window-tilebar {
-  width: 100%;
-  z-index: 3;
-  height: var(--heightTileBar);
-}
-
 .resizers .resizer {
   position: absolute;
   width: 10px;
   height: 10px;
+  user-select: none;
 }
 
 .resizers .resizer.top-left {

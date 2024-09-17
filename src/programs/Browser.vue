@@ -1,31 +1,5 @@
 <template>
   <div class="w-100 h-100 d-flex flex-column">
-    <ul class="nav nav-tabs d-flex flex-nowrap d-none" @click="clickTab">
-      <div ref="tabsList" class="d-flex flex-nowrap">
-        <li class="nav-item">
-          <a
-            :id="`v-tab-1-${id}`"
-            class="nav-link active d-flex"
-            data-bs-toggle="tab"
-            aria-current="page"
-            href="#"
-            :data-bs-target="`#v-tab-pane-1-${id}`"
-            type="button"
-            role="tab"
-            :aria-controls="`v-tab-1-${id}`"
-            aria-selected="true"
-          >
-            <span class="text-truncate" :ref="`title-iframe-tab-pane-1-${id}`">Nueva pestaña</span>
-            <span class="btn-close-tab ms-2" type="button" title="Eliminar esta pestaña" data-action="close-tab"><i class="fa-solid fa-xmark fa-fw"></i></span>
-          </a>
-        </li>
-      </div>
-      <li class="nav-item d-flex">
-        <a :id="`v-add-tab-${id}`" class="add-tab ms-2 d-flex m-auto text-dark" title="Añadir nueva pestaña" aria-current="page" href="#" type="button" role="tab" :aria-controls="`v-add-tab-`">
-          <i class="fa-solid fa-plus m-auto"></i>
-        </a>
-      </li>
-    </ul>
     <div ref="tabContent" class="tab-content flex-grow-1">
       <div :id="`v-tab-pane-1-${id}`" class="tab-pane show active d-flex flex-column h-100" role="tabpanel" :aria-labelledby="`v-tab-pane-1-${id}`">
         <div class="p-2">
@@ -45,7 +19,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
 import IconBrowser from '@assets/icons/browser.png';
@@ -56,7 +29,7 @@ import IconBrowser from '@assets/icons/browser.png';
       type: String,
       required: true
     },
-    url_default: {
+    urlDefault: {
       type: String,
       required: false,
       default: ''
@@ -70,34 +43,29 @@ import IconBrowser from '@assets/icons/browser.png';
   },
   methods: {
     init() {
-      this.$refs[`form-tab-pane-1-${this.id}`].elements['input-search'].value = this.url_default;
+      this.$refs[`form-tab-pane-1-${this.id}`].elements['input-search'].value = this.urlDefault;
 
       setTimeout(() => this.$refs[`form-tab-pane-1-${this.id}`].elements['input-submit'].click(), 200);
     },
     onResize() {},
-    clickTab() {},
     search(evt) {
-      let form = evt.target;
-      let inputSearch = form.elements['input-search'];
-      let targetIframe = form.target;
-      let search;
+      const form = evt.target;
+      const inputSearch = form.elements['input-search'];
+      const targetIframe = form.target;
+      let search = inputSearch.value;
 
       if (!this.isValidHttpUrl(inputSearch.value)) {
         search = `https://www.google.com/search?igu=1&ei=&q=${encodeURI(inputSearch.value)}`;
       } else {
         if (!inputSearch.value.startsWith('https://') && !inputSearch.value.startsWith('http://')) {
           search = `https://${inputSearch.value}`;
-        } else {
-          search = inputSearch.value;
         }
       }
 
       this.$refs[targetIframe].src = search;
 
       this.$refs[targetIframe].onload = (evt) => {
-        let iframe = evt.currentTarget;
-
-        this.$refs[`title-${targetIframe}`].innerText = (iframe.contentDocument || iframe.contentWindow.document).title;
+        this.$refs[`title-${targetIframe}`].innerText = (evt.currentTarget.contentDocument || evt.currentTarget.contentWindow.document).title;
       };
     },
     isValidHttpUrl(string) {
@@ -111,7 +79,7 @@ import IconBrowser from '@assets/icons/browser.png';
         'i'
       ); // fragment locator
 
-      return !!pattern.test(string);
+      return pattern.test(string);
     }
   },
   computed: {}
@@ -120,12 +88,12 @@ export default class Browser extends Program {
   //Initialize the variables of superclass Program.
   created() {
     this.title = 'Navegador';
-    this.width_default = 600;
-    this.height_default = 400;
-    this.maximized_default = true;
-    this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
-    this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
-    this.icon_src = IconBrowser;
+    this.widthDefault = 600;
+    this.heightDefault = 400;
+    this.maximizedDefault = true;
+    this.xDefault = this.$widthScreenContent / 2 - this.widthDefault / 2;
+    this.yDefault = this.$heightScreenContent / 2 - this.heightDefault / 2;
+    this.iconSrc = IconBrowser;
     this.window = null;
   }
 }

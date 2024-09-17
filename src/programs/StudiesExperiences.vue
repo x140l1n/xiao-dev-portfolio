@@ -1,6 +1,6 @@
 <template>
   <div ref="content" class="w-100 h-100 d-flex flex-column">
-    <ul ref="navbar" class="nav nav-pills nav-fill bg-light">
+    <ul ref="navbar" class="nav nav-pills nav-fill bg-light shadow gap-2">
       <li class="nav-item">
         <a class="nav-link active" role="tab" data-bs-toggle="tab" :href="`#studies-${id}`">
           <i class="fa-solid fa-graduation-cap me-2 fa-fw"></i>
@@ -14,7 +14,7 @@
         </a>
       </li>
     </ul>
-    <div ref="tabContent" class="tab-content border-top border-dark flex-fill overflow-x-hidden overflow-y-auto" v-init-animation="{ threshold: 0.2 }">
+    <div ref="tabContent" class="tab-content border-top flex-fill overflow-x-hidden overflow-y-auto" v-init-animation="{ threshold: 0.2 }">
       <div :id="`studies-${id}`" class="tab-pane fade active show">
         <div ref="timelineStudies" class="timeline text-light">
           <div class="timeline-row">
@@ -98,7 +98,7 @@
               <ul>
                 <li>Sistemas operativos y aplicaciones informáticas.</li>
                 <li>Programación orientada a objetos.</li>
-                <li>Programación de base de datos relacionales.</li>
+                <li>Base de datos relacionales.</li>
               </ul>
               <div>
                 <span class="badge badge-pill">Java</span>
@@ -184,7 +184,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
 import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
@@ -220,12 +219,12 @@ export default class StudiesExperiences extends Program {
   //Initialize the variables of superclass Program.
   created() {
     this.title = 'Estudios y experiencias';
-    this.width_default = 550;
-    this.height_default = 400;
-    this.maximized_default = true;
-    this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
-    this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
-    this.icon_src = IconStudiesExperiences;
+    this.widthDefault = 550;
+    this.heightDefault = 400;
+    this.maximizedDefault = true;
+    this.xDefault = this.$widthScreenContent / 2 - this.widthDefault / 2;
+    this.yDefault = this.$heightScreenContent / 2 - this.heightDefault / 2;
+    this.iconSrc = IconStudiesExperiences;
     this.window = null;
   }
 }

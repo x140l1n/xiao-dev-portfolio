@@ -1,7 +1,13 @@
 <template>
-  <div class="w-100">
-    <div class="d-flex align-items-start h-100 fs-6">
-      <div ref="nav" class="nav justify-content-stretch flex-nowrap flex-column nav-pills me-3 shadow text-trucante bg-light overflow-auto" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+  <div class="w-100 h-100">
+    <div class="h-100 d-flex align-items-start overflow-auto">
+      <div
+        ref="nav"
+        id="v-pills-tab"
+        class="nav justify-content-stretch flex-nowrap flex-column nav-pills me-3 shadow text-trucante bg-light overflow-y-auto"
+        role="tablist"
+        aria-orientation="vertical"
+      >
         <button
           :id="`v-pills-general-tab-${id}`"
           type="button"
@@ -13,7 +19,7 @@
           :aria-controls="`v-pills-general-${id}`"
           aria-selected="true"
         >
-          <img src="@assets/icons/settings.png" class="icon" alt="General" />
+          <img src="@assets/icons/monitor.png" class="icon" alt="General" draggable="false" />
           <span>General</span>
         </button>
         <button
@@ -27,7 +33,7 @@
           :aria-controls="`v-pills-personalization-${id}`"
           aria-selected="false"
         >
-          <img src="@assets/icons/theme.png" class="icon" alt="Temas" />
+          <img src="@assets/icons/theme.png" class="icon" alt="Temas" draggable="false" />
           <span>Temas</span>
         </button>
         <button
@@ -41,19 +47,19 @@
           :aria-controls="`v-pills-about-${id}`"
           aria-selected="false"
         >
-          <img src="@assets/icons/info.png" class="icon" alt="Acerca de" />
+          <img src="@assets/icons/info.png" class="icon" alt="Acerca de" draggable="false" />
           <span>Acerca de</span>
         </button>
       </div>
-      <div ref="tabContent" class="tab-content w-100">
+      <div ref="tabContent" class="tab-content flex-fill">
         <div :id="`v-pills-general-${id}`" class="tab-pane p-3 fade show active" role="tabpanel" :aria-labelledby="`v-pills-general-tab-${id}`">
           <h4>General</h4>
           <div class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between">
-                <label class="fw-bold">Habilitar modo pantalla completa</label>
+                <label class="fw-bold" :for="`switch-fullscreen-${id}`">Habilitar modo pantalla completa</label>
                 <div class="form-check form-switch">
-                  <input :id="`switch-fullscreen-${id}`" class="form-check-input" type="checkbox" :true-value="true" :false-value="false" v-model="$isFullscreen" />
+                  <input :id="`switch-fullscreen-${id}`" class="form-check-input" type="checkbox" :true-value="true" :false-value="false" v-model="$isFullscreen" draggable="false" />
                 </div>
               </div>
             </div>
@@ -67,7 +73,7 @@
               <div class="d-flex flex-wrap mt-5">
                 <div class="theme-selector theme-1 p-3 my-2">
                   <div class="form-check fw-bold text-light">
-                    <input :id="`rdb-theme-2-${id}`" class="form-check-input" type="radio" :name="`selector-theme-${id}`" v-model="$themeSelected" value="theme-2" />
+                    <input :id="`rdb-theme-2-${id}`" class="form-check-input" type="radio" :name="`selector-theme-${id}`" v-model="$themeSelected" value="theme-2" draggable="false" />
                     <label class="form-check-label" :for="`rdb-theme-2-${id}`">
                       Tema azul oscuro
                     </label>
@@ -75,7 +81,7 @@
                 </div>
                 <div class="theme-selector theme-2 p-3 my-2">
                   <div class="form-check fw-bold text-dark">
-                    <input :id="`rdb-theme-1-${id}`" class="form-check-input" type="radio" :name="`selector-theme-${id}`" v-model="$themeSelected" value="theme-1" />
+                    <input :id="`rdb-theme-1-${id}`" class="form-check-input" type="radio" :name="`selector-theme-${id}`" v-model="$themeSelected" value="theme-1" draggable="false" />
                     <label class="form-check-label" :for="`rdb-theme-1-${id}`">
                       Tema morado
                     </label>
@@ -125,11 +131,11 @@
                   <td class="fw-bold label pe-4">Desarrollado con</td>
                   <td>
                     <div class="d-inline-block text-center">
-                      <img src="@assets/icons/vue.png" alt="Vue" title="Vue" />
+                      <img src="@assets/icons/vue.png" alt="Vue" title="Vue" draggable="false" />
                       <figcaption>Vue 2</figcaption>
                     </div>
                     <div class="d-inline-block text-center">
-                      <img src="@assets/icons/bootstrap.png" width="85" alt="Bootstrap" title="Bootstrap" />
+                      <img src="@assets/icons/bootstrap.png" width="85" alt="Bootstrap" title="Bootstrap" draggable="false" />
                       <figcaption>Bootstrap 5</figcaption>
                     </div>
                   </td>
@@ -144,7 +150,6 @@
 </template>
 
 <script>
-import Vue from 'vue';
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
 import IconSettings from '@assets/icons/settings.png';
@@ -188,12 +193,12 @@ export default class Settings extends Program {
   //Initialize the variables of superclass Program.
   created() {
     this.title = 'Ajustes';
-    this.width_default = 550;
-    this.height_default = 400;
-    this.maximized_default = true;
-    this.x_default = Vue.prototype.$widthScreenContent / 2 - this.width_default / 2;
-    this.y_default = Vue.prototype.$heightScreenContent / 2 - this.height_default / 2;
-    this.icon_src = IconSettings;
+    this.widthDefault = 550;
+    this.heightDefault = 400;
+    this.maximizedDefault = true;
+    this.xDefault = this.$widthScreenContent / 2 - this.widthDefault / 2;
+    this.yDefault = this.$heightScreenContent / 2 - this.heightDefault / 2;
+    this.iconSrc = IconSettings;
     this.window = null;
   }
 }
@@ -244,10 +249,6 @@ export default class Settings extends Program {
   z-index: 2;
 }
 
-.nav-link:not(.active):hover {
-  background-color: #13738e4b;
-}
-
 .nav-link {
   min-height: 50px;
   display: flex;
@@ -277,9 +278,5 @@ export default class Settings extends Program {
 
 .nav.nav-small > .nav-link span {
   display: none;
-}
-
-.nav.nav-small > button {
-  background-position-x: center !important;
 }
 </style>
