@@ -25,7 +25,21 @@ module.exports = {
           noErrorOnMissing: false
         }
       ])
-    ]
+    ],
+    optimization: {
+      splitChunks: {
+        chunks: 'all',
+        cacheGroups: {
+          vendors: {
+            test: /[\\/]node_modules[\\/]/,
+            name(module) {
+              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+              return `vendor.${packageName}`;
+            }
+          }
+        }
+      }
+    }
   },
   chainWebpack: (config) => {
     config.module

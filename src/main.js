@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import App from '@src/App.vue';
+import moment from 'moment';
 import VueMoment from 'vue-moment';
 import resize from 'vue-resize-directive';
 import 'bootstrap/dist/js/bootstrap';
@@ -12,7 +13,7 @@ Vue.prototype.$env = {
 
 Vue.config.productionTip = false;
 
-Vue.use(VueMoment, { locale: 'es' });
+Vue.use(VueMoment, { moment });
 
 Vue.directive('resize', resize);
 

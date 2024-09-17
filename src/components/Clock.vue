@@ -10,8 +10,6 @@
 </template>
 
 <script>
-import moment from 'moment';
-
 export default {
   mounted() {
     this.init();
@@ -26,7 +24,7 @@ export default {
   },
   methods: {
     init() {
-      const remainingMilliseconds = 1000 - moment().milliseconds();
+      const remainingMilliseconds = 1000 - this.$moment().milliseconds();
 
       setTimeout(() => {
         this.updateDateTime();
@@ -36,13 +34,13 @@ export default {
       }, remainingMilliseconds);
     },
     updateDateTime() {
-      this.datetime.time = moment().format('H:mm');
-      this.datetime.date = moment().format('DD/MM/YYYY');
+      this.datetime.time = this.$moment().format('H:mm');
+      this.datetime.date = this.$moment().format('DD/MM/YYYY');
     }
   },
   computed: {
     getFullDate() {
-      return `${moment().format('dddd, LL | h:mm')} (Hora local)`;
+      return `${this.$moment().format('dddd, LL | h:mm')} (Hora local)`;
     }
   }
 };
