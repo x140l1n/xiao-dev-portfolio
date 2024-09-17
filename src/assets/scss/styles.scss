@@ -80,8 +80,30 @@ img {
   animation: zoom-out 0.5s ease;
 }
 
+[data-animation='zoom-out-bounce'].animated {
+  animation: zoom-out-bounce 0.5s ease;
+}
+
 [data-animation]:not(.animated) {
   opacity: 0;
+}
+
+@keyframes zoom-out-bounce {
+  0% {
+    transform: scale(0);
+  }
+  25% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  75% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes slide-up {

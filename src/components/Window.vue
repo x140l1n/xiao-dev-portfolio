@@ -1,17 +1,19 @@
 <template>
   <div ref="window" class="window resizers bg-light" :style="cssRootVars" @click="windowClick" v-resize="onResize">
-    <div ref="windowTilebar" @dblclick="windowTilebarDblclick" class="window-tilebar bg-primary text-light d-flex flex-row-reverse align-items-center user-select-none">
-      <span role="button" class="tilebar-item" title="Cerrar ventana" @click="windowClick" data-action="close">
-        <i class="fa-solid fa-xmark fa-fw"></i>
-      </span>
-      <span role="button" class="tilebar-item" :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`" @click="windowClick" data-action="toggleMaximized">
-        <i :class="`fa-solid ${isMaximized ? 'fa-compress' : 'fa-expand'}`"></i>
-      </span>
-      <span role="button" class="tilebar-item" title="Minimizar ventana" @click="windowClick" data-action="minimized">
-        <i class="fa-solid fa-minus fa-fw"></i>
-      </span>
-      <span class="m-auto ms-2 text-truncate">{{ title }}</span>
+    <div ref="windowTilebar" @dblclick="windowTilebarDblclick" class="window-tilebar bg-primary text-light d-flex justify-content-between align-items-center user-select-none">
       <img :src="program.iconSrc" class="program-icon" :alt="`Icono ${program.title}`" draggable="false" />
+      <span class="m-auto ms-2 text-truncate">{{ title }}</span>
+      <div ref="windowTilebarActions" class="h-100 d-flex align-items-center">
+        <span role="button" class="tilebar-item" title="Minimizar ventana" @click="windowClick" data-action="minimized">
+          <i class="fa-solid fa-minus fa-fw"></i>
+        </span>
+        <span role="button" class="tilebar-item" :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`" @click="windowClick" data-action="toggleMaximized">
+          <i :class="`fa-solid ${isMaximized ? 'fa-compress' : 'fa-expand'}`"></i>
+        </span>
+        <span role="button" class="tilebar-item" title="Cerrar ventana" @click="windowClick" data-action="close">
+          <i class="fa-solid fa-xmark fa-fw"></i>
+        </span>
+      </div>
     </div>
     <div class="window-content bg-light overflow-hidden" ref="windowContent" @scroll="onScroll"></div>
     <div class="resizer top-left"></div>
@@ -58,10 +60,6 @@ export default {
       positionIniDrag: {
         x: this.x,
         y: this.y
-      },
-      sizeIniDrag: {
-        width: this.width,
-        height: this.height
       },
       positionPrev: {
         x: this.x,
@@ -401,14 +399,19 @@ export default {
         if (!this.isDragging) {
           this.position = { ...this.positionPrev };
         } else {
-          const deltaX = this.positionIniDrag.x - this.positionPrev.x;
-          const deltaY = this.positionIniDrag.y - this.positionPrev.y;
+          const widthDifference = this.$widthScreenContent - this.sizePrev.width;
+          const isInsideWindowTilebarActions = this.positionIniDrag.x >= this.$widthScreenContent - this.$refs.windowTilebarActions.clientWidth;
 
-          this.size = { ...this.sizePrev };
+          if (isInsideWindowTilebarActions) {
+            this.position.x = this.$widthScreenContent - this.$refs.windowTilebarActions.clientWidth;
+          } else {
+            const adjustedOffsetX = this.positionIniDrag.x > this.sizePrev.width ? this.sizePrev.width : this.positionIniDrag.x;
 
-          this.position.x = this.positionIniDrag.x - deltaX;
-          this.position.y = this.positionIniDrag.y - deltaY;
+            this.position.x = this.positionIniDrag.x - widthDifference * (adjustedOffsetX / this.$widthScreenContent);
+          }
         }
+
+        this.size = { ...this.sizePrev };
 
         this.$refs.window.classList.add('resizers');
       }

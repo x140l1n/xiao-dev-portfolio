@@ -55,32 +55,45 @@ export default {
       this.checkFullscreen();
     },
     checkFullscreen() {
-      this.$isFullscreen = !!(window.screenTop && window.screenY) || document.fullscreenElement || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement;
+      this.$nextTick(() => {
+        try {
+          if (document.fullscreenElement || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement) {
+            this.$isFullscreen = true;
+          } else {
+            this.$isFullscreen = false;
+          }
+        } catch {
+          this.$isFullscreen = false;
+        }
+      });
     }
   },
   watch: {
     $isFullscreen(value) {
-      if (value) {
-        if (document.documentElement.requestFullscreen) {
-          document.documentElement.requestFullscreen();
-        } else if (document.documentElement.mozRequestFullscreen) {
-          document.documentElement.mozRequestFullscreen();
-        } else if (document.documentElement.webkitRequestFullscreen) {
-          document.documentElement.webkitRequestFullscreen();
-        } else if (document.documentElement.msRequestFullscreen) {
-          document.documentElement.msRequestFullscreen();
+      try {
+        if (value) {
+          if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+          } else if (document.documentElement.mozRequestFullscreen) {
+            document.documentElement.mozRequestFullscreen();
+          } else if (document.documentElement.webkitRequestFullscreen) {
+            document.documentElement.webkitRequestFullscreen();
+          } else if (document.documentElement.msRequestFullscreen) {
+            document.documentElement.msRequestFullscreen();
+          }
+        } else if (document.fullscreenElement || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+          }
         }
-      } else if (document.fullscreenElement || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement) {
-        if (document.exitFullscreen) {
-          document.exitFullscreen();
-        } else if (document.webkitExitFullscreen) {
-          document.webkitExitFullscreen();
-        } else if (document.mozCancelFullScreen) {
-          document.mozCancelFullScreen();
-        } else if (document.msExitFullscreen) {
-          document.msExitFullscreen();
-        }
-      }
+        // eslint-disable-next-line
+      } catch {}
     },
     isMonitorOn() {
       if (this.isFirstTime) {
@@ -120,11 +133,12 @@ export default {
   font-size: 3rem;
   box-shadow: 0 0 10px rgb(210, 23, 23);
   color: rgb(210, 23, 23);
+  animation: zoom-out-bounce 1.2s ease;
 }
 
 .btn-on:active,
 .btn-off:active {
-  box-shadow: inset 0px 0px 20px 1px rgba(0,0,0,0.75) !important;
+  box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.75) !important;
   outline: none;
 }
 

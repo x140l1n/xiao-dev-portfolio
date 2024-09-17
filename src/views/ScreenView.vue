@@ -57,11 +57,20 @@
         </button>
       </div>
     </div>
-    <div v-if="!isClosedToast" ref="tipFullscreen" role="alert" class="toast show position-fixed top-0 end-0 m-2 user-select-none" draggable="false" tabindex="-1" aria-live="assertive" aria-atomic="true">
+    <div
+      v-if="!isClosedToast"
+      ref="tipFullscreen"
+      role="alert"
+      class="toast show position-fixed top-0 end-0 m-2 user-select-none"
+      draggable="false"
+      tabindex="-1"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
       <div class="toast-header">
         <img src="@assets/icons/tips.png" class="rounded me-2" alt="Icono tips" title="Icono tips" width="30px" draggable="false" />
         <strong class="me-auto">Modo pantalla completa</strong>
-        <button type="button" class="btn-close" title="Cerrar tips" @click="isClosedToast = true"> </button>
+        <button type="button" class="btn-close" title="Cerrar tips" @click="isClosedToast = true"></button>
       </div>
       <div class="toast-body">
         Habilita la pantalla completa para tener una mejor experiencia de navegación. Para habilitar entra en
@@ -86,7 +95,7 @@ export default {
   data() {
     return {
       idTimeoutOpenProgram: null,
-      isClosedToast: false,
+      isClosedToast: false
     };
   },
   methods: {

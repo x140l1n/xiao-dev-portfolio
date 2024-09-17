@@ -29,7 +29,7 @@ Vue.directive('init-animation', {
 
     try {
       options = eval(`(${binding.expression})`);
-      /* eslint-disable no-empty */
+      // eslint-disable-next-line
     } catch {}
 
     Object.assign(options, { duration: 1, threshold: 0.5 });
