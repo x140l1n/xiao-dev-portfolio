@@ -19,11 +19,9 @@
 </template>
 
 <script>
-import Clock from '@components/Clock.vue';
-
 export default {
   components: {
-    Clock
+    Clock: () => import('@components/Clock.vue')
   },
   methods: {
     selectProgram(program) {

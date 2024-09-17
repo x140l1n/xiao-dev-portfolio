@@ -28,11 +28,9 @@
 </template>
 
 <script>
-import ScreenView from '@views/ScreenView.vue';
-
 export default {
   components: {
-    ScreenView
+    ScreenView: () => import('@views/ScreenView.vue')
   },
   mounted() {
     this.init();

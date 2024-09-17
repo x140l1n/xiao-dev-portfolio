@@ -1,5 +1,6 @@
 const path = require('path');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
   devServer: {
@@ -24,7 +25,8 @@ module.exports = {
           to: path.resolve(__dirname, 'dist/api/'),
           noErrorOnMissing: false
         }
-      ])
+      ]),
+      new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es/)
     ],
     optimization: {
       splitChunks: {

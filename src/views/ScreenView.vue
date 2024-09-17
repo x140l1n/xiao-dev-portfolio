@@ -74,13 +74,11 @@
 
 <script>
 import Vue from 'vue';
-import TaskBarView from '@views/TaskBarView.vue';
-import Window from '@components/Window.vue';
 import { v4 } from 'uuid';
 
 export default {
   components: {
-    TaskBarView
+    TaskBarView: () => import('@views/TaskBarView.vue')
   },
   mounted() {
     this.init();
@@ -141,7 +139,7 @@ export default {
         });
       }
     },
-    addWindow(programObject) {
+    async addWindow(programObject) {
       const width = programObject.width_default == 0 ? Vue.prototype.$widthScreenContent : programObject.width_default;
       const height = programObject.height_default == 0 ? Vue.prototype.$heightScreenContent : programObject.height_default;
       const x = programObject.x_default == 0 ? 0 : programObject.x_default;
@@ -149,7 +147,7 @@ export default {
 
       const self = this;
 
-      const WindowClass = Vue.extend(Window);
+      const WindowClass = Vue.extend(await this.getWindow());
       const windowObject = new WindowClass({
         propsData: {
           title: programObject.title,
@@ -175,6 +173,9 @@ export default {
       windowObject.addWindowContent(programObject.$el);
 
       this.$programs.push(programObject);
+    },
+    async getWindow() {
+      return (await import('@components/Window.vue')).default;
     },
     async getProgram(program) {
       return (await import(`@programs/${program}.vue`)).default;

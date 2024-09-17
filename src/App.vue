@@ -1,9 +1,7 @@
 <script>
-import MonitorView from '@views/MonitorView.vue';
-
 export default {
   components: {
-    MonitorView
+    MonitorView: () => import('@views/MonitorView.vue')
   }
 };
 </script>
