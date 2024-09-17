@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 header('Access-Control-Allow-Origin: *');
 header('Access-Control-Allow-Methods: POST');
@@ -18,14 +18,17 @@ if (isset($_POST['send'])) {
     $subject = $_POST['subject'];
     $message = $_POST['message'];
     $from = $_POST['from'];
-
-    $headers = 'From: ' . $from;
-    
-    $message =  'Nombre: ' . $firstname . '\r\n' .
-                'Apellidos: ' . $lastname . '\r\n' . 
-                'Mensaje: ' . $message;
-
     if ($firstname && $lastname && $subject && $message && $from) {
+        $headers = "MIME-Version: 1.0\r\n";
+        $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+        $headers .= "From: nombre@dominio.com\r\n";
+        $headers .= "Reply-To: nombre@dominio.com\r\n";
+        $headers .= "X-Mailer: PHP/" . phpversion();
+
+        $body .= "Nombre: $firstname\r\n";
+        $body .= "Apellidos: $lastname\r\n";
+        $body .= "Mensaje: $message";
+
         if (@mail(MAILTO, $subject, $message, $headers)) {
             http_response_code(200);
             echo json_encode(array('status' => 1, 'msg' => 'Enviado correctamente. Gracias por contactarme :)'));
