@@ -11,14 +11,16 @@
                   ¡Bienvenido a mi portfolio! 🖥️
                 </h1>
                 <br />
-                <p class="fs-3">
+                <div class="fs-3">
                   <span ref="description" class="description" tabindex="2">Para comenzar a explorar solo tienes que hacer clic en el siguiente botón</span>
-                  <span v-if="isFinishedTyping" class="d-none d-xxl-block point-right">👉</span>
-                  <span v-if="isFinishedTyping" class="d-block d-xxl-none point-down">👇</span>
-                </p>
+                  <div :class="`${!isFinishedTyping ? 'd-none' : 'd-inline'}`">
+                    <span class="d-none d-xxl-block point-right">👉</span>
+                    <span class="d-block d-xxl-none point-down">👇</span>
+                  </div>
+                </div>
               </div>
               <div class="col-xxl-2 d-flex flex-column justify-content-center align-items-center">
-                <button v-if="isFinishedTyping" type="button" tabindex="3" class="btn-on d-inline rounded-circle mb-2" title="Encender monitor" @click="isMonitorOn = true">
+                <button v-show="isFinishedTyping" type="button" tabindex="3" class="btn-on rounded-circle mb-2" title="Encender monitor" @click="isMonitorOn = true">
                   <i class="fa-solid fa-power-off"></i>
                 </button>
               </div>
