@@ -62,16 +62,16 @@ export default {
       this.$refs.title.classList.add('typewriter-start');
 
       await this.typing({ element: this.$refs.title, originalText: title, startDelay: 1200 });
+
       this.$refs.title.classList.add('typewriter-finished');
 
       this.$refs.description.classList.add('typewriter-start');
 
       await this.typing({ element: this.$refs.description, originalText: description });
+
       this.$refs.description.classList.add('typewriter-finished');
 
-      setTimeout(() => {
-        this.isFinishedTyping = true;
-      }, 500);
+      this.$nextTick(() => this.isFinishedTyping = true);
     },
     typing({ element, originalText, startDelay = 0, speed = 15, currentChar = '', currentIndex = 0 }) {
       return new Promise((resolve) => {
@@ -166,7 +166,7 @@ export default {
   top: 20px;
   left: 0;
   width: 100%;
-  max-width: 200px;
+  max-width: 150px;
   z-index: 5;
   animation: slide-right-and-rotate-right 1s ease-in;
 }
