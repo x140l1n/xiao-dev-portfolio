@@ -36,6 +36,10 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
   --bs-nav-link-active-primary-color: #ffffff !important;
 }
 
+body {
+  overflow: hidden;
+}
+
 img {
   image-rendering: -webkit-optimize-contrast;
 }

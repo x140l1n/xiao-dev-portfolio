@@ -1,5 +1,5 @@
 <template>
-  <div ref="screen" class="screen bg-image user-none-select" v-resize="onResize">
+  <div ref="screen" class="screen user-none-select" v-resize="onResize">
     <div ref="screenContent" class="screen-content" @click.self="cleanSelectProgram">
       <div class="program p-2">
         <button type="button" class="program-inner program-knowledge p-2" title="Ajustes" alt="Ajustes" @click="openProgram('Settings')" tabindex="4">
@@ -57,11 +57,12 @@
         </button>
       </div>
     </div>
+    <TaskBarView ref="taskBarView" draggable="false" />
     <div
       v-if="!isClosedToast"
       ref="tipFullscreen"
       role="alert"
-      class="toast show position-fixed top-0 end-0 m-2 user-select-none"
+      class="toast show"
       draggable="false"
       tabindex="-1"
       aria-live="assertive"
@@ -77,7 +78,6 @@
         <span class="fw-bold fst-italic"> Ajustes > General > Habilitar modo pantalla completa</span>
       </div>
     </div>
-    <TaskBarView ref="taskBarView" draggable="false" />
   </div>
 </template>
 
@@ -118,7 +118,7 @@ export default {
       this.$widthScreenContent = this.$refs.screenContent.offsetWidth;
       this.$heightScreenContent = this.$refs.screenContent.offsetHeight;
 
-      this.$programs.forEach((program) => program.window.updateSize());
+      this.$programs.forEach((program) => program.window.updateSizePosition());
     },
     openProgram(_program, defaultProps = {}) {
       if (!this.idTimeoutOpenProgram) {
@@ -215,7 +215,7 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .screen {
   width: 100%;
   height: 100%;
@@ -227,12 +227,12 @@ export default {
 
 .screen.theme-1 {
   background-color: rgb(149, 190, 195);
-  background-image: url('../svg/xiao-theme-2.svg');
+  background-image: url('~@svg/xiao-theme-2.svg');
 }
 
 .screen.theme-2 {
   background-color: rgb(33, 37, 41);
-  background-image: url('../svg/xiao-theme-1.svg');
+  background-image: url('~@svg/xiao-theme-1.svg');
 }
 
 .screen-content {
@@ -281,12 +281,13 @@ export default {
 }
 
 .toast {
-  width: 370px;
-}
-
-@media screen and (max-width: 600px) {
-  .toast {
-    width: 250px;
-  }
+  position: fixed;
+  bottom: 56px;
+  right: 5px;
+  z-index: 1;
+  width: auto;
+  max-width: 300px;
+  user-select: none;
+  animation: slide-left 1s ease-in-out;
 }
 </style>

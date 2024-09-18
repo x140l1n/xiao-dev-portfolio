@@ -44,7 +44,7 @@
         </button>
       </div>
     </form>
-    <div class="d-flex flex-column justify-content-center h-100 text-center" v-else>
+    <div class="d-flex flex-column justify-content-center overflow-auto h-100 text-center" v-else>
       <img src="@assets/img/contactme.png" class="img-fluid mx-auto" title="Contáctame" draggable="false" />
       <h3 class="mx-auto fw-bold my-4">
         ¡Muchas gracias por contactar conmigo!

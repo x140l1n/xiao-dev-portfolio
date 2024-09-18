@@ -8,7 +8,8 @@ import '@src/assets/scss/styles.scss';
 import 'moment/locale/es';
 
 Vue.prototype.$env = {
-  API_ENDPOINT: process.env.VUE_APP_API_ENDPOINT
+  API_ENDPOINT: process.env.VUE_APP_API_ENDPOINT,
+  URL_CV: process.env.VUE_APP_CV_URL
 };
 
 Vue.config.productionTip = false;

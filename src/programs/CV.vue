@@ -1,6 +1,6 @@
 <template>
   <div class="w-100 h-100 overflow-hidden">
-    <iframe src="/cv.pdf" width="100%" height="100%" />
+    <iframe :src="$env.URL_CV" width="100%" height="100%" />
   </div>
 </template>
 

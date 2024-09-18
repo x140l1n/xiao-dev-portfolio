@@ -1,35 +1,27 @@
 <template>
-  <div class="container-fluid vh-100 p-0">
-    <div ref="monitor" class="monitor mx-auto">
-      <div class="monitor-inner">
-        <div :class="`layer-on-off ${!isFirstTime ? (isMonitorOn ? 'layer-on' : 'layer-off') : ''}`"></div>
-        <div v-if="!isMonitorOn" class="text-center text-xxl-start text-light">
-          <div class="presentation">
-            <div class="presentation-inner row g-4 mt-4 mt-md-0">
-              <div class="typewriter col-xxl-10">
-                <h1 ref="title" class="title fw-bold lh-lg" tabindex="1">
-                  ¡Bienvenido a mi portfolio! 🖥️
-                </h1>
-                <br />
-                <div class="fs-3">
-                  <span ref="description" class="description" tabindex="2">Para comenzar a explorar solo tienes que hacer clic en el siguiente botón</span>
-                  <div :class="`${!isFinishedTyping ? 'd-none' : 'd-inline'}`">
-                    <span class="d-none d-xxl-block point-right">👉</span>
-                    <span class="d-block d-xxl-none point-down">👇</span>
-                  </div>
-                </div>
-              </div>
-              <div class="col-xxl-2 d-flex flex-column justify-content-center align-items-center">
-                <button v-show="isFinishedTyping" type="button" tabindex="3" class="btn-on rounded-circle mb-2" title="Encender monitor" @click="isMonitorOn = true">
-                  <i class="fa-solid fa-power-off"></i>
-                </button>
-              </div>
+  <div ref="monitor" class="monitor">
+    <div class="monitor-inner">
+      <div :class="`layer-on-off ${!isFirstTime ? (isMonitorOn ? 'layer-on' : 'layer-off') : ''}`"></div>
+      <div v-if="!isMonitorOn" class="presentation d-flex flex-column flex-xxl-row justify-content-center align-items-center gap-5 text-center text-xxl-start text-light overflow-auto">
+        <div class="typewriter">
+          <h1 ref="title" class="title fw-bold lh-lg" tabindex="1">
+            ¡Bienvenido a mi portfolio! 🖥️
+          </h1>
+          <br />
+          <div class="fs-3">
+            <span ref="description" class="description" tabindex="2">Para comenzar a explorar solo tienes que hacer clic en el siguiente botón</span>
+            <div :class="`${!isFinishedTyping ? 'd-none' : 'd-inline'}`">
+              <span class="d-none d-xxl-block point-right">👉</span>
+              <span class="d-block d-xxl-none point-down">👇</span>
             </div>
           </div>
-          <img src="@assets/img/greet.png" alt="Saludo" title="Saludo" class="image-greet" draggable="false" />
         </div>
-        <ScreenView ref="screenView" v-show="isMonitorOn" />
+        <button type="button" tabindex="3" :class="`btn-on rounded-circle mt-xxl-5 mt-0 ${isFinishedTyping ? 'visible animated' : 'invisible'}`" title="Encender monitor" @click="isMonitorOn = true">
+          <i class="fa-solid fa-power-off"></i>
+        </button>
       </div>
+      <img v-show="!isMonitorOn" src="@assets/img/greet.png" class="image-greet" alt="Saludo" title="Saludo" draggable="false" />
+      <ScreenView ref="screenView" v-if="isMonitorOn" />
     </div>
   </div>
 </template>
@@ -73,7 +65,7 @@ export default {
 
       this.$refs.description.classList.add('typewriter-finished');
 
-      this.$nextTick(() => this.isFinishedTyping = true);
+      this.isFinishedTyping = true;
     },
     typing({ element, originalText, startDelay = 0, speed = 15, currentChar = '', currentIndex = 0 }) {
       return new Promise((resolve) => {
@@ -149,7 +141,10 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
+@import '~bootstrap/scss/functions';
+@import '~bootstrap/scss/variables';
+
 .monitor {
   width: 100vw;
   height: 100vh;
@@ -161,24 +156,26 @@ export default {
   height: 100%;
   overflow: hidden;
   padding: 0;
+  display: flex;
 }
 
 .image-greet {
   position: fixed;
-  top: 20px;
-  left: 0;
+  top: 25%;
+  bottom: auto;
+  right: 0;
   width: 100%;
   max-width: 150px;
   z-index: 5;
-  animation: slide-right-and-rotate-right 1s ease-in;
+  animation: slide-left 1s ease;
 }
 
 .layer-on-off {
-  position: fixed;
-  left: 0;
-  right: 0;
+  position: absolute;
   top: 0;
-  bottom: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
   background-color: rgb(0, 0, 0);
   z-index: 4;
 }
@@ -192,35 +189,24 @@ export default {
 }
 
 .presentation {
-  position: fixed;
-  padding: 3rem;
-  top: 50%;
-  left: 0;
   width: 100%;
-  transform: translateY(-50%);
+  height: 100%;
+  padding: 3rem;
   font-size: 1.2rem;
   z-index: 5;
 }
 
-.presentation-inner {
-  max-width: 1200px;
-  margin: auto;
-}
-
-.typewriter .title,
-.typewriter .description {
+.typewriter > * {
   display: inline;
   overflow: hidden;
 }
 
-.typewriter .title.typewriter-start,
-.typewriter .description.typewriter-start {
+.typewriter .typewriter-start {
   border-right: 0.15em solid #fff;
   animation: blink-caret 0.75s steps(40) infinite;
 }
 
-.typewriter .title.typewriter-finished,
-.typewriter .description.typewriter-finished {
+.typewriter .typewriter-finished {
   border-right: none;
   animation: none;
 }
@@ -247,7 +233,10 @@ export default {
   border: 0;
   box-shadow: 0 0 30px rgb(210, 23, 23);
   color: rgb(210, 23, 23);
-  animation: zoom-out-bounce 2s ease-in-out;
+}
+
+.btn-on.animated {
+  animation: zoom-out-bounce 2s forwards;
 }
 
 .btn-on:active {
@@ -255,13 +244,40 @@ export default {
   outline: none;
 }
 
+@media (max-width: map-get($grid-breakpoints, 'lg')) {
+  .image-greet {
+    top: auto !important;
+    bottom: 10%;
+  }
+}
+
+@keyframes zoom-out-bounce {
+  0% {
+    transform: scale(0);
+  }
+  10% {
+    transform: scale(0);
+  }
+  20% {
+    transform: scale(0);
+  }
+  30% {
+    transform: scale(1.1);
+  }
+  60% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 @keyframes blink-caret {
-  from,
+  from {
+    border-color: #fff;
+  }
   to {
     border-color: transparent;
-  }
-  50% {
-    border-color: #fff;
   }
 }
 
@@ -280,15 +296,6 @@ export default {
   }
   100% {
     transform: scaleY(1);
-  }
-}
-
-@keyframes slide-right-and-rotate-right {
-  0% {
-    transform: translate(-200%, 0) rotate(-90deg);
-  }
-  100% {
-    transform: translate(0, 0);
   }
 }
 

@@ -21,7 +21,8 @@
     "vue": "^2.6.10",
     "vue-class-component": "^7.2.6",
     "vue-moment": "^4.1.0",
-    "vue-resize-directive": "^1.2.0"
+    "vue-resize-directive": "^1.2.0",
+    "vue-template-compiler": "^2.6.10"
   },
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.22.3",
@@ -34,7 +35,6 @@
     "eslint-plugin-vue": "^5.0.0",
     "prettier": "^1.19.1",
     "sass": "^1.78.0",
-    "sass-loader": "^10.5.2",
-    "vue-template-compiler": "^2.6.10"
+    "sass-loader": "^10.5.2"
   }
 }

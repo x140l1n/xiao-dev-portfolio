@@ -1,3 +1,4 @@
+
 [data-animation='slide-up'].animated {
   animation: slide-up 0.5s ease;
 }
@@ -22,27 +23,8 @@
   animation: zoom-out 0.5s ease;
 }
 
-[data-animation='zoom-out-bounce'].animated {
-  animation: zoom-out-bounce 0.5s ease;
-}
-
 [data-animation]:not(.animated) {
   opacity: 0;
-}
-
-@keyframes zoom-out-bounce {
-  0% {
-    transform: scale(0);
-  }
-  30% {
-    transform: scale(1.1);
-  }
-  60% {
-    transform: scale(0.9);
-  }
-  100% {
-    transform: scale(1);
-  }
 }
 
 @keyframes slide-up {

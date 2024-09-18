@@ -9,22 +9,23 @@
       <img :src="program.iconSrc" class="program-icon" :alt="`Icono ${program.title}`" draggable="false" />
       <span class="m-auto ms-2 text-truncate">{{ title }}</span>
       <div ref="windowTilebarActions" class="h-100 d-flex align-items-center">
-        <button class="tilebar-item" title="Minimizar ventana" @click="windowTilebarClick" data-action="minimize">
+        <button type="button" class="tilebar-item" title="Minimizar ventana" @click="windowTilebarClick" data-action="minimize">
           <i class="fa-solid fa-minus fa-fw"></i>
         </button>
-        <button class="tilebar-item" :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`" @click="windowTilebarClick" data-action="toggleMaximized">
+        <button type="button" class="tilebar-item" :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`" @click="windowTilebarClick" data-action="toggleMaximized">
           <i :class="`fa-solid ${isMaximized ? 'fa-compress' : 'fa-expand'}`"></i>
         </button>
-        <button class="tilebar-item" title="Cerrar ventana" @click="windowTilebarClick" data-action="close">
+        <button type="button" class="tilebar-item" title="Cerrar ventana" @click="windowTilebarClick" data-action="close">
           <i class="fa-solid fa-xmark fa-fw"></i>
         </button>
       </div>
     </div>
     <div class="window-content bg-light overflow-hidden" ref="windowContent" @scroll="onScroll"></div>
-    <div class="resizer top-left"></div>
-    <div class="resizer top-right"></div>
-    <div class="resizer bottom-left"></div>
-    <div class="resizer bottom-right"></div>
+    <span class="resizer top"></span>
+    <span class="resizer top-left"></span>
+    <span class="resizer top-right"></span>
+    <span class="resizer bottom-left"></span>
+    <span class="resizer bottom-right"></span>
   </div>
 </template>
 
@@ -80,7 +81,7 @@ export default {
       pos3: 0,
       pos4: 0,
       isMaximized: false,
-      isMouseDown: false,
+      isResizing: false,
       isDragging: false
     };
   },
@@ -97,7 +98,11 @@ export default {
       this.initResize(this.$refs.window, this);
     },
     windowTilebarClick(evt) {
+      this.$refs.window.classList.remove('no-transition');
+
       evt.stopPropagation();
+
+      evt.currentTarget.blur();
 
       const action = evt.target.dataset.action || evt.currentTarget.dataset.action || evt.target.parentElement.dataset.action;
 
@@ -116,6 +121,10 @@ export default {
       }
     },
     windowTilebarDblclick(evt) {
+      this.$refs.window.classList.remove('no-transition');
+
+      evt.stopPropagation();
+
       const action = evt.target.dataset.action || evt.currentTarget.dataset.action || evt.target.parentElement.dataset.action;
 
       if (!action) this.toggleMaximized();
@@ -125,6 +134,10 @@ export default {
       element.addEventListener('touchstart', startDrag, { passive: true });
 
       function startDrag(evt) {
+        if (self.isResizing) return;
+
+        evt.stopPropagation();
+
         const action = evt.target.dataset.action || evt.currentTarget.dataset.action || evt.target.parentElement.dataset.action;
 
         if (!action) {
@@ -147,6 +160,8 @@ export default {
       }
 
       function onDrag(evt) {
+        evt.stopPropagation();
+
         self.$refs.window.classList.add('no-transition');
 
         self.pos1 = evt.touches ? self.pos3 - evt.touches[0].clientX : self.pos3 - evt.clientX;
@@ -161,8 +176,8 @@ export default {
         self.isDragging = true;
       }
 
-      function endDrag() {
-        self.isDragging = false;
+      function endDrag(evt) {
+        evt.stopPropagation();
 
         self.$refs.window.classList.remove('no-transition');
 
@@ -174,6 +189,8 @@ export default {
         self.$refs.window.parentElement.removeEventListener('touchend', endDrag, { passive: true });
         self.$refs.window.parentElement.removeEventListener('touchleave', endDrag, { passive: true });
         self.$refs.window.parentElement.removeEventListener('touchmove', onDrag, { passive: true });
+
+        self.isDragging = false;
       }
     },
     initResize(element, self) {
@@ -195,6 +212,8 @@ export default {
         resizer.addEventListener('mousedown', startResize);
 
         function startResize(evt) {
+          if (self.isMaximized) return;
+
           originalWidth = parseFloat(
             getComputedStyle(element, null)
               .getPropertyValue('max-width')
@@ -274,6 +293,8 @@ export default {
               self.position.y = originalY + (pageY - originalMouseY);
             }
           }
+
+          self.isResizing = true;
         }
 
         function endResize() {
@@ -286,6 +307,8 @@ export default {
 
           window.removeEventListener('mousemove', onResize);
           window.removeEventListener('mouseup', endResize);
+
+          self.isResizing = false;
         }
       }
     },
@@ -310,12 +333,22 @@ export default {
         this.$programActive = null;
       }
     },
-    updateSize() {
-      if (this.isMaximized) {
-        this.$refs.window.classList.add('no-transition');
+    updateSizePosition() {
+      this.$refs.window.classList.add('no-transition');
 
+      if (this.isMaximized) {
         this.size.width = this.$widthScreenContent;
         this.size.height = this.$heightScreenContent;
+      }
+
+      if (this.position.x + this.size.width > this.$widthScreenContent && this.position.x > 0) {
+        this.position.x = this.$widthScreenContent - this.size.width;
+      } else if (this.position.x < 0) {
+        this.position.x = 0;
+      } else if (this.position.y + this.size.height > this.$heightScreenContent && this.position.y > 0) {
+        this.position.y = this.$heightScreenContent - this.size.height;
+      } else if (this.position.y < 0) {
+        this.position.y = 0;
       }
     },
     onResize() {
@@ -383,13 +416,6 @@ export default {
     }
   },
   watch: {
-    isMouseDown(value) {
-      if (value) {
-        this.$refs.window.classList.add('no-transition');
-      } else {
-        this.$refs.window.classList.remove('no-transition');
-      }
-    },
     isMaximized(value) {
       if (value) {
         this.sizePrev = { ...this.size };
@@ -412,6 +438,17 @@ export default {
             const adjustedOffsetX = this.positionIniDrag.x > this.sizePrev.width ? this.sizePrev.width : this.positionIniDrag.x;
 
             this.position.x = this.positionIniDrag.x - widthDifference * (adjustedOffsetX / this.$widthScreenContent);
+          }
+
+          const windowWidth = this.sizePrev.width;
+          const screenWidth = this.$widthScreenContent;
+
+          if (this.position.x + windowWidth > screenWidth) {
+            this.position.x = screenWidth - windowWidth;
+          }
+
+          if (this.position.x < 0) {
+            this.position.x = 0;
           }
         }
 
@@ -477,7 +514,8 @@ export default {
   height: var(--heightTileBar);
 }
 
-.tilebar-item {
+.tilebar-item,
+.tilebar-item:active {
   width: 50px;
   height: 100%;
   background-color: transparent;
