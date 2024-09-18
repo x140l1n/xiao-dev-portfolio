@@ -310,19 +310,6 @@ small {
   background: #1a233a;
 }
 
-.timeline-row .timeline-content:before {
-  content: '';
-  position: absolute;
-  top: 20px;
-  right: -49px;
-  width: 20px;
-  height: 20px;
-  border-radius: 100px;
-  z-index: 10;
-  background: #272e48;
-  border: 2px dashed #4b546f;
-}
-
 .timeline-row .timeline-content h4 {
   margin: 0 0 20px 0;
   overflow: hidden;
@@ -448,10 +435,6 @@ small {
 
 .timeline.small .timeline-row:nth-child(even) .timeline-content {
   margin: 0;
-}
-
-.timeline.small .timeline-row:nth-child(even) .timeline-content:before {
-  display: none;
 }
 
 .timeline.small .timeline-row:nth-child(even) .timeline-content:after {

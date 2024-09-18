@@ -41,21 +41,23 @@ module.exports = {
           }
         }
       }
+    },
+    module: {
+      rules: [
+        {
+          test: /\.(sa|sc|c)ss$/,
+          use: [
+            {
+              loader: 'sass-loader',
+              options: {
+                sassOptions: {
+                  quietDeps: true
+                }
+              }
+            }
+          ]
+        }
+      ]
     }
-  },
-  chainWebpack: (config) => {
-    config.module
-      .rule('scss')
-      .oneOf('normal')
-      .use('sass-loader')
-      .loader('sass-loader')
-      .tap((options) => {
-        return {
-          ...options,
-          sassOptions: {
-            quietDeps: true
-          }
-        };
-      });
   }
 };

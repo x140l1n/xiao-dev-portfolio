@@ -56,8 +56,15 @@
           <h4>General</h4>
           <div class="card">
             <div class="card-body">
-              <div class="d-flex justify-content-between">
-                <label class="fw-bold" :for="`switch-fullscreen-${id}`">Habilitar modo pantalla completa</label>
+              <div class="d-flex justify-content-between align-items-center gap-2">
+                <div class="d-flex flex-column gap-2">
+                  <label class="fw-bold" :for="`switch-fullscreen-${id}`">Habilitar modo pantalla completa</label>
+                  <small class="fst-italic text-danger"
+                    ><strong>Nota:</strong>
+                    Si lo habilitas en el propio navegador puede que no funcione esta opción.
+                  </small>
+                </div>
+
                 <div class="form-check form-switch">
                   <input :id="`switch-fullscreen-${id}`" class="form-check-input" type="checkbox" :true-value="true" :false-value="false" v-model="$isFullscreen" draggable="false" />
                 </div>

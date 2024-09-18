@@ -92,9 +92,7 @@ import { author } from '@root/package';
   },
   methods: {
     init() {
-      setTimeout(() => {
-        this.flip();
-      }, 10);
+      setTimeout(() => this.flip(), 100);
     },
     onResize() {
       if (this.$el.clientWidth < 800) {

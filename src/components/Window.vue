@@ -1,18 +1,23 @@
 <template>
-  <div ref="window" class="window resizers bg-light" :style="cssRootVars" @click="windowClick" v-resize="onResize">
-    <div ref="windowTilebar" @dblclick="windowTilebarDblclick" class="window-tilebar bg-primary text-light d-flex justify-content-between align-items-center user-select-none">
+  <div ref="window" class="window resizers border border-2 border-dark bg-light" :style="cssRootVars" v-resize="onResize">
+    <div
+      ref="windowTilebar"
+      @click="windowTilebarClick"
+      @dblclick="windowTilebarDblclick"
+      class="window-tilebar bg-primary text-light d-flex justify-content-between align-items-center border-bottom border-2 border-dark user-select-none"
+    >
       <img :src="program.iconSrc" class="program-icon" :alt="`Icono ${program.title}`" draggable="false" />
       <span class="m-auto ms-2 text-truncate">{{ title }}</span>
       <div ref="windowTilebarActions" class="h-100 d-flex align-items-center">
-        <span role="button" class="tilebar-item" title="Minimizar ventana" @click="windowClick" data-action="minimized">
+        <button class="tilebar-item" title="Minimizar ventana" @click="windowTilebarClick" data-action="minimize">
           <i class="fa-solid fa-minus fa-fw"></i>
-        </span>
-        <span role="button" class="tilebar-item" :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`" @click="windowClick" data-action="toggleMaximized">
+        </button>
+        <button class="tilebar-item" :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`" @click="windowTilebarClick" data-action="toggleMaximized">
           <i :class="`fa-solid ${isMaximized ? 'fa-compress' : 'fa-expand'}`"></i>
-        </span>
-        <span role="button" class="tilebar-item" title="Cerrar ventana" @click="windowClick" data-action="close">
+        </button>
+        <button class="tilebar-item" title="Cerrar ventana" @click="windowTilebarClick" data-action="close">
           <i class="fa-solid fa-xmark fa-fw"></i>
-        </span>
+        </button>
       </div>
     </div>
     <div class="window-content bg-light overflow-hidden" ref="windowContent" @scroll="onScroll"></div>
@@ -84,24 +89,17 @@ export default {
   },
   methods: {
     init() {
-      if (this.program) this.isMaximized = this.program.maximizedDefault;
+      this.isMaximized = this.program.maximizedDefault;
 
       this.bringFront();
 
       this.initDrag(this.$refs.windowTilebar, this);
       this.initResize(this.$refs.window, this);
     },
-    windowTilebarDblclick(evt) {
+    windowTilebarClick(evt) {
       evt.stopPropagation();
 
-      const action = evt.target.dataset.action;
-
-      if (!action) this.toggleMaximized();
-    },
-    windowClick(evt) {
-      evt.stopPropagation();
-
-      const action = evt.currentTarget.dataset.action;
+      const action = evt.target.dataset.action || evt.currentTarget.dataset.action || evt.target.parentElement.dataset.action;
 
       switch (action) {
         case 'close':
@@ -109,95 +107,25 @@ export default {
           break;
         case 'toggleMaximized':
           this.toggleMaximized();
-          this.bringFront();
           break;
-        case 'minimized':
+        case 'minimize':
           this.minimize();
           break;
         default:
           this.bringFront();
       }
     },
-    bringFront() {
-      this.onBringFront();
+    windowTilebarDblclick(evt) {
+      const action = evt.target.dataset.action || evt.currentTarget.dataset.action || evt.target.parentElement.dataset.action;
 
-      this.$programs.forEach((program) => program.window.$el.classList.remove('active'));
-
-      this.$el.classList.remove('minimize');
-      this.$el.classList.add('active');
-
-      this.$programActive = this.program;
-    },
-    minimize() {
-      this.onMinimize();
-
-      this.$el.classList.remove('active');
-      this.$el.classList.add('minimize');
-
-      this.bringFrontLastProgram();
-    },
-    toggleMaximized() {
-      if (this.isMaximized) {
-        this.$refs.window.classList.add('minimized-transition');
-        this.$refs.window.classList.remove('maximized-transition');
-      } else {
-        this.$refs.window.classList.add('maximized-transition');
-        this.$refs.window.classList.remove('minimized-transition');
-      }
-
-      this.isMaximized = !this.isMaximized;
-    },
-    close() {
-      this.$el.classList.add('closing');
-
-      setTimeout(() => {
-        this.$destroy();
-        this.program.$destroy();
-
-        this.$el.parentNode.removeChild(this.$el);
-      }, 500);
-
-      this.$programs = this.$programs.filter((program) => program.id !== this.program.id);
-
-      this.bringFrontLastProgram();
-    },
-    bringFrontLastProgram() {
-      const programsReverse = [...this.$programs].reverse();
-
-      const lastProgram = programsReverse.find((program) => !program.window.$el.classList.contains('minimize'));
-
-      if (lastProgram) {
-        lastProgram.window.bringFront();
-      } else {
-        this.$programActive = null;
-      }
-    },
-    updateSize() {
-      if (this.isMaximized) {
-        this.$refs.window.classList.add('no-transition');
-
-        this.size.width = this.$widthScreenContent;
-        this.size.height = this.$heightScreenContent;
-      }
-    },
-    onResize() {
-      if (this.program && typeof this.program.onResize === 'function') this.program.onResize();
-    },
-    onMinimize() {
-      if (this.program && typeof this.program.onMinimize === 'function') this.program.onMinimize();
-    },
-    onScroll() {
-      if (this.program && typeof this.program.onScroll === 'function') this.program.onScroll();
-    },
-    onBringFront() {
-      if (this.program && typeof this.program.onBringFront === 'function') this.program.onBringFront();
+      if (!action) this.toggleMaximized();
     },
     initDrag(element, self) {
       element.addEventListener('mousedown', startDrag);
       element.addEventListener('touchstart', startDrag, { passive: true });
 
       function startDrag(evt) {
-        const action = evt.target.dataset.action;
+        const action = evt.target.dataset.action || evt.currentTarget.dataset.action || evt.target.parentElement.dataset.action;
 
         if (!action) {
           self.pos3 = evt.touches ? evt.touches[0].clientX : evt.clientX;
@@ -361,6 +289,82 @@ export default {
         }
       }
     },
+    bringFront() {
+      this.onBringFront();
+
+      this.$programs.forEach((program) => program.window.$el.classList.remove('active'));
+
+      this.$el.classList.remove('minimize');
+      this.$el.classList.add('active');
+
+      this.$programActive = this.program;
+    },
+    bringFrontLastProgram() {
+      const programsReverse = [...this.$programs].reverse();
+
+      const lastProgram = programsReverse.find((program) => !program.window.$el.classList.contains('minimize'));
+
+      if (lastProgram) {
+        lastProgram.window.bringFront();
+      } else {
+        this.$programActive = null;
+      }
+    },
+    updateSize() {
+      if (this.isMaximized) {
+        this.$refs.window.classList.add('no-transition');
+
+        this.size.width = this.$widthScreenContent;
+        this.size.height = this.$heightScreenContent;
+      }
+    },
+    onResize() {
+      if (this.program && typeof this.program.onResize === 'function') this.program.onResize();
+    },
+    onMinimize() {
+      if (this.program && typeof this.program.onMinimize === 'function') this.program.onMinimize();
+    },
+    onScroll() {
+      if (this.program && typeof this.program.onScroll === 'function') this.program.onScroll();
+    },
+    onBringFront() {
+      if (this.program && typeof this.program.onBringFront === 'function') this.program.onBringFront();
+    },
+    minimize() {
+      this.onMinimize();
+
+      this.$el.classList.remove('active');
+      this.$el.classList.add('minimize');
+
+      this.bringFrontLastProgram();
+    },
+    toggleMaximized() {
+      if (this.isMaximized) {
+        this.$refs.window.classList.add('minimized-transition');
+        this.$refs.window.classList.remove('maximized-transition');
+      } else {
+        this.$refs.window.classList.add('maximized-transition');
+        this.$refs.window.classList.remove('minimized-transition');
+      }
+
+      this.isMaximized = !this.isMaximized;
+
+      this.bringFront();
+    },
+    close() {
+      this.$el.classList.add('closing');
+
+      setTimeout(() => {
+        this.$destroy();
+        this.program.$destroy();
+
+        this.$el.parentNode.removeChild(this.$el);
+      }, 500);
+
+      this.$programs = this.$programs.filter((program) => program.id !== this.program.id);
+
+      this.bringFrontLastProgram();
+    },
     appendWindowNode(node) {
       this.$refs.windowContent.appendChild(node);
     }
@@ -434,7 +438,6 @@ export default {
   max-height: var(--height);
   min-height: var(--minHeight);
   cursor: default;
-  border: 2px solid #000;
   transition: max-width 0.1s, max-height 0.1s, left 0.1s 0.1s, top 0.1s 0.1s;
   z-index: 1;
   animation: zoom-out-only-transform 0.2s;
@@ -477,6 +480,9 @@ export default {
 .tilebar-item {
   width: 50px;
   height: 100%;
+  background-color: transparent;
+  border: none;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -491,9 +497,9 @@ export default {
   background-color: #106379;
 }
 
-.tilebar-item:nth-child(1):hover {
+.tilebar-item:nth-child(3):hover {
   cursor: default;
-  background-color: red;
+  background-color: #d9534f;
 }
 
 .program-icon {

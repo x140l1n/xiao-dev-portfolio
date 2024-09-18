@@ -273,7 +273,7 @@ export default {
 
 .program > .program-inner > label {
   text-align: center;
-  text-shadow: 1px 1px 4px black;
+  text-shadow: 1px 1px 4px #000;
   font-size: 0.9em;
   line-height: 1.2em;
   cursor: pointer;
