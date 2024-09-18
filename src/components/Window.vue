@@ -1,21 +1,20 @@
 <template>
   <div ref="window" class="window resizers border border-2 border-dark bg-light" :style="cssRootVars" v-resize="onResize">
     <div
-      ref="windowTilebar"
-      @click="windowTilebarClick"
-      @dblclick="windowTilebarDblclick"
+      ref="windowTitleBar"
+      @click="onClickWindowTitleBar"
       class="window-tilebar bg-primary text-light d-flex justify-content-between align-items-center border-bottom border-2 border-dark user-select-none"
     >
       <img :src="program.iconSrc" class="program-icon" :alt="`Icono ${program.title}`" draggable="false" />
       <span class="m-auto ms-2 text-truncate">{{ title }}</span>
-      <div ref="windowTilebarActions" class="h-100 d-flex align-items-center">
-        <button type="button" class="tilebar-item" title="Minimizar ventana" @click="windowTilebarClick" data-action="minimize">
+      <div ref="windowTitleBarActions" class="h-100 d-flex align-items-center">
+        <button type="button" class="tilebar-item" title="Minimizar ventana" data-action="minimize">
           <i class="fa-solid fa-minus fa-fw"></i>
         </button>
-        <button type="button" class="tilebar-item" :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`" @click="windowTilebarClick" data-action="toggleMaximized">
+        <button type="button" class="tilebar-item" :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`" data-action="toggleMaximized">
           <i :class="`fa-solid ${isMaximized ? 'fa-compress' : 'fa-expand'}`"></i>
         </button>
-        <button type="button" class="tilebar-item" title="Cerrar ventana" @click="windowTilebarClick" data-action="close">
+        <button type="button" class="tilebar-item" title="Cerrar ventana" data-action="close">
           <i class="fa-solid fa-xmark fa-fw"></i>
         </button>
       </div>
@@ -55,6 +54,8 @@ export default {
   },
   data() {
     return {
+      lastTap: 0,
+      tapTimeout: null,
       position: {
         x: this.x,
         y: this.y
@@ -94,17 +95,37 @@ export default {
 
       this.bringFront();
 
-      this.initDrag(this.$refs.windowTilebar, this);
+      this.initDrag(this.$refs.windowTitleBar, this);
       this.initResize(this.$refs.window, this);
     },
-    windowTilebarClick(evt) {
-      this.$refs.window.classList.remove('no-transition');
-
+    onClickWindowTitleBar(evt) {
       evt.stopPropagation();
 
-      evt.currentTarget.blur();
+      const action = evt.target?.dataset.action || evt.currentTarget?.dataset.action || evt.target?.parentElement?.dataset.action;
 
-      const action = evt.target.dataset.action || evt.currentTarget.dataset.action || evt.target.parentElement.dataset.action;
+      if (action) {
+        this.handleClickTitleBar(evt);
+
+        return;
+      }
+
+      const currentTime = this.$moment().valueOf();
+      const tapLength = currentTime - this.lastTap;
+
+      clearTimeout(this.tapTimeout);
+
+      if (tapLength < 300 && tapLength > 0) {
+        this.handleDoubleClickTitleBar(evt);
+      }
+
+      this.lastTap = currentTime;
+    },
+    handleClickTitleBar(evt) {
+      evt.stopPropagation();
+
+      this.$refs.window.classList.remove('no-transition');
+
+      const action = evt.target?.dataset.action || evt.currentTarget?.dataset.action || evt.target?.parentElement?.dataset.action;
 
       switch (action) {
         case 'close':
@@ -120,12 +141,12 @@ export default {
           this.bringFront();
       }
     },
-    windowTilebarDblclick(evt) {
-      this.$refs.window.classList.remove('no-transition');
-
+    handleDoubleClickTitleBar(evt) {
       evt.stopPropagation();
 
-      const action = evt.target.dataset.action || evt.currentTarget.dataset.action || evt.target.parentElement.dataset.action;
+      this.$refs.window.classList.remove('no-transition');
+
+      const action = evt.target?.dataset.action || evt.currentTarget?.dataset.action || evt.target?.parentElement?.dataset.action;
 
       if (!action) this.toggleMaximized();
     },
@@ -138,7 +159,7 @@ export default {
 
         evt.stopPropagation();
 
-        const action = evt.target.dataset.action || evt.currentTarget.dataset.action || evt.target.parentElement.dataset.action;
+        const action = evt.target?.dataset.action || evt.currentTarget?.dataset.action || evt.target?.parentElement?.dataset.action;
 
         if (!action) {
           self.pos3 = evt.touches ? evt.touches[0].clientX : evt.clientX;
@@ -248,9 +269,12 @@ export default {
           const pageX = evt.touches ? evt.touches[0].pageX : evt.pageX;
           const pageY = evt.touches ? evt.touches[0].pageY : evt.pageY;
 
+          let width = 0;
+          let height = 0;
+
           if (resizer.classList.contains('bottom-right')) {
-            const width = originalWidth + (pageX - originalMouseX);
-            const height = originalHeight + (pageY - originalMouseY);
+            width = originalWidth + (pageX - originalMouseX);
+            height = originalHeight + (pageY - originalMouseY);
 
             if (width > minimumSize) {
               self.size.width = width;
@@ -259,8 +283,8 @@ export default {
               self.size.height = height;
             }
           } else if (resizer.classList.contains('bottom-left')) {
-            const width = originalWidth - (pageX - originalMouseX);
-            const height = originalHeight + (pageY - originalMouseY);
+            width = originalWidth - (pageX - originalMouseX);
+            height = originalHeight + (pageY - originalMouseY);
 
             if (width > minimumSize) {
               self.size.width = width;
@@ -270,8 +294,8 @@ export default {
               self.position.x = originalX + (pageX - originalMouseX);
             }
           } else if (resizer.classList.contains('top-right')) {
-            const width = originalWidth + (pageX - originalMouseX);
-            const height = originalHeight - (pageY - originalMouseY);
+            width = originalWidth + (pageX - originalMouseX);
+            height = originalHeight - (pageY - originalMouseY);
 
             if (width > minimumSize) {
               self.size.width = width;
@@ -281,8 +305,8 @@ export default {
               self.position.y = originalY + (pageY - originalMouseY);
             }
           } else {
-            const width = originalWidth - (pageX - originalMouseX);
-            const height = originalHeight - (pageY - originalMouseY);
+            width = originalWidth - (pageX - originalMouseX);
+            height = originalHeight - (pageY - originalMouseY);
 
             if (width > minimumSize) {
               self.size.width = width;
@@ -430,10 +454,10 @@ export default {
           this.position = { ...this.positionPrev };
         } else {
           const widthDifference = this.$widthScreenContent - this.sizePrev.width;
-          const isInsideWindowTilebarActions = this.positionIniDrag.x >= this.$widthScreenContent - this.$refs.windowTilebarActions.clientWidth;
+          const isInsideWindowTitleBarActions = this.positionIniDrag.x >= this.$widthScreenContent - this.$refs.windowTitleBarActions.clientWidth;
 
-          if (isInsideWindowTilebarActions) {
-            this.position.x = this.$widthScreenContent - this.$refs.windowTilebarActions.clientWidth;
+          if (isInsideWindowTitleBarActions) {
+            this.position.x = this.$widthScreenContent - this.$refs.windowTitleBarActions.clientWidth;
           } else {
             const adjustedOffsetX = this.positionIniDrag.x > this.sizePrev.width ? this.sizePrev.width : this.positionIniDrag.x;
 
