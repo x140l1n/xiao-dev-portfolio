@@ -146,8 +146,8 @@ export default {
 @import '~bootstrap/scss/variables';
 
 .monitor {
-  width: 100vw;
-  height: 100vh;
+  width: 100dvw;
+  height: 100dvh;
 }
 
 .monitor-inner {
@@ -174,8 +174,8 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
-  width: 100vw;
+  height: 100dvh;
+  width: 100dvw;
   background-color: rgb(0, 0, 0);
   z-index: 4;
 }
