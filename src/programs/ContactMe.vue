@@ -1,33 +1,31 @@
 <template>
   <div class="w-100 h-100">
-    <form @submit.prevent="onSubmit" v-if="!showSuccess" class="overflow-auto h-100 p-4">
+    <form class="overflow-auto h-100 p-4" v-if="!showSuccess" @submit.prevent="onSubmit">
       <div class="mb-3 mx-2">
-        <h5 class="fw-bold">
-          Si tienes alguna duda no dudes en enviarme un correo ;)
-        </h5>
+        <h5 class="fw-bold"> Si tienes alguna duda no dudes en enviarme un correo ;) </h5>
       </div>
       <hr />
       <div class="mb-3 mx-2">
-        <label for="input-email" class="form-label">Email *</label>
-        <input type="email" name="from" class="form-control" id="input-email" required />
+        <label class="form-label" for="input-email">Email *</label>
+        <input class="form-control" id="input-email" type="email" name="from" required />
       </div>
       <div class="d-flex flex-wrap">
         <div class="mb-3 flex-grow-1 mx-2">
-          <label for="input-firstname" class="form-label">Nombre *</label>
-          <input type="text" name="firstname" class="form-control" id="input-firstname" required />
+          <label class="form-label" for="input-firstname">Nombre *</label>
+          <input class="form-control" id="input-firstname" type="text" name="firstname" required />
         </div>
         <div class="mb-3 flex-grow-1 mx-2">
-          <label for="input-lastname" class="form-label">Apellidos *</label>
-          <input type="text" name="lastname" class="form-control" id="input-lastname" required />
+          <label class="form-label" for="input-lastname">Apellidos *</label>
+          <input class="form-control" id="input-lastname" type="text" name="lastname" required />
         </div>
       </div>
       <div class="mb-3 mx-2">
-        <label for="input-subject" class="form-label">Asunto *</label>
-        <input type="text" name="subject" class="form-control" id="input-subject" required />
+        <label class="form-label" for="input-subject">Asunto *</label>
+        <input class="form-control" id="input-subject" type="text" name="subject" required />
       </div>
       <div class="mb-3 mx-2">
-        <label for="input-message" class="form-label">Mensaje *</label>
-        <textarea class="form-control" name="message" id="input-message" rows="5" required></textarea>
+        <label class="form-label" for="input-message">Mensaje *</label>
+        <textarea class="form-control" id="input-message" name="message" rows="5" required></textarea>
       </div>
       <div class="mb-3 mx-2">
         <label v-if="resultMessage" :class="`${statusMessage == 1 ? 'text-success' : 'text-danger'}`">
@@ -37,7 +35,7 @@
         </label>
       </div>
       <div class="mb-3 mx-2">
-        <button type="submit" class="btn bg-primary text-light w-100">
+        <button class="btn bg-primary text-light w-100" type="submit">
           <i class="fas fa-spinner fa-pulse fa-fw me-2" v-if="isSending"></i>
           <i class="fa-solid fa-paper-plane fa-fw me-2" v-else></i>
           Enviar
@@ -45,10 +43,8 @@
       </div>
     </form>
     <div class="d-flex flex-column justify-content-center overflow-auto h-100 text-center" v-else>
-      <img src="@assets/img/contactme.png" class="img-fluid mx-auto" title="Contáctame" draggable="false" />
-      <h3 class="mx-auto fw-bold my-4">
-        ¡Muchas gracias por contactar conmigo!
-      </h3>
+      <img class="img-fluid mx-auto" src="@assets/img/contactme.png" title="Contáctame" draggable="false" />
+      <h3 class="mx-auto fw-bold my-4"> ¡Muchas gracias por contactar conmigo! </h3>
       <a role="button" @click="showSuccess = false"><i class="fa-solid fa-angle-left me-3"></i>Volver al formulario de contacto</a>
     </div>
   </div>

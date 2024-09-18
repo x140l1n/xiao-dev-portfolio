@@ -1,18 +1,18 @@
 <template>
   <div class="w-100 h-100 d-flex flex-column">
-    <div ref="tabContent" class="tab-content flex-grow-1">
-      <div :id="`v-tab-pane-1-${id}`" class="tab-pane show active d-flex flex-column h-100" role="tabpanel" :aria-labelledby="`v-tab-pane-1-${id}`">
+    <div class="flex-grow-1">
+      <div class="d-flex flex-column h-100">
         <div class="p-2">
-          <form @submit.prevent="search" :ref="`form-tab-pane-1-${id}`" :target="`iframe-tab-pane-1-${id}`" class="d-flex gap-2">
+          <form class="d-flex gap-2" @submit.prevent="search" :ref="`form-${id}`" :target="`iframe-${id}`">
             <div class="flex-grow-1">
-              <input type="text" name="input-search" class="form-control form-control-sm rounded-pill" placeholder="Escribe para buscar" />
+              <input class="form-control form-control-sm rounded-pill" type="text" name="input-search" placeholder="Escribe para buscar" />
             </div>
-            <button type="submit" title="Buscar" class="btn bg-primary text-light btn-sm rounded-circle border border-1" name="input-submit">
+            <button class="btn bg-primary text-light btn-sm rounded-circle border border-1" type="submit" title="Buscar" name="input-submit">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </form>
         </div>
-        <iframe class="flex-grow-1" :ref="`iframe-tab-pane-1-${id}`" frameborder="0" scrolling="auto"> </iframe>
+        <iframe class="flex-grow-1" :ref="`iframe-${id}`" frameborder="0" scrolling="auto"> </iframe>
       </div>
     </div>
   </div>
@@ -43,9 +43,9 @@ import IconBrowser from '@assets/icons/browser.png';
   },
   methods: {
     init() {
-      this.$refs[`form-tab-pane-1-${this.id}`].elements['input-search'].value = this.urlDefault;
+      this.$refs[`form-${this.id}`].elements['input-search'].value = this.urlDefault;
 
-      setTimeout(() => this.$refs[`form-tab-pane-1-${this.id}`].elements['input-submit'].click(), 200);
+      setTimeout(() => this.$refs[`form-${this.id}`].elements['input-submit'].click(), 200);
     },
     onResize() {},
     search(evt) {
@@ -71,10 +71,10 @@ import IconBrowser from '@assets/icons/browser.png';
     isValidHttpUrl(string) {
       var pattern = new RegExp(
         '^(https?:\\/\\/)?' + // protocol
-        '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-        '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-        '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-        '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+          '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
+          '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
+          '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
+          '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
           '(\\#[-a-z\\d_]*)?$',
         'i'
       ); // fragment locator

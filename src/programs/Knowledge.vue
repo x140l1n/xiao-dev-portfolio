@@ -9,29 +9,29 @@
           <div class="card-body">
             <h6 class="fw-bold">Frontend</h6>
             <div class="d-flex justify-content-center flex-wrap">
-              <img src="@assets/icons/html.png" class="mx-2 my-auto" title="HTML 5" alt="Logo HTML" draggable="false" />
-              <img src="@assets/icons/css.png" class="mx-2 my-auto" title="CSS" alt="Logo CSS" draggable="false" />
-              <img src="@assets/icons/javascript.png" class="mx-2 my-auto" title="JavaScript" alt="Logo JavaScript" draggable="false" />
-              <img src="@assets/icons/typescript.png" class="mx-2 my-auto" title="TypeScript" alt="Logo TypeScript" draggable="false" />
-              <img src="@assets/icons/bootstrap.png" class="mx-2 my-auto" title="Bootstrap" alt="Logo Bootstrap" width="75" draggable="false" />
-              <img src="@assets/icons/sass.png" class="mx-2 my-auto" title="Sass" alt="Logo Sass" draggable="false" />
-              <img src="@assets/icons/tailwind.png" class="mx-2 my-auto" title="Tailwind" alt="Logo Tailwind" draggable="false" />
-              <img src="@assets/icons/vue.png" class="mx-2 my-auto" title="Vue" alt="Logo Vue" draggable="false" />
-              <img src="@assets/icons/react.png" class="mx-2 my-auto" title="React" alt="Logo React" draggable="false" />
-              <img src="@assets/icons/ionic.png" class="mx-2 my-auto" title="Ionic" alt="Logo Ionic" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/html.png" title="HTML 5" alt="Logo HTML" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/css.png" title="CSS" alt="Logo CSS" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/javascript.png" title="JavaScript" alt="Logo JavaScript" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/typescript.png" title="TypeScript" alt="Logo TypeScript" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/bootstrap.png" title="Bootstrap" alt="Logo Bootstrap" width="75" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/sass.png" title="Sass" alt="Logo Sass" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/tailwind.png" title="Tailwind" alt="Logo Tailwind" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/vue.png" title="Vue" alt="Logo Vue" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/react.png" title="React" alt="Logo React" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/ionic.png" title="Ionic" alt="Logo Ionic" draggable="false" />
             </div>
             <h6 class="fw-bold">Backend</h6>
             <div class="d-flex justify-content-center flex-wrap">
-              <img src="@assets/icons/java.png" class="mx-2 my-auto" title="Java" alt="Logo Java" draggable="false" />
-              <img src="@assets/icons/vb.net.png" class="mx-2 my-auto" title="Visual Basic" alt="Logo Visual Basic" draggable="false" />
-              <img src="@assets/icons/csharp.png" class="mx-2 my-auto" title="C#" alt="Logo C#" draggable="false" />
-              <img src="@assets/icons/php.png" class="mx-2 my-auto" title="PHP" alt="Logo PHP" draggable="false" />
-              <img src="@assets/icons/express.png" class="mx-2 my-auto" title="Express" alt="Logo Express" draggable="false" />
-              <img src="@assets/icons/nodejs.png" class="mx-2 my-auto" title="NodeJS" alt="Logo NodeJS" draggable="false" />
-              <img src="@assets/icons/laravel.png" class="mx-2 my-auto" title="Laravel" alt="Logo Laravel" draggable="false" />
-              <img src="@assets/icons/codeigniter.png" class="mx-2 my-auto" title="Codeigniter" alt="Logo Codeigniter" draggable="false" />
-              <img src="@assets/icons/ado.net.png" class="mx-2 my-auto" title="ADO.NET" alt="Logo ADO.NET" draggable="false" />
-              <img src="@assets/icons/.net.png" class="mx-2 my-auto" title=".NET Core" alt="Logo .NET Core" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/java.png" title="Java" alt="Logo Java" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/vb.net.png" title="Visual Basic" alt="Logo Visual Basic" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/csharp.png" title="C#" alt="Logo C#" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/php.png" title="PHP" alt="Logo PHP" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/express.png" title="Express" alt="Logo Express" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/nodejs.png" title="NodeJS" alt="Logo NodeJS" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/laravel.png" title="Laravel" alt="Logo Laravel" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/codeigniter.png" title="Codeigniter" alt="Logo Codeigniter" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/ado.net.png" title="ADO.NET" alt="Logo ADO.NET" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/.net.png" title=".NET Core" alt="Logo .NET Core" draggable="false" />
             </div>
           </div>
         </div>
@@ -43,9 +43,9 @@
           </div>
           <div class="card-body">
             <div class="d-flex justify-content-center flex-wrap">
-              <img src="@assets/icons/mysql.png" class="mx-2 my-auto" title="MySQL" alt="Logo MySQL" draggable="false" />
-              <img src="@assets/icons/sql-server.png" class="mx-2 my-auto" title="SQL Server" alt="Logo SQL Server" draggable="false" />
-              <img src="@assets/icons/postgresql.png" class="mx-2 my-auto" title="PostgreSQL" alt="Logo PostgreSQL" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/mysql.png" title="MySQL" alt="Logo MySQL" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/sql-server.png" title="SQL Server" alt="Logo SQL Server" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/postgresql.png" title="PostgreSQL" alt="Logo PostgreSQL" draggable="false" />
             </div>
           </div>
         </div>
@@ -57,10 +57,10 @@
           </div>
           <div class="card-body">
             <div class="d-flex justify-content-center flex-wrap">
-              <img src="@assets/icons/git.png" class="mx-2 my-auto" title="Git" alt="Logo Git" draggable="false" />
-              <img src="@assets/icons/github_96px.png" class="mx-2 my-auto" title="GitHub" alt="Logo GitHub" draggable="false" />
-              <img src="@assets/icons/android_studio.png" class="mx-2 my-auto" title="Android Studio" alt="Logo Android Studio" draggable="false" />
-              <img src="@assets/icons/wordpress.png" class="mx-2 my-auto" title="Wordpress" alt="Logo Wordpress" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/git.png" title="Git" alt="Logo Git" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/github_96px.png" title="GitHub" alt="Logo GitHub" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/android_studio.png" title="Android Studio" alt="Logo Android Studio" draggable="false" />
+              <img class="mx-2 my-auto" src="@assets/icons/wordpress.png" title="Wordpress" alt="Logo Wordpress" draggable="false" />
             </div>
           </div>
         </div>

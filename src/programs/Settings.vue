@@ -2,16 +2,16 @@
   <div class="w-100 h-100">
     <div class="h-100 d-flex align-items-start overflow-auto">
       <div
-        ref="nav"
-        id="v-pills-tab"
         class="nav justify-content-stretch flex-nowrap flex-column nav-pills me-3 shadow text-trucante bg-light overflow-y-auto"
+        id="v-pills-tab"
+        ref="nav"
         role="tablist"
         aria-orientation="vertical"
       >
         <button
+          class="nav-link active rounded-0 general"
           :id="`v-pills-general-tab-${id}`"
           type="button"
-          class="nav-link active rounded-0 general"
           title="General"
           data-bs-toggle="pill"
           :data-bs-target="`#v-pills-general-${id}`"
@@ -19,13 +19,13 @@
           :aria-controls="`v-pills-general-${id}`"
           aria-selected="true"
         >
-          <img src="@assets/icons/monitor.png" class="icon" alt="General" draggable="false" />
+          <img class="icon" src="@assets/icons/monitor.png" alt="General" draggable="false" />
           <span>General</span>
         </button>
         <button
+          class="nav-link rounded-0 theme"
           :id="`v-pills-personalization-tab-${id}`"
           type="button"
-          class="nav-link rounded-0 theme"
           title="Temas"
           data-bs-toggle="pill"
           :data-bs-target="`#v-pills-personalization-${id}`"
@@ -33,13 +33,13 @@
           :aria-controls="`v-pills-personalization-${id}`"
           aria-selected="false"
         >
-          <img src="@assets/icons/theme.png" class="icon" alt="Temas" draggable="false" />
+          <img class="icon" src="@assets/icons/theme.png" alt="Temas" draggable="false" />
           <span>Temas</span>
         </button>
         <button
+          class="nav-link rounded-0 about"
           :id="`v-pills-about-tab-${id}`"
           type="button"
-          class="nav-link rounded-0 about"
           title="Acerca de"
           data-bs-toggle="pill"
           :data-bs-target="`#v-pills-about-${id}`"
@@ -47,12 +47,12 @@
           :aria-controls="`v-pills-about-${id}`"
           aria-selected="false"
         >
-          <img src="@assets/icons/info.png" class="icon" alt="Acerca de" draggable="false" />
+          <img class="icon" src="@assets/icons/info.png" alt="Acerca de" draggable="false" />
           <span>Acerca de</span>
         </button>
       </div>
-      <div ref="tabContent" class="tab-content flex-fill">
-        <div :id="`v-pills-general-${id}`" class="tab-pane p-3 fade show active" role="tabpanel" :aria-labelledby="`v-pills-general-tab-${id}`">
+      <div class="tab-content flex-fill" ref="tabContent">
+        <div class="tab-pane p-3 fade show active" :id="`v-pills-general-${id}`" role="tabpanel" :aria-labelledby="`v-pills-general-tab-${id}`">
           <h4>General</h4>
           <div class="card">
             <div class="card-body">
@@ -66,13 +66,13 @@
                 </div>
 
                 <div class="form-check form-switch">
-                  <input :id="`switch-fullscreen-${id}`" class="form-check-input" type="checkbox" :true-value="true" :false-value="false" v-model="$isFullscreen" draggable="false" />
+                  <input class="form-check-input" v-model="$isFullscreen" :id="`switch-fullscreen-${id}`" type="checkbox" :true-value="true" :false-value="false" draggable="false" />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div :id="`v-pills-personalization-${id}`" class="tab-pane p-3 fade" role="tabpanel" :aria-labelledby="`v-pills-personalization-tab-${id}`">
+        <div class="tab-pane p-3 fade" :id="`v-pills-personalization-${id}`" role="tabpanel" :aria-labelledby="`v-pills-personalization-tab-${id}`">
           <h4>Temas</h4>
           <div class="card">
             <div class="card-body">
@@ -80,25 +80,21 @@
               <div class="d-flex flex-wrap mt-5">
                 <div class="theme-selector theme-1 p-3 my-2">
                   <div class="form-check fw-bold text-light">
-                    <input :id="`rdb-theme-2-${id}`" class="form-check-input" type="radio" :name="`selector-theme-${id}`" v-model="$themeSelected" value="theme-2" draggable="false" />
-                    <label class="form-check-label" :for="`rdb-theme-2-${id}`">
-                      Tema azul oscuro
-                    </label>
+                    <input class="form-check-input" v-model="$themeSelected" :id="`rdb-theme-2-${id}`" type="radio" :name="`selector-theme-${id}`" value="theme-2" draggable="false" />
+                    <label class="form-check-label" :for="`rdb-theme-2-${id}`"> Tema azul oscuro </label>
                   </div>
                 </div>
                 <div class="theme-selector theme-2 p-3 my-2">
                   <div class="form-check fw-bold text-dark">
-                    <input :id="`rdb-theme-1-${id}`" class="form-check-input" type="radio" :name="`selector-theme-${id}`" v-model="$themeSelected" value="theme-1" draggable="false" />
-                    <label class="form-check-label" :for="`rdb-theme-1-${id}`">
-                      Tema morado
-                    </label>
+                    <input class="form-check-input" v-model="$themeSelected" :id="`rdb-theme-1-${id}`" type="radio" :name="`selector-theme-${id}`" value="theme-1" draggable="false" />
+                    <label class="form-check-label" :for="`rdb-theme-1-${id}`"> Tema morado </label>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div :id="`v-pills-about-${id}`" class="tab-pane p-3 fade" role="tabpanel" :aria-labelledby="`v-pills-about-tab-${id}`">
+        <div class="tab-pane p-3 fade" :id="`v-pills-about-${id}`" role="tabpanel" :aria-labelledby="`v-pills-about-tab-${id}`">
           <h4>Acerca de</h4>
           <div class="card">
             <div class="card-body">
@@ -127,7 +123,7 @@
                 <tr>
                   <td class="fw-bold label">Github</td>
                   <td>
-                    <a href="https://github.com/x140l1n/portfolio" target="_blank" class="p-0">https://github.com/x140l1n/portfolio</a>
+                    <a class="p-0" href="https://github.com/x140l1n/portfolio" target="_blank">https://github.com/x140l1n/portfolio</a>
                   </td>
                 </tr>
                 <tr>

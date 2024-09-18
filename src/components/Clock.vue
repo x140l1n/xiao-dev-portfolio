@@ -1,5 +1,5 @@
 <template>
-  <div :title="getFullDate" class="clock text-light px-2">
+  <div class="clock text-light px-2" :title="getFullDate">
     <span>
       {{ datetime.time }}
     </span>

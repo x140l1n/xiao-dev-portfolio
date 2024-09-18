@@ -1,20 +1,20 @@
 <template>
-  <div ref="content" class="w-100 h-100 overflow-auto p-4">
-    <div ref="card" class="card flip shadow-lg">
+  <div class="w-100 h-100 overflow-auto p-4" ref="content">
+    <div class="card flip shadow-lg" ref="card">
       <div class="flip-card-front">
         <header class="text-light d-flex gap-4 justify-content-between align-items-center">
-          <img src="@assets/icons/coding.png" class="d-none d-md-block" title="Icono fullstack developer" draggable="false" alt="Icono fullstack developer" />
+          <img class="d-none d-md-block" src="@assets/icons/coding.png" title="Icono fullstack developer" draggable="false" alt="Icono fullstack developer" />
           <h4 class="fw-bold m-0">FULLSTACK DEVELOPER</h4>
-          <button type="button" class="btn btn-transparent btn-flip text-light" title="Voltear la targeta" @click="flip">
+          <button class="btn btn-transparent btn-flip text-light" type="button" title="Voltear la targeta" @click="flip">
             <i class="fa-solid fa-repeat fa-fw"></i>
           </button>
         </header>
         <div class="card-body p-0">
-          <div ref="contentFront" class="d-flex gap-4 p-4">
-            <div ref="photo" class="photo">
-              <img src="@assets/img/me.jpg" class="img-fluid" title="Yo" alt="Yo" />
+          <div class="d-flex gap-4 p-4" ref="contentFront">
+            <div class="photo" ref="photo">
+              <img class="img-fluid" src="@assets/img/me.jpg" title="Yo" alt="Yo" />
             </div>
-            <div ref="presentationFront" class="flex-grow-1 presentation">
+            <div class="flex-grow-1 presentation" ref="presentationFront">
               <h6 class="fw-bold my-2">Presentación</h6>
               <p>
                 ¡Hola! Soy Xiaolin Jin Lin y tengo {{ getYearsOld }} años. Desde pequeño siempre me ha atraído el mundo de la tecnología, y a los 19 decidí meterme de lleno en la informática,
@@ -34,9 +34,7 @@
                 adelante.
               </p>
               <h6 class="fw-bold">Idiomas</h6>
-              <p>
-                Español (Nativo), Catalán (Nativo), Inglés (Intermedio), Chino (Intermedio).
-              </p>
+              <p> Español (Nativo), Catalán (Nativo), Inglés (Intermedio), Chino (Intermedio). </p>
               <h6 class="fw-bold">Hobbies</h6>
               <p>Danza.</p>
             </div>
@@ -45,13 +43,13 @@
       </div>
       <div class="flip-card-back d-flex flex-column">
         <header class="text-light d-flex justify-content-end align-items-center">
-          <button type="button" class="btn btn-transparent btn-flip text-light align-self-end" title="Voltear la targeta" @click="flip">
+          <button class="btn btn-transparent btn-flip text-light align-self-end" type="button" title="Voltear la targeta" @click="flip">
             <i class="fa-solid fa-repeat fa-fw"></i>
           </button>
         </header>
         <div class="card-body flex-grow-1">
-          <div ref="contentBack" class="d-flex flex-column justify-content-center align-items-center h-100 p-4">
-            <img ref="logo" src="@svg/xiao-theme-2.svg" class="logo img-fluid" title="Logo Xiao" alt="Logo Xiao" draggable="false" />
+          <div class="d-flex flex-column justify-content-center align-items-center h-100 p-4" ref="contentBack">
+            <img class="logo img-fluid" ref="logo" src="@svg/xiao-theme-2.svg" title="Logo Xiao" alt="Logo Xiao" draggable="false" />
             <label class="fw-bold text-center my-2">Redes sociales</label>
             <div class="d-flex justify-content-center">
               <a href="https://www.instagram.com/_xiao_97_/" target="_blank" title="Instgram">
@@ -219,7 +217,9 @@ export default class AboutMe extends Program {
   border-radius: 25px 25px 0 0;
   border-bottom: 2px solid rgba(var(--bs-primary-rgb), 0.5);
   border-top: 1px solid rgba(var(--bs-primary-rgb), 0.8);
-  box-shadow: inset 0 1px 0 0 rgb(var(--bs-primary-rgb) / 80%), 0 1px 2px rgb(0 0 0 / 40%);
+  box-shadow:
+    inset 0 1px 0 0 rgb(var(--bs-primary-rgb) / 80%),
+    0 1px 2px rgb(0 0 0 / 40%);
 }
 
 .flip-card-front,
@@ -262,7 +262,10 @@ export default class AboutMe extends Program {
   left: 50%;
   margin: 0 0 0 -10px;
   border-radius: 50%;
-  box-shadow: 0 0 0 5px rgb(51 51 51 / 60%), 0 0 10px rgb(0 0 0 / 70%), inset 2px 2px 2px rgb(0 0 0 / 50%);
+  box-shadow:
+    0 0 0 5px rgb(51 51 51 / 60%),
+    0 0 10px rgb(0 0 0 / 70%),
+    inset 2px 2px 2px rgb(0 0 0 / 50%);
 }
 
 .card header:before {
@@ -276,7 +279,9 @@ export default class AboutMe extends Program {
   width: 100px;
   border-radius: 25px;
   background-color: #333;
-  box-shadow: inset 1px 1px 0 1px rgb(0 0 0 / 30%), inset -1px -1px 0 0 rgb(255 255 255 / 50%);
+  box-shadow:
+    inset 1px 1px 0 1px rgb(0 0 0 / 30%),
+    inset -1px -1px 0 0 rgb(255 255 255 / 50%);
 }
 
 .btn-flip {

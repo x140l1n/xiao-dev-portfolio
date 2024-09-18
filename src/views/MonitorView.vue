@@ -1,15 +1,13 @@
 <template>
-  <div ref="monitor" class="monitor">
+  <div class="monitor" ref="monitor">
     <div class="monitor-inner">
       <div :class="`layer-on-off ${!isFirstTime ? (isMonitorOn ? 'layer-on' : 'layer-off') : ''}`"></div>
-      <div v-if="!isMonitorOn" class="presentation d-flex flex-column flex-xxl-row justify-content-center align-items-center gap-5 text-center text-xxl-start text-light overflow-auto">
+      <div class="presentation d-flex flex-column flex-xxl-row justify-content-center align-items-center gap-5 text-center text-xxl-start text-light overflow-auto" v-if="!isMonitorOn">
         <div class="typewriter">
-          <h1 ref="title" class="title fw-bold lh-lg" tabindex="1">
-            ¡Bienvenido a mi portfolio! 🖥️
-          </h1>
+          <h1 class="title fw-bold lh-lg" ref="title" tabindex="1"> ¡Bienvenido a mi portfolio! 🖥️ </h1>
           <br />
           <div class="fs-3">
-            <span ref="description" class="description" tabindex="2">Para comenzar a explorar solo tienes que hacer clic en el siguiente botón</span>
+            <span class="description" ref="description" tabindex="2">Para comenzar a explorar solo tienes que hacer clic en el siguiente botón</span>
             <div :class="`${!isFinishedTyping ? 'd-none' : 'd-inline'}`">
               <span class="d-none d-xxl-block point-right">👉</span>
               <span class="d-block d-xxl-none point-down">👇</span>
@@ -20,8 +18,8 @@
           <i class="fa-solid fa-power-off"></i>
         </button>
       </div>
-      <img v-show="!isMonitorOn" src="@assets/img/greet.png" class="image-greet" alt="Saludo" title="Saludo" draggable="false" />
-      <ScreenView ref="screenView" v-if="isMonitorOn" />
+      <img class="image-greet" v-show="!isMonitorOn" src="@assets/img/greet.png" alt="Saludo" title="Saludo" draggable="false" />
+      <ScreenView v-show="isMonitorOn" ref="screenView" />
     </div>
   </div>
 </template>

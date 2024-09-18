@@ -1,28 +1,28 @@
 <template>
-  <div ref="screen" class="screen user-none-select" v-resize="onResize">
-    <div ref="screenContent" class="screen-content" @click.self="cleanSelectProgram">
+  <div class="screen user-none-select" v-resize="onResize" ref="screen">
+    <div class="screen-content" ref="screenContent">
       <div class="program p-2">
-        <button type="button" class="program-inner program-knowledge p-2" title="Ajustes" alt="Ajustes" @click="openProgram('Settings')" tabindex="4">
+        <button class="program-inner program-knowledge p-2" type="button" title="Ajustes" alt="Ajustes" @click="openProgram('Settings')" tabindex="4">
           <img id="program-settings" src="@assets/icons/settings.png" alt="Logo ajustes" draggable="false" />
           <label class="text-light" for="program-settings">Ajustes</label>
         </button>
       </div>
       <div class="program p-2">
-        <button type="button" class="program-inner p-2" title="Sobre mi" alt="Sobre mi" @click="openProgram('AboutMe')" tabindex="5">
+        <button class="program-inner p-2" type="button" title="Sobre mi" alt="Sobre mi" @click="openProgram('AboutMe')" tabindex="5">
           <img id="program-about-me" src="@assets/icons/about-me.png" alt="Logo sobre mi" draggable="false" />
           <label class="text-light" for="program-about-me">Sobre mi</label>
         </button>
       </div>
       <div class="program p-2">
-        <button type="button" class="program-inner program-knowledge p-2" title="Mis conocimientos" alt="Mis conocimientos" @click="openProgram('Knowledge')" tabindex="6">
+        <button class="program-inner program-knowledge p-2" type="button" title="Mis conocimientos" alt="Mis conocimientos" @click="openProgram('Knowledge')" tabindex="6">
           <img id="program-knowledge" src="@assets/icons/knowledge.png" alt="Logo mis conocimientos" draggable="false" />
           <label class="text-light" for="program-knowledge">Mis conocimientos</label>
         </button>
       </div>
       <div class="program p-2">
         <button
-          type="button"
           class="program-inner program-experiences-studies p-2"
+          type="button"
           title="Estudios y experiencias"
           alt="Estudios y experiencias"
           @click="openProgram('StudiesExperiences')"
@@ -33,45 +33,36 @@
         </button>
       </div>
       <div class="program p-2">
-        <button type="button" class="program-inner program-projects p-2" title="Mis proyectos" alt="Mis proyectos" @click="openProgram('Projects')" tabindex="8">
+        <button class="program-inner program-projects p-2" type="button" title="Mis proyectos" alt="Mis proyectos" @click="openProgram('Projects')" tabindex="8">
           <img id="program-projects" src="@assets/icons/projects.png" alt="Logo Mis proyectos" draggable="false" />
           <label class="text-light" for="program-projects">Mis proyectos</label>
         </button>
       </div>
       <div class="program p-2">
-        <button type="button" class="program-inner program-contactme p-2" title="Contáctame" alt="Contáctame" @click="openProgram('ContactMe')" tabindex="9">
+        <button class="program-inner program-contactme p-2" type="button" title="Contáctame" alt="Contáctame" @click="openProgram('ContactMe')" tabindex="9">
           <img id="program-contactme" src="@assets/icons/email.png" alt="Logo contáctame" draggable="false" />
           <label class="text-light" for="program-contactme">Contáctame</label>
         </button>
       </div>
       <div class="program p-2">
-        <button type="button" class="program-inner program-browser p-2" title="Mis proyectos" alt="Mis proyectos" @click="openProgram('Browser')" tabindex="10">
+        <button class="program-inner program-browser p-2" type="button" title="Mis proyectos" alt="Mis proyectos" @click="openProgram('Browser')" tabindex="10">
           <img id="program-browser" src="@assets/icons/browser.png" alt="Logo Navegador" draggable="false" />
           <label class="text-light" for="program-browser">Navegador</label>
         </button>
       </div>
       <div class="program p-2">
-        <button type="button" class="program-inner program-cv p-2" title="Currículum vitae" alt="Currículum vitae" @click="openProgram('CV')" tabindex="11">
+        <button class="program-inner program-cv p-2" type="button" title="Currículum vitae" alt="Currículum vitae" @click="openProgram('CV')" tabindex="11">
           <img id="program-cv" src="@assets/icons/pdf.png" alt="Logo PDF" draggable="false" />
           <label class="text-light" for="program-cv">Currículum Vitae</label>
         </button>
       </div>
     </div>
     <TaskBarView ref="taskBarView" draggable="false" />
-    <div
-      v-if="!isClosedToast"
-      ref="tipFullscreen"
-      role="alert"
-      class="toast show"
-      draggable="false"
-      tabindex="-1"
-      aria-live="assertive"
-      aria-atomic="true"
-    >
+    <div class="toast show" v-if="!isClosedToast" ref="tipFullscreen" role="alert" draggable="false" tabindex="-1">
       <div class="toast-header">
-        <img src="@assets/icons/tips.png" class="rounded me-2" alt="Icono tips" title="Icono tips" width="30px" draggable="false" />
+        <img class="rounded me-2" src="@assets/icons/tips.png" alt="Icono tips" title="Icono tips" width="30px" draggable="false" />
         <strong class="me-auto">Modo pantalla completa</strong>
-        <button type="button" class="btn-close" title="Cerrar tips" @click="isClosedToast = true"></button>
+        <button class="btn-close" type="button" title="Cerrar tips" @click="isClosedToast = true"></button>
       </div>
       <div class="toast-body">
         Habilita la pantalla completa para tener una mejor experiencia de navegación. Para habilitar entra en
@@ -105,14 +96,6 @@ export default {
       this.$themeSelected = themeSelected;
 
       this.onResize();
-    },
-    cleanSelectProgram() {
-      this.$refs.screenContent.querySelectorAll('.program').forEach((program) => program.classList.remove('selected'));
-    },
-    selectProgram(evt) {
-      this.$refs.screenContent.querySelectorAll('.program').forEach((program) => program.classList.remove('selected'));
-
-      evt.currentTarget.classList.add('selected');
     },
     onResize() {
       this.$widthScreenContent = this.$refs.screenContent.offsetWidth;

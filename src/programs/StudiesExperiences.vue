@@ -1,6 +1,6 @@
 <template>
-  <div ref="content" class="w-100 h-100 d-flex flex-column">
-    <ul ref="navbar" class="nav nav-pills nav-fill bg-light shadow gap-2">
+  <div class="w-100 h-100 d-flex flex-column" ref="content">
+    <ul class="nav nav-pills nav-fill bg-light shadow gap-2" ref="navbar">
       <li class="nav-item">
         <a class="nav-link active" role="tab" data-bs-toggle="tab" :href="`#studies-${id}`">
           <i class="fa-solid fa-graduation-cap me-2 fa-fw"></i>
@@ -14,22 +14,18 @@
         </a>
       </li>
     </ul>
-    <div ref="tabContent" class="tab-content border-top flex-fill overflow-x-hidden overflow-y-auto" v-init-animation="{ threshold: 0.2 }">
-      <div :id="`studies-${id}`" class="tab-pane fade active show">
-        <div ref="timelineStudies" class="timeline text-light">
+    <div class="tab-content border-top flex-fill overflow-x-hidden overflow-y-auto" v-init-animation="{ threshold: 0.2 }" ref="tabContent">
+      <div class="tab-pane fade active show" :id="`studies-${id}`">
+        <div class="timeline text-light" ref="timelineStudies">
           <div class="timeline-row">
-            <div data-animation="slide-left" class="timeline-time">
+            <div class="timeline-time" data-animation="slide-left">
               <a href="https://politecnics.barcelona/" target="_blank">Centre d'Estudis Politècnics, Barcelona (España)</a><small>2021 - 2022</small>
             </div>
-            <div data-animation="slide-right" class="timeline-content">
+            <div class="timeline-content" data-animation="slide-right">
               <i class="fa-solid fa-code"></i>
-              <h5 class="fw-bold text-center">
-                DESARROLLO APLICACIONES WEB (DAW)
-              </h5>
+              <h5 class="fw-bold text-center"> DESARROLLO APLICACIONES WEB (DAW) </h5>
               <ul>
-                <li>
-                  Desarrollar aplicaciones web con distintos frameworks tanto el frontend como el backend.
-                </li>
+                <li> Desarrollar aplicaciones web con distintos frameworks tanto el frontend como el backend. </li>
                 <li>Manipulación de base de datos.</li>
                 <li>Configurar servidores web en Ubuntu.</li>
                 <li>Aprendizaje basado en proyectos.</li>
@@ -51,18 +47,14 @@
             </div>
           </div>
           <div class="timeline-row">
-            <div data-animation="slide-right" class="timeline-time">
+            <div class="timeline-time" data-animation="slide-right">
               <a href="https://politecnics.barcelona/" target="_blank">Centre d'Estudis Politècnics, Barcelona (España)</a><small>2019 - 2021</small>
             </div>
-            <div data-animation="slide-left" class="timeline-content">
+            <div class="timeline-content" data-animation="slide-left">
               <i class="fa-solid fa-code"></i>
-              <h5 class="fw-bold text-center">
-                DESARROLLO APLICACIONES MULTIPLATAFORMA (DAM)
-              </h5>
+              <h5 class="fw-bold text-center"> DESARROLLO APLICACIONES MULTIPLATAFORMA (DAM) </h5>
               <ul>
-                <li>
-                  Desarrollar aplicaciones multiplataforma con distintos lenguajes de programación.
-                </li>
+                <li> Desarrollar aplicaciones multiplataforma con distintos lenguajes de programación. </li>
                 <li>Desarrollo de programas para escritorio y Android.</li>
                 <li>Manipulación de base de datos.</li>
                 <li>Programación de videojuegos.</li>
@@ -83,18 +75,16 @@
             </div>
           </div>
           <div class="timeline-row">
-            <div data-animation="slide-left" class="timeline-time">
+            <div class="timeline-time" data-animation="slide-left">
               <a
                 href="https://serveiocupacio.gencat.cat/es/Formacio-i-qualificacio/centres-propis-de-formacio/centres-dinnovacio-i-formacio-ocupacional-cifo/CIFO-de-Barcelona-La-Violeta/"
                 target="_blank"
                 >SOC CIFO VIOLETA</a
               ><small>2018-2019</small>
             </div>
-            <div data-animation="slide-right" class="timeline-content">
+            <div class="timeline-content" data-animation="slide-right">
               <i class="fa-solid fa-code"></i>
-              <h5 class="fw-bold text-center">
-                CERTIFICADO DE PROFESIONALIDAD EN POO (630H)
-              </h5>
+              <h5 class="fw-bold text-center"> CERTIFICADO DE PROFESIONALIDAD EN POO (630H) </h5>
               <ul>
                 <li>Sistemas operativos y aplicaciones informáticas.</li>
                 <li>Programación orientada a objetos.</li>
@@ -112,53 +102,37 @@
             </div>
           </div>
           <div class="timeline-row">
-            <div data-animation="slide-right" class="timeline-time"><a href="https://institutxxvolimpiada.cat/" target="_blank">Instituto XXV Olimpiada</a><small>2014-2016</small></div>
-            <div data-animation="slide-left" class="timeline-content">
+            <div class="timeline-time" data-animation="slide-right"><a href="https://institutxxvolimpiada.cat/" target="_blank">Instituto XXV Olimpiada</a><small>2014-2016</small></div>
+            <div class="timeline-content" data-animation="slide-left">
               <i class="fa-solid fa-school"></i>
               <h5 class="fw-bold text-center">BACHILLERATO TECNOLÓGICO</h5>
             </div>
           </div>
           <div class="timeline-row">
-            <div data-animation="slide-left" class="timeline-time"><a href="https://institutxxvolimpiada.cat/" target="_blank">Instituto XXV Olimpiada</a><small>2010-2014</small></div>
-            <div data-animation="slide-right" class="timeline-content">
+            <div class="timeline-time" data-animation="slide-left"><a href="https://institutxxvolimpiada.cat/" target="_blank">Instituto XXV Olimpiada</a><small>2010-2014</small></div>
+            <div class="timeline-content" data-animation="slide-right">
               <i class="fa-solid fa-school"></i>
               <h5 class="fw-bold text-center">ESO</h5>
             </div>
           </div>
         </div>
       </div>
-      <div :id="`experiences-${id}`" class="tab-pane fade">
-        <div ref="timelineExperiences" class="timeline text-light">
+      <div class="tab-pane fade" :id="`experiences-${id}`">
+        <div class="timeline text-light" ref="timelineExperiences">
           <div class="timeline-row">
-            <div data-animation="slide-left" class="timeline-time"><a href="https://tkmservicios.com" target="_blank">TKM Consultores S.L, Barcelona (España)</a><small>2019 - Presente</small></div>
-            <div data-animation="slide-right" class="timeline-content">
+            <div class="timeline-time" data-animation="slide-left"><a href="https://tkmservicios.com" target="_blank">TKM Consultores S.L, Barcelona (España)</a><small>2019 - Presente</small></div>
+            <div class="timeline-content" data-animation="slide-right">
               <i class="fa-solid fa-code"></i>
-              <h5 class="fw-bold text-center">
-                DEVELOPER FULLSTACK / HELPDESK
-              </h5>
+              <h5 class="fw-bold text-center"> DEVELOPER FULLSTACK / HELPDESK </h5>
               <ul>
-                <li>
-                  Creación y mantenimiento aplicaciones web con: HTML, CSS, JavaScript, PHP, Ruby On Rails, Wordpress.
-                </li>
+                <li> Creación y mantenimiento aplicaciones web con: HTML, CSS, JavaScript, PHP, Ruby On Rails, Wordpress. </li>
                 <li>Creación y mantenimiento de aplicaciones: .NET</li>
-                <li>
-                  Creación y mantenimiento de base de datos: Microsoft SQL Server, MySQL, PostgreSQL.
-                </li>
-                <li>
-                  Técnico de sistemas: Windows Server, Active Directory, Microsoft Exchange, Microsoft SQL Server, etc.
-                </li>
-                <li>
-                  Técnico en redes: Análisis de redes, configuración de Routers y Switch.
-                </li>
-                <li>
-                  Hardware: Análisis, mantenimiento y cambio de componentes.
-                </li>
-                <li>
-                  Helpdesk: Apoyo a usuarios finales. Programas especializados, ofimática, etc.
-                </li>
-                <li>
-                  Manejo de programas A3ERP, A3, Fastbroker, VisualSeg.
-                </li>
+                <li> Creación y mantenimiento de base de datos: Microsoft SQL Server, MySQL, PostgreSQL. </li>
+                <li> Técnico de sistemas: Windows Server, Active Directory, Microsoft Exchange, Microsoft SQL Server, etc. </li>
+                <li> Técnico en redes: Análisis de redes, configuración de Routers y Switch. </li>
+                <li> Hardware: Análisis, mantenimiento y cambio de componentes. </li>
+                <li> Helpdesk: Apoyo a usuarios finales. Programas especializados, ofimática, etc. </li>
+                <li> Manejo de programas A3ERP, A3, Fastbroker, VisualSeg. </li>
               </ul>
               <div class="d-flex flex-wrap">
                 <span class="badge badge-pill">HTML</span>

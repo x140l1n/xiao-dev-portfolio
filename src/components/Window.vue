@@ -1,20 +1,20 @@
 <template>
-  <div ref="window" class="window resizers border border-2 border-dark bg-light" :style="cssRootVars" v-resize="onResize">
+  <div class="window resizers border border-2 border-dark bg-light" v-resize="onResize" ref="window" :style="cssRootVars">
     <div
+      class="window-tilebar bg-primary text-light d-flex justify-content-between align-items-center border-bottom border-2 border-dark user-select-none"
       ref="windowTitleBar"
       @click="onClickWindowTitleBar"
-      class="window-tilebar bg-primary text-light d-flex justify-content-between align-items-center border-bottom border-2 border-dark user-select-none"
     >
-      <img :src="program.iconSrc" class="program-icon" :alt="`Icono ${program.title}`" draggable="false" />
+      <img class="program-icon" :src="program.iconSrc" :alt="`Icono ${program.title}`" draggable="false" />
       <span class="m-auto ms-2 text-truncate">{{ title }}</span>
-      <div ref="windowTitleBarActions" class="h-100 d-flex align-items-center">
-        <button type="button" class="tilebar-item" title="Minimizar ventana" data-action="minimize">
+      <div class="h-100 d-flex align-items-center" ref="windowTitleBarActions">
+        <button class="tilebar-item" type="button" title="Minimizar ventana" data-action="minimize">
           <i class="fa-solid fa-minus fa-fw"></i>
         </button>
-        <button type="button" class="tilebar-item" :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`" data-action="toggleMaximized">
+        <button class="tilebar-item" type="button" :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`" data-action="toggleMaximized">
           <i :class="`fa-solid ${isMaximized ? 'fa-compress' : 'fa-expand'}`"></i>
         </button>
-        <button type="button" class="tilebar-item" title="Cerrar ventana" data-action="close">
+        <button class="tilebar-item" type="button" title="Cerrar ventana" data-action="close">
           <i class="fa-solid fa-xmark fa-fw"></i>
         </button>
       </div>
@@ -235,16 +235,8 @@ export default {
         function startResize(evt) {
           if (self.isMaximized) return;
 
-          originalWidth = parseFloat(
-            getComputedStyle(element, null)
-              .getPropertyValue('max-width')
-              .replace('px', '')
-          );
-          originalHeight = parseFloat(
-            getComputedStyle(element, null)
-              .getPropertyValue('max-height')
-              .replace('px', '')
-          );
+          originalWidth = parseFloat(getComputedStyle(element, null).getPropertyValue('max-width').replace('px', ''));
+          originalHeight = parseFloat(getComputedStyle(element, null).getPropertyValue('max-height').replace('px', ''));
 
           originalX = self.position.x;
           originalY = self.position.y;
@@ -499,7 +491,11 @@ export default {
   max-height: var(--height);
   min-height: var(--minHeight);
   cursor: default;
-  transition: max-width 0.1s, max-height 0.1s, left 0.1s 0.1s, top 0.1s 0.1s;
+  transition:
+    max-width 0.1s,
+    max-height 0.1s,
+    left 0.1s 0.1s,
+    top 0.1s 0.1s;
   z-index: 1;
   animation: zoom-out-only-transform 0.2s;
 }
@@ -525,11 +521,19 @@ export default {
 }
 
 .maximized-transition {
-  transition: max-width 0.1s 0.1s, max-height 0.1s 0.1s, left 0.1s, top 0.1s;
+  transition:
+    max-width 0.1s 0.1s,
+    max-height 0.1s 0.1s,
+    left 0.1s,
+    top 0.1s;
 }
 
 .minimized-transition {
-  transition: max-width 0.1s, max-height 0.1s, left 0.1s, top 0.1s;
+  transition:
+    max-width 0.1s,
+    max-height 0.1s,
+    left 0.1s,
+    top 0.1s;
 }
 
 .window-tilebar {
