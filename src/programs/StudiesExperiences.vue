@@ -125,7 +125,7 @@
               <small>Barcelona (España)</small>
             </div>
             <div class="timeline-content" data-animation="slide-left">
-              <i class="fa-solid fa-school"></i>
+              <i class="timeline-icon fa-solid fa-school"></i>
               <h5 class="fw-bold text-center">BACHILLERATO TECNOLÓGICO</h5>
             </div>
           </div>
@@ -136,7 +136,7 @@
               <small>Barcelona (España)</small>
             </div>
             <div class="timeline-content" data-animation="slide-right">
-              <i class="fa-solid fa-school"></i>
+              <i class="timeline-icon fa-solid fa-school"></i>
               <h5 class="fw-bold text-center">ESO</h5>
             </div>
           </div>
@@ -369,6 +369,7 @@ export default class StudiesExperiences extends Program {
       align-items: center;
       justify-content: center;
       flex-direction: column;
+      overflow: hidden;
 
       &:after {
         content: '';

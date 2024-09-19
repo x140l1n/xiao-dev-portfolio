@@ -1,6 +1,6 @@
 <template>
-  <div class="taskbar bg-primary d-flex">
-    <div class="taskbar-programs d-flex gap-2 justify-content-center align-items-center flex-grow-1">
+  <div class="taskbar bg-primary">
+    <div class="taskbar-programs d-flex gap-2 justify-content-start align-items-center flex-shrink-1 mx-auto overflow-y-hidden overflow-x-auto">
       <div
         v-for="(program, index) in $programs"
         :id="`program-${program.id}`"
@@ -13,8 +13,8 @@
         <img class="img-fluid" :src="program.iconSrc" :title="program.title" :alt="program.title" draggable="false" />
       </div>
     </div>
-    <Clock class="taskbar-item" />
-    <span class="taskbar-item taskbar-item-minimize-all border border-dark border-end-0 border-top-0 border-bottom-0" @click="onMinimizeAllPrograms"> </span>
+    <Clock class="taskbar-item clock flex-shrink-0" />
+    <span class="taskbar-item taskbar-item-minimize-all border border-dark border-end-0 border-top-0 border-bottom-0 flex-shrink-0" @click="onMinimizeAllPrograms"> </span>
   </div>
 </template>
 
@@ -45,11 +45,12 @@ export default {
 
 <style lang="scss" scoped>
 .taskbar {
+  position: fixed;
+  bottom: 0;
   height: 3rem;
   width: 100%;
-  position: absolute;
-  bottom: 0;
   z-index: 3;
+  display: flex;
 
   .taskbar-item:hover {
     cursor: default;
@@ -58,16 +59,21 @@ export default {
 
   .taskbar-programs {
     > .taskbar-item.program {
-      width: 40px;
-      height: 40px;
+      position: relative;
+      min-width: 40px;
+      min-height: 40px;
+      max-width: 40px;
+      max-height: 40px;
       padding: 5px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       border-radius: 5px;
       transition: background-color 0.2s;
 
       &.selected {
-        position: relative;
         background-color: #ffffff48;
-        padding-bottom: 10px;
+        padding: 8px;
 
         &:before {
           content: '';
@@ -94,6 +100,10 @@ export default {
         transform: scale(0.8);
       }
     }
+  }
+
+  > .taskbar-item.clock {
+    width: 100px;
   }
 
   > .taskbar-item.taskbar-item-minimize-all {
