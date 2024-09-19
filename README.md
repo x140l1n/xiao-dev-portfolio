@@ -19,7 +19,6 @@ The portfolio is built with the following stack:
 - **PHP**: Handles server-side logic for processing email submissions through the email.php file in the api/ folder.
 - **Vue 2**: Frontend framework.
 - **Bootstrap**: For styles and UI components.
-- **UUID**: For generating unique identifiers.
 
 ## 🚀 Scripts
 

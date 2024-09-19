@@ -7,12 +7,12 @@ import 'bootstrap/dist/js/bootstrap';
 import '@src/assets/scss/styles.scss';
 import 'moment/locale/es';
 
+Vue.config.productionTip = true;
+
 Vue.prototype.$env = {
   API_ENDPOINT: process.env.VUE_APP_API_ENDPOINT,
   URL_CV: process.env.VUE_APP_CV_URL
 };
-
-Vue.config.productionTip = false;
 
 Vue.use(VueMoment, { moment });
 
@@ -89,14 +89,14 @@ Object.defineProperty(Vue.prototype, '$heightScreenContent', {
   }
 });
 
-const observableProgramActive = Vue.observable({ programActive: null });
+const observableCurrentProgramActive = Vue.observable({ currentProgramActive: null });
 
-Object.defineProperty(Vue.prototype, '$programActive', {
+Object.defineProperty(Vue.prototype, '$currentProgramActive', {
   get() {
-    return observableProgramActive.programActive;
+    return observableCurrentProgramActive.currentProgramActive;
   },
   set(value) {
-    observableProgramActive.programActive = value;
+    observableCurrentProgramActive.currentProgramActive = value;
   }
 });
 
@@ -119,19 +119,6 @@ Object.defineProperty(Vue.prototype, '$isFullscreen', {
   },
   set(value) {
     observableIsFullscreen.isFullscreen = value;
-  }
-});
-
-const observableIsFullscreenFromSettings = Vue.observable({
-  isFullscreenFromSettings: false
-});
-
-Object.defineProperty(Vue.prototype, '$isFullscreenFromSettings', {
-  get() {
-    return observableIsFullscreenFromSettings.isFullscreenFromSettings;
-  },
-  set(value) {
-    observableIsFullscreenFromSettings.isFullscreenFromSettings = value;
   }
 });
 

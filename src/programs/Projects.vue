@@ -226,7 +226,6 @@ import IconProjects from '@assets/icons/projects.png';
   computed: {}
 })
 export default class Projects extends Program {
-  //Initialize the variables of superclass Program.
   created() {
     this.title = 'Mis proyectos';
     this.widthDefault = 550;

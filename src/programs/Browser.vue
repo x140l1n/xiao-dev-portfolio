@@ -70,14 +70,14 @@ import IconBrowser from '@assets/icons/browser.png';
     },
     isValidHttpUrl(string) {
       var pattern = new RegExp(
-        '^(https?:\\/\\/)?' + // protocol
-          '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' + // domain name
-          '((\\d{1,3}\\.){3}\\d{1,3}))' + // OR ip (v4) address
-          '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' + // port and path
-          '(\\?[;&a-z\\d%_.~+=-]*)?' + // query string
+        '^(https?:\\/\\/)?' +
+          '((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
+          '((\\d{1,3}\\.){3}\\d{1,3}))' +
+          '(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
+          '(\\?[;&a-z\\d%_.~+=-]*)?' +
           '(\\#[-a-z\\d_]*)?$',
         'i'
-      ); // fragment locator
+      );
 
       return pattern.test(string);
     }
@@ -85,7 +85,6 @@ import IconBrowser from '@assets/icons/browser.png';
   computed: {}
 })
 export default class Browser extends Program {
-  //Initialize the variables of superclass Program.
   created() {
     this.title = 'Navegador';
     this.widthDefault = 600;

@@ -142,7 +142,6 @@ import { author } from '@root/package';
   }
 })
 export default class AboutMe extends Program {
-  //Initialize the variables of superclass Program.
   created() {
     this.title = 'Sobre mi';
     this.widthDefault = 550;

@@ -1,20 +1,20 @@
 <template>
-  <div class="screen user-none-select" v-resize="onResize" ref="screen">
-    <div class="screen-content" ref="screenContent">
+  <div class="screen user-none-select" v-resize="onScreenResize" ref="screen">
+    <div class="screen-content" ref="screenContent" @click.self="onRemoveProgramActive">
       <div class="program p-2">
-        <button class="program-inner program-knowledge p-2" type="button" title="Ajustes" alt="Ajustes" @click="openProgram('Settings')" tabindex="4">
+        <button class="program-inner program-knowledge p-2" type="button" title="Ajustes" alt="Ajustes" @click="onOpenProgram('Settings')" tabindex="4">
           <img id="program-settings" src="@assets/icons/settings.png" alt="Logo ajustes" draggable="false" />
           <label class="text-light" for="program-settings">Ajustes</label>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner p-2" type="button" title="Sobre mi" alt="Sobre mi" @click="openProgram('AboutMe')" tabindex="5">
+        <button class="program-inner p-2" type="button" title="Sobre mi" alt="Sobre mi" @click="onOpenProgram('AboutMe')" tabindex="5">
           <img id="program-about-me" src="@assets/icons/about-me.png" alt="Logo sobre mi" draggable="false" />
           <label class="text-light" for="program-about-me">Sobre mi</label>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-knowledge p-2" type="button" title="Mis conocimientos" alt="Mis conocimientos" @click="openProgram('Knowledge')" tabindex="6">
+        <button class="program-inner program-knowledge p-2" type="button" title="Mis conocimientos" alt="Mis conocimientos" @click="onOpenProgram('Knowledge')" tabindex="6">
           <img id="program-knowledge" src="@assets/icons/knowledge.png" alt="Logo mis conocimientos" draggable="false" />
           <label class="text-light" for="program-knowledge">Mis conocimientos</label>
         </button>
@@ -25,7 +25,7 @@
           type="button"
           title="Estudios y experiencias"
           alt="Estudios y experiencias"
-          @click="openProgram('StudiesExperiences')"
+          @click="onOpenProgram('StudiesExperiences')"
           tabindex="7"
         >
           <img id="program-experiences-studies" src="@assets/icons/experiences-studies.png" alt="Logo estudios y experiencias" draggable="false" />
@@ -33,25 +33,25 @@
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-projects p-2" type="button" title="Mis proyectos" alt="Mis proyectos" @click="openProgram('Projects')" tabindex="8">
+        <button class="program-inner program-projects p-2" type="button" title="Mis proyectos" alt="Mis proyectos" @click="onOpenProgram('Projects')" tabindex="8">
           <img id="program-projects" src="@assets/icons/projects.png" alt="Logo Mis proyectos" draggable="false" />
           <label class="text-light" for="program-projects">Mis proyectos</label>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-contactme p-2" type="button" title="Contáctame" alt="Contáctame" @click="openProgram('ContactMe')" tabindex="9">
+        <button class="program-inner program-contactme p-2" type="button" title="Contáctame" alt="Contáctame" @click="onOpenProgram('ContactMe')" tabindex="9">
           <img id="program-contactme" src="@assets/icons/email.png" alt="Logo contáctame" draggable="false" />
           <label class="text-light" for="program-contactme">Contáctame</label>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-browser p-2" type="button" title="Mis proyectos" alt="Mis proyectos" @click="openProgram('Browser')" tabindex="10">
+        <button class="program-inner program-browser p-2" type="button" title="Mis proyectos" alt="Mis proyectos" @click="onOpenProgram('Browser')" tabindex="10">
           <img id="program-browser" src="@assets/icons/browser.png" alt="Logo Navegador" draggable="false" />
           <label class="text-light" for="program-browser">Navegador</label>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-cv p-2" type="button" title="Currículum vitae" alt="Currículum vitae" @click="openProgram('CV')" tabindex="11">
+        <button class="program-inner program-cv p-2" type="button" title="Currículum vitae" alt="Currículum vitae" @click="onOpenProgram('CV')" tabindex="11">
           <img id="program-cv" src="@assets/icons/pdf.png" alt="Logo PDF" draggable="false" />
           <label class="text-light" for="program-cv">Currículum Vitae</label>
         </button>
@@ -85,7 +85,7 @@ export default {
   },
   data() {
     return {
-      idTimeoutOpenProgram: null,
+      idTimeoutOpenNextProgram: null,
       isClosedToast: false
     };
   },
@@ -95,31 +95,32 @@ export default {
 
       this.$themeSelected = themeSelected;
 
-      this.onResize();
+      this.onScreenResize();
     },
-    onResize() {
+    onRemoveProgramActive() {
+      this.$currentProgramActive = null;
+    },
+    onScreenResize() {
       this.$widthScreenContent = this.$refs.screenContent.offsetWidth;
       this.$heightScreenContent = this.$refs.screenContent.offsetHeight;
 
       this.$programs.forEach((program) => program.window.updateSizePosition());
     },
-    openProgram(_program, defaultProps = {}) {
-      if (!this.idTimeoutOpenProgram) {
-        this.idTimeoutOpenProgram = setTimeout(() => {
-          this.idTimeoutOpenProgram = null;
-        }, 1000);
+    onOpenProgram(programName, defaultProps = {}) {
+      if (this.idTimeoutOpenNextProgram) return;
 
-        this.getProgram(_program).then((result) => {
-          const ProgramClass = Vue.extend(result);
-          const programObject = new ProgramClass({
-            propsData: { id: v4(), ...defaultProps }
-          });
+      this.idTimeoutOpenNextProgram = setTimeout(() => (this.idTimeoutOpenNextProgram = null), 1000);
 
-          programObject.$mount();
-
-          this.addWindow(programObject);
+      this.getProgram(programName).then((result) => {
+        const ProgramClass = Vue.extend(result);
+        const programObject = new ProgramClass({
+          propsData: { id: v4(), ...defaultProps }
         });
-      }
+
+        programObject.$mount();
+
+        this.addWindow(programObject);
+      });
     },
     async addWindow(programObject) {
       const width = programObject.widthDefault == 0 ? this.$widthScreenContent : programObject.widthDefault;
@@ -127,9 +128,8 @@ export default {
       const x = programObject.xDefault == 0 ? 0 : programObject.xDefault;
       const y = programObject.yDefault == 0 ? 0 : programObject.yDefault;
 
-      const self = this;
-
       const WindowClass = Vue.extend(await this.getWindow());
+
       const windowObject = new WindowClass({
         propsData: {
           title: programObject.title,
@@ -139,18 +139,16 @@ export default {
           y: parseInt(y)
         },
         methods: {
-          openProgram(_program, defaultProps = {}) {
-            self.openProgram(_program, defaultProps);
-          }
+          openProgram: (programName, defaultProps = {}) => this.onOpenProgram(programName, defaultProps)
         }
       });
 
-      programObject.window = windowObject;
       windowObject.program = programObject;
-
       windowObject.$mount();
 
       this.$refs.screenContent.appendChild(windowObject.$el);
+
+      programObject.window = windowObject;
 
       windowObject.appendWindowNode(programObject.$el);
 
@@ -187,9 +185,9 @@ export default {
 
       sessionStorage.setItem('theme', this.$themeSelected);
     },
-    $urlToOpen() {
-      if (this.$urlToOpen) {
-        this.openProgram('Browser', { urlDefault: this.$urlToOpen });
+    $urlToOpen(value) {
+      if (value) {
+        this.onOpenProgram('Browser', { urlDefault: value });
 
         this.$urlToOpen = null;
       }
@@ -218,7 +216,7 @@ export default {
   background-image: url('~@svg/xiao-theme-1.svg');
 }
 
-.screen-content {
+.screen > .screen-content {
   height: calc(100% - 3rem);
   position: relative;
   padding: 5px;
@@ -228,12 +226,12 @@ export default {
   grid-auto-flow: column;
 }
 
-.program {
+.screen > .screen-content > .program {
   user-select: none;
   width: 100%;
 }
 
-.program > .program-inner {
+.screen > .screen-content > .program > .program-inner {
   width: 100%;
   background-color: transparent;
   border: none;
@@ -244,17 +242,17 @@ export default {
   align-items: center;
 }
 
-.program > .program-inner > img {
+.screen > .screen-content > .program > .program-inner:hover,
+.screen > .screen-content > .program > .program.selected > .program-inner {
+  background-color: #ffffff48;
+}
+
+.screen > .screen-content > .program > .program-inner > img {
   width: 50px;
   height: 50px;
 }
 
-.program .program-inner:hover,
-.program.selected > .program-inner {
-  background-color: #ffffff48;
-}
-
-.program > .program-inner > label {
+.screen > .screen-content > .program > .program-inner > label {
   text-align: center;
   text-shadow: 1px 1px 4px #000;
   font-size: 0.9em;
@@ -263,7 +261,7 @@ export default {
   word-break: break-word;
 }
 
-.toast {
+.screen > .toast {
   position: fixed;
   bottom: 56px;
   right: 5px;

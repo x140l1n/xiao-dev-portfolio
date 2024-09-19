@@ -8,13 +8,13 @@
         :tabindex="10 + index"
         :class="`taskbar-item program ${getProgramActiveId === program.id ? 'selected' : ''}`"
         :title="program.title"
-        @click="selectProgram(program)"
+        @click="onSelectProgram(program)"
       >
         <img class="img-fluid" :src="program.iconSrc" :title="program.title" :alt="program.title" draggable="false" />
       </div>
     </div>
     <Clock class="taskbar-item" />
-    <span class="taskbar-item taskbar-item-minimize-all border border-dark border-end-0 border-top-0 border-bottom-0" @click="minimizeAll"> </span>
+    <span class="taskbar-item taskbar-item-minimize-all border border-dark border-end-0 border-top-0 border-bottom-0" @click="onMinimizeAllPrograms"> </span>
   </div>
 </template>
 
@@ -24,20 +24,20 @@ export default {
     Clock: () => import('@components/Clock.vue')
   },
   methods: {
-    selectProgram(program) {
+    onSelectProgram(program) {
       if (program.window.$el.classList.contains('active')) {
         program.window.minimize();
       } else {
         program.window.bringFront();
       }
     },
-    minimizeAll() {
+    onMinimizeAllPrograms() {
       this.$programs.forEach((program) => program.window.minimize());
     }
   },
   computed: {
     getProgramActiveId() {
-      return this.$programActive ? this.$programActive.id : null;
+      return this.$currentProgramActive ? this.$currentProgramActive.id : null;
     }
   },
   watch: {}
@@ -53,40 +53,34 @@ export default {
   z-index: 3;
 }
 
-.taskbar-item:hover {
-  cursor: default;
-  background-color: #ffffff48;
-}
-
-.taskbar-item.taskbar-item-minimize-all {
-  width: 6px;
-}
-
-.taskbar-item.program {
+.taskbar > .taskbar-programs > .taskbar-item.program {
+  width: 40px;
+  height: 40px;
   padding: 5px;
   border-radius: 5px;
   transition: background-color 0.2s;
 }
 
-.taskbar-item.program.selected {
+.taskbar > .taskbar-programs > .taskbar-item.program.selected {
   background-color: #ffffff48;
 }
 
-.taskbar-item.program > img {
-  animation: bounce 0.5s;
+.taskbar > .taskbar-programs > .taskbar-item:hover {
+  cursor: default;
+  background-color: #ffffff48;
 }
 
-.taskbar-item.program:active > img {
+.taskbar > .taskbar-programs > .taskbar-item.program > img {
+  animation: bounce 0.5s;
+  object-fit: fill;
+}
+
+.taskbar > .taskbar-programs > .taskbar-item.program:active > img {
   transition: transform 0.2s;
   transform: scale(0.8);
 }
 
-.taskbar-item.program {
-  width: 40px;
-  height: 40px;
-}
-
-.taskbar-item.program > img {
-  object-fit: fill;
+.taskbar > .taskbar-programs > .taskbar-item.taskbar-item-minimize-all {
+  width: 6px;
 }
 </style>

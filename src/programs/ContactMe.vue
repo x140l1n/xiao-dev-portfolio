@@ -122,7 +122,6 @@ import IconEmail from '@assets/icons/email.png';
   computed: {}
 })
 export default class ContactMe extends Program {
-  //Initialize the variables of superclass Program.
   created() {
     this.title = 'Contáctame';
     this.widthDefault = 550;

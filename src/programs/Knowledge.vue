@@ -94,7 +94,6 @@ import IconKnowledge from '@assets/icons/knowledge.png';
   computed: {}
 })
 export default class Knowledge extends Program {
-  //Initialize the variables of superclass Program.
   created() {
     this.title = 'Mis conocimientos';
     this.widthDefault = 550;

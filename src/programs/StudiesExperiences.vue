@@ -190,7 +190,6 @@ import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
   computed: {}
 })
 export default class StudiesExperiences extends Program {
-  //Initialize the variables of superclass Program.
   created() {
     this.title = 'Estudios y experiencias';
     this.widthDefault = 550;

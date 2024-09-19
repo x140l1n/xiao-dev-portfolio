@@ -1,20 +1,20 @@
 <template>
-  <div class="window resizers border border-2 border-dark bg-light" v-resize="onResize" ref="window" :style="cssRootVars">
+  <div class="window resizers border border-2 border-dark bg-light" v-resize="onResize" @click="onSelectedProgram" ref="window" :style="cssRootVars">
     <div
-      class="window-tilebar bg-primary text-light d-flex justify-content-between align-items-center border-bottom border-2 border-dark user-select-none"
+      class="window-title-bar bg-primary text-light d-flex justify-content-between align-items-center border-bottom border-2 border-dark user-select-none"
       ref="windowTitleBar"
       @click="onClickWindowTitleBar"
     >
       <img class="program-icon" :src="program.iconSrc" :alt="`Icono ${program.title}`" draggable="false" />
       <span class="m-auto ms-2 text-truncate">{{ title }}</span>
       <div class="h-100 d-flex align-items-center" ref="windowTitleBarActions">
-        <button class="tilebar-item" type="button" title="Minimizar ventana" data-action="minimize">
+        <button class="title-bar-item" type="button" title="Minimizar ventana" data-action="minimize">
           <i class="fa-solid fa-minus fa-fw"></i>
         </button>
-        <button class="tilebar-item" type="button" :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`" data-action="toggleMaximized">
+        <button class="title-bar-item" type="button" :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`" data-action="toggleMaximized">
           <i :class="`fa-solid ${isMaximized ? 'fa-compress' : 'fa-expand'}`"></i>
         </button>
-        <button class="tilebar-item" type="button" title="Cerrar ventana" data-action="close">
+        <button class="title-bar-item" type="button" title="Cerrar ventana" data-action="close">
           <i class="fa-solid fa-xmark fa-fw"></i>
         </button>
       </div>
@@ -93,10 +93,13 @@ export default {
     init() {
       this.isMaximized = this.program.maximizedDefault;
 
-      this.bringFront();
-
       this.initDrag(this.$refs.windowTitleBar, this);
       this.initResize(this.$refs.window, this);
+
+      this.bringFront();
+    },
+    onSelectedProgram() {
+      this.bringFront();
     },
     onClickWindowTitleBar(evt) {
       evt.stopPropagation();
@@ -169,18 +172,18 @@ export default {
 
           self.$refs.window.parentElement.addEventListener('mouseup', endDrag);
           self.$refs.window.parentElement.addEventListener('mouseleave', endDrag);
-          self.$refs.window.parentElement.addEventListener('mousemove', onDrag);
+          self.$refs.window.parentElement.addEventListener('mousemove', onDragging);
 
           self.$refs.window.parentElement.addEventListener('touchcancel', endDrag, { passive: true });
           self.$refs.window.parentElement.addEventListener('touchend', endDrag, { passive: true });
           self.$refs.window.parentElement.addEventListener('touchleave', endDrag, { passive: true });
-          self.$refs.window.parentElement.addEventListener('touchmove', onDrag, { passive: true });
+          self.$refs.window.parentElement.addEventListener('touchmove', onDragging, { passive: true });
 
           self.bringFront();
         }
       }
 
-      function onDrag(evt) {
+      function onDragging(evt) {
         evt.stopPropagation();
 
         self.$refs.window.classList.add('no-transition');
@@ -204,12 +207,12 @@ export default {
 
         self.$refs.window.parentElement.removeEventListener('mouseup', endDrag);
         self.$refs.window.parentElement.removeEventListener('mouseleave', endDrag);
-        self.$refs.window.parentElement.removeEventListener('mousemove', onDrag);
+        self.$refs.window.parentElement.removeEventListener('mousemove', onDragging);
 
         self.$refs.window.parentElement.removeEventListener('touchcancel', endDrag, { passive: true });
         self.$refs.window.parentElement.removeEventListener('touchend', endDrag, { passive: true });
         self.$refs.window.parentElement.removeEventListener('touchleave', endDrag, { passive: true });
-        self.$refs.window.parentElement.removeEventListener('touchmove', onDrag, { passive: true });
+        self.$refs.window.parentElement.removeEventListener('touchmove', onDragging, { passive: true });
 
         self.isDragging = false;
       }
@@ -244,16 +247,16 @@ export default {
           originalMouseX = evt.touches ? evt.touches[0].pageX : evt.pageX;
           originalMouseY = evt.touches ? evt.touches[0].pageY : evt.pageY;
 
-          window.addEventListener('touchmove', onResize, { passive: true });
+          window.addEventListener('touchmove', onResizing, { passive: true });
           window.addEventListener('touchcancel', endResize, { passive: true });
           window.addEventListener('touchleave', endResize, { passive: true });
           window.addEventListener('touchend', endResize, { passive: true });
 
-          window.addEventListener('mousemove', onResize);
+          window.addEventListener('mousemove', onResizing);
           window.addEventListener('mouseup', endResize);
         }
 
-        function onResize(evt) {
+        function onResizing(evt) {
           self.bringFront();
 
           self.$refs.window.classList.add('no-transition');
@@ -316,12 +319,12 @@ export default {
         function endResize() {
           self.$refs.window.classList.remove('no-transition');
 
-          window.removeEventListener('touchmove', onResize, { passive: true });
+          window.removeEventListener('touchmove', onResizing, { passive: true });
           window.removeEventListener('touchcancel', endResize, { passive: true });
           window.removeEventListener('touchleave', endResize, { passive: true });
           window.removeEventListener('touchend', endResize, { passive: true });
 
-          window.removeEventListener('mousemove', onResize);
+          window.removeEventListener('mousemove', onResizing);
           window.removeEventListener('mouseup', endResize);
 
           self.isResizing = false;
@@ -336,7 +339,7 @@ export default {
       this.$el.classList.remove('minimize');
       this.$el.classList.add('active');
 
-      this.$programActive = this.program;
+      this.$currentProgramActive = this.program;
     },
     bringFrontLastProgram() {
       const programsReverse = [...this.$programs].reverse();
@@ -346,7 +349,7 @@ export default {
       if (lastProgram) {
         lastProgram.window.bringFront();
       } else {
-        this.$programActive = null;
+        this.$currentProgramActive = null;
       }
     },
     updateSizePosition() {
@@ -403,14 +406,14 @@ export default {
     close() {
       this.$el.classList.add('closing');
 
+      this.$programs = this.$programs.filter((program) => program.id !== this.program.id);
+
       setTimeout(() => {
         this.$destroy();
         this.program.$destroy();
 
         this.$el.parentNode.removeChild(this.$el);
       }, 500);
-
-      this.$programs = this.$programs.filter((program) => program.id !== this.program.id);
 
       this.bringFrontLastProgram();
     },
@@ -434,14 +437,16 @@ export default {
   watch: {
     isMaximized(value) {
       if (value) {
+        this.$refs.window.classList.remove('resizers');
+
         this.sizePrev = { ...this.size };
         this.size = { width: this.$widthScreenContent, height: this.$heightScreenContent };
 
         this.positionPrev = { ...this.position };
         this.position = { x: 0, y: 0 };
-
-        this.$refs.window.classList.remove('resizers');
       } else {
+        this.$refs.window.classList.add('resizers');
+
         if (!this.isDragging) {
           this.position = { ...this.positionPrev };
         } else {
@@ -469,8 +474,6 @@ export default {
         }
 
         this.size = { ...this.sizePrev };
-
-        this.$refs.window.classList.add('resizers');
       }
     }
   }
@@ -479,9 +482,9 @@ export default {
 
 <style lang="css" scoped>
 .window {
-  position: absolute;
   width: 100%;
   height: 100%;
+  position: absolute;
   left: var(--x);
   top: var(--y);
   display: flex;
@@ -497,7 +500,7 @@ export default {
     left 0.1s 0.1s,
     top 0.1s 0.1s;
   z-index: 1;
-  animation: zoom-out-only-transform 0.2s;
+  animation: zoom-out-only-transform 0.2s ease;
 }
 
 .window-content {
@@ -506,21 +509,21 @@ export default {
 
 .window.minimize {
   top: var(--maxHeight);
-  transition: top 0.5s;
-  animation: zoom-in-only-transform 0.5s;
+  transition: top 0.2s;
+  animation: zoom-in-only-transform 0.2s ease;
   transform: scale(0);
 }
 
 .window.closing {
-  animation: zoom-in-only-transform 0.5s;
+  animation: zoom-in-only-transform 0.2s ease;
   transform: scale(0);
 }
 
-.active {
+.window.active {
   z-index: 2;
 }
 
-.maximized-transition {
+.window.maximized-transition {
   transition:
     max-width 0.1s 0.1s,
     max-height 0.1s 0.1s,
@@ -528,7 +531,7 @@ export default {
     top 0.1s;
 }
 
-.minimized-transition {
+.window.minimized-transition {
   transition:
     max-width 0.1s,
     max-height 0.1s,
@@ -536,14 +539,14 @@ export default {
     top 0.1s;
 }
 
-.window-tilebar {
+.window > .window-title-bar {
   width: 100%;
   z-index: 3;
   height: var(--heightTileBar);
 }
 
-.tilebar-item,
-.tilebar-item:active {
+.window > .window-title-bar .title-bar-item,
+.window > .window-title-bar .title-bar-item:active {
   width: 50px;
   height: 100%;
   background-color: transparent;
@@ -554,52 +557,52 @@ export default {
   align-items: center;
 }
 
-.tilebar-item > i {
-  font-size: 0.9rem;
-}
-
-.tilebar-item:hover {
+.window > .window-title-bar .title-bar-item:hover {
   cursor: default;
   background-color: #106379;
 }
 
-.tilebar-item:nth-child(3):hover {
+.window > .window-title-bar .title-bar-item > i {
+  font-size: 0.9rem;
+}
+
+.window > .window-title-bar .title-bar-item:nth-child(3):hover {
   cursor: default;
   background-color: #d9534f;
 }
 
-.program-icon {
-  width: 32px;
-  width: 32px;
+.window > .window-title-bar > .program-icon {
+  width: 30px;
+  height: 30px;
   padding: 2px;
 }
 
-.resizers .resizer {
+.window .resizers .resizer {
   position: absolute;
   width: 10px;
   height: 10px;
   user-select: none;
 }
 
-.resizers .resizer.top-left {
+.window .resizers .resizer.top-left {
   left: -5px;
   top: -5px;
-  cursor: nwse-resize; /*resizer cursor*/
+  cursor: nwse-resize;
 }
 
-.resizers .resizer.top-right {
+.window .resizers .resizer.top-right {
   right: -5px;
   top: -5px;
   cursor: nesw-resize;
 }
 
-.resizers .resizer.bottom-left {
+.window .resizers .resizer.bottom-left {
   left: -5px;
   bottom: -5px;
   cursor: nesw-resize;
 }
 
-.resizers .resizer.bottom-right {
+.window .resizers .resizer.bottom-right {
   right: -5px;
   bottom: -5px;
   cursor: nwse-resize;

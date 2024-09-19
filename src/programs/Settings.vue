@@ -193,7 +193,6 @@ import { date, version } from '@root/package';
   }
 })
 export default class Settings extends Program {
-  //Initialize the variables of superclass Program.
   created() {
     this.title = 'Ajustes';
     this.widthDefault = 550;

@@ -1,6 +1,9 @@
 <template>
-  <div class="w-100 h-100 overflow-hidden">
-    <iframe :src="$env.URL_CV" width="100%" height="100%" />
+  <div class="w-100 h-100 overflow-hidden" @click="onClick">
+    <iframe v-show="!isMinimized && isLoadedCV" :src="$env.URL_CV" @load="onLoadCV" width="100%" height="100%"></iframe>
+    <div class="h-100 d-flex justify-content-center align-items-center" v-if="!isLoadedCV">
+      <h4>Cargando currículum...</h4>
+    </div>
   </div>
 </template>
 
@@ -21,11 +24,15 @@ import IconPdf from '@assets/icons/pdf.png';
   },
   data() {
     return {
-      isMinimized: false
+      isMinimized: false,
+      isLoadedCV: false
     };
   },
   methods: {
     init() {},
+    onLoadCV() {
+      this.isLoadedCV = true;
+    },
     onMinimize() {
       this.isMinimized = true;
     },
@@ -36,7 +43,6 @@ import IconPdf from '@assets/icons/pdf.png';
   computed: {}
 })
 export default class Knowledge extends Program {
-  //Initialize the variables of superclass Program.
   created() {
     this.title = 'Currículum Vitae';
     this.widthDefault = 400;

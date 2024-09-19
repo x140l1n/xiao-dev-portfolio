@@ -10,4 +10,4 @@ export default {
   <MonitorView />
 </template>
 
-<style></style>
+<style lang="css" scoped></style>
