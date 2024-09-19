@@ -71,8 +71,8 @@ This project uses environment variables to manage configuration settings. You ca
 
 ```bash
 NODE_ENV=development # or production
-VUE_APP_API_ENDPOINT=http://localhost:8000/api/
-VUE_APP_CV_URL=
+VUE_APP_API_ENDPOINT=http://localhost:8000/api/ # the URL of api endpoint
+VUE_APP_CV_URL= # the URL of CV
 ```
 
 - `NODE_ENV`: Set to `development` for local development and `production` for production environments.
