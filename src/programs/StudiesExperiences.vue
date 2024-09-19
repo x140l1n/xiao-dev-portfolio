@@ -156,7 +156,7 @@
               <ul>
                 <li>Planificación, documentación y desarrollo de proyectos.</li>
                 <li>Creación y mantenimiento aplicaciones web con: HTML, CSS, JavaScript, PHP, Ruby On Rails, Wordpress.</li>
-                <li>Creación y mantenimiento de programas WinForms: .NET, .NET Core</li>
+                <li>Creación y mantenimiento de programas WinForms: .NET, .NET Core.</li>
                 <li>Creación y mantenimiento de base de datos: Microsoft SQL Server, MySQL, PostgreSQL.</li>
                 <li>Mantenimiento de servidores webs y hosting: Arsys, Axarnet, Guebs, CDMON.</li>
                 <li>Técnico de sistemas: Windows Server, Active Directory, Microsoft Exchange, Virtualización.</li>

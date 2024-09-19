@@ -4,13 +4,13 @@
       <div class="flip-card-front">
         <header class="text-light d-flex gap-4 justify-content-between align-items-center">
           <img ref="iconFullStackDeveloper" src="@assets/icons/coding.png" title="Icono fullstack developer" draggable="false" alt="Icono fullstack developer" />
-          <h4 class="fw-bold m-0">FULLSTACK DEVELOPER</h4>
+          <h4 class="fw-bold m-0 text-truncate">FULLSTACK DEVELOPER</h4>
           <button class="btn btn-transparent btn-flip text-light" type="button" title="Voltear la targeta" @click="flip">
             <i class="fa-solid fa-repeat fa-fw"></i>
           </button>
         </header>
         <div class="card-body p-0">
-          <div class="d-flex gap-4 p-4" ref="contentFront">
+          <div class="d-flex gap-4 overflow-hidden p-4" ref="contentFront">
             <div class="photo" ref="photo">
               <img class="img-fluid" src="@assets/img/me.jpg" title="Yo" alt="Yo" />
             </div>
@@ -199,9 +199,9 @@ export default class AboutMe extends Program {
           0 1px 2px rgb(0 0 0 / 40%);
 
         &:before {
+          content: '';
           position: absolute;
           z-index: 1;
-          content: '';
           left: 50%;
           top: 20px;
           margin: 0 0 0 -50px;
@@ -215,7 +215,12 @@ export default class AboutMe extends Program {
         }
 
         > .btn-flip {
-          animation: glowing 1300ms infinite;
+          border: none;
+          animation-name: glowing;
+          animation-timing-function: ease-in-out;
+          animation-duration: 2s;
+          animation-iteration-count: infinite;
+          animation-direction: alternate;
         }
       }
 
@@ -223,7 +228,9 @@ export default class AboutMe extends Program {
         font-size: 0.9rem;
 
         .photo {
+          min-width: 200px;
           max-width: 280px;
+          width: 100%;
 
           &.photo-sm,
           &.photo-xs {
@@ -290,6 +297,29 @@ export default class AboutMe extends Program {
       0 0 0 5px rgba(51, 51, 51, 0.6),
       0 0 10px rgba(0, 0, 0, 0.7),
       inset 2px 2px 2px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@keyframes glowing {
+  0% {
+    background-color: rgb(var(--bs-primary-light-rgb));
+    box-shadow: 0 0 15px rgb(var(--bs-primary-light-rgb));
+  }
+  25% {
+    background-color: rgb(var(--bs-primary-dark-rgb));
+    box-shadow: 0 0 15px rgb(var(--bs-primary-dark-rgb));
+  }
+  50% {
+    background-color: rgb(var(--bs-primary-light-rgb));
+    box-shadow: 0 0 15px rgb(var(--bs-primary-light-rgb));
+  }
+  75% {
+    background-color: rgb(var(--bs-primary-dark-rgb));
+    box-shadow: 0 0 15px rgb(var(--bs-primary-dark-rgb));
+  }
+  100% {
+    background-color: rgb(var(--bs-primary-light-rgb));
+    box-shadow: 0 0 15px rgb(var(--bs-primary-light-rgb));
   }
 }
 </style>

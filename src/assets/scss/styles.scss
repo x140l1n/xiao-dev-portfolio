@@ -15,24 +15,32 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 
 .screen.theme-1 {
   --bs-primary-rgb: 93, 69, 149;
+  --bs-primary-dark-rgb: 63, 47, 105;
   --bs-primary-light-rgb: 123, 99, 179;
 
   --bs-secondary-rgb: 19, 116, 142;
+  --bs-secondary-dark-rgb: 13, 80, 98;
   --bs-secondary-light-rgb: 49, 146, 172;
 
   --bs-nav-link-primary-color: #5d4595 !important;
   --bs-nav-link-active-primary-color: #ffffff !important;
+
+  --bs-form-switch-focus-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='rgb(155, 130, 211)'/></svg>");
 }
 
 .screen.theme-2 {
   --bs-primary-rgb: 19, 116, 142;
-  --bs-primary-light-rgb: 149, 190, 195;
+  --bs-primary-dark-rgb: 13, 80, 98;
+  --bs-primary-light-rgb: 49, 146, 172;
 
   --bs-secondary-rgb: 93, 69, 149;
-  --bs-secondary-light-rgb: 49, 146, 172;
+  --bs-secondary-dark-rgb: 63, 47, 105;
+  --bs-secondary-light-rgb: 123, 99, 179;
 
   --bs-nav-link-primary-color: #13748e !important;
   --bs-nav-link-active-primary-color: #ffffff !important;
+
+  --bs-form-switch-focus-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='rgb(81, 179, 195)'/></svg>");
 }
 
 body {

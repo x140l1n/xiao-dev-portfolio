@@ -64,7 +64,6 @@
                     Si lo habilitas en el propio navegador puede que no funcione esta opción.
                   </small>
                 </div>
-
                 <div class="form-check form-switch">
                   <input class="form-check-input" v-model="$isFullscreen" :id="`switch-fullscreen-${id}`" type="checkbox" :true-value="true" :false-value="false" draggable="false" />
                 </div>
@@ -81,13 +80,13 @@
                 <div class="theme-selector theme-1 p-3 my-2">
                   <div class="form-check fw-bold text-light">
                     <input class="form-check-input" v-model="$themeSelected" :id="`rdb-theme-2-${id}`" type="radio" :name="`selector-theme-${id}`" value="theme-2" draggable="false" />
-                    <label class="form-check-label" :for="`rdb-theme-2-${id}`"> Tema azul oscuro </label>
+                    <label class="form-check-label" :for="`rdb-theme-2-${id}`">Tema azul oscuro</label>
                   </div>
                 </div>
                 <div class="theme-selector theme-2 p-3 my-2">
                   <div class="form-check fw-bold text-dark">
                     <input class="form-check-input" v-model="$themeSelected" :id="`rdb-theme-1-${id}`" type="radio" :name="`selector-theme-${id}`" value="theme-1" draggable="false" />
-                    <label class="form-check-label" :for="`rdb-theme-1-${id}`"> Tema morado </label>
+                    <label class="form-check-label" :for="`rdb-theme-1-${id}`">Tema morado claro</label>
                   </div>
                 </div>
               </div>
@@ -240,6 +239,21 @@ export default class Settings extends Program {
 
   &.tab-content-small {
     margin-left: 50px;
+  }
+
+  .form-check.form-switch {
+    > .form-check-input {
+      box-shadow: 0 0 0 0.25rem rgb(var(--bs-primary-rgb), 0.25);
+      border-color: rgb(var(--bs-primary-light-rgb));
+
+      &:focus {
+        background-image: var(--bs-form-switch-focus-bg);
+      }
+
+      &:checked {
+        background-color: rgb(var(--bs-primary-rgb));
+      }
+    }
   }
 }
 
