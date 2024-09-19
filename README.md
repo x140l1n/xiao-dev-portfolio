@@ -51,8 +51,8 @@ The portfolio is built with the following stack:
 ## 🗂️ Project Structure
 
 - `api/`: Contains the `email.php` file, which handles sending emails.
-- - `dist/`: Folder generated after the build, ready for production deployment.
-- - `screenshots/`: Contains screenshots showcasing the user interface and functionalities of the portfolio.
+- `dist/`: Folder generated after the build, ready for production deployment.
+- `screenshots/`: Contains screenshots showcasing the user interface and functionalities of the portfolio.
 - `public/`: Static files and the `index.html`.
 - `src/`: Contains the main components, views, and project files.
 
