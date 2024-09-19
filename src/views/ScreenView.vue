@@ -78,7 +78,7 @@ import { v4 } from 'uuid';
 
 export default {
   components: {
-    TaskBarView: () => import('@views/TaskBarView.vue')
+    TaskBarView: () => import('@components/TaskBarView.vue')
   },
   mounted() {
     this.init();
@@ -91,18 +91,18 @@ export default {
   },
   methods: {
     init() {
-      const themeSelected = sessionStorage.getItem('theme') || 'theme-2';
-
-      this.$themeSelected = themeSelected;
+      this.$themeSelected = sessionStorage.getItem('theme') || 'theme-2';
 
       this.onScreenResize();
     },
     onRemoveProgramActive() {
-      this.$currentProgramActive = null;
+      if (this.$currentProgramActive) {
+        this.$currentProgramActive.window.removeActive();
+      }
     },
     onScreenResize() {
-      this.$widthScreenContent = this.$refs.screenContent.offsetWidth;
-      this.$heightScreenContent = this.$refs.screenContent.offsetHeight;
+      this.$widthScreenContent = this.$refs.screenContent.clientWidth;
+      this.$heightScreenContent = this.$refs.screenContent.clientHeight;
 
       this.$programs.forEach((program) => program.window.updateSizePosition());
     },
@@ -204,71 +204,71 @@ export default {
   background-size: clamp(100px, calc(100vw - 50%), 400px);
   background-position: center;
   background-repeat: no-repeat;
-}
 
-.screen.theme-1 {
-  background-color: rgb(149, 190, 195);
-  background-image: url('~@svg/xiao-theme-2.svg');
-}
+  &.theme-1 {
+    background-color: rgb(149, 190, 195);
+    background-image: url('~@svg/xiao-theme-2.svg');
+  }
 
-.screen.theme-2 {
-  background-color: rgb(33, 37, 41);
-  background-image: url('~@svg/xiao-theme-1.svg');
-}
+  &.theme-2 {
+    background-color: rgb(33, 37, 41);
+    background-image: url('~@svg/xiao-theme-1.svg');
+  }
 
-.screen > .screen-content {
-  height: calc(100% - 3rem);
-  position: relative;
-  padding: 5px;
-  display: grid;
-  grid-auto-columns: 130px;
-  grid-template-rows: repeat(auto-fit, 110px);
-  grid-auto-flow: column;
-}
+  > .screen-content {
+    height: calc(100% - 3rem);
+    position: relative;
+    padding: 5px;
+    display: grid;
+    grid-auto-columns: 130px;
+    grid-template-rows: repeat(auto-fit, 110px);
+    grid-auto-flow: column;
 
-.screen > .screen-content > .program {
-  user-select: none;
-  width: 100%;
-}
+    > .program {
+      user-select: none;
+      width: 100%;
 
-.screen > .screen-content > .program > .program-inner {
-  width: 100%;
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
+      > .program-inner {
+        width: 100%;
+        background-color: transparent;
+        border: none;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
 
-.screen > .screen-content > .program > .program-inner:hover,
-.screen > .screen-content > .program > .program.selected > .program-inner {
-  background-color: #ffffff48;
-}
+        &:hover,
+        .program.selected & {
+          background-color: #ffffff48;
+        }
 
-.screen > .screen-content > .program > .program-inner > img {
-  width: 50px;
-  height: 50px;
-}
+        > img {
+          width: 50px;
+          height: 50px;
+        }
 
-.screen > .screen-content > .program > .program-inner > label {
-  text-align: center;
-  text-shadow: 1px 1px 4px #000;
-  font-size: 0.9em;
-  line-height: 1.2em;
-  cursor: pointer;
-  word-break: break-word;
-}
+        > label {
+          text-align: center;
+          text-shadow: 1px 1px 4px #000;
+          font-size: 0.9em;
+          line-height: 1.2em;
+          cursor: pointer;
+          word-break: break-word;
+        }
+      }
+    }
+  }
 
-.screen > .toast {
-  position: fixed;
-  bottom: 56px;
-  right: 5px;
-  z-index: 1;
-  width: auto;
-  max-width: 300px;
-  user-select: none;
-  animation: slide-left 1s ease-in-out;
+  > .toast {
+    position: fixed;
+    bottom: 56px;
+    right: 5px;
+    z-index: 1;
+    width: auto;
+    max-width: 300px;
+    user-select: none;
+    animation: slide-left 1s ease-in-out;
+  }
 }
 </style>

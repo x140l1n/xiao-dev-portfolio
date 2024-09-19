@@ -39,48 +39,74 @@ export default {
     getProgramActiveId() {
       return this.$currentProgramActive ? this.$currentProgramActive.id : null;
     }
-  },
-  watch: {}
+  }
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .taskbar {
   height: 3rem;
   width: 100%;
   position: absolute;
   bottom: 0;
   z-index: 3;
+
+  .taskbar-item:hover {
+    cursor: default;
+    background-color: #ffffff48;
+  }
+
+  .taskbar-programs {
+    > .taskbar-item.program {
+      width: 40px;
+      height: 40px;
+      padding: 5px;
+      border-radius: 5px;
+      transition: background-color 0.2s;
+
+      &.selected {
+        position: relative;
+        background-color: #ffffff48;
+        padding-bottom: 10px;
+
+        &:before {
+          content: '';
+          position: absolute;
+          top: 90%;
+          left: 50%;
+          transform: translate(-50%, -90%);
+          width: 100%;
+          max-width: 15px;
+          height: 2px;
+          border-radius: 2px;
+          background-color: rgb(var(--bs-primary-rgb));
+          animation: expand 1s;
+        }
+      }
+
+      img {
+        animation: bounce 0.5s;
+        object-fit: fill;
+      }
+
+      :active img {
+        transition: transform 0.2s;
+        transform: scale(0.8);
+      }
+    }
+  }
+
+  > .taskbar-item.taskbar-item-minimize-all {
+    width: 6px;
+  }
 }
 
-.taskbar > .taskbar-programs > .taskbar-item.program {
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-  border-radius: 5px;
-  transition: background-color 0.2s;
-}
-
-.taskbar > .taskbar-programs > .taskbar-item.program.selected {
-  background-color: #ffffff48;
-}
-
-.taskbar > .taskbar-programs > .taskbar-item:hover {
-  cursor: default;
-  background-color: #ffffff48;
-}
-
-.taskbar > .taskbar-programs > .taskbar-item.program > img {
-  animation: bounce 0.5s;
-  object-fit: fill;
-}
-
-.taskbar > .taskbar-programs > .taskbar-item.program:active > img {
-  transition: transform 0.2s;
-  transform: scale(0.8);
-}
-
-.taskbar > .taskbar-programs > .taskbar-item.taskbar-item-minimize-all {
-  width: 6px;
+@keyframes expand {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
 }
 </style>

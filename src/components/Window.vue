@@ -20,11 +20,14 @@
       </div>
     </div>
     <div class="window-content bg-light overflow-hidden" ref="windowContent" @scroll="onScroll"></div>
-    <span class="resizer top"></span>
     <span class="resizer top-left"></span>
+    <span class="resizer top"></span>
     <span class="resizer top-right"></span>
-    <span class="resizer bottom-left"></span>
+    <span class="resizer right"></span>
     <span class="resizer bottom-right"></span>
+    <span class="resizer bottom"></span>
+    <span class="resizer bottom-left"></span>
+    <span class="resizer left"></span>
   </div>
 </template>
 
@@ -267,13 +270,58 @@ export default {
           let width = 0;
           let height = 0;
 
-          if (resizer.classList.contains('bottom-right')) {
+          if (resizer.classList.contains('top-left')) {
+            width = originalWidth - (pageX - originalMouseX);
+            height = originalHeight - (pageY - originalMouseY);
+
+            if (width > minimumSize) {
+              self.size.width = width;
+              self.position.x = originalX + (pageX - originalMouseX);
+            }
+
+            if (height > minimumSize) {
+              self.size.height = height;
+              self.position.y = originalY + (pageY - originalMouseY);
+            }
+          } else if (resizer.classList.contains('top')) {
+            height = originalHeight - (pageY - originalMouseY);
+
+            if (height > minimumSize) {
+              self.size.height = height;
+              self.position.y = originalY + (pageY - originalMouseY);
+            }
+          } else if (resizer.classList.contains('top-right')) {
+            width = originalWidth + (pageX - originalMouseX);
+            height = originalHeight - (pageY - originalMouseY);
+
+            if (width > minimumSize) {
+              self.size.width = width;
+            }
+
+            if (height > minimumSize) {
+              self.size.height = height;
+              self.position.y = originalY + (pageY - originalMouseY);
+            }
+          } else if (resizer.classList.contains('right')) {
+            width = originalWidth + (pageX - originalMouseX);
+
+            if (width > minimumSize) {
+              self.size.width = width;
+            }
+          } else if (resizer.classList.contains('bottom-right')) {
             width = originalWidth + (pageX - originalMouseX);
             height = originalHeight + (pageY - originalMouseY);
 
             if (width > minimumSize) {
               self.size.width = width;
             }
+
+            if (height > minimumSize) {
+              self.size.height = height;
+            }
+          } else if (resizer.classList.contains('bottom')) {
+            height = originalHeight + (pageY - originalMouseY);
+
             if (height > minimumSize) {
               self.size.height = height;
             }
@@ -284,32 +332,17 @@ export default {
             if (width > minimumSize) {
               self.size.width = width;
             }
+
             if (height > minimumSize) {
               self.size.height = height;
               self.position.x = originalX + (pageX - originalMouseX);
             }
-          } else if (resizer.classList.contains('top-right')) {
-            width = originalWidth + (pageX - originalMouseX);
-            height = originalHeight - (pageY - originalMouseY);
-
-            if (width > minimumSize) {
-              self.size.width = width;
-            }
-            if (height > minimumSize) {
-              self.size.height = height;
-              self.position.y = originalY + (pageY - originalMouseY);
-            }
-          } else {
+          } else if (resizer.classList.contains('left')) {
             width = originalWidth - (pageX - originalMouseX);
-            height = originalHeight - (pageY - originalMouseY);
 
             if (width > minimumSize) {
               self.size.width = width;
               self.position.x = originalX + (pageX - originalMouseX);
-            }
-            if (height > minimumSize) {
-              self.size.height = height;
-              self.position.y = originalY + (pageY - originalMouseY);
             }
           }
 
@@ -336,8 +369,8 @@ export default {
 
       this.$programs.forEach((program) => program.window.$el.classList.remove('active'));
 
-      this.$el.classList.remove('minimize');
       this.$el.classList.add('active');
+      this.$el.classList.remove('minimize');
 
       this.$currentProgramActive = this.program;
     },
@@ -382,14 +415,6 @@ export default {
     onBringFront() {
       if (this.program && typeof this.program.onBringFront === 'function') this.program.onBringFront();
     },
-    minimize() {
-      this.onMinimize();
-
-      this.$el.classList.remove('active');
-      this.$el.classList.add('minimize');
-
-      this.bringFrontLastProgram();
-    },
     toggleMaximized() {
       if (this.isMaximized) {
         this.$refs.window.classList.add('minimized-transition');
@@ -402,6 +427,19 @@ export default {
       this.isMaximized = !this.isMaximized;
 
       this.bringFront();
+    },
+    removeActive() {
+      this.$el.classList.remove('active');
+
+      this.$currentProgramActive = null;
+    },
+    minimize() {
+      this.onMinimize();
+
+      this.$el.classList.add('minimize');
+      this.$el.classList.remove('active');
+
+      this.bringFrontLastProgram();
     },
     close() {
       this.$el.classList.add('closing');
@@ -495,116 +533,148 @@ export default {
   min-height: var(--minHeight);
   cursor: default;
   transition:
-    max-width 0.1s,
-    max-height 0.1s,
-    left 0.1s 0.1s,
-    top 0.1s 0.1s;
+    max-width 0.2s,
+    max-height 0.2s,
+    left 0.2s 0.2s,
+    top 0.2s 0.2s;
   z-index: 1;
-  animation: zoom-out-only-transform 0.2s ease;
-}
+  animation: zoom-out-only-transform 0.3s ease;
 
-.window-content {
-  flex: 1;
-}
+  &.minimize {
+    top: var(--maxHeight);
+    transition: top 0.2s;
+    transform: scale(0);
+    animation: zoom-in-only-transform 0.3s ease;
+  }
 
-.window.minimize {
-  top: var(--maxHeight);
-  transition: top 0.2s;
-  animation: zoom-in-only-transform 0.2s ease;
-  transform: scale(0);
-}
+  &.closing {
+    transform: scale(0);
+    animation: zoom-in-only-transform 0.3s ease;
+  }
 
-.window.closing {
-  animation: zoom-in-only-transform 0.2s ease;
-  transform: scale(0);
-}
+  &.active {
+    z-index: 2;
+  }
 
-.window.active {
-  z-index: 2;
-}
+  &.minimized-transition,
+  &.maximized-transition {
+    transition:
+      max-width 0.2s,
+      max-height 0.2s,
+      left 0.2s,
+      top 0.2s;
+  }
 
-.window.maximized-transition {
-  transition:
-    max-width 0.1s 0.1s,
-    max-height 0.1s 0.1s,
-    left 0.1s,
-    top 0.1s;
-}
+  & > .window-title-bar {
+    width: 100%;
+    z-index: 3;
+    height: var(--heightTileBar);
 
-.window.minimized-transition {
-  transition:
-    max-width 0.1s,
-    max-height 0.1s,
-    left 0.1s,
-    top 0.1s;
-}
+    .title-bar-item,
+    .title-bar-item:active {
+      width: 50px;
+      height: 100%;
+      background-color: transparent;
+      border: none;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-.window > .window-title-bar {
-  width: 100%;
-  z-index: 3;
-  height: var(--heightTileBar);
-}
+      &:hover {
+        cursor: default;
+        background-color: #106379;
+      }
 
-.window > .window-title-bar .title-bar-item,
-.window > .window-title-bar .title-bar-item:active {
-  width: 50px;
-  height: 100%;
-  background-color: transparent;
-  border: none;
-  color: #fff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+      &:nth-child(3):hover {
+        background-color: red;
+      }
 
-.window > .window-title-bar .title-bar-item:hover {
-  cursor: default;
-  background-color: #106379;
-}
+      i {
+        font-size: 0.9rem;
+      }
+    }
 
-.window > .window-title-bar .title-bar-item > i {
-  font-size: 0.9rem;
-}
+    .program-icon {
+      width: 30px;
+      height: 30px;
+      padding: 2px;
+    }
+  }
 
-.window > .window-title-bar .title-bar-item:nth-child(3):hover {
-  cursor: default;
-  background-color: #d9534f;
-}
+  & > .window-content {
+    flex: 1;
+  }
 
-.window > .window-title-bar > .program-icon {
-  width: 30px;
-  height: 30px;
-  padding: 2px;
-}
+  &.resizers {
+    > .resizer {
+      position: absolute;
+      user-select: none;
 
-.window .resizers .resizer {
-  position: absolute;
-  width: 10px;
-  height: 10px;
-  user-select: none;
-}
+      &.top-left {
+        left: -8px;
+        top: -8px;
+        width: 8px;
+        height: 8px;
+        cursor: nwse-resize;
+      }
 
-.window .resizers .resizer.top-left {
-  left: -5px;
-  top: -5px;
-  cursor: nwse-resize;
-}
+      &.top {
+        top: -8px;
+        left: 8px;
+        right: 8px;
+        height: 8px;
+        cursor: ns-resize;
+      }
 
-.window .resizers .resizer.top-right {
-  right: -5px;
-  top: -5px;
-  cursor: nesw-resize;
-}
+      &.top-right {
+        right: -8px;
+        top: -8px;
+        width: 8px;
+        height: 8px;
+        cursor: nesw-resize;
+      }
 
-.window .resizers .resizer.bottom-left {
-  left: -5px;
-  bottom: -5px;
-  cursor: nesw-resize;
-}
+      &.right {
+        top: 8px;
+        bottom: 8px;
+        right: -8px;
+        width: 8px;
+        cursor: ew-resize;
+      }
 
-.window .resizers .resizer.bottom-right {
-  right: -5px;
-  bottom: -5px;
-  cursor: nwse-resize;
+      &.bottom-right {
+        right: -8px;
+        bottom: -8px;
+        width: 8px;
+        height: 8px;
+        cursor: nwse-resize;
+      }
+
+      &.bottom {
+        bottom: -8px;
+        left: 8px;
+        right: 8px;
+        height: 8px;
+        cursor: ns-resize;
+      }
+
+      &.bottom-left {
+        left: -8px;
+        bottom: -8px;
+        width: 8px;
+        height: 8px;
+        cursor: nesw-resize;
+      }
+
+      &.left {
+        top: 8px;
+        bottom: 8px;
+        left: -8px;
+        width: 8px;
+        cursor: ew-resize;
+      }
+    }
+  }
 }
 </style>

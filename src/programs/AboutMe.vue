@@ -1,9 +1,9 @@
 <template>
   <div class="w-100 h-100 overflow-auto p-4" ref="content">
-    <div class="card flip shadow-lg" ref="card">
+    <div class="card flip back shadow-lg" ref="card">
       <div class="flip-card-front">
         <header class="text-light d-flex gap-4 justify-content-between align-items-center">
-          <img class="d-none d-md-block" src="@assets/icons/coding.png" title="Icono fullstack developer" draggable="false" alt="Icono fullstack developer" />
+          <img ref="iconFullStackDeveloper" src="@assets/icons/coding.png" title="Icono fullstack developer" draggable="false" alt="Icono fullstack developer" />
           <h4 class="fw-bold m-0">FULLSTACK DEVELOPER</h4>
           <button class="btn btn-transparent btn-flip text-light" type="button" title="Voltear la targeta" @click="flip">
             <i class="fa-solid fa-repeat fa-fw"></i>
@@ -34,7 +34,7 @@
                 adelante.
               </p>
               <h6 class="fw-bold">Idiomas</h6>
-              <p> Español (Nativo), Catalán (Nativo), Inglés (Intermedio), Chino (Intermedio). </p>
+              <p>Español (Nativo), Catalán (Nativo), Inglés (Intermedio), Chino (Intermedio). </p>
               <h6 class="fw-bold">Hobbies</h6>
               <p>Danza.</p>
             </div>
@@ -94,11 +94,13 @@ import { author } from '@root/package';
     },
     onResize() {
       if (this.$el.clientWidth < 800) {
+        this.$refs.iconFullStackDeveloper.classList.add('d-none');
         this.$refs.contentFront.classList.remove('gap-4');
         this.$refs.contentFront.classList.add('flex-column', 'gap-2');
       } else {
         this.$refs.contentFront.classList.add('gap-4');
         this.$refs.contentFront.classList.remove('flex-column', 'gap-2');
+        this.$refs.iconFullStackDeveloper.classList.remove('d-none');
       }
 
       if (this.$el.clientWidth < 800 && this.$el.clientWidth > 500) {
@@ -112,10 +114,10 @@ import { author } from '@root/package';
       }
     },
     flip() {
-      this.$refs.card.classList.toggle('flip');
+      this.$refs.card.classList.toggle('back');
 
       this.$nextTick(() => {
-        if (this.$refs.card.classList.contains('flip')) {
+        if (this.$refs.card.classList.contains('back')) {
           this.$refs.content.scrollTo({
             top: this.$refs.logo.offsetTop - this.$refs.content.clientHeight / 2 + 100
           });
@@ -155,135 +157,139 @@ export default class AboutMe extends Program {
 }
 </script>
 
-<style lang="css" scoped>
-.photo {
-  max-width: 280px;
-}
-
-.photo.photo-sm,
-.photo.photo-xs {
-  max-width: 100%;
-  height: 500px;
-}
-
-.photo > img {
-  object-fit: cover;
-  border-radius: 15px;
-  height: 100%;
-}
-
-.photo.photo-sm > img {
-  width: 100%;
-  object-fit: cover;
-  object-position: 0px -100px;
-}
-
-.photo.photo-xs > img {
-  width: 100%;
-  object-fit: cover;
-  object-position: 0px 0px;
-}
-
+<style lang="scss" scoped>
 .logo {
   width: 100%;
   max-width: 250px;
-}
 
-.logo > img {
-  object-fit: cover;
-}
-
-.presentation {
-  font-size: 0.9rem;
+  > img {
+    object-fit: cover;
+  }
 }
 
 .card {
+  position: relative;
   border-radius: 25px;
   max-width: 1200px;
-  margin: 30px auto auto auto;
+  margin: 30px auto;
   transition: transform 0.6s;
   transform-style: preserve-3d;
-}
 
-.card.flip {
-  transform: rotateY(180deg);
-}
+  &.flip {
+    &.back {
+      transform: rotateY(180deg);
+    }
 
-.card header {
-  background: rgb(var(--bs-primary-rgb));
-  width: 100%;
-  padding: 4rem 1.5rem 1.5rem 1.5rem;
-  border-radius: 25px 25px 0 0;
-  border-bottom: 2px solid rgba(var(--bs-primary-rgb), 0.5);
-  border-top: 1px solid rgba(var(--bs-primary-rgb), 0.8);
-  box-shadow:
-    inset 0 1px 0 0 rgb(var(--bs-primary-rgb) / 80%),
-    0 1px 2px rgb(0 0 0 / 40%);
-}
+    > .flip-card-front,
+    > .flip-card-back {
+      width: 100%;
+      height: 100%;
+      backface-visibility: hidden;
+      transform: rotateX(0deg);
 
-.flip-card-front,
-.flip-card-back {
-  width: 100%;
-  height: 100%;
-  backface-visibility: hidden;
-  transform: rotateX(0deg);
-}
+      > header {
+        background: rgb(var(--bs-primary-rgb));
+        width: 100%;
+        padding: 4rem 1.5rem 1.5rem;
+        border-radius: 25px 25px 0 0;
+        border-bottom: 2px solid rgba(var(--bs-primary-rgb), 0.5);
+        border-top: 1px solid rgba(var(--bs-primary-rgb), 0.8);
+        box-shadow:
+          inset 0 1px 0 0 rgb(var(--bs-primary-rgb) / 80%),
+          0 1px 2px rgb(0 0 0 / 40%);
 
-.flip-card-back {
-  position: absolute;
-  transform: rotateY(180deg);
-}
+        &:before {
+          position: absolute;
+          z-index: 1;
+          content: '';
+          left: 50%;
+          top: 20px;
+          margin: 0 0 0 -50px;
+          height: 15px;
+          width: 100px;
+          border-radius: 25px;
+          background-color: #333;
+          box-shadow:
+            inset 0 1px 0 0 rgb(var(--bs-primary-rgb) / 80%),
+            0 1px 2px rgb(0 0 0 / 40%);
+        }
 
-.card:before {
-  position: absolute;
-  z-index: 2;
-  content: '';
-  left: 50%;
-  top: -60px;
-  margin: 0 0 0 -40px;
-  height: 90px;
-  width: 80px;
-  background: rgba(255, 255, 255, 0.2);
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.4) 100%),
-    linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 40%), linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 40%);
-  border-radius: 5px;
-  box-shadow: 0 0 0 1px rgb(0 0 0 / 80%);
-  opacity: 0.5;
-}
+        > .btn-flip {
+          animation: glowing 1300ms infinite;
+        }
+      }
 
-.card:after {
-  position: absolute;
-  content: '';
-  z-index: 2;
-  height: 20px;
-  width: 20px;
-  top: -35px;
-  left: 50%;
-  margin: 0 0 0 -10px;
-  border-radius: 50%;
-  box-shadow:
-    0 0 0 5px rgb(51 51 51 / 60%),
-    0 0 10px rgb(0 0 0 / 70%),
-    inset 2px 2px 2px rgb(0 0 0 / 50%);
-}
+      > .card-body {
+        font-size: 0.9rem;
 
-.card header:before {
-  position: absolute;
-  z-index: 1;
-  content: '';
-  left: 50%;
-  top: 20px;
-  margin: 0 0 0 -50px;
-  height: 15px;
-  width: 100px;
-  border-radius: 25px;
-  background-color: #333;
-  box-shadow:
-    inset 1px 1px 0 1px rgb(0 0 0 / 30%),
-    inset -1px -1px 0 0 rgb(255 255 255 / 50%);
-}
+        .photo {
+          max-width: 280px;
 
-.btn-flip {
-  animation: glowing 1300ms infinite;
+          &.photo-sm,
+          &.photo-xs {
+            max-width: 100%;
+            height: 500px;
+
+            > img {
+              width: 100%;
+              object-fit: cover;
+            }
+          }
+
+          > img {
+            object-fit: cover;
+            border-radius: 15px;
+            height: 100%;
+          }
+
+          &.photo-sm > img {
+            object-position: 0px -100px;
+          }
+
+          &.photo-xs > img {
+            object-position: 0px 0px;
+          }
+        }
+      }
+    }
+
+    > .flip-card-back {
+      position: absolute;
+      transform: rotateY(180deg);
+    }
+  }
+
+  &:before {
+    position: absolute;
+    z-index: 2;
+    content: '';
+    left: 50%;
+    top: -60px;
+    margin: 0 0 0 -40px;
+    height: 90px;
+    width: 80px;
+    background: rgba(255, 255, 255, 0.2);
+    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(255, 255, 255, 0.4) 100%),
+      linear-gradient(to top, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 40%), linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 40%);
+    border-radius: 5px;
+    box-shadow: 0 0 0 1px rgb(0 0 0 / 80%);
+    opacity: 0.5;
+  }
+
+  &:after {
+    position: absolute;
+    content: '';
+    z-index: 2;
+    height: 20px;
+    width: 20px;
+    top: -35px;
+    left: 50%;
+    margin: 0 0 0 -10px;
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 5px rgba(51, 51, 51, 0.6),
+      0 0 10px rgba(0, 0, 0, 0.7),
+      inset 2px 2px 2px rgba(0, 0, 0, 0.5);
+  }
 }
 </style>

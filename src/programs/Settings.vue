@@ -206,39 +206,41 @@ export default class Settings extends Program {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .theme-selector {
   width: 300px;
   height: 200px;
   margin: auto;
-}
 
-.theme-selector.theme-1 {
-  background-image: url('../assets/img/theme-1.png');
-  background-size: contain;
-  background-repeat: no-repeat;
-}
+  &.theme-1,
+  &.theme-2 {
+    background-size: contain;
+    background-repeat: no-repeat;
+  }
 
-.theme-selector.theme-2 {
-  background-image: url('../assets/img/theme-2.png');
-  background-size: contain;
-  background-repeat: no-repeat;
+  &.theme-1 {
+    background-image: url('../assets/img/theme-1.png');
+  }
+
+  &.theme-2 {
+    background-image: url('../assets/img/theme-2.png');
+  }
 }
 
 .table td {
   display: inline-block;
-}
 
-.table td.label {
-  width: 200px;
-}
-
-.tab-content.tab-content-small {
-  margin-left: 50px;
+  &.label {
+    width: 200px;
+  }
 }
 
 .tab-content {
   margin-left: 200px;
+
+  &.tab-content-small {
+    margin-left: 50px;
+  }
 }
 
 .nav {
@@ -249,36 +251,47 @@ export default class Settings extends Program {
   min-width: 170px;
   max-width: 200px;
   z-index: 2;
-}
 
-.nav-link {
-  min-height: 50px;
-  display: flex;
-  gap: 10px;
-  align-items: center;
-}
+  &-small {
+    min-width: 50px;
+    max-width: 50px;
 
-.nav > .nav-link .icon {
-  width: 40px;
-  height: 40px;
-}
+    > .nav-link {
+      padding: 0;
+      justify-content: center;
 
-.nav.nav-small {
-  min-width: 50px;
-  max-width: 50px;
-}
+      .icon {
+        width: 30px;
+        height: 30px;
+      }
 
-.nav.nav-small > .nav-link {
-  padding: 0;
-  justify-content: center;
-}
+      span {
+        display: none;
+      }
+    }
+  }
 
-.nav.nav-small > .nav-link .icon {
-  width: 30px;
-  height: 30px;
-}
+  .nav-link {
+    color: var(--bs-nav-link-primary-color) !important;
+    min-height: 50px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
 
-.nav.nav-small > .nav-link span {
-  display: none;
+    &.active {
+      background-color: rgb(var(--bs-primary-rgb)) !important;
+      color: var(--bs-nav-link-active-primary-color) !important;
+    }
+
+    &:not(.active):hover {
+      background-color: rgb(var(--bs-primary-light-rgb)) !important;
+      color: var(--bs-nav-link-active-primary-color) !important;
+    }
+
+    .icon {
+      width: 40px;
+      height: 40px;
+    }
+  }
 }
 </style>

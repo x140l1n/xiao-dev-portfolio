@@ -75,7 +75,6 @@ import IconEmail from '@assets/icons/email.png';
   },
   methods: {
     init() {},
-    onResize() {},
     onSubmit(evt) {
       const form = evt.target;
       const formData = new FormData(form);
@@ -118,8 +117,7 @@ import IconEmail from '@assets/icons/email.png';
           self.isSending = false;
         });
     }
-  },
-  computed: {}
+  }
 })
 export default class ContactMe extends Program {
   created() {
@@ -135,4 +133,4 @@ export default class ContactMe extends Program {
 }
 </script>
 
-<style></style>
+<style lang="scss" scoped></style>

@@ -52,7 +52,9 @@ Vue.directive('init-animation', {
     binding.value = observer;
   },
   unbind(el, binding) {
-    binding.value.disconnect();
+    if (binding.value.disconnect && typeof binding.value.disconnect === 'function') {
+      binding.value.disconnect();
+    }
   }
 });
 

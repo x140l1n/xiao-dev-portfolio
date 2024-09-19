@@ -3,7 +3,7 @@
     <div class="flex-grow-1">
       <div class="d-flex flex-column h-100">
         <div class="p-2">
-          <form class="d-flex gap-2" @submit.prevent="search" :ref="`form-${id}`" :target="`iframe-${id}`">
+          <form class="d-flex gap-2" @submit.prevent="onSearch" :ref="`form-${id}`" :target="`iframe-${id}`">
             <div class="flex-grow-1">
               <input class="form-control form-control-sm rounded-pill" type="text" name="input-search" placeholder="Escribe para buscar" />
             </div>
@@ -47,8 +47,7 @@ import IconBrowser from '@assets/icons/browser.png';
 
       setTimeout(() => this.$refs[`form-${this.id}`].elements['input-submit'].click(), 200);
     },
-    onResize() {},
-    search(evt) {
+    onSearch(evt) {
       const form = evt.target;
       const inputSearch = form.elements['input-search'];
       const targetIframe = form.target;
@@ -81,8 +80,7 @@ import IconBrowser from '@assets/icons/browser.png';
 
       return pattern.test(string);
     }
-  },
-  computed: {}
+  }
 })
 export default class Browser extends Program {
   created() {
@@ -98,45 +96,4 @@ export default class Browser extends Program {
 }
 </script>
 
-<style lang="css" scoped>
-.nav-link {
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  cursor: default;
-  max-width: 200px;
-  font-size: 0.8rem;
-}
-
-.add-tab {
-  border-radius: 50%;
-  text-decoration: none;
-  width: 30px;
-  height: 30px;
-  background-color: rgb(var(--bs-primary-rgb), 0.5);
-}
-
-.add-tab:hover {
-  background-color: rgb(var(--bs-primary-rgb), 0.2);
-}
-
-.nav-item {
-  cursor: default;
-}
-
-.btn-close-tab {
-  border-radius: 50%;
-  cursor: default;
-  width: 20px;
-  height: 20px;
-  margin: auto;
-  display: flex;
-}
-
-.btn-close-tab i {
-  margin: auto;
-}
-
-.btn-close-tab:hover {
-  background-color: #ffffff48;
-}
-</style>
+<style lang="scss" scoped></style>

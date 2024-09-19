@@ -88,10 +88,8 @@ import IconKnowledge from '@assets/icons/knowledge.png';
     return {};
   },
   methods: {
-    init() {},
-    onResize() {}
-  },
-  computed: {}
+    init() {}
+  }
 })
 export default class Knowledge extends Program {
   created() {
@@ -107,7 +105,7 @@ export default class Knowledge extends Program {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .card {
   max-width: 1200px;
 }

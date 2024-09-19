@@ -1,5 +1,5 @@
 <template>
-  <div class="row row-cols-1 overflow-x-hidden overflow-y-auto h-100 m-0 p-2" v-init-animation="{ threshold: 0.2 }" ref="content">
+  <div class="row row-cols-1 g-4 overflow-x-hidden overflow-y-auto h-100 m-0 p-2" v-init-animation="{ threshold: 0.2 }" ref="content">
     <div class="col" data-animation="slide-right">
       <div class="card mx-auto shadow">
         <div class="card-body d-flex">
@@ -8,18 +8,18 @@
           </div>
           <div class="flex-grow-1 description p-4">
             <h5 class="fw-bold">Arkanoid</h5>
-            <p> Juego arcade de plataforma para las puertas abiertas del Centre D'Estudis Politècnics. </p>
-            <div class="d-flex flex-wrap mt-4">
-              <a class="mx-2" role="button" @click="openBrowser('https://x140l1n.github.io/Arkanoid/')" alt="Jugar arkanoid" title="Jugar arkanoid">
-                <img class="me-2" src="@assets/icons/play.png" alt="Jugar arkanoid" title="Jugar arkanoid" draggable="false" />
-                Jugar
+            <p>Juego arcade de plataforma para las puertas abiertas del Centre D'Estudis Politècnics.</p>
+            <div class="d-flex flex-wrap my-4">
+              <a class="mx-2" role="button" @click="onOpenBrowser('https://x140l1n.github.io/Arkanoid/')" title="Live demo arkanoid">
+                <img class="me-2" src="@assets/icons/play.png" alt="Live demo arkanoid" title="Live demo arkanoid" draggable="false" />
+                Live demo
               </a>
-              <a class="mx-2" href="https://github.com/x140l1n/Arkanoid" target="_blank" alt="GitHub arkanoid" title="GitHub arkanoid">
+              <a class="mx-2" role="button" href="https://github.com/x140l1n/Arkanoid" title="GitHub arkanoid">
                 <img class="me-2" src="@assets/icons/github.png" alt="GitHub arkanoid" title="GitHub arkanoid" draggable="false" />
                 GitHub arkanoid
               </a>
             </div>
-            <div class="d-flex flex-wrap mt-4 float-end">
+            <div class="d-flex flex-wrap justify-content-end gap-2">
               <span class="badge badge-pill">HTML</span>
               <span class="badge badge-pill">CSS</span>
               <span class="badge badge-pill">JavaScript</span>
@@ -40,21 +40,21 @@
               El proyecto es para el cliente Institut Moisès Broggi. Consiste en un simulador de llamadas de emergencia para técnicos en proceso de formación del 112, sistema de emergencias de
               Cataluña.
             </p>
-            <div class="d-flex flex-wrap mt-4">
-              <a class="mx-2" href="https://youtu.be/kF6py0E8ma0" target="_blank" alt="Vídeo ibroggi 1" title="Vídeo ibroggi 1">
+            <div class="d-flex flex-wrap my-4">
+              <a class="mx-2" role="button" href="https://youtu.be/kF6py0E8ma0" alt="Vídeo ibroggi 1" title="Vídeo ibroggi 1">
                 <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo ibroggi 1" title="Vídeo ibroggi 1" draggable="false" />
                 Vídeo ibroggi 1
               </a>
-              <a class="mx-2" href="https://youtu.be/VhKQIjMSxzg" target="_blank" alt="Vídeo ibroggi 2" title="Vídeo ibroggi 2">
+              <a class="mx-2" role="button" href="https://youtu.be/VhKQIjMSxzg" alt="Vídeo ibroggi 2" title="Vídeo ibroggi 2">
                 <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo ibroggi 2" title="Vídeo ibroggi 2" draggable="false" />
                 Vídeo ibroggi 2
               </a>
-              <a class="mx-2" href="https://github.com/DevinSJ/project-broggi" target="_blank" alt="GitHub ibroggi" title="GitHub ibroggi">
+              <a class="mx-2" role="button" href="https://github.com/DevinSJ/project-broggi" alt="GitHub ibroggi" title="GitHub ibroggi">
                 <img class="me-2" src="@assets/icons/github.png" alt="GitHub ibroggi" title="GitHub ibroggi" draggable="false" />
                 GitHub ibroggi
               </a>
             </div>
-            <div class="d-flex flex-wrap mt-4 float-end">
+            <div class="d-flex flex-wrap justify-content-end gap-2">
               <span class="badge badge-pill">HTML</span>
               <span class="badge badge-pill">CSS</span>
               <span class="badge badge-pill">JavaScript</span>
@@ -87,26 +87,26 @@
             <br />
             <p>El proyecto consta de 2 partes: escritorio y android.</p>
             <br />
-            <p> La parte de escritorio es donde gestionaremos las preguntas y los personajes del juego. La parte de android es el juego en sí. </p>
-            <div class="d-flex flex-wrap mt-4">
-              <a class="mx-2" href="https://www.youtube.com/watch?v=wfosd7CLt9s&ab_channel=DevinSchlippe" target="_blank" alt="Vídeo ecoarts android" title="Vídeo ecoarts android">
+            <p>La parte de escritorio es donde gestionaremos las preguntas y los personajes del juego. La parte de android es el juego en sí.</p>
+            <div class="d-flex flex-wrap my-4">
+              <a class="mx-2" role="button" href="https://www.youtube.com/watch?v=wfosd7CLt9s&ab_channel=DevinSchlippe" alt="Vídeo ecoarts android" title="Vídeo ecoarts android">
                 <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo ecoarts android" title="Vídeo ecoarts android" draggable="false" />
                 Vídeo ecoarts android
               </a>
-              <a class="mx-2" href="https://www.youtube.com/watch?v=b-FnBSv8TRY&ab_channel=DevinSchlippe" target="_blank" alt="Vídeo ecoarts android" title="Vídeo ecoarts android">
+              <a class="mx-2" role="button" href="https://www.youtube.com/watch?v=b-FnBSv8TRY&ab_channel=DevinSchlippe" alt="Vídeo ecoarts android" title="Vídeo ecoarts android">
                 <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo ecoarts escritorio" title="Vídeo ecoarts escritorio" draggable="false" />
                 Vídeo ecoarts escritorio
               </a>
-              <a class="mx-2" href="https://github.com/x140l1n/ECOARTS-ANDROID" alt="GitHub ecoarts android" target="_blank" title="GitHub ecoarts android">
+              <a class="mx-2" role="button" href="https://github.com/x140l1n/ECOARTS-ANDROID" alt="GitHub ecoarts android" title="GitHub ecoarts android">
                 <img class="me-2" src="@assets/icons/github.png" alt="GitHub ecoarts android" title="GitHub ecoarts android" draggable="false" />
                 GitHub ecoarts android
               </a>
-              <a class="mx-2" href="https://github.com/x140l1n/ECOARTS-DESKTOP" alt="GitHub ecoarts android" target="_blank" title="GitHub ecoarts android">
+              <a class="mx-2" role="button" href="https://github.com/x140l1n/ECOARTS-DESKTOP" alt="GitHub ecoarts android" title="GitHub ecoarts android">
                 <img class="me-2" src="@assets/icons/github.png" alt="GitHub ecoarts escritorio" title="GitHub ecoarts escritorio" draggable="false" />
                 GitHub ecoarts escritorio
               </a>
             </div>
-            <div class="d-flex flex-wrap mt-4 float-end">
+            <div class="d-flex flex-wrap justify-content-end gap-2">
               <span class="badge badge-pill">JAVA</span>
               <span class="badge badge-pill">.NET</span>
               <span class="badge badge-pill">JSON</span>
@@ -125,21 +125,21 @@
           </div>
           <div class="flex-grow-1 description p-4">
             <h5 class="fw-bold">Chrysallis</h5>
-            <p> Chrysallis es una ONG que ayuda a familias de niños y adolescentes transexuales. Este proyecto se ha creado para ayudarles a gestionar eventos sociales de la asociación. </p>
+            <p>Chrysallis es una ONG que ayuda a familias de niños y adolescentes transexuales. Este proyecto se ha creado para ayudarles a gestionar eventos sociales de la asociación.</p>
             <br />
             <p>El proyecto consta de 2 partes: escritorio y android.</p>
-            <p> La parte de escritorio es donde van a gestionar los socios y los eventos de la asociación. La parte de android lo usarán los socios donde podrán consultar y apuntarse a eventos. </p>
-            <div class="d-flex flex-wrap mt-4">
-              <a class="mx-2" href="https://www.youtube.com/watch?v=O_hz8wCR060&ab_channel=DanielSorianoBarber%C3%A1n" target="_blank" alt="Vídeo chrysallis android" title="Vídeo chrysallis android">
+            <p>La parte de escritorio es donde van a gestionar los socios y los eventos de la asociación. La parte de android lo usarán los socios donde podrán consultar y apuntarse a eventos.</p>
+            <div class="d-flex flex-wrap my-4">
+              <a class="mx-2" role="button" href="https://www.youtube.com/watch?v=O_hz8wCR060&ab_channel=DanielSorianoBarber%C3%A1n" alt="Vídeo chrysallis android" title="Vídeo chrysallis android">
                 <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo chrysallis android" title="Vídeo chrysallis android" draggable="false" />
                 Vídeo chrysallis android
               </a>
-              <a class="mx-2" href="https://www.youtube.com/watch?v=l6Po2-P1JEg&ab_channel=DanielSorianoBarber%C3%A1n" target="_blank" alt="Vídeo chrysallis android" title="Vídeo chrysallis android">
+              <a class="mx-2" role="button" href="https://www.youtube.com/watch?v=l6Po2-P1JEg&ab_channel=DanielSorianoBarber%C3%A1n" alt="Vídeo chrysallis android" title="Vídeo chrysallis android">
                 <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo chrysallis escritorio" title="Vídeo chrysallis escritorio" draggable="false" />
                 Vídeo chrysallis escritorio
               </a>
             </div>
-            <div class="d-flex flex-wrap mt-4 float-end">
+            <div class="d-flex flex-wrap justify-content-end gap-2">
               <span class="badge badge-pill">JAVA</span>
               <span class="badge badge-pill">.NET</span>
               <span class="badge badge-pill">ADO.NET</span>
@@ -159,19 +159,19 @@
           </div>
           <div class="flex-grow-1 description p-4">
             <h5 class="fw-bold">Space Invaders</h5>
-            <p> Juego de batallas de naves creado por mí usando la librería libGDX. </p>
+            <p>Juego de batallas de naves creado por mí usando la librería libGDX.</p>
             <p>El juego es compatible con Android y Windows.</p>
-            <div class="d-flex flex-wrap mt-4">
-              <a class="mx-2" href="https://www.youtube.com/watch?v=LxX2LFaD8xw&ab_channel=XiaolinJinLin" target="_blank" alt="Vídeo space invaders" title="Vídeo space invaders">
+            <div class="d-flex flex-wrap my-4">
+              <a class="mx-2" role="button" href="https://www.youtube.com/watch?v=LxX2LFaD8xw&ab_channel=XiaolinJinLin" alt="Vídeo space invaders" title="Vídeo space invaders">
                 <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo space invaders" title="Vídeo space invaders" draggable="false" />
                 Vídeo space invaders
               </a>
-              <a class="mx-2" href="https://github.com/x140l1n/SPACE-INVADERS-GDX" target="_blank" alt="GitHub space invaders" title="GitHub space invaders">
+              <a class="mx-2" role="button" href="https://github.com/x140l1n/SPACE-INVADERS-GDX" alt="GitHub space invaders" title="GitHub space invaders">
                 <img class="me-2" src="@assets/icons/github.png" alt="GitHub space invaders" title="GitHub space invaders" draggable="false" />
                 GitHub space invaders
               </a>
             </div>
-            <div class="d-flex flex-wrap mt-4 float-end">
+            <div class="d-flex flex-wrap justify-content-end gap-2">
               <span class="badge badge-pill">JAVA</span>
               <span class="badge badge-pill">LIBGDX</span>
             </div>
@@ -181,9 +181,9 @@
     </div>
     <div class="col" data-animation="zoom-out">
       <div class="card more mx-auto border-0 bg-transparent">
-        <div class="card-body d-flex flex-column justify-content-center align-items-center h-100">
-          <p class="fs-4 text-center"> Para ver más proyectos, visita mi perfil de GitHub 😎 </p>
-          <a class="p-0" href="https://github.com/x140l1n/" target="_blank">
+        <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
+          <p class="fs-4">Para ver más proyectos, visita mi perfil de GitHub 😎</p>
+          <a href="https://github.com/x140l1n/" target="_blank" title="GitHub" draggable="false">
             <img src="@assets/icons/github_96px.png" alt="GitHub" draggable="false" />
           </a>
         </div>
@@ -214,16 +214,15 @@ import IconProjects from '@assets/icons/projects.png';
     init() {},
     onResize() {
       if (this.$el.clientWidth < 576) {
-        this.$refs.content.querySelectorAll('.card > .card-body').forEach((element) => element.classList.add('flex-column'));
+        this.$refs.content.querySelectorAll('.card:not(.more) > .card-body').forEach((element) => element.classList.add('flex-column'));
       } else {
-        this.$refs.content.querySelectorAll('.card > .card-body').forEach((element) => element.classList.remove('flex-column'));
+        this.$refs.content.querySelectorAll('.card:not(.more) > .card-body').forEach((element) => element.classList.remove('flex-column'));
       }
     },
-    openBrowser(url) {
+    onOpenBrowser(url) {
       this.$urlToOpen = url;
     }
-  },
-  computed: {}
+  }
 })
 export default class Projects extends Program {
   created() {
@@ -239,37 +238,37 @@ export default class Projects extends Program {
 }
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .card {
   max-width: 800px;
   width: 100%;
   height: 100%;
-}
 
-.row > .col {
-  padding: 10px;
-}
+  > .card-body {
+    width: 100%;
+    height: 100%;
 
-a {
-  color: #1a233a;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
+    > .logo {
+      width: 100%;
+      min-width: 150px;
+      max-width: 200px;
+    }
 
-.badge {
-  margin: 2px;
-  color: #ffffff;
-  background: linear-gradient(120deg, #00b5fd 0%, #0047b1 100%);
-}
+    > .description p {
+      margin: 0;
+      font-size: 0.8rem;
+    }
 
-.logo {
-  width: 100%;
-  min-width: 150px;
-  max-width: 200px;
-}
+    > .description a {
+      color: #1a233a;
+      font-size: 0.9rem;
+      text-decoration: none;
+    }
 
-.description p {
-  margin: 0;
-  font-size: 0.8rem;
+    > .description .badge {
+      color: #fff;
+      background: linear-gradient(120deg, #00b5fd 0%, #0047b1 100%);
+    }
+  }
 }
 </style>

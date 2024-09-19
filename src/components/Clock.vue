@@ -1,12 +1,12 @@
 <template>
-  <div class="clock text-light px-2" :title="getFullDate">
+  <small class="text-light px-2 d-flex flex-column justify-content-center align-items-end">
     <span>
       {{ datetime.time }}
     </span>
     <span>
       {{ datetime.date }}
     </span>
-  </div>
+  </small>
 </template>
 
 <script>
@@ -46,13 +46,4 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
-.clock {
-  min-width: 7em;
-  font-size: 0.8rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-end;
-}
-</style>
+<style lang="scss" scoped></style>

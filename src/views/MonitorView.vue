@@ -143,117 +143,117 @@ export default {
 .monitor {
   width: 100dvw;
   height: 100dvh;
-}
 
-.monitor > .monitor-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  padding: 0;
-  display: flex;
-}
+  & > .monitor-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
 
-.monitor > .monitor-inner > .image-greet {
-  position: fixed;
-  top: 25%;
-  bottom: auto;
-  right: 0;
-  width: 100%;
-  max-width: 150px;
-  z-index: 5;
-  animation: slide-left 1s ease;
-}
+    & > .image-greet {
+      position: fixed;
+      top: 25%;
+      bottom: auto;
+      right: 0;
+      width: 100%;
+      max-width: 150px;
+      z-index: 5;
+      animation: slide-left 1s ease;
+    }
 
-.monitor > .monitor-inner > .layer-on-off {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100dvh;
-  width: 100dvw;
-  background-color: rgb(0, 0, 0);
-  z-index: 4;
-}
+    & > .layer-on-off {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100dvh;
+      width: 100dvw;
+      background-color: rgb(0, 0, 0);
+      z-index: 4;
 
-.monitor > .monitor-inner > .layer-on-off.layer-on {
-  animation: monitor-on 0.2s forwards ease-in;
-}
+      &.layer-on {
+        animation: monitor-on 0.2s forwards ease-in;
+      }
+    }
 
-.monitor > .monitor-inner > .presentation {
-  width: 100%;
-  height: 100%;
-  padding: 3rem;
-  font-size: 1.2rem;
-  z-index: 5;
-}
+    & > .presentation {
+      width: 100%;
+      height: 100%;
+      padding: 3rem;
+      font-size: 1.2rem;
+      z-index: 5;
 
-.monitor > .monitor-inner > .presentation > .typewriter * {
-  display: inline;
-  overflow: hidden;
-}
+      & > .typewriter {
+        * {
+          display: inline;
+          overflow: hidden;
+        }
 
-.monitor > .monitor-inner > .presentation > .typewriter .typewriter-start {
-  border-right: 0.15em solid #fff;
-  animation: blink-caret 0.75s steps(40) infinite;
-}
+        .typewriter-start {
+          border-right: 0.15em solid #fff;
+          animation: blink-caret 0.75s steps(40) infinite;
+        }
 
-.monitor > .monitor-inner > .presentation > .typewriter .typewriter-finished {
-  border-right: none;
-  animation: none;
-}
+        .typewriter-finished {
+          border-right: none;
+          animation: none;
+        }
 
-.monitor > .monitor-inner > .presentation > .typewriter .pointer {
-  float: right;
-}
+        .pointer {
+          float: right;
 
-.monitor > .monitor-inner > .presentation > .typewriter .pointer::before {
-  content: '👉';
-}
+          &::before {
+            content: '👉';
+          }
 
-.monitor > .monitor-inner > .presentation > .typewriter .pointer.animated {
-  animation-name: point-right;
-  animation-duration: 1s;
-  animation-iteration-count: infinite;
-  animation-direction: alternate;
-}
+          &.animated {
+            animation-name: point-right;
+            animation-duration: 1s;
+            animation-iteration-count: infinite;
+            animation-direction: alternate;
+          }
+        }
+      }
 
-.monitor > .monitor-inner > .presentation > .btn-on {
-  min-width: 100px;
-  min-height: 100px;
-  font-size: 3rem;
-  border: 0;
-  box-shadow: 0 0 30px rgb(210, 23, 23);
-  color: rgb(210, 23, 23);
-}
+      & > .btn-on {
+        min-width: 100px;
+        min-height: 100px;
+        font-size: 3rem;
+        border: 0;
+        box-shadow: 0 0 30px rgb(210, 23, 23);
+        color: rgb(210, 23, 23);
 
-.monitor > .monitor-inner > .presentation > .btn-on.btn-on.animated {
-  animation: zoom-out-bounce 2s forwards;
-}
+        &.animated {
+          animation: zoom-out-bounce 2s forwards;
+        }
 
-.monitor > .monitor-inner > .presentation > .btn-on.btn-on:active {
-  box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.75) !important;
-  outline: none;
+        &:active {
+          box-shadow: inset 0px 0px 20px 1px rgba(0, 0, 0, 0.75) !important;
+          outline: none;
+        }
+      }
+    }
+  }
 }
 
 @media (max-width: map-get($grid-breakpoints, 'xxl')) {
   .monitor > .monitor-inner > .presentation > .typewriter .pointer {
     float: none;
     display: block;
+
+    &::before {
+      content: '👇';
+    }
+
+    &.animated {
+      animation-name: point-down;
+      animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-direction: alternate;
+    }
   }
 
-  .monitor > .monitor-inner > .presentation > .typewriter .pointer::before {
-    content: '👇';
-  }
-
-  .monitor > .monitor-inner > .presentation > .typewriter .pointer.animated {
-    animation-name: point-down;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-  }
-}
-
-@media (max-width: map-get($grid-breakpoints, 'xxl')) {
   .monitor > .monitor-inner > .image-greet {
     top: auto !important;
     bottom: 10%;
