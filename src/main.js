@@ -3,17 +3,18 @@ import App from '@src/App.vue';
 import moment from 'moment';
 import VueMoment from 'vue-moment';
 import resize from 'vue-resize-directive';
+import VueGtag from 'vue-gtag';
 import 'bootstrap/dist/js/bootstrap';
 import '@src/assets/scss/styles.scss';
 import 'moment/locale/es';
-import VueGtag from 'vue-gtag';
 
 if (process.env.NODE_ENV === 'production') {
   Vue.use(VueGtag, {
     config: {
       id: process.env.VUE_APP_GA_ID,
       params: {
-        'send_page_view': false
+        // eslint-disable-next-line
+        send_page_view: false
       }
     }
   });

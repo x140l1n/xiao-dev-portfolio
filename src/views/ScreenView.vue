@@ -122,7 +122,8 @@ export default {
         this.addWindow(programObject);
       });
 
-      this.$gtag?.event('open_program', { 'event_category': 'program', 'event_label': programName });
+      // eslint-disable-next-line
+      this.$gtag?.event('open_program', { event_category: 'program', event_label: programName });
     },
     async addWindow(programObject) {
       const width = programObject.widthDefault == 0 ? this.$widthScreenContent : programObject.widthDefault;
