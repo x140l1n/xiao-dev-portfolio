@@ -6,12 +6,24 @@ import resize from 'vue-resize-directive';
 import 'bootstrap/dist/js/bootstrap';
 import '@src/assets/scss/styles.scss';
 import 'moment/locale/es';
+import VueGtag from 'vue-gtag';
 
-Vue.config.productionTip = true;
+if (process.env.NODE_ENV === 'production') {
+  Vue.use(VueGtag, {
+    config: {
+      id: process.env.VUE_APP_GA_ID,
+      params: {
+        send_page_view: false
+      }
+    }
+  });
+}
+
+Vue.config.productionTip = process.env.NODE_ENV === 'production';
 
 Vue.prototype.$env = {
-  API_ENDPOINT: process.env.VUE_APP_API_ENDPOINT,
-  URL_CV: process.env.VUE_APP_CV_URL
+  API_ENDPOINT_URL: process.env.VUE_APP_API_ENDPOINT_URL,
+  CV_URL: process.env.VUE_APP_CV_URL
 };
 
 Vue.use(VueMoment, { moment });
