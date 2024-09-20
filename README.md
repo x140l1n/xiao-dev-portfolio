@@ -76,10 +76,10 @@ VUE_APP_API_ENDPOINT=http://localhost:8000/api/ # the URL of api endpoint
 VUE_APP_CV_URL= # the URL of CV
 ```
 
-`NODE_ENV`: Set to `development` for local development and `production` for production environments.
-`VUE_APP_PORT`: Set the port of dev server.
-`VUE_APP_API_ENDPOINT`: The API endpoint for making requests (default: `http://localhost:8000/api/`).
-`VUE_APP_CV_URL`: The URL link to CV.
+- `NODE_ENV`: Set to `development` for local development and `production` for production environments.
+- `VUE_APP_PORT`: Set the port of dev server.
+- `VUE_APP_API_ENDPOINT`: The API endpoint for making requests (default: `http://localhost:8000/api/`).
+- `VUE_APP_CV_URL`: The URL link to CV.
 
 ## 🔌 Running the PHP Server
 
