@@ -35,7 +35,8 @@
       <div class="mb-3 mx-2">
         <p v-if="resultMessage" :class="`${statusMessage == 1 ? 'text-success' : 'text-danger'}`">
           <i class="fa-solid fa-circle-check" v-if="statusMessage == 1"></i>
-          <i class="fa-solid fa-circle-exclamation" v-else></i>
+          <i class="fa-solid fa-circle-exclamation" v-else-if="statusMessage == -1"></i>
+          <i class="fa-solid fa-circle-xmark" v-else></i>
           {{ resultMessage }}
         </p>
       </div>
@@ -72,6 +73,7 @@ import IconEmail from '@assets/icons/email.png';
   },
   data() {
     return {
+      // 0: Error, 1: Success, -1: Warning
       statusMessage: 0,
       resultMessage: null,
       isSending: false,
@@ -113,7 +115,7 @@ import IconEmail from '@assets/icons/email.png';
         })
         .catch(() => {
           self.showSuccess = false;
-          self.statusMessage = -1;
+          self.statusMessage = 0;
           self.resultMessage = 'Error al enviar el formulario.';
         })
         .finally(() => {
