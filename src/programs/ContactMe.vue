@@ -88,7 +88,7 @@ import IconEmail from '@assets/icons/email.png';
 
       this.isSending = true;
 
-      fetch(`${this.$env.API_ENDPOINT}email.php`, {
+      fetch(`${this.$env.API_ENDPOINT_URL}email.php`, {
         method: 'POST',
         body: formData
       })
