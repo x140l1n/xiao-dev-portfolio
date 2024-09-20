@@ -47,7 +47,7 @@
         </button>
       </div>
     </form>
-    <div class="d-flex flex-column overflow-auto h-100 p-4" v-else>
+    <div class="d-flex flex-column text-center h-100 p-4 overflow-auto" v-else>
       <img class="img-fluid mt-auto mx-auto" src="@assets/img/contactme.png" title="Contáctame" alt="Contáctame" draggable="false" />
       <h3 class="mx-auto fw-bold my-4"> ¡Muchas gracias por contactar conmigo! </h3>
       <button class="btn-go-back mb-auto" type="button" @click="showSuccess = false" title="Volver al formulario de contacto" aria-label="Volver al formulario de contacto">
