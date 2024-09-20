@@ -12,7 +12,7 @@
             </button>
           </form>
         </div>
-        <iframe class="flex-grow-1" :ref="`iframe-${id}`" frameborder="0" scrolling="auto"> </iframe>
+        <iframe class="flex-grow-1" ref="iframe" frameborder="0" scrolling="auto"> </iframe>
       </div>
     </div>
   </div>
@@ -32,7 +32,7 @@ import IconBrowser from '@assets/icons/browser.png';
     urlDefault: {
       type: String,
       required: false,
-      default: ''
+      default: null
     }
   },
   mounted() {
@@ -45,19 +45,18 @@ import IconBrowser from '@assets/icons/browser.png';
     init() {
       if (this.urlDefault) {
         this.$refs.inputSearch.value = this.urlDefault;
-
-        setTimeout(() => this.$refs.btnSubmit.click(), 200);
       }
+
+      setTimeout(() => this.$refs.btnSubmit.click(), 200);
     },
     onSearch() {
-      const inputSearch = this.$refs.inputSearch.value;
-      let search = inputSearch.value;
+      let search = this.$refs.inputSearch.value;
 
-      if (!this.isValidHttpUrl(inputSearch.value)) {
-        search = `https://www.google.com/search?igu=1&ei=&q=${encodeURI(inputSearch.value)}`;
+      if (!this.isValidHttpUrl(search)) {
+        search = `https://www.google.com/search?igu=1&ei=&q=${encodeURI(search)}`;
       } else {
-        if (!inputSearch.value.startsWith('https://') && !inputSearch.value.startsWith('http://')) {
-          search = `https://${inputSearch.value}`;
+        if (!search.startsWith('https://') && !search.startsWith('http://')) {
+          search = `https://${search}`;
         }
       }
 

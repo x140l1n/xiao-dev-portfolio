@@ -230,7 +230,7 @@ import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
 })
 export default class StudiesExperiences extends Program {
   created() {
-    this.title = 'Estudios y experiencias';
+    this.title = 'Estudios y Experiencias';
     this.widthDefault = 550;
     this.heightDefault = 400;
     this.maximizedDefault = true;
