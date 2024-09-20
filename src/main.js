@@ -8,7 +8,7 @@ import 'bootstrap/dist/js/bootstrap';
 import '@src/assets/scss/styles.scss';
 import 'moment/locale/es';
 
-if (process.env.NODE_ENV === 'production') {
+if (process.env.NODE_ENV === 'production' && process.env.VUE_APP_GA_ID) {
   Vue.use(VueGtag, {
     config: {
       id: process.env.VUE_APP_GA_ID,
