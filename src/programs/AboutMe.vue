@@ -4,7 +4,7 @@
       <div class="flip-card-front">
         <header class="text-light d-flex gap-4 justify-content-between align-items-center">
           <img ref="iconFullStackDeveloper" src="@assets/icons/coding.png" title="Icono fullstack developer" draggable="false" alt="Icono fullstack developer" />
-          <h4 class="fw-bold m-0 text-truncate">FULLSTACK DEVELOPER</h4>
+          <h4 class="m-0">FULLSTACK DEVELOPER</h4>
           <button class="btn btn-transparent btn-flip text-light" type="button" title="Voltear la targeta" @click="flip">
             <i class="fa-solid fa-repeat fa-fw"></i>
           </button>
