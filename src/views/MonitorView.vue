@@ -4,14 +4,21 @@
       <div :class="`layer-on-off ${!isFirstTime && isMonitorOn ? 'layer-on' : ''}`"></div>
       <div class="presentation d-flex flex-column flex-xxl-row justify-content-center align-items-center gap-5 text-center text-xxl-start text-light overflow-auto" v-if="!isMonitorOn">
         <div class="typewriter">
-          <h1 class="title fw-bold lh-lg" ref="title" tabindex="1"> ¡Bienvenido a mi portfolio! 🖥️ </h1>
+          <h1 class="title fw-bold lh-lg" ref="title" tabindex="1">¡Bienvenido a mi portfolio! 🖥️</h1>
           <br />
           <div class="fs-3">
-            <span class="description" ref="description" tabindex="2">Para comenzar a explorar solo tienes que hacer clic en el siguiente botón </span>
+            <span class="description" ref="description" tabindex="2">Para comenzar a explorar solo tienes que hacer clic en el siguiente botón</span>
             <span :class="`pointer ${isFinishedTyping ? 'visible animated' : 'invisible'}`"></span>
           </div>
         </div>
-        <button type="button" tabindex="3" :class="`btn-on rounded-circle mt-xxl-5 mt-0 ${isFinishedTyping ? 'visible animated' : 'invisible'}`" title="Encender monitor" @click="isMonitorOn = true">
+        <button
+          type="button"
+          tabindex="3"
+          :class="`btn-on rounded-circle mt-xxl-5 mt-0 ${isFinishedTyping ? 'visible animated' : 'invisible'}`"
+          title="Encender monitor"
+          @click="isMonitorOn = true"
+          aria-label="Encender monitor"
+        >
           <i class="fa-solid fa-power-off"></i>
         </button>
       </div>

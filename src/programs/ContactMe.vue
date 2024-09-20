@@ -35,7 +35,7 @@
         </label>
       </div>
       <div class="mb-3 mx-2">
-        <button class="btn bg-primary text-light w-100" type="submit">
+        <button class="btn bg-primary text-light w-100" type="submit" title="Enviar" aria-label="Enviar">
           <i class="fas fa-spinner fa-pulse fa-fw me-2" v-if="isSending"></i>
           <i class="fa-solid fa-paper-plane fa-fw me-2" v-else></i>
           Enviar

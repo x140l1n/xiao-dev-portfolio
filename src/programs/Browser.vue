@@ -3,11 +3,11 @@
     <div class="flex-grow-1">
       <div class="d-flex flex-column h-100">
         <div class="p-2">
-          <form class="d-flex gap-2" @submit.prevent="onSearch" :ref="`form-${id}`" :target="`iframe-${id}`">
+          <form class="d-flex gap-2" @submit.prevent="onSearch" ref="form" target="iframe">
             <div class="flex-grow-1">
-              <input class="form-control form-control-sm rounded-pill" type="text" name="input-search" placeholder="Escribe para buscar" />
+              <input class="form-control form-control-sm rounded-pill" ref="inputSearch" type="text" name="input-search" placeholder="Escribe para buscar" />
             </div>
-            <button class="btn bg-primary text-light btn-sm rounded-circle border border-1" type="submit" title="Buscar" name="input-submit">
+            <button class="btn bg-primary text-light btn-sm rounded-circle border border-1" ref="btnSubmit" type="submit" title="Buscar" aria-label="Buscar">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </form>
@@ -43,14 +43,14 @@ import IconBrowser from '@assets/icons/browser.png';
   },
   methods: {
     init() {
-      this.$refs[`form-${this.id}`].elements['input-search'].value = this.urlDefault;
+      if (this.urlDefault) {
+        this.$refs.inputSearch.value = this.urlDefault;
 
-      setTimeout(() => this.$refs[`form-${this.id}`].elements['input-submit'].click(), 200);
+        setTimeout(() => this.$refs.btnSubmit.click(), 200);
+      }
     },
-    onSearch(evt) {
-      const form = evt.target;
-      const inputSearch = form.elements['input-search'];
-      const targetIframe = form.target;
+    onSearch() {
+      const inputSearch = this.$refs.inputSearch.value;
       let search = inputSearch.value;
 
       if (!this.isValidHttpUrl(inputSearch.value)) {
@@ -61,11 +61,7 @@ import IconBrowser from '@assets/icons/browser.png';
         }
       }
 
-      this.$refs[targetIframe].src = search;
-
-      this.$refs[targetIframe].onload = (evt) => {
-        this.$refs[`title-${targetIframe}`].innerText = (evt.currentTarget.contentDocument || evt.currentTarget.contentWindow.document).title;
-      };
+      this.$refs.iframe.src = search;
     },
     isValidHttpUrl(string) {
       var pattern = new RegExp(

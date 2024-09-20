@@ -9,7 +9,7 @@
         aria-orientation="vertical"
       >
         <button
-          class="nav-link active rounded-0 general"
+          class="nav-link active rounded-0"
           :id="`v-pills-general-tab-${id}`"
           type="button"
           title="General"
@@ -23,7 +23,7 @@
           <span>General</span>
         </button>
         <button
-          class="nav-link rounded-0 theme"
+          class="nav-link rounded-0"
           :id="`v-pills-personalization-tab-${id}`"
           type="button"
           title="Temas"
@@ -37,7 +37,7 @@
           <span>Temas</span>
         </button>
         <button
-          class="nav-link rounded-0 about"
+          class="nav-link rounded-0"
           :id="`v-pills-about-tab-${id}`"
           type="button"
           title="Acerca de"
@@ -65,7 +65,17 @@
                   </small>
                 </div>
                 <div class="form-check form-switch">
-                  <input class="form-check-input" v-model="$isFullscreen" :id="`switch-fullscreen-${id}`" type="checkbox" :true-value="true" :false-value="false" draggable="false" />
+                  <input
+                    class="form-check-input"
+                    v-model="$isFullscreen"
+                    :id="`switch-fullscreen-${id}`"
+                    type="checkbox"
+                    :true-value="true"
+                    :false-value="false"
+                    draggable="false"
+                    :title="`${!$isFullscreen ? 'Modo pantalla completa' : 'Modo pantalla normal'}`"
+                    :aria-label="`switch-fullscreen-${id}`"
+                  />
                 </div>
               </div>
             </div>
@@ -79,13 +89,31 @@
               <div class="d-flex flex-wrap mt-5">
                 <div class="theme-selector theme-1 p-3 my-2">
                   <div class="form-check fw-bold text-light">
-                    <input class="form-check-input" v-model="$themeSelected" :id="`rdb-theme-2-${id}`" type="radio" :name="`selector-theme-${id}`" value="theme-2" draggable="false" />
+                    <input
+                      class="form-check-input"
+                      v-model="$themeSelected"
+                      :id="`rdb-theme-2-${id}`"
+                      type="radio"
+                      :name="`selector-theme-${id}`"
+                      value="theme-2"
+                      draggable="false"
+                      aria-label="Tema azul oscuro"
+                    />
                     <label class="form-check-label" :for="`rdb-theme-2-${id}`">Tema azul oscuro</label>
                   </div>
                 </div>
                 <div class="theme-selector theme-2 p-3 my-2">
                   <div class="form-check fw-bold text-dark">
-                    <input class="form-check-input" v-model="$themeSelected" :id="`rdb-theme-1-${id}`" type="radio" :name="`selector-theme-${id}`" value="theme-1" draggable="false" />
+                    <input
+                      class="form-check-input"
+                      v-model="$themeSelected"
+                      :id="`rdb-theme-1-${id}`"
+                      type="radio"
+                      :name="`selector-theme-${id}`"
+                      value="theme-1"
+                      draggable="false"
+                      aria-label="Tema morado claro"
+                    />
                     <label class="form-check-label" :for="`rdb-theme-1-${id}`">Tema morado claro</label>
                   </div>
                 </div>

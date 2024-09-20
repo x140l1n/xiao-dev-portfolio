@@ -93,7 +93,7 @@ import IconKnowledge from '@assets/icons/knowledge.png';
 })
 export default class Knowledge extends Program {
   created() {
-    this.title = 'Mis conocimientos';
+    this.title = 'Conocimientos';
     this.widthDefault = 550;
     this.heightDefault = 400;
     this.maximizedDefault = true;

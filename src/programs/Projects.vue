@@ -10,13 +10,13 @@
             <h5 class="fw-bold">Arkanoid</h5>
             <p>Juego arcade de plataforma para las puertas abiertas del Centre D'Estudis Politècnics.</p>
             <div class="d-flex flex-wrap my-4">
-              <a class="mx-2" role="button" @click="onOpenBrowser('https://x140l1n.github.io/Arkanoid/')" title="Live demo arkanoid">
-                <img class="me-2" src="@assets/icons/play.png" alt="Live demo arkanoid" title="Live demo arkanoid" draggable="false" />
+              <a class="mx-2" role="button" @click="onOpenBrowser('https://x140l1n.github.io/Arkanoid/')" title="Live demo Arkanoid" aria-label="Live demo Arkanoid">
+                <img class="me-2" src="@assets/icons/play.png" alt="Live demo Arkanoid" title="Live demo Arkanoid" draggable="false" />
                 Live demo
               </a>
-              <a class="mx-2" role="button" href="https://github.com/x140l1n/Arkanoid" title="GitHub arkanoid">
-                <img class="me-2" src="@assets/icons/github.png" alt="GitHub arkanoid" title="GitHub arkanoid" draggable="false" />
-                GitHub arkanoid
+              <a class="mx-2" role="button" href="https://github.com/x140l1n/Arkanoid" title="GitHub Arkanoid" aria-label="GitHub Arkanoid">
+                <img class="me-2" src="@assets/icons/github.png" alt="GitHub Arkanoid" title="GitHub Arkanoid" draggable="false" />
+                GitHub Arkanoid
               </a>
             </div>
             <div class="d-flex flex-wrap justify-content-end gap-2">
@@ -41,17 +41,17 @@
               Cataluña.
             </p>
             <div class="d-flex flex-wrap my-4">
-              <a class="mx-2" role="button" href="https://youtu.be/kF6py0E8ma0" alt="Vídeo ibroggi 1" title="Vídeo ibroggi 1">
-                <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo ibroggi 1" title="Vídeo ibroggi 1" draggable="false" />
-                Vídeo ibroggi 1
+              <a class="mx-2" role="button" href="https://youtu.be/kF6py0E8ma0" alt="Vídeo IBroggi 1" title="Vídeo IBroggi 1" aria-label="Vídeo IBroggi 1">
+                <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo IBroggi 1" title="Vídeo IBroggi 1" draggable="false" />
+                Vídeo IBroggi 1
               </a>
-              <a class="mx-2" role="button" href="https://youtu.be/VhKQIjMSxzg" alt="Vídeo ibroggi 2" title="Vídeo ibroggi 2">
-                <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo ibroggi 2" title="Vídeo ibroggi 2" draggable="false" />
-                Vídeo ibroggi 2
+              <a class="mx-2" role="button" href="https://youtu.be/VhKQIjMSxzg" alt="Vídeo IBroggi 2" title="Vídeo IBroggi 2" aria-label="Vídeo IBroggi 2">
+                <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo IBroggi 2" title="Vídeo IBroggi 2" draggable="false" />
+                Vídeo IBroggi 2
               </a>
-              <a class="mx-2" role="button" href="https://github.com/DevinSJ/project-broggi" alt="GitHub ibroggi" title="GitHub ibroggi">
-                <img class="me-2" src="@assets/icons/github.png" alt="GitHub ibroggi" title="GitHub ibroggi" draggable="false" />
-                GitHub ibroggi
+              <a class="mx-2" role="button" href="https://github.com/DevinSJ/project-broggi" alt="GitHub IBroggi" title="GitHub IBroggi" aria-label="GitHub IBroggi">
+                <img class="me-2" src="@assets/icons/github.png" alt="GitHub IBroggi" title="GitHub IBroggi" draggable="false" />
+                GitHub IBroggi
               </a>
             </div>
             <div class="d-flex flex-wrap justify-content-end gap-2">
@@ -89,21 +89,35 @@
             <br />
             <p>La parte de escritorio es donde gestionaremos las preguntas y los personajes del juego. La parte de android es el juego en sí.</p>
             <div class="d-flex flex-wrap my-4">
-              <a class="mx-2" role="button" href="https://www.youtube.com/watch?v=wfosd7CLt9s&ab_channel=DevinSchlippe" alt="Vídeo ecoarts android" title="Vídeo ecoarts android">
-                <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo ecoarts android" title="Vídeo ecoarts android" draggable="false" />
-                Vídeo ecoarts android
+              <a
+                class="mx-2"
+                role="button"
+                href="https://www.youtube.com/watch?v=wfosd7CLt9s&ab_channel=DevinSchlippe"
+                alt="Vídeo EcoArts android"
+                title="Vídeo EcoArts android"
+                aria-label="Vídeo EcoArts android"
+              >
+                <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo EcoArts android" title="Vídeo EcoArts android" draggable="false" />
+                Vídeo EcoArts android
               </a>
-              <a class="mx-2" role="button" href="https://www.youtube.com/watch?v=b-FnBSv8TRY&ab_channel=DevinSchlippe" alt="Vídeo ecoarts android" title="Vídeo ecoarts android">
-                <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo ecoarts escritorio" title="Vídeo ecoarts escritorio" draggable="false" />
-                Vídeo ecoarts escritorio
+              <a
+                class="mx-2"
+                role="button"
+                href="https://www.youtube.com/watch?v=b-FnBSv8TRY&ab_channel=DevinSchlippe"
+                alt="Vídeo EcoArts escritorio"
+                title="Vídeo EcoArts escritorio"
+                aria-label="Vídeo EcoArts escritorio"
+              >
+                <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo EcoArts escritorio" title="Vídeo EcoArts escritorio" draggable="false" />
+                Vídeo EcoArts escritorio
               </a>
-              <a class="mx-2" role="button" href="https://github.com/x140l1n/ECOARTS-ANDROID" alt="GitHub ecoarts android" title="GitHub ecoarts android">
-                <img class="me-2" src="@assets/icons/github.png" alt="GitHub ecoarts android" title="GitHub ecoarts android" draggable="false" />
-                GitHub ecoarts android
+              <a class="mx-2" role="button" href="https://github.com/x140l1n/ECOARTS-ANDROID" alt="GitHub EcoArts android" title="GitHub EcoArts android" aria-label="GitHub EcoArts android">
+                <img class="me-2" src="@assets/icons/github.png" alt="GitHub EcoArts android" title="GitHub EcoArts android" draggable="false" />
+                GitHub EcoArts android
               </a>
-              <a class="mx-2" role="button" href="https://github.com/x140l1n/ECOARTS-DESKTOP" alt="GitHub ecoarts android" title="GitHub ecoarts android">
-                <img class="me-2" src="@assets/icons/github.png" alt="GitHub ecoarts escritorio" title="GitHub ecoarts escritorio" draggable="false" />
-                GitHub ecoarts escritorio
+              <a class="mx-2" role="button" href="https://github.com/x140l1n/ECOARTS-DESKTOP" alt="GitHub EcoArts android" title="GitHub EcoArts android" aria-label="GitHub EcoArts android">
+                <img class="me-2" src="@assets/icons/github.png" alt="GitHub EcoArts escritorio" title="GitHub EcoArts escritorio" draggable="false" />
+                GitHub EcoArts escritorio
               </a>
             </div>
             <div class="d-flex flex-wrap justify-content-end gap-2">
@@ -130,13 +144,27 @@
             <p>El proyecto consta de 2 partes: escritorio y android.</p>
             <p>La parte de escritorio es donde van a gestionar los socios y los eventos de la asociación. La parte de android lo usarán los socios donde podrán consultar y apuntarse a eventos.</p>
             <div class="d-flex flex-wrap my-4">
-              <a class="mx-2" role="button" href="https://www.youtube.com/watch?v=O_hz8wCR060&ab_channel=DanielSorianoBarber%C3%A1n" alt="Vídeo chrysallis android" title="Vídeo chrysallis android">
-                <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo chrysallis android" title="Vídeo chrysallis android" draggable="false" />
-                Vídeo chrysallis android
+              <a
+                class="mx-2"
+                role="button"
+                href="https://www.youtube.com/watch?v=O_hz8wCR060&ab_channel=DanielSorianoBarber%C3%A1n"
+                alt="Vídeo Chrysallis android"
+                title="Vídeo Chrysallis android"
+                aria-label="Vídeo Chrysallis android"
+              >
+                <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo Chrysallis android" title="Vídeo Chrysallis android" draggable="false" />
+                Vídeo Chrysallis android
               </a>
-              <a class="mx-2" role="button" href="https://www.youtube.com/watch?v=l6Po2-P1JEg&ab_channel=DanielSorianoBarber%C3%A1n" alt="Vídeo chrysallis android" title="Vídeo chrysallis android">
-                <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo chrysallis escritorio" title="Vídeo chrysallis escritorio" draggable="false" />
-                Vídeo chrysallis escritorio
+              <a
+                class="mx-2"
+                role="button"
+                href="https://www.youtube.com/watch?v=l6Po2-P1JEg&ab_channel=DanielSorianoBarber%C3%A1n"
+                alt="Vídeo Chrysallis android"
+                title="Vídeo Chrysallis android"
+                aria-label="Vídeo Chrysallis escritorio"
+              >
+                <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo Chrysallis escritorio" title="Vídeo Chrysallis escritorio" draggable="false" />
+                Vídeo Chrysallis escritorio
               </a>
             </div>
             <div class="d-flex flex-wrap justify-content-end gap-2">
@@ -162,13 +190,20 @@
             <p>Juego de batallas de naves creado por mí usando la librería libGDX.</p>
             <p>El juego es compatible con Android y Windows.</p>
             <div class="d-flex flex-wrap my-4">
-              <a class="mx-2" role="button" href="https://www.youtube.com/watch?v=LxX2LFaD8xw&ab_channel=XiaolinJinLin" alt="Vídeo space invaders" title="Vídeo space invaders">
-                <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo space invaders" title="Vídeo space invaders" draggable="false" />
-                Vídeo space invaders
+              <a
+                class="mx-2"
+                role="button"
+                href="https://www.youtube.com/watch?v=LxX2LFaD8xw&ab_channel=XiaolinJinLin"
+                alt="Vídeo Space Invaders"
+                title="Vídeo Space Invaders"
+                aria-label="Vídeo Space Invaders"
+              >
+                <img class="me-2" src="@assets/icons/youtube.png" alt="Vídeo Space Invaders" title="Vídeo Space Invaders" draggable="false" />
+                Vídeo Space Invaders
               </a>
-              <a class="mx-2" role="button" href="https://github.com/x140l1n/SPACE-INVADERS-GDX" alt="GitHub space invaders" title="GitHub space invaders">
-                <img class="me-2" src="@assets/icons/github.png" alt="GitHub space invaders" title="GitHub space invaders" draggable="false" />
-                GitHub space invaders
+              <a class="mx-2" role="button" href="https://github.com/x140l1n/SPACE-INVADERS-GDX" alt="GitHub Space Invaders" title="GitHub Space Invaders" aria-label="GitHub Space Invaders">
+                <img class="me-2" src="@assets/icons/github.png" alt="GitHub Space Invaders" title="GitHub Space Invaders" draggable="false" />
+                GitHub Space Invaders
               </a>
             </div>
             <div class="d-flex flex-wrap justify-content-end gap-2">
@@ -183,8 +218,8 @@
       <div class="card more mx-auto border-0 bg-transparent">
         <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
           <p class="fs-4">Para ver más proyectos, visita mi perfil de GitHub 😎</p>
-          <a href="https://github.com/x140l1n/" target="_blank" title="GitHub" draggable="false">
-            <img src="@assets/icons/github_96px.png" alt="GitHub" draggable="false" />
+          <a href="https://github.com/x140l1n/" target="_blank" title="GitHub" draggable="false" aria-label="Mi perfil GitHub">
+            <img src="@assets/icons/github_96px.png" alt="GitHub" title="Github" draggable="false" />
           </a>
         </div>
       </div>
@@ -226,7 +261,7 @@ import IconProjects from '@assets/icons/projects.png';
 })
 export default class Projects extends Program {
   created() {
-    this.title = 'Mis proyectos';
+    this.title = 'Proyectos';
     this.widthDefault = 550;
     this.heightDefault = 400;
     this.maximizedDefault = true;

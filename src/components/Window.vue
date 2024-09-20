@@ -8,13 +8,19 @@
       <img class="program-icon" :src="program.iconSrc" :alt="`Icono ${program.title}`" draggable="false" />
       <span class="m-auto ms-2 text-truncate">{{ title }}</span>
       <div class="h-100 d-flex align-items-center" ref="windowTitleBarActions">
-        <button class="title-bar-item" type="button" title="Minimizar ventana" data-action="minimize">
+        <button class="title-bar-item" type="button" title="Minimizar ventana" data-action="minimize" aria-label="Minimizar ventana">
           <i class="fa-solid fa-minus fa-fw"></i>
         </button>
-        <button class="title-bar-item" type="button" :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`" data-action="toggleMaximized">
+        <button
+          class="title-bar-item"
+          type="button"
+          :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`"
+          data-action="toggleMaximized"
+          aria-label="Maximizar tamaño ventana"
+        >
           <i :class="`fa-solid ${isMaximized ? 'fa-compress' : 'fa-expand'}`"></i>
         </button>
-        <button class="title-bar-item" type="button" title="Cerrar ventana" data-action="close">
+        <button class="title-bar-item" type="button" title="Cerrar ventana" data-action="close" aria-label="Cerrar ventana">
           <i class="fa-solid fa-xmark fa-fw"></i>
         </button>
       </div>
