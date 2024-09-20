@@ -1,5 +1,5 @@
 <template>
-  <div class="row row-cols-1 g-4 overflow-x-hidden overflow-y-auto h-100 m-0 p-2" v-init-animation="{ threshold: 0.2 }" ref="content">
+  <div class="row row-cols-1 g-4 overflow-x-hidden overflow-y-auto h-100 m-0 p-2" v-init-animation ref="content">
     <div class="col" data-animation="slide-right">
       <div class="card mx-auto shadow">
         <div class="card-body d-flex">
@@ -10,10 +10,11 @@
             <h5 class="fw-bold">Arkanoid</h5>
             <p>Juego arcade de plataforma para las puertas abiertas del Centre D'Estudis Politècnics.</p>
             <div class="d-flex flex-wrap my-4">
-              <a class="mx-2" role="button" @click="onOpenBrowser('https://x140l1n.github.io/Arkanoid/')" title="Live demo Arkanoid" aria-label="Live demo Arkanoid">
+              <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events -->
+              <button class="mx-2" @click="onOpenBrowser('https://x140l1n.github.io/Arkanoid/')" title="Live demo Arkanoid" aria-label="Live demo Arkanoid">
                 <img class="me-2" src="@assets/icons/play.png" alt="Live demo Arkanoid" title="Live demo Arkanoid" draggable="false" />
                 Live demo
-              </a>
+              </button>
               <a class="mx-2" role="button" href="https://github.com/x140l1n/Arkanoid" title="GitHub Arkanoid" aria-label="GitHub Arkanoid">
                 <img class="me-2" src="@assets/icons/github.png" alt="GitHub Arkanoid" title="GitHub Arkanoid" draggable="false" />
                 GitHub Arkanoid
@@ -239,11 +240,11 @@ import IconProjects from '@assets/icons/projects.png';
       required: true
     }
   },
-  mounted() {
-    this.init();
-  },
   data() {
     return {};
+  },
+  mounted() {
+    this.init();
   },
   methods: {
     init() {},
@@ -298,6 +299,13 @@ export default class Projects extends Program {
       color: #1a233a;
       font-size: 0.9rem;
       text-decoration: none;
+    }
+
+    > .description button {
+      color: #1a233a;
+      font-size: 0.9rem;
+      background-color: transparent;
+      border: none;
     }
 
     > .description .badge {

@@ -81,11 +81,11 @@ import IconKnowledge from '@assets/icons/knowledge.png';
       required: true
     }
   },
-  mounted() {
-    this.init();
-  },
   data() {
     return {};
+  },
+  mounted() {
+    this.init();
   },
   methods: {
     init() {}

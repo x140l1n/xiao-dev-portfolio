@@ -1,22 +1,22 @@
 <template>
   <div class="screen user-none-select" v-resize="onScreenResize" ref="screen">
-    <div class="screen-content" ref="screenContent" @click.self="onRemoveProgramActive">
+    <div class="screen-content" ref="screenContent" @click.self="onRemoveProgramActive" role="presentation" aria-label="Escritorio">
       <div class="program p-2">
-        <button class="program-inner program-knowledge p-2" type="button" title="Ajustes" alt="Ajustes" @click="onOpenProgram('Settings')" tabindex="4" aria-label="Ajustes">
+        <button class="program-inner program-knowledge p-2" type="button" title="Ajustes" alt="Ajustes" @click="onOpenProgram('Settings')" aria-label="Ajustes">
           <img id="program-settings" src="@assets/icons/settings.png" alt="Logo ajustes" draggable="false" />
-          <label class="text-light" for="program-settings">Ajustes</label>
+          <span class="text-light" for="program-settings">Ajustes</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner p-2" type="button" title="Sobre mi" alt="Sobre mi" @click="onOpenProgram('AboutMe')" tabindex="5" aria-label="Sobre mi">
+        <button class="program-inner p-2" type="button" title="Sobre mi" alt="Sobre mi" @click="onOpenProgram('AboutMe')" aria-label="Sobre mi">
           <img id="program-about-me" src="@assets/icons/about-me.png" alt="Logo sobre mi" draggable="false" />
-          <label class="text-light" for="program-about-me">Sobre mi</label>
+          <span class="text-light" for="program-about-me">Sobre mi</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-knowledge p-2" type="button" title="Conocimientos" alt="Conocimientos" @click="onOpenProgram('Knowledge')" tabindex="6" aria-label="Conocimientos">
+        <button class="program-inner program-knowledge p-2" type="button" title="Conocimientos" alt="Conocimientos" @click="onOpenProgram('Knowledge')" aria-label="Conocimientos">
           <img id="program-knowledge" src="@assets/icons/knowledge.png" alt="Logo mis conocimientos" draggable="false" />
-          <label class="text-light" for="program-knowledge">Conocimientos</label>
+          <span class="text-light" for="program-knowledge">Conocimientos</span>
         </button>
       </div>
       <div class="program p-2">
@@ -26,35 +26,34 @@
           title="Estudios y Experiencias"
           alt="Estudios y Experiencias"
           @click="onOpenProgram('StudiesExperiences')"
-          tabindex="7"
           aria-label="Estudios y Experiencias"
         >
           <img id="program-experiences-studies" src="@assets/icons/experiences-studies.png" alt="Logo estudios y experiencias" draggable="false" />
-          <label class="text-light" for="program-experiences-studies">Estudios y Experiencias</label>
+          <span class="text-light" for="program-experiences-studies">Estudios y Experiencias</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-projects p-2" type="button" title="Proyectos" alt="Proyectos" @click="onOpenProgram('Projects')" tabindex="8" aria-label="Proyectos">
+        <button class="program-inner program-projects p-2" type="button" title="Proyectos" alt="Proyectos" @click="onOpenProgram('Projects')" aria-label="Proyectos">
           <img id="program-projects" src="@assets/icons/projects.png" alt="Logo mis proyectos" draggable="false" />
-          <label class="text-light" for="program-projects">Proyectos</label>
+          <span class="text-light" for="program-projects">Proyectos</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-contactme p-2" type="button" title="Contáctame" alt="Contáctame" @click="onOpenProgram('ContactMe')" tabindex="9" aria-label="Contáctame">
+        <button class="program-inner program-contactme p-2" type="button" title="Contáctame" alt="Contáctame" @click="onOpenProgram('ContactMe')" aria-label="Contáctame">
           <img id="program-contactme" src="@assets/icons/email.png" alt="Logo contáctame" draggable="false" />
-          <label class="text-light" for="program-contactme">Contáctame</label>
+          <span class="text-light" for="program-contactme">Contáctame</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-browser p-2" type="button" title="Navegador" alt="Navegador" @click="onOpenProgram('Browser')" tabindex="10" aria-label="Navegador">
+        <button class="program-inner program-browser p-2" type="button" title="Navegador" alt="Navegador" @click="onOpenProgram('Browser')" aria-label="Navegador">
           <img id="program-browser" src="@assets/icons/browser.png" alt="Logo navegador" draggable="false" />
-          <label class="text-light" for="program-browser">Navegador</label>
+          <span class="text-light" for="program-browser">Navegador</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-cv p-2" type="button" title="Currículum Vitae" alt="Currículum Vitae" @click="onOpenProgram('CV')" tabindex="11" aria-label="Currículum Vitae">
+        <button class="program-inner program-cv p-2" type="button" title="Currículum Vitae" alt="Currículum Vitae" @click="onOpenProgram('CV')" aria-label="Currículum Vitae">
           <img id="program-cv" src="@assets/icons/pdf.png" alt="Logo currículum vitae" draggable="false" />
-          <label class="text-light" for="program-cv">Currículum Vitae</label>
+          <span class="text-light" for="program-cv">Currículum Vitae</span>
         </button>
       </div>
     </div>
@@ -81,14 +80,14 @@ export default {
   components: {
     TaskBarView: () => import('@components/TaskBarView.vue')
   },
-  mounted() {
-    this.init();
-  },
   data() {
     return {
       idTimeoutOpenNextProgram: null,
       isClosedToast: false
     };
+  },
+  mounted() {
+    this.init();
   },
   methods: {
     init() {
@@ -252,7 +251,7 @@ export default {
           height: 50px;
         }
 
-        > label {
+        > span {
           text-align: center;
           text-shadow: 1px 1px 4px #000;
           font-size: 0.9em;

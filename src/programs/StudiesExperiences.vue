@@ -2,19 +2,39 @@
   <div class="w-100 h-100 d-flex flex-column" ref="content">
     <ul class="nav nav-pills nav-fill bg-light shadow gap-2" ref="navbar" role="tablist" aria-orientation="horizontal">
       <li class="nav-item">
-        <a class="nav-link active" role="tab" data-bs-toggle="tab" :href="`#studies-${id}`" title="Estudios" :aria-controls="`studies-${id}`" aria-selected="true">
+        <button
+          class="nav-link active"
+          @click="onChangeTab"
+          type="button"
+          role="tab"
+          data-bs-toggle="tab"
+          :href="`#studies-${id}`"
+          title="Estudios"
+          :aria-controls="`studies-${id}`"
+          aria-selected="true"
+        >
           <i class="fa-solid fa-graduation-cap me-2 fa-fw"></i>
           Estudios
-        </a>
+        </button>
       </li>
       <li class="nav-item">
-        <a class="nav-link" role="tab" data-bs-toggle="tab" :href="`#experiences-${id}`" title="Experiencias laboral" :aria-controls="`experiences-${id}`" aria-selected="false">
+        <button
+          class="nav-link"
+          @click="onChangeTab"
+          type="button"
+          role="tab"
+          data-bs-toggle="tab"
+          :href="`#experiences-${id}`"
+          title="Experiencias laboral"
+          :aria-controls="`experiences-${id}`"
+          aria-selected="false"
+        >
           <i class="fa-solid fa-briefcase me-2 fa-fw"></i>
           Experiencias laboral
-        </a>
+        </button>
       </li>
     </ul>
-    <div class="tab-content border-top flex-fill overflow-x-hidden overflow-y-auto" v-init-animation="{ threshold: 0.2 }" ref="tabContent">
+    <div class="tab-content border-top flex-fill overflow-x-hidden overflow-y-auto" v-init-animation ref="tabContent">
       <div class="tab-pane fade active show" :id="`studies-${id}`" :aria-labelledby="`studies-${id}`">
         <div class="timeline text-light" ref="timelineStudies">
           <div class="timeline-row">
@@ -209,14 +229,17 @@ import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
       required: true
     }
   },
-  mounted() {
-    this.init();
-  },
   data() {
     return {};
   },
+  mounted() {
+    this.init();
+  },
   methods: {
     init() {},
+    onChangeTab() {
+      this.$refs.tabContent.scrollTop = 0;
+    },
     onResize() {
       if (this.$refs.content.clientWidth < 992) {
         this.$refs.timelineStudies.classList.add('small');

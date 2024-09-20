@@ -4,16 +4,15 @@
       <div :class="`layer-on-off ${!isFirstTime && isMonitorOn ? 'layer-on' : ''}`"></div>
       <div class="presentation d-flex flex-column flex-xxl-row justify-content-center align-items-center gap-5 text-center text-xxl-start text-light overflow-auto" v-if="!isMonitorOn">
         <div class="typewriter">
-          <h1 class="title fw-bold lh-lg" ref="title" tabindex="1">¡Bienvenido a mi portfolio! 🖥️</h1>
+          <h1 class="title fw-bold lh-lg" ref="title">¡Bienvenido a mi portfolio! 🖥️</h1>
           <br />
           <div class="fs-3">
-            <span class="description" ref="description" tabindex="2">Para comenzar a explorar solo tienes que hacer clic en el siguiente botón</span>
+            <span class="description" ref="description">Para comenzar a explorar solo tienes que hacer clic en el siguiente botón</span>
             <span :class="`pointer ${isFinishedTyping ? 'visible animated' : 'invisible'}`"></span>
           </div>
         </div>
         <button
           type="button"
-          tabindex="3"
           :class="`btn-on rounded-circle mt-xxl-5 mt-0 ${isFinishedTyping ? 'visible animated' : 'invisible'}`"
           title="Encender monitor"
           @click="isMonitorOn = true"
@@ -33,15 +32,15 @@ export default {
   components: {
     ScreenView: () => import('@views/ScreenView.vue')
   },
-  mounted() {
-    this.init();
-  },
   data() {
     return {
       isMonitorOn: false,
       isFirstTime: true,
       isFinishedTyping: false
     };
+  },
+  mounted() {
+    this.init();
   },
   methods: {
     init() {
@@ -224,8 +223,8 @@ export default {
       }
 
       & > .btn-on {
-        width: 100px;
-        height: 100px;
+        min-width: 100px;
+        min-height: 100px;
         font-size: 3rem;
         border: 0;
         box-shadow: 0 0 30px rgb(210, 23, 23);

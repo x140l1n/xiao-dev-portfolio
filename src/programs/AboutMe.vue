@@ -50,7 +50,7 @@
         <div class="card-body flex-grow-1">
           <div class="d-flex flex-column justify-content-center align-items-center h-100 p-4" ref="contentBack">
             <img class="logo img-fluid" ref="logo" src="@svg/xiao-theme-2.svg" title="Logo Xiao" alt="Logo Xiao" draggable="false" />
-            <label class="fw-bold text-center my-2">Redes sociales</label>
+            <p class="fw-bold text-center my-2">Redes sociales</p>
             <div class="d-flex justify-content-center">
               <a href="https://www.instagram.com/_xiao_97_/" target="_blank" title="Instgram">
                 <img src="@assets/icons/instagram.png" alt="instagram" draggable="false" />
@@ -82,11 +82,11 @@ import { author } from '@root/package';
       required: true
     }
   },
-  mounted() {
-    this.init();
-  },
   data() {
     return {};
+  },
+  mounted() {
+    this.init();
   },
   methods: {
     init() {

@@ -1,9 +1,11 @@
 <template>
-  <div class="window resizers border border-2 border-dark bg-light" v-resize="onResize" @click="onSelectedProgram" ref="window" :style="cssRootVars">
+  <div class="window resizers border border-2 border-dark bg-light" v-resize="onResize" @click="onSelectedProgram" ref="window" :style="cssRootVars" role="presentation" aria-label="Ventana">
     <div
       class="window-title-bar bg-primary text-light d-flex justify-content-between align-items-center border-bottom border-2 border-dark user-select-none"
       ref="windowTitleBar"
       @click="onClickWindowTitleBar"
+      role="presentation"
+      aria-label="Barra de título"
     >
       <img class="program-icon" :src="program.iconSrc" :alt="`Icono ${program.title}`" draggable="false" />
       <span class="m-auto ms-2 text-truncate">{{ title }}</span>

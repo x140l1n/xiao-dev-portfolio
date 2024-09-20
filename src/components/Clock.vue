@@ -11,9 +11,6 @@
 
 <script>
 export default {
-  mounted() {
-    this.init();
-  },
   data() {
     return {
       datetime: {
@@ -21,6 +18,9 @@ export default {
         date: null
       }
     };
+  },
+  mounted() {
+    this.init();
   },
   methods: {
     init() {

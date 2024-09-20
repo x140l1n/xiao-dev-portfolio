@@ -1,20 +1,27 @@
 <template>
   <div class="taskbar bg-primary">
     <div class="taskbar-programs d-flex gap-2 justify-content-start align-items-center flex-shrink-1 mx-auto overflow-y-hidden overflow-x-auto">
-      <div
+      <button
         v-for="(program, index) in $programs"
+        type="button"
         :id="`program-${program.id}`"
         :key="program.id"
         :tabindex="10 + index"
         :class="`taskbar-item program ${getProgramActiveId === program.id ? 'selected' : ''}`"
         :title="program.title"
         @click="onSelectProgram(program)"
+        :aria-label="program.title"
       >
         <img class="img-fluid" :src="program.iconSrc" :title="program.title" :alt="program.title" draggable="false" />
-      </div>
+      </button>
     </div>
     <Clock class="taskbar-item clock flex-shrink-0" />
-    <span class="taskbar-item taskbar-item-minimize-all border border-dark border-end-0 border-top-0 border-bottom-0 flex-shrink-0" @click="onMinimizeAllPrograms"> </span>
+    <button
+      class="taskbar-item taskbar-item-minimize-all border border-dark border-end-0 border-top-0 border-bottom-0 flex-shrink-0"
+      type="button"
+      title="Minimizar todos los programas"
+      @click="onMinimizeAllPrograms"
+    ></button>
   </div>
 </template>
 
@@ -59,6 +66,9 @@ export default {
 
   .taskbar-programs {
     > .taskbar-item.program {
+      cursor: default;
+      background-color: transparent;
+      border: none;
       position: relative;
       min-width: 40px;
       min-height: 40px;
@@ -107,7 +117,15 @@ export default {
   }
 
   > .taskbar-item.taskbar-item-minimize-all {
+    cursor: default;
     width: 6px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+
+    &:hover {
+      background-color: #ffffff48;
+    }
   }
 }
 

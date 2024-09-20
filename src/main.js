@@ -39,14 +39,18 @@ Vue.directive('init-animation', {
       return;
     }
 
-    let options = null;
+    let options = {};
 
-    try {
-      options = eval(`(${binding.expression})`);
-      // eslint-disable-next-line
-    } catch {}
+    if (binding.expression) {
+      try {
+        options = eval(`(${binding.expression})`);
+        // eslint-disable-next-line
+      } catch {
+        options = {};
+      }
+    }
 
-    Object.assign(options, { duration: 1, threshold: 0.5 });
+    Object.assign(options, { duration: 1, threshold: 0 });
 
     const observer = new IntersectionObserver(
       (entries) => {

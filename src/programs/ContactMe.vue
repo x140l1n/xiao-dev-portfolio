@@ -6,33 +6,38 @@
       </div>
       <hr />
       <div class="mb-3 mx-2">
-        <label class="form-label" for="input-email">Email *</label>
-        <input class="form-control" id="input-email" type="email" name="from" required />
+        <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
+        <label class="form-label" :for="`input-email-${id}`">Email *</label>
+        <input class="form-control" :id="`input-email-${id}`" type="email" name="from" required />
       </div>
       <div class="d-flex flex-wrap">
         <div class="mb-3 flex-grow-1 mx-2">
-          <label class="form-label" for="input-firstname">Nombre *</label>
-          <input class="form-control" id="input-firstname" type="text" name="firstname" required />
+          <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
+          <label class="form-label" :for="`input-firstname-${id}`">Nombre *</label>
+          <input class="form-control" :id="`input-firstname-${id}`" type="text" name="firstname" required />
         </div>
         <div class="mb-3 flex-grow-1 mx-2">
-          <label class="form-label" for="input-lastname">Apellidos *</label>
-          <input class="form-control" id="input-lastname" type="text" name="lastname" required />
+          <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
+          <label class="form-label" :for="`input-lastname-${id}`">Apellidos *</label>
+          <input class="form-control" :id="`input-lastname-${id}`" type="text" name="lastname" required />
         </div>
       </div>
       <div class="mb-3 mx-2">
-        <label class="form-label" for="input-subject">Asunto *</label>
-        <input class="form-control" id="input-subject" type="text" name="subject" required />
+        <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
+        <label class="form-label" :for="`input-subject-${id}`">Asunto *</label>
+        <input class="form-control" :id="`input-subject-${id}`" type="text" name="subject" required />
       </div>
       <div class="mb-3 mx-2">
-        <label class="form-label" for="input-message">Mensaje *</label>
-        <textarea class="form-control" id="input-message" name="message" rows="5" required></textarea>
+        <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
+        <label class="form-label" :for="`input-message-${id}`">Mensaje *</label>
+        <textarea class="form-control" :id="`input-message-${id}`" name="message" rows="5" required></textarea>
       </div>
       <div class="mb-3 mx-2">
-        <label v-if="resultMessage" :class="`${statusMessage == 1 ? 'text-success' : 'text-danger'}`">
+        <p v-if="resultMessage" :class="`${statusMessage == 1 ? 'text-success' : 'text-danger'}`">
           <i class="fa-solid fa-circle-check" v-if="statusMessage == 1"></i>
           <i class="fa-solid fa-circle-exclamation" v-else></i>
           {{ resultMessage }}
-        </label>
+        </p>
       </div>
       <div class="mb-3 mx-2">
         <button class="btn bg-primary text-light w-100" type="submit" title="Enviar" aria-label="Enviar">
@@ -43,9 +48,12 @@
       </div>
     </form>
     <div class="d-flex flex-column justify-content-center overflow-auto h-100 text-center" v-else>
-      <img class="img-fluid mx-auto" src="@assets/img/contactme.png" title="Contáctame" draggable="false" />
+      <img class="img-fluid mx-auto" src="@assets/img/contactme.png" title="Contáctame" alt="Contáctame" draggable="false" />
       <h3 class="mx-auto fw-bold my-4"> ¡Muchas gracias por contactar conmigo! </h3>
-      <a role="button" @click="showSuccess = false"><i class="fa-solid fa-angle-left me-3"></i>Volver al formulario de contacto</a>
+      <button class="btn-go-back" type="button" @click="showSuccess = false" title="Volver al formulario de contacto" aria-label="Volver al formulario de contacto">
+        <i class="fa-solid fa-angle-left me-3"></i>
+        Volver al formulario de contacto
+      </button>
     </div>
   </div>
 </template>
@@ -62,9 +70,6 @@ import IconEmail from '@assets/icons/email.png';
       required: true
     }
   },
-  mounted() {
-    this.init();
-  },
   data() {
     return {
       statusMessage: 0,
@@ -72,6 +77,9 @@ import IconEmail from '@assets/icons/email.png';
       isSending: false,
       showSuccess: false
     };
+  },
+  mounted() {
+    this.init();
   },
   methods: {
     init() {},
@@ -96,7 +104,7 @@ import IconEmail from '@assets/icons/email.png';
         .then((data) => {
           if (data.status == 1) {
             self.showSuccess = true;
-            self.statusMessage = 0;
+            self.statusMessage = 1;
           } else {
             self.showSuccess = false;
             self.statusMessage = data.status;
@@ -110,6 +118,7 @@ import IconEmail from '@assets/icons/email.png';
         })
         .finally(() => {
           form.querySelectorAll('input, textarea, button').forEach((element) => (element.disabled = false));
+
           if (self.statusMessage == 1) {
             form.reset();
           }
@@ -133,4 +142,11 @@ export default class ContactMe extends Program {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.btn-go-back {
+  color: #1a233a;
+  font-size: 0.9rem;
+  background-color: transparent;
+  border: none;
+}
+</style>

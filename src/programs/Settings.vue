@@ -1,15 +1,10 @@
 <template>
   <div class="w-100 h-100">
-    <div class="h-100 d-flex align-items-start overflow-auto">
-      <div
-        class="nav justify-content-stretch flex-nowrap flex-column nav-pills me-3 shadow text-trucante bg-light overflow-y-auto"
-        id="v-pills-tab"
-        ref="nav"
-        role="tablist"
-        aria-orientation="vertical"
-      >
+    <div class="h-100 d-flex align-items-start overflow-auto" ref="content">
+      <div class="nav justify-content-stretch flex-nowrap flex-column nav-pills me-3 shadow text-trucante bg-light overflow-y-auto" ref="nav" role="tablist" aria-orientation="vertical">
         <button
           class="nav-link active rounded-0"
+          @click="onChangeTab"
           :id="`v-pills-general-tab-${id}`"
           type="button"
           title="General"
@@ -24,6 +19,7 @@
         </button>
         <button
           class="nav-link rounded-0"
+          @click="onChangeTab"
           :id="`v-pills-personalization-tab-${id}`"
           type="button"
           title="Temas"
@@ -38,6 +34,7 @@
         </button>
         <button
           class="nav-link rounded-0"
+          @click="onChangeTab"
           :id="`v-pills-about-tab-${id}`"
           type="button"
           title="Acerca de"
@@ -58,6 +55,7 @@
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-center gap-2">
                 <div class="d-flex flex-column gap-2">
+                  <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
                   <label class="fw-bold" :for="`switch-fullscreen-${id}`">Habilitar modo pantalla completa</label>
                   <small class="fst-italic text-danger"
                     ><strong>Nota:</strong>
@@ -74,7 +72,7 @@
                     :false-value="false"
                     draggable="false"
                     :title="`${!$isFullscreen ? 'Modo pantalla completa' : 'Modo pantalla normal'}`"
-                    :aria-label="`switch-fullscreen-${id}`"
+                    :aria-label="`${!$isFullscreen ? 'Modo pantalla completa' : 'Modo pantalla normal'}`"
                   />
                 </div>
               </div>
@@ -99,6 +97,7 @@
                       draggable="false"
                       aria-label="Tema azul oscuro"
                     />
+                    <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
                     <label class="form-check-label" :for="`rdb-theme-2-${id}`">Tema azul oscuro</label>
                   </div>
                 </div>
@@ -114,6 +113,7 @@
                       draggable="false"
                       aria-label="Tema morado claro"
                     />
+                    <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
                     <label class="form-check-label" :for="`rdb-theme-1-${id}`">Tema morado claro</label>
                   </div>
                 </div>
@@ -192,14 +192,17 @@ import { date, version } from '@root/package';
       required: true
     }
   },
-  mounted() {
-    this.init();
-  },
   data() {
     return {};
   },
+  mounted() {
+    this.init();
+  },
   methods: {
     init() {},
+    onChangeTab() {
+      this.$refs.content.scrollTop = 0;
+    },
     onResize() {
       if (this.$el.clientWidth < 600) {
         this.$refs.nav.classList.add('nav-small');
