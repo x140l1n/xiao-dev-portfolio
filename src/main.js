@@ -5,8 +5,8 @@ import VueMoment from 'vue-moment';
 import resize from 'vue-resize-directive';
 import VueGtag from 'vue-gtag';
 import 'bootstrap/dist/js/bootstrap';
-import '@src/assets/scss/styles.scss';
 import 'moment/locale/es';
+import '@src/assets/scss/styles.scss';
 
 if (process.env.NODE_ENV === 'production' && process.env.VUE_APP_GA_ID) {
   Vue.use(VueGtag, {
