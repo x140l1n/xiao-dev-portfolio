@@ -43,7 +43,7 @@ The portfolio is built with the following stack:
 <br/>
 
 - **Vue 2**: Frontend framework.
-- **SCSS**: For styling and animations.
+- **SASS**: For styling and animations.
 - **Fontawesome**: For icons.
 - **Bootstrap**: For styles and UI components.
 - **PHP**: Handles server-side logic for processing email submissions through the `email.php` file in the `api/` folder.
@@ -75,11 +75,11 @@ VUE_APP_API_ENDPOINT=http://localhost:8000/api/ # the URL of api endpoint
 VUE_APP_CV_URL= # the URL of CV
 ```
 
-- `NODE_ENV`: Set to `development` for local development and `production` for production environments.
-- `VUE_APP_API_ENDPOINT`: The API endpoint for making requests (default: `http://localhost:8000/api/`).
-- `VUE_APP_CV_URL`: The URL link to CV.
+`NODE_ENV`: Set to `development` for local development and `production` for production environments.
+`VUE_APP_API_ENDPOINT`: The API endpoint for making requests (default: `http://localhost:8000/api/`).
+`VUE_APP_CV_URL`: The URL link to CV.
 
-## 🛠️ Running the PHP Server
+## 🔌 Running the PHP Server
 
 To start the PHP server, ensure that PHP is installed on your machine. Then, navigate to the project directory and run the following command:
 
