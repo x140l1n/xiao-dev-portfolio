@@ -6,14 +6,14 @@
           <form class="d-flex gap-2" @submit.prevent="onSearch" ref="form" target="iframe">
             <div class="flex-grow-1">
               <!-- eslint-disable-next-line vuejs-accessibility/form-control-has-label -->
-              <input class="form-control form-control-sm rounded-pill" ref="inputSearch" type="text" name="input-search" placeholder="Escribe para buscar" />
+              <input class="form-control form-control-sm rounded-pill" name="input-search" type="text" ref="inputSearch" placeholder="Escribe para buscar" />
             </div>
-            <button class="btn bg-primary text-light btn-sm rounded-circle border border-1" ref="btnSubmit" type="submit" title="Buscar" aria-label="Buscar">
+            <button class="btn bg-primary text-light btn-sm rounded-circle border border-1" type="submit" title="Buscar" aria-label="Buscar" ref="btnSubmit">
               <i class="fa-solid fa-magnifying-glass"></i>
             </button>
           </form>
         </div>
-        <iframe class="flex-grow-1" ref="iframe" frameborder="0" scrolling="auto" title="Contenido navegador"></iframe>
+        <iframe class="flex-grow-1" title="Contenido navegador" ref="iframe" frameborder="0" scrolling="auto"></iframe>
       </div>
     </div>
   </div>

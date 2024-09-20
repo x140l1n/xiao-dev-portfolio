@@ -1,28 +1,28 @@
 <template>
-  <div class="window resizers border border-2 border-dark bg-light" v-resize="onResize" @click="onSelectedProgram" ref="window" :style="cssRootVars" role="presentation" aria-label="Ventana">
+  <div class="window resizers border border-2 border-dark bg-light" role="presentation" aria-label="Ventana" v-resize="onResize" @click="onSelectedProgram" ref="window" :style="cssRootVars">
     <div
       class="window-title-bar bg-primary text-light d-flex justify-content-between align-items-center border-bottom border-2 border-dark user-select-none"
-      ref="windowTitleBar"
-      @click="onClickWindowTitleBar"
       role="presentation"
       aria-label="Barra de título"
+      ref="windowTitleBar"
+      @click="onClickWindowTitleBar"
     >
       <img class="program-icon" :src="program.iconSrc" :alt="`Icono ${program.title}`" draggable="false" />
       <span class="m-auto ms-2 text-truncate">{{ title }}</span>
       <div class="h-100 d-flex align-items-center" ref="windowTitleBarActions">
-        <button class="title-bar-item" type="button" title="Minimizar ventana" data-action="minimize" aria-label="Minimizar ventana">
+        <button class="title-bar-item" data-action="minimize" type="button" title="Minimizar ventana" aria-label="Minimizar ventana">
           <i class="fa-solid fa-minus fa-fw"></i>
         </button>
         <button
           class="title-bar-item"
-          type="button"
-          :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`"
           data-action="toggleMaximized"
+          type="button"
           aria-label="Maximizar tamaño ventana"
+          :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`"
         >
           <i :class="`fa-solid ${isMaximized ? 'fa-compress' : 'fa-expand'}`"></i>
         </button>
-        <button class="title-bar-item" type="button" title="Cerrar ventana" data-action="close" aria-label="Cerrar ventana">
+        <button class="title-bar-item" data-action="close" type="button" title="Cerrar ventana" aria-label="Cerrar ventana">
           <i class="fa-solid fa-xmark fa-fw"></i>
         </button>
       </div>

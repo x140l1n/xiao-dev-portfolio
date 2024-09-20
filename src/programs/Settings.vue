@@ -1,55 +1,55 @@
 <template>
   <div class="w-100 h-100">
     <div class="h-100 d-flex align-items-start overflow-auto" ref="content">
-      <div class="nav justify-content-stretch flex-nowrap flex-column nav-pills me-3 shadow text-trucante bg-light overflow-y-auto" ref="nav" role="tablist" aria-orientation="vertical">
+      <div class="nav justify-content-stretch flex-nowrap flex-column nav-pills me-3 shadow text-trucante bg-light overflow-y-auto" role="tablist" aria-orientation="vertical" ref="nav">
         <button
           class="nav-link active rounded-0"
-          @click="onChangeTab"
-          :id="`v-pills-general-tab-${id}`"
+          data-bs-toggle="pill"
           type="button"
           title="General"
-          data-bs-toggle="pill"
-          :data-bs-target="`#v-pills-general-${id}`"
           role="tab"
-          :aria-controls="`v-pills-general-${id}`"
           aria-selected="true"
+          @click="onChangeTab"
+          :id="`v-pills-general-tab-${id}`"
+          :data-bs-target="`#v-pills-general-${id}`"
+          :aria-controls="`v-pills-general-${id}`"
         >
           <img class="icon" src="@assets/icons/monitor.png" alt="General" draggable="false" />
           <span>General</span>
         </button>
         <button
           class="nav-link rounded-0"
-          @click="onChangeTab"
-          :id="`v-pills-personalization-tab-${id}`"
+          data-bs-toggle="pill"
           type="button"
           title="Temas"
-          data-bs-toggle="pill"
-          :data-bs-target="`#v-pills-personalization-${id}`"
           role="tab"
-          :aria-controls="`v-pills-personalization-${id}`"
           aria-selected="false"
+          @click="onChangeTab"
+          :id="`v-pills-themes-tab-${id}`"
+          :data-bs-target="`#v-pills-themes-${id}`"
+          :aria-controls="`v-pills-themes-${id}`"
         >
           <img class="icon" src="@assets/icons/theme.png" alt="Temas" draggable="false" />
           <span>Temas</span>
         </button>
         <button
           class="nav-link rounded-0"
-          @click="onChangeTab"
-          :id="`v-pills-about-tab-${id}`"
+          data-bs-toggle="pill"
           type="button"
           title="Acerca de"
-          data-bs-toggle="pill"
-          :data-bs-target="`#v-pills-about-${id}`"
           role="tab"
-          :aria-controls="`v-pills-about-${id}`"
           aria-selected="false"
+          @click="onChangeTab"
+          :id="`v-pills-about-tab-${id}`"
+          :data-bs-target="`#v-pills-about-${id}`"
+          :aria-controls="`v-pills-about-${id}`"
         >
           <img class="icon" src="@assets/icons/info.png" alt="Acerca de" draggable="false" />
           <span>Acerca de</span>
         </button>
       </div>
       <div class="tab-content flex-fill" ref="tabContent">
-        <div class="tab-pane p-3 fade show active" :id="`v-pills-general-${id}`" role="tabpanel" :aria-labelledby="`v-pills-general-tab-${id}`">
+        <div class="tab-pane p-3 fade show active" role="tabpanel" :id="`v-pills-general-${id}`" :aria-labelledby="`v-pills-general-tab-${id}`">
           <h4>General</h4>
           <div class="card">
             <div class="card-body">
@@ -65,21 +65,21 @@
                 <div class="form-check form-switch">
                   <input
                     class="form-check-input"
+                    type="checkbox"
                     v-model="$isFullscreen"
                     :id="`switch-fullscreen-${id}`"
-                    type="checkbox"
                     :true-value="true"
                     :false-value="false"
                     draggable="false"
                     :title="`${!$isFullscreen ? 'Modo pantalla completa' : 'Modo pantalla normal'}`"
-                    :aria-label="`${!$isFullscreen ? 'Modo pantalla completa' : 'Modo pantalla normal'}`"
+                    :aria-checked="$isFullscreen"
                   />
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="tab-pane p-3 fade" :id="`v-pills-personalization-${id}`" role="tabpanel" :aria-labelledby="`v-pills-personalization-tab-${id}`">
+        <div class="tab-pane p-3 fade" role="tabpanel" :id="`v-pills-themes-${id}`" :aria-labelledby="`v-pills-themes-tab-${id}`">
           <h4>Temas</h4>
           <div class="card">
             <div class="card-body">
@@ -87,32 +87,14 @@
               <div class="d-flex flex-wrap mt-5">
                 <div class="theme-selector theme-1 p-3 my-2">
                   <div class="form-check fw-bold text-light">
-                    <input
-                      class="form-check-input"
-                      v-model="$themeSelected"
-                      :id="`rdb-theme-2-${id}`"
-                      type="radio"
-                      :name="`selector-theme-${id}`"
-                      value="theme-2"
-                      draggable="false"
-                      aria-label="Tema azul oscuro"
-                    />
+                    <input class="form-check-input" type="radio" value="theme-2" v-model="$themeSelected" :id="`rdb-theme-2-${id}`" :name="`selector-theme-${id}`" draggable="false" />
                     <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
                     <label class="form-check-label" :for="`rdb-theme-2-${id}`">Tema azul oscuro</label>
                   </div>
                 </div>
                 <div class="theme-selector theme-2 p-3 my-2">
                   <div class="form-check fw-bold text-dark">
-                    <input
-                      class="form-check-input"
-                      v-model="$themeSelected"
-                      :id="`rdb-theme-1-${id}`"
-                      type="radio"
-                      :name="`selector-theme-${id}`"
-                      value="theme-1"
-                      draggable="false"
-                      aria-label="Tema morado claro"
-                    />
+                    <input class="form-check-input" type="radio" value="theme-1" v-model="$themeSelected" :id="`rdb-theme-1-${id}`" :name="`selector-theme-${id}`" draggable="false" />
                     <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
                     <label class="form-check-label" :for="`rdb-theme-1-${id}`">Tema morado claro</label>
                   </div>
@@ -121,7 +103,7 @@
             </div>
           </div>
         </div>
-        <div class="tab-pane p-3 fade" :id="`v-pills-about-${id}`" role="tabpanel" :aria-labelledby="`v-pills-about-tab-${id}`">
+        <div class="tab-pane p-3 fade" role="tabpanel" :id="`v-pills-about-${id}`" :aria-labelledby="`v-pills-about-tab-${id}`">
           <h4>Acerca de</h4>
           <div class="card">
             <div class="card-body">
@@ -161,11 +143,11 @@
                   <td class="fw-bold label pe-4">Desarrollado con</td>
                   <td>
                     <div class="d-inline-block text-center">
-                      <img src="@assets/icons/vue.png" alt="Vue" title="Vue" draggable="false" />
+                      <img src="@assets/icons/vue.png" title="Vue" alt="Vue" draggable="false" />
                       <figcaption>Vue 2</figcaption>
                     </div>
                     <div class="d-inline-block text-center">
-                      <img src="@assets/icons/bootstrap.png" width="85" alt="Bootstrap" title="Bootstrap" draggable="false" />
+                      <img src="@assets/icons/bootstrap.png" title="Bootstrap" alt="Bootstrap" width="85" draggable="false" />
                       <figcaption>Bootstrap 5</figcaption>
                     </div>
                   </td>

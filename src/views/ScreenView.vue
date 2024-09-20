@@ -1,68 +1,61 @@
 <template>
   <div class="screen user-none-select" v-resize="onScreenResize" ref="screen">
-    <div class="screen-content" ref="screenContent" @click.self="onRemoveProgramActive" role="presentation" aria-label="Escritorio">
+    <div class="screen-content" role="presentation" aria-label="Escritorio" ref="screenContent" @click.self="onRemoveProgramActive">
       <div class="program p-2">
-        <button class="program-inner program-knowledge p-2" type="button" title="Ajustes" alt="Ajustes" @click="onOpenProgram('Settings')" aria-label="Ajustes">
+        <button class="program-inner program-knowledge p-2" type="button" title="Ajustes" alt="Ajustes" @click="onOpenProgram('Settings')">
           <img id="program-settings" src="@assets/icons/settings.png" alt="Logo ajustes" draggable="false" />
           <span class="text-light" for="program-settings">Ajustes</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner p-2" type="button" title="Sobre mi" alt="Sobre mi" @click="onOpenProgram('AboutMe')" aria-label="Sobre mi">
+        <button class="program-inner p-2" type="button" title="Sobre mi" alt="Sobre mi" @click="onOpenProgram('AboutMe')">
           <img id="program-about-me" src="@assets/icons/about-me.png" alt="Logo sobre mi" draggable="false" />
           <span class="text-light" for="program-about-me">Sobre mi</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-knowledge p-2" type="button" title="Conocimientos" alt="Conocimientos" @click="onOpenProgram('Knowledge')" aria-label="Conocimientos">
+        <button class="program-inner program-knowledge p-2" type="button" title="Conocimientos" alt="Conocimientos" @click="onOpenProgram('Knowledge')">
           <img id="program-knowledge" src="@assets/icons/knowledge.png" alt="Logo mis conocimientos" draggable="false" />
           <span class="text-light" for="program-knowledge">Conocimientos</span>
         </button>
       </div>
       <div class="program p-2">
-        <button
-          class="program-inner program-experiences-studies p-2"
-          type="button"
-          title="Estudios y Experiencias"
-          alt="Estudios y Experiencias"
-          @click="onOpenProgram('StudiesExperiences')"
-          aria-label="Estudios y Experiencias"
-        >
+        <button class="program-inner program-experiences-studies p-2" type="button" title="Estudios y Experiencias" alt="Estudios y Experiencias" @click="onOpenProgram('StudiesExperiences')">
           <img id="program-experiences-studies" src="@assets/icons/experiences-studies.png" alt="Logo estudios y experiencias" draggable="false" />
           <span class="text-light" for="program-experiences-studies">Estudios y Experiencias</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-projects p-2" type="button" title="Proyectos" alt="Proyectos" @click="onOpenProgram('Projects')" aria-label="Proyectos">
+        <button class="program-inner program-projects p-2" type="button" title="Proyectos" alt="Proyectos" @click="onOpenProgram('Projects')">
           <img id="program-projects" src="@assets/icons/projects.png" alt="Logo mis proyectos" draggable="false" />
           <span class="text-light" for="program-projects">Proyectos</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-contactme p-2" type="button" title="Contáctame" alt="Contáctame" @click="onOpenProgram('ContactMe')" aria-label="Contáctame">
+        <button class="program-inner program-contactme p-2" type="button" title="Contáctame" alt="Contáctame" @click="onOpenProgram('ContactMe')">
           <img id="program-contactme" src="@assets/icons/email.png" alt="Logo contáctame" draggable="false" />
           <span class="text-light" for="program-contactme">Contáctame</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-browser p-2" type="button" title="Navegador" alt="Navegador" @click="onOpenProgram('Browser')" aria-label="Navegador">
+        <button class="program-inner program-browser p-2" type="button" title="Navegador" alt="Navegador" @click="onOpenProgram('Browser')">
           <img id="program-browser" src="@assets/icons/browser.png" alt="Logo navegador" draggable="false" />
           <span class="text-light" for="program-browser">Navegador</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-cv p-2" type="button" title="Currículum Vitae" alt="Currículum Vitae" @click="onOpenProgram('CV')" aria-label="Currículum Vitae">
+        <button class="program-inner program-cv p-2" type="button" title="Currículum Vitae" alt="Currículum Vitae" @click="onOpenProgram('CV')">
           <img id="program-cv" src="@assets/icons/pdf.png" alt="Logo currículum vitae" draggable="false" />
           <span class="text-light" for="program-cv">Currículum Vitae</span>
         </button>
       </div>
     </div>
     <TaskBarView ref="taskBarView" draggable="false" />
-    <div class="toast show" v-if="!isClosedToast" ref="tipFullscreen" role="alert" draggable="false" tabindex="-1">
+    <div class="toast show" role="alert" v-if="!isClosedToast" ref="tipFullscreen" draggable="false" tabindex="-1">
       <div class="toast-header">
-        <img class="rounded me-2" src="@assets/icons/tips.png" alt="Icono tips" title="Icono tips" width="30px" draggable="false" />
+        <img class="rounded me-2" src="@assets/icons/tips.png" title="Icono tips" alt="Icono tips" width="30px" draggable="false" />
         <strong class="me-auto">Modo pantalla completa</strong>
-        <button class="btn-close" type="button" title="Cerrar tips" @click="isClosedToast = true" aria-label="Cerrar tips"></button>
+        <button class="btn-close" type="button" title="Cerrar tips" aria-label="Cerrar tips" @click="isClosedToast = true"></button>
       </div>
       <div class="toast-body">
         Habilita la pantalla completa para tener una mejor experiencia de navegación. Para habilitar entra en

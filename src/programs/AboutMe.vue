@@ -3,7 +3,7 @@
     <div class="card flip back shadow-lg" ref="card">
       <div class="flip-card-front">
         <header class="text-light d-flex gap-4 justify-content-between align-items-center">
-          <img ref="iconFullStackDeveloper" src="@assets/icons/coding.png" title="Icono fullstack developer" draggable="false" alt="Icono fullstack developer" />
+          <img src="@assets/icons/coding.png" title="Icono fullstack developer" alt="Icono fullstack developer" ref="iconFullStackDeveloper" draggable="false" />
           <h4 class="m-0">FULLSTACK DEVELOPER</h4>
           <button class="btn btn-transparent btn-flip text-light" type="button" title="Voltear la targeta" @click="flip" aria-label="Voltear la targeta">
             <i class="fa-solid fa-repeat fa-fw"></i>
@@ -49,16 +49,16 @@
         </header>
         <div class="card-body flex-grow-1">
           <div class="d-flex flex-column justify-content-center align-items-center h-100 p-4" ref="contentBack">
-            <img class="logo img-fluid" ref="logo" src="@svg/xiao-theme-2.svg" title="Logo Xiao" alt="Logo Xiao" draggable="false" />
+            <img class="logo img-fluid" src="@svg/xiao-theme-2.svg" title="Logo Xiao" alt="Logo Xiao" ref="logo" draggable="false" />
             <p class="fw-bold text-center my-2">Redes sociales</p>
             <div class="d-flex justify-content-center">
-              <a href="https://www.instagram.com/_xiao_97_/" target="_blank" title="Instgram">
+              <a href="https://www.instagram.com/_xiao_97_/" title="Instgram" target="_blank">
                 <img src="@assets/icons/instagram.png" alt="instagram" draggable="false" />
               </a>
-              <a href="https://www.linkedin.com/in/xiaolin-jin-lin-017287173/" target="_blank" title="Linkedin">
+              <a href="https://www.linkedin.com/in/xiaolin-jin-lin-017287173/" title="Linkedin" target="_blank">
                 <img src="@assets/icons/linkedin.png" alt="linkedin" draggable="false" />
               </a>
-              <a href="https://github.com/x140l1n" target="_blank" title="GitHub">
+              <a href="https://github.com/x140l1n" title="GitHub" target="_blank">
                 <img src="@assets/icons/github.png" alt="github" draggable="false" />
               </a>
             </div>

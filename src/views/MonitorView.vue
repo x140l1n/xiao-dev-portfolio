@@ -13,15 +13,15 @@
         </div>
         <button
           type="button"
-          :class="`btn-on rounded-circle mt-xxl-5 mt-0 ${isFinishedTyping ? 'visible animated' : 'invisible'}`"
           title="Encender monitor"
-          @click="isMonitorOn = true"
           aria-label="Encender monitor"
+          :class="`btn-on rounded-circle mt-xxl-5 mt-0 ${isFinishedTyping ? 'visible animated' : 'invisible'}`"
+          @click="isMonitorOn = true"
         >
           <i class="fa-solid fa-power-off"></i>
         </button>
       </div>
-      <img class="image-greet" v-show="!isMonitorOn" src="@assets/img/greet.png" alt="Saludo" title="Saludo" draggable="false" />
+      <img class="image-greet" src="@assets/img/greet.png" title="Saludo" alt="Saludo" v-show="!isMonitorOn" draggable="false" />
       <ScreenView v-show="isMonitorOn" ref="screenView" />
     </div>
   </div>

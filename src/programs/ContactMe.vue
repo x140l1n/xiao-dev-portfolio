@@ -8,29 +8,29 @@
       <div class="mb-3 mx-2">
         <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
         <label class="form-label" :for="`input-email-${id}`">Email *</label>
-        <input class="form-control" :id="`input-email-${id}`" type="email" name="from" required />
+        <input class="form-control" name="from" type="email" :id="`input-email-${id}`" required />
       </div>
       <div class="d-flex flex-wrap">
         <div class="mb-3 flex-grow-1 mx-2">
           <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
           <label class="form-label" :for="`input-firstname-${id}`">Nombre *</label>
-          <input class="form-control" :id="`input-firstname-${id}`" type="text" name="firstname" required />
+          <input class="form-control" name="firstname" type="text" :id="`input-firstname-${id}`" required />
         </div>
         <div class="mb-3 flex-grow-1 mx-2">
           <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
           <label class="form-label" :for="`input-lastname-${id}`">Apellidos *</label>
-          <input class="form-control" :id="`input-lastname-${id}`" type="text" name="lastname" required />
+          <input class="form-control" name="lastname" type="text" :id="`input-lastname-${id}`" required />
         </div>
       </div>
       <div class="mb-3 mx-2">
         <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
         <label class="form-label" :for="`input-subject-${id}`">Asunto *</label>
-        <input class="form-control" :id="`input-subject-${id}`" type="text" name="subject" required />
+        <input class="form-control" name="subject" type="text" :id="`input-subject-${id}`" required />
       </div>
       <div class="mb-3 mx-2">
         <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
         <label class="form-label" :for="`input-message-${id}`">Mensaje *</label>
-        <textarea class="form-control" :id="`input-message-${id}`" name="message" rows="5" required></textarea>
+        <textarea class="form-control" name="message" :id="`input-message-${id}`" rows="5" required></textarea>
       </div>
       <div class="mb-3 mx-2">
         <p v-if="resultMessage" :class="`${statusMessage == 1 ? 'text-success' : 'text-danger'}`">
@@ -40,7 +40,7 @@
         </p>
       </div>
       <div class="mb-3 mx-2">
-        <button class="btn bg-primary text-light w-100" type="submit" title="Enviar" aria-label="Enviar">
+        <button class="btn bg-primary text-light w-100" type="submit" title="Enviar">
           <i class="fas fa-spinner fa-pulse fa-fw me-2" v-if="isSending"></i>
           <i class="fa-solid fa-paper-plane fa-fw me-2" v-else></i>
           Enviar
@@ -50,7 +50,7 @@
     <div class="d-flex flex-column text-center h-100 p-4 overflow-auto" v-else>
       <img class="img-fluid mt-auto mx-auto" src="@assets/img/contactme.png" title="Contáctame" alt="Contáctame" draggable="false" />
       <h3 class="mx-auto fw-bold my-4"> ¡Muchas gracias por contactar conmigo! </h3>
-      <button class="btn-go-back mb-auto" type="button" @click="showSuccess = false" title="Volver al formulario de contacto" aria-label="Volver al formulario de contacto">
+      <button class="btn-go-back mb-auto" type="button" title="Volver al formulario de contacto" @click="showSuccess = false">
         <i class="fa-solid fa-angle-left me-3"></i>
         Volver al formulario de contacto
       </button>

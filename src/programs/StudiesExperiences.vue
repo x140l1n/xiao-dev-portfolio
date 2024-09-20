@@ -1,17 +1,18 @@
 <template>
   <div class="w-100 h-100 d-flex flex-column" ref="content">
-    <ul class="nav nav-pills nav-fill bg-light shadow gap-2" ref="navbar" role="tablist" aria-orientation="horizontal">
+    <ul class="nav nav-pills nav-fill bg-light shadow gap-2" role="tablist" aria-orientation="horizontal" ref="navbar">
       <li class="nav-item">
         <button
           class="nav-link active"
-          @click="onChangeTab"
-          type="button"
-          role="tab"
           data-bs-toggle="tab"
-          :href="`#studies-${id}`"
+          type="button"
           title="Estudios"
-          :aria-controls="`studies-${id}`"
+          role="tab"
           aria-selected="true"
+          :id="`studies-${id}`"
+          @click="onChangeTab"
+          :href="`#studies-${id}`"
+          :aria-controls="`studies-${id}`"
         >
           <i class="fa-solid fa-graduation-cap me-2 fa-fw"></i>
           Estudios
@@ -20,14 +21,15 @@
       <li class="nav-item">
         <button
           class="nav-link"
-          @click="onChangeTab"
-          type="button"
-          role="tab"
           data-bs-toggle="tab"
-          :href="`#experiences-${id}`"
+          type="button"
           title="Experiencias laboral"
-          :aria-controls="`experiences-${id}`"
+          role="tab"
           aria-selected="false"
+          :id="`experiences-${id}`"
+          @click="onChangeTab"
+          :href="`#experiences-${id}`"
+          :aria-controls="`experiences-${id}`"
         >
           <i class="fa-solid fa-briefcase me-2 fa-fw"></i>
           Experiencias laboral
@@ -35,7 +37,7 @@
       </li>
     </ul>
     <div class="tab-content border-top flex-fill overflow-x-hidden overflow-y-auto" v-init-animation ref="tabContent">
-      <div class="tab-pane fade active show" :id="`studies-${id}`" :aria-labelledby="`studies-${id}`">
+      <div class="tab-pane fade active show" :aria-labelledby="`studies-${id}`">
         <div class="timeline text-light" ref="timelineStudies">
           <div class="timeline-row">
             <div class="timeline-time" data-animation="slide-left">
@@ -162,7 +164,7 @@
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" :id="`experiences-${id}`" :aria-labelledby="`experiences-${id}`">
+      <div class="tab-pane fade" :aria-labelledby="`experiences-${id}`">
         <div class="timeline text-light" ref="timelineExperiences">
           <div class="timeline-row">
             <div class="timeline-time" data-animation="slide-left">

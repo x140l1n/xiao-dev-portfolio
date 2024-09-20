@@ -2,8 +2,8 @@
   <div class="taskbar bg-primary">
     <div class="taskbar-programs d-flex gap-2 justify-content-start align-items-center flex-shrink-1 mx-auto overflow-y-hidden overflow-x-auto">
       <button
-        v-for="(program, index) in $programs"
         type="button"
+        v-for="(program, index) in $programs"
         :id="`program-${program.id}`"
         :key="program.id"
         :tabindex="10 + index"
