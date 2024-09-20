@@ -1,5 +1,5 @@
 <template>
-  <small class="text-light px-2 d-flex flex-column justify-content-center align-items-end">
+  <small class="text-light px-2 d-flex flex-column justify-content-center align-items-end" :title="getFullDate">
     <span>
       {{ datetime.time }}
     </span>
