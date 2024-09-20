@@ -260,8 +260,25 @@ export default class Settings extends Program {
       border-color: rgb(var(--bs-primary-light-rgb));
 
       &:focus {
-        background-image: var(--bs-form-switch-focus-bg);
+        &:not(:checked) {
+          background-image: var(--bs-form-switch-focus-bg) !important;
+        }
+
+        &:checked {
+          background-image: var(--bs-form-switch-focus-bg-checked) !important;
+        }
       }
+
+      &:checked {
+        background-color: rgb(var(--bs-primary-rgb));
+      }
+    }
+  }
+
+  .form-check:not(.form-switch) {
+    > .form-check-input {
+      box-shadow: 0 0 0 0.25rem rgb(var(--bs-primary-rgb), 0.25);
+      border-color: rgb(var(--bs-primary-light-rgb));
 
       &:checked {
         background-color: rgb(var(--bs-primary-rgb));

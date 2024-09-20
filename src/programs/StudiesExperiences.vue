@@ -9,7 +9,7 @@
           title="Estudios"
           role="tab"
           aria-selected="true"
-          :id="`studies-${id}`"
+          :data-bs-target="`#studies-${id}`"
           @click="onChangeTab"
           :href="`#studies-${id}`"
           :aria-controls="`studies-${id}`"
@@ -26,7 +26,7 @@
           title="Experiencias laboral"
           role="tab"
           aria-selected="false"
-          :id="`experiences-${id}`"
+          :data-bs-target="`#experiences-${id}`"
           @click="onChangeTab"
           :href="`#experiences-${id}`"
           :aria-controls="`experiences-${id}`"
@@ -37,7 +37,7 @@
       </li>
     </ul>
     <div class="tab-content border-top flex-fill overflow-x-hidden overflow-y-auto" v-init-animation ref="tabContent">
-      <div class="tab-pane fade active show" :aria-labelledby="`studies-${id}`">
+      <div class="tab-pane fade active show" :aria-labelledby="`studies-${id}`" :id="`studies-${id}`">
         <div class="timeline text-light" ref="timelineStudies">
           <div class="timeline-row">
             <div class="timeline-time" data-animation="slide-left">
@@ -164,7 +164,7 @@
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" :aria-labelledby="`experiences-${id}`">
+      <div class="tab-pane fade" :aria-labelledby="`experiences-${id}`" :id="`experiences-${id}`">
         <div class="timeline text-light" ref="timelineExperiences">
           <div class="timeline-row">
             <div class="timeline-time" data-animation="slide-left">

@@ -24,6 +24,7 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
   --bs-nav-link-active-primary-color: #ffffff !important;
 
   --bs-form-switch-focus-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='rgb(155, 130, 211)'/></svg>");
+  --bs-form-switch-focus-bg-checked: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='rgb(255, 255, 255)'/></svg>");
 }
 
 .screen.theme-2 {
@@ -39,6 +40,7 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
   --bs-nav-link-active-primary-color: #ffffff !important;
 
   --bs-form-switch-focus-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='rgb(81, 179, 195)'/></svg>");
+  --bs-form-switch-focus-bg-checked: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='rgb(255, 255, 255)'/></svg>");
 }
 
 body {
