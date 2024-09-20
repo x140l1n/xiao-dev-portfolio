@@ -4,7 +4,7 @@ const webpack = require('webpack');
 
 module.exports = {
   devServer: {
-    port: 3000
+    port: process.env.VUE_APP_PORT || 3000
   },
   configureWebpack: {
     resolve: {
