@@ -70,16 +70,16 @@ The project has the following scripts defined in the `package.json`:
 This project uses environment variables to manage configuration settings. You can find the following variables in the `.env` file:
 
 ```bash
-NODE_ENV=development # or production
 VUE_APP_PORT=3000 # the port of dev server
-VUE_APP_API_ENDPOINT=http://localhost:8000/api/ # the URL of api endpoint
+VUE_APP_API_ENDPOINT_URL=http://localhost:8000/api/ # the URL of api endpoint
 VUE_APP_CV_URL= # the URL of CV
+VUE_APP_GA_ID= # Google Analytics ID
 ```
 
-- `NODE_ENV`: Set to `development` for local development and `production` for production environments.
-- `VUE_APP_PORT`: Set the port of dev server.
-- `VUE_APP_API_ENDPOINT`: The API endpoint for making requests (default: `http://localhost:8000/api/`).
+- `VUE_APP_PORT`: Set the port of dev server. (default: 3000)
+- `VUE_APP_API_ENDPOINT_URL`: The API endpoint for making requests (default: `http://localhost:8000/api/`).
 - `VUE_APP_CV_URL`: The URL link to CV.
+- `VUE_APP_GA_ID`: The Google Analytics ID (Not required).
 
 ## 🔌 Running the PHP Server
 
