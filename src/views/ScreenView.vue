@@ -197,7 +197,7 @@ export default {
   width: 100%;
   height: 100%;
   position: relative;
-  background-size: clamp(100px, calc(100vw - 50%), 400px);
+  background-size: clamp(100px, calc(100vw - 60%), 400px);
   background-position: center;
   background-repeat: no-repeat;
 

@@ -5,7 +5,7 @@
         <header class="text-light d-flex gap-4 justify-content-between align-items-center">
           <img src="@assets/icons/coding.png" title="Icono fullstack developer" alt="Icono fullstack developer" ref="iconFullStackDeveloper" draggable="false" />
           <h4 class="m-0">FULLSTACK DEVELOPER</h4>
-          <button class="btn btn-transparent btn-flip text-light" type="button" title="Voltear la targeta" @click="flip" aria-label="Voltear la targeta">
+          <button class="btn btn-transparent btn-flip text-light" type="button" title="Voltear la targeta" aria-label="Voltear la targeta" @click="flip">
             <i class="fa-solid fa-repeat fa-fw"></i>
           </button>
         </header>
@@ -43,7 +43,7 @@
       </div>
       <div class="flip-card-back d-flex flex-column">
         <header class="text-light d-flex justify-content-end align-items-center">
-          <button class="btn btn-transparent btn-flip text-light align-self-end" type="button" title="Voltear la targeta" @click="flip" aria-label="Voltear la targeta">
+          <button class="btn btn-transparent btn-flip text-light align-self-end" type="button" title="Voltear la targeta" aria-label="Voltear la targeta" @click="flip">
             <i class="fa-solid fa-repeat fa-fw"></i>
           </button>
         </header>
