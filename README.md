@@ -76,7 +76,7 @@ VUE_APP_CV_URL= # the URL of CV
 VUE_APP_GA_ID= # Google Analytics ID
 ```
 
-- `VUE_APP_PORT`: Set the port of dev server. (default: 3000)
+- `VUE_APP_PORT`: Set the port of dev server (default: 3000).
 - `VUE_APP_API_ENDPOINT_URL`: The API endpoint for making requests (default: `http://localhost:8000/api/`).
 - `VUE_APP_CV_URL`: The URL link to CV.
 - `VUE_APP_GA_ID`: The Google Analytics ID (Not required).
