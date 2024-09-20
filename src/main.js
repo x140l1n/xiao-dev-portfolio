@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'production') {
     config: {
       id: process.env.VUE_APP_GA_ID,
       params: {
-        send_page_view: false
+        'send_page_view': false
       }
     }
   });
