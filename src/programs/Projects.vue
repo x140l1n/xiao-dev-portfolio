@@ -11,11 +11,11 @@
             <p>Juego arcade de plataforma para las puertas abiertas del Centre D'Estudis Politècnics.</p>
             <div class="d-flex flex-wrap my-4">
               <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events -->
-              <button class="mx-2" @click="onOpenBrowser('https://x140l1n.github.io/Arkanoid/')" title="Live demo Arkanoid" aria-label="Live demo Arkanoid">
+              <button class="mx-2" @click="onOpenBrowser('https://x140l1n.github.io/arkanoid/')" title="Live demo Arkanoid" aria-label="Live demo Arkanoid">
                 <img class="me-2" src="@assets/icons/play.png" alt="Live demo Arkanoid" title="Live demo Arkanoid" draggable="false" />
                 Live demo
               </button>
-              <a class="mx-2" role="button" href="https://github.com/x140l1n/Arkanoid" title="GitHub Arkanoid" aria-label="GitHub Arkanoid">
+              <a class="mx-2" role="button" href="https://github.com/x140l1n/arkanoid" title="GitHub Arkanoid" aria-label="GitHub Arkanoid">
                 <img class="me-2" src="@assets/icons/github.png" alt="GitHub Arkanoid" title="GitHub Arkanoid" draggable="false" />
                 GitHub Arkanoid
               </a>
