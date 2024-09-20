@@ -13,7 +13,7 @@ if (process.env.NODE_ENV === 'production' && process.env.VUE_APP_GA_ID) {
     config: {
       id: process.env.VUE_APP_GA_ID,
       params: {
-        // eslint-disable-next-line
+        // eslint-disable-next-line camelcase
         send_page_view: false
       }
     }
@@ -44,7 +44,7 @@ Vue.directive('init-animation', {
     if (binding.expression) {
       try {
         options = eval(`(${binding.expression})`);
-        // eslint-disable-next-line
+        // eslint-disable-next-line no-empty
       } catch {
         options = {};
       }

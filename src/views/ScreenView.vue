@@ -115,7 +115,7 @@ export default {
         this.addWindow(programObject);
       });
 
-      // eslint-disable-next-line
+      // eslint-disable-next-line camelcase
       this.$gtag?.event('open_program', { event_category: 'program', event_label: programName });
     },
     async addWindow(programObject) {

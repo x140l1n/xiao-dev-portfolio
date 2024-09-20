@@ -130,7 +130,7 @@ export default {
             document.msExitFullscreen();
           }
         }
-        // eslint-disable-next-line
+        // eslint-disable-next-line no-empty
       } catch {}
     },
     isMonitorOn() {
