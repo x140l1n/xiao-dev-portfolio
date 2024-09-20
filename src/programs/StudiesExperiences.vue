@@ -2,13 +2,13 @@
   <div class="w-100 h-100 d-flex flex-column" ref="content">
     <ul class="nav nav-pills nav-fill bg-light shadow gap-2" ref="navbar" role="tablist" aria-orientation="horizontal">
       <li class="nav-item">
-        <a class="nav-link active" role="tab" data-bs-toggle="tab" :href="`#studies-${id}`" :aria-controls="`studies-${id}`" aria-selected="true">
+        <a class="nav-link active" role="tab" data-bs-toggle="tab" :href="`#studies-${id}`" title="Estudios" :aria-controls="`studies-${id}`" aria-selected="true">
           <i class="fa-solid fa-graduation-cap me-2 fa-fw"></i>
           Estudios
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" role="tab" data-bs-toggle="tab" :href="`#experiences-${id}`" :aria-controls="`experiences-${id}`" aria-selected="false">
+        <a class="nav-link" role="tab" data-bs-toggle="tab" :href="`#experiences-${id}`" title="Experiencias laboral" :aria-controls="`experiences-${id}`" aria-selected="false">
           <i class="fa-solid fa-briefcase me-2 fa-fw"></i>
           Experiencias laboral
         </a>
