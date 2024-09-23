@@ -79,7 +79,7 @@
               <h6 class="fw-bold">
                 Hobbies
               </h6>
-              <p>Danza.</p>
+              <p class="mb-0">Danza.</p>
             </div>
           </div>
         </div>
