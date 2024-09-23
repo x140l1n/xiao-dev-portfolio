@@ -271,6 +271,7 @@ export default class Projects extends Program {
       font-size: 0.9rem;
       background-color: transparent;
       border: none;
+      padding: 0;
     }
 
     > .description .badge {
