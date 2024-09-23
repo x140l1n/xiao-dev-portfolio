@@ -5,7 +5,7 @@
     "browser": true,
     "es6": true
   },
-  "extends": ["plugin:vue/essential", "eslint:recommended", "plugin:vuejs-accessibility/recommended"],
+  "extends": ["plugin:vue/recommended", "eslint:recommended", "plugin:vuejs-accessibility/recommended"],
   "rules": {
     "no-inline-comments":"warn",
     "no-unused-vars": "warn",

@@ -3,17 +3,40 @@
     <div class="flex-grow-1">
       <div class="d-flex flex-column h-100">
         <div class="p-2">
-          <form class="d-flex gap-2" @submit.prevent="onSearch" ref="form" target="iframe">
+          <form
+            ref="form"
+            @submit.prevent="onSearch"
+            class="d-flex gap-2"
+            target="iframe"
+          >
             <div class="flex-grow-1">
               <!-- eslint-disable-next-line vuejs-accessibility/form-control-has-label -->
-              <input class="form-control form-control-sm rounded-pill" name="input-search" type="text" ref="inputSearch" placeholder="Escribe para buscar" />
+              <input
+                ref="inputSearch"
+                class="form-control form-control-sm rounded-pill"
+                name="input-search"
+                type="text"
+                placeholder="Escribe para buscar"
+              >
             </div>
-            <button class="btn bg-primary text-light btn-sm rounded-circle border border-1" type="submit" title="Buscar" aria-label="Buscar" ref="btnSubmit">
-              <i class="fa-solid fa-magnifying-glass"></i>
+            <button
+              ref="btnSubmit"
+              class="btn bg-primary text-light btn-sm rounded-circle border border-1"
+              type="submit"
+              title="Buscar"
+              aria-label="Buscar"
+            >
+              <i class="fa-solid fa-magnifying-glass" />
             </button>
           </form>
         </div>
-        <iframe class="flex-grow-1" title="Contenido navegador" ref="iframe" frameborder="0" scrolling="auto"></iframe>
+        <iframe
+          ref="iframe"
+          class="flex-grow-1"
+          title="Contenido navegador"
+          frameborder="0"
+          scrolling="auto"
+        />
       </div>
     </div>
   </div>
@@ -54,7 +77,9 @@ import IconBrowser from '@assets/icons/browser.png';
       let search = this.$refs.inputSearch.value;
 
       if (!this.isValidHttpUrl(search)) {
-        search = `https://www.google.com/search?igu=1&ei=&q=${encodeURI(search)}`;
+        search = `https://www.google.com/search?igu=1&ei=&q=${encodeURI(
+          search
+        )}`;
       } else {
         if (!search.startsWith('https://') && !search.startsWith('http://')) {
           search = `https://${search}`;

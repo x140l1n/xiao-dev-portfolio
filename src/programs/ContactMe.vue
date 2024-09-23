@@ -1,58 +1,147 @@
 <template>
   <div class="w-100 h-100">
-    <form class="overflow-auto h-100 p-4" v-if="!showSuccess" @submit.prevent="onSubmit">
+    <form
+      v-if="!showSuccess"
+      @submit.prevent="onSubmit"
+      class="overflow-auto h-100 p-4"
+    >
       <div class="mb-3 mx-2">
-        <h5 class="fw-bold"> Si tienes alguna duda no dudes en enviarme un correo ;) </h5>
+        <h5 class="fw-bold">
+          Si tienes alguna duda no dudes en enviarme un correo ;)
+        </h5>
       </div>
-      <hr />
+      <hr>
       <div class="mb-3 mx-2">
         <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
-        <label class="form-label" :for="`input-email-${id}`">Email *</label>
-        <input class="form-control" name="from" type="email" :id="`input-email-${id}`" required />
+        <label
+          :for="`input-email-${id}`"
+          class="form-label"
+        >Email *</label>
+        <input
+          :id="`input-email-${id}`"
+          class="form-control"
+          name="from"
+          type="email"
+          required
+        >
       </div>
       <div class="d-flex flex-wrap">
         <div class="mb-3 flex-grow-1 mx-2">
           <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
-          <label class="form-label" :for="`input-firstname-${id}`">Nombre *</label>
-          <input class="form-control" name="firstname" type="text" :id="`input-firstname-${id}`" required />
+          <label
+            :for="`input-firstname-${id}`"
+            class="form-label"
+          >Nombre *</label>
+          <input
+            :id="`input-firstname-${id}`"
+            class="form-control"
+            name="firstname"
+            type="text"
+            required
+          >
         </div>
         <div class="mb-3 flex-grow-1 mx-2">
           <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
-          <label class="form-label" :for="`input-lastname-${id}`">Apellidos *</label>
-          <input class="form-control" name="lastname" type="text" :id="`input-lastname-${id}`" required />
+          <label
+            :for="`input-lastname-${id}`"
+            class="form-label"
+          >Apellidos *</label>
+          <input
+            :id="`input-lastname-${id}`"
+            class="form-control"
+            name="lastname"
+            type="text"
+            required
+          >
         </div>
       </div>
       <div class="mb-3 mx-2">
         <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
-        <label class="form-label" :for="`input-subject-${id}`">Asunto *</label>
-        <input class="form-control" name="subject" type="text" :id="`input-subject-${id}`" required />
+        <label
+          :for="`input-subject-${id}`"
+          class="form-label"
+        >Asunto *</label>
+        <input
+          :id="`input-subject-${id}`"
+          class="form-control"
+          name="subject"
+          type="text"
+          required
+        >
       </div>
       <div class="mb-3 mx-2">
         <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
-        <label class="form-label" :for="`input-message-${id}`">Mensaje *</label>
-        <textarea class="form-control" name="message" :id="`input-message-${id}`" rows="5" required></textarea>
+        <label
+          :for="`input-message-${id}`"
+          class="form-label"
+        >Mensaje *</label>
+        <textarea
+          :id="`input-message-${id}`"
+          class="form-control"
+          name="message"
+          rows="5"
+          required
+        />
       </div>
       <div class="mb-3 mx-2">
-        <p v-if="resultMessage" :class="`${statusMessage == 1 ? 'text-success' : 'text-danger'}`">
-          <i class="fa-solid fa-circle-check" v-if="statusMessage == 1"></i>
-          <i class="fa-solid fa-circle-exclamation" v-else-if="statusMessage == -1"></i>
-          <i class="fa-solid fa-circle-xmark" v-else></i>
+        <p
+          v-if="resultMessage"
+          :class="`${statusMessage == 1 ? 'text-success' : 'text-danger'}`"
+        >
+          <i
+            v-if="statusMessage == 1"
+            class="fa-solid fa-circle-check"
+          />
+          <i
+            v-else-if="statusMessage == -1"
+            class="fa-solid fa-circle-exclamation"
+          />
+          <i
+            v-else
+            class="fa-solid fa-circle-xmark"
+          />
           {{ resultMessage }}
         </p>
       </div>
       <div class="mb-3 mx-2">
-        <button class="btn bg-primary text-light w-100" type="submit" title="Enviar">
-          <i class="fas fa-spinner fa-pulse fa-fw me-2" v-if="isSending"></i>
-          <i class="fa-solid fa-paper-plane fa-fw me-2" v-else></i>
+        <button
+          class="btn bg-primary text-light w-100"
+          type="submit"
+          title="Enviar"
+        >
+          <i
+            v-if="isSending"
+            class="fas fa-spinner fa-pulse fa-fw me-2"
+          />
+          <i
+            v-else
+            class="fa-solid fa-paper-plane fa-fw me-2"
+          />
           Enviar
         </button>
       </div>
     </form>
-    <div class="d-flex flex-column text-center h-100 p-4 overflow-auto" v-else>
-      <img class="img-fluid mt-auto mx-auto" src="@assets/img/contactme.png" title="Contáctame" alt="Contáctame" draggable="false" />
-      <h3 class="mx-auto fw-bold my-4"> ¡Muchas gracias por contactar conmigo! </h3>
-      <button class="btn-go-back mb-auto" type="button" title="Volver al formulario de contacto" @click="showSuccess = false">
-        <i class="fa-solid fa-angle-left me-3"></i>
+    <div
+      v-else
+      class="d-flex flex-column text-center h-100 p-4 overflow-auto"
+    >
+      <img
+        class="img-fluid mt-auto mx-auto"
+        src="@assets/img/contactme.png"
+        title="Contáctame"
+        alt="Contáctame"
+        draggable="false"
+      >
+      <h3 class="mx-auto fw-bold my-4">
+        ¡Muchas gracias por contactar conmigo!
+      </h3>
+      <button
+        @click="showSuccess = false"
+        class="btn-go-back mb-auto"
+        type="button"
+        title="Volver al formulario de contacto"
+      >
+        <i class="fa-solid fa-angle-left me-3" />
         Volver al formulario de contacto
       </button>
     </div>

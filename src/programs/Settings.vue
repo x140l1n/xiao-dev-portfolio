@@ -1,153 +1,251 @@
 <template>
   <div class="w-100 h-100">
-    <div class="h-100 d-flex align-items-start overflow-auto" ref="content">
-      <div class="nav justify-content-stretch flex-nowrap flex-column nav-pills me-3 shadow text-trucante bg-light overflow-y-auto" role="tablist" aria-orientation="vertical" ref="nav">
+    <div
+      ref="content"
+      class="h-100 d-flex align-items-start overflow-auto"
+    >
+      <div
+        ref="nav"
+        class="nav justify-content-stretch flex-nowrap flex-column nav-pills me-3 shadow text-trucante bg-light overflow-y-auto"
+        role="tablist"
+        aria-orientation="vertical"
+      >
         <button
+          @click="onChangeTab"
+          :id="`v-pills-general-tab-${id}`"
+          :data-bs-target="`#v-pills-general-${id}`"
+          :aria-controls="`v-pills-general-${id}`"
           class="nav-link active rounded-0"
           data-bs-toggle="pill"
           type="button"
           title="General"
           role="tab"
           aria-selected="true"
-          @click="onChangeTab"
-          :id="`v-pills-general-tab-${id}`"
-          :data-bs-target="`#v-pills-general-${id}`"
-          :aria-controls="`v-pills-general-${id}`"
         >
-          <img class="icon" src="@assets/icons/monitor.png" alt="General" draggable="false" />
+          <img
+            class="icon"
+            src="@assets/icons/monitor.png"
+            alt="General"
+            draggable="false"
+          >
           <span>General</span>
         </button>
         <button
+          @click="onChangeTab"
+          :id="`v-pills-themes-tab-${id}`"
+          :data-bs-target="`#v-pills-themes-${id}`"
+          :aria-controls="`v-pills-themes-${id}`"
           class="nav-link rounded-0"
           data-bs-toggle="pill"
           type="button"
           title="Temas"
           role="tab"
           aria-selected="false"
-          @click="onChangeTab"
-          :id="`v-pills-themes-tab-${id}`"
-          :data-bs-target="`#v-pills-themes-${id}`"
-          :aria-controls="`v-pills-themes-${id}`"
         >
-          <img class="icon" src="@assets/icons/theme.png" alt="Temas" draggable="false" />
+          <img
+            class="icon"
+            src="@assets/icons/theme.png"
+            alt="Temas"
+            draggable="false"
+          >
           <span>Temas</span>
         </button>
         <button
+          @click="onChangeTab"
+          :id="`v-pills-about-tab-${id}`"
+          :data-bs-target="`#v-pills-about-${id}`"
+          :aria-controls="`v-pills-about-${id}`"
           class="nav-link rounded-0"
           data-bs-toggle="pill"
           type="button"
           title="Acerca de"
           role="tab"
           aria-selected="false"
-          @click="onChangeTab"
-          :id="`v-pills-about-tab-${id}`"
-          :data-bs-target="`#v-pills-about-${id}`"
-          :aria-controls="`v-pills-about-${id}`"
         >
-          <img class="icon" src="@assets/icons/info.png" alt="Acerca de" draggable="false" />
+          <img
+            class="icon"
+            src="@assets/icons/info.png"
+            alt="Acerca de"
+            draggable="false"
+          >
           <span>Acerca de</span>
         </button>
       </div>
-      <div class="tab-content flex-fill" ref="tabContent">
-        <div class="tab-pane p-3 fade show active" role="tabpanel" :id="`v-pills-general-${id}`" :aria-labelledby="`v-pills-general-tab-${id}`">
+      <div
+        ref="tabContent"
+        class="tab-content flex-fill"
+      >
+        <div
+          :id="`v-pills-general-${id}`"
+          :aria-labelledby="`v-pills-general-tab-${id}`"
+          class="tab-pane p-3 fade show active"
+          role="tabpanel"
+        >
           <h4>General</h4>
           <div class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-center gap-2">
                 <div class="d-flex flex-column gap-2">
                   <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
-                  <label class="fw-bold" :for="`switch-fullscreen-${id}`">Habilitar modo pantalla completa</label>
-                  <small class="fst-italic text-danger"
-                    ><strong>Nota:</strong>
+                  <label
+                    :for="`switch-fullscreen-${id}`"
+                    class="fw-bold"
+                  >Habilitar modo pantalla completa</label>
+                  <small
+                    class="fst-italic text-danger"
+                  ><strong>Nota:</strong>
                     Si lo habilitas en el propio navegador puede que no funcione esta opción.
                   </small>
                 </div>
                 <div class="form-check form-switch">
                   <input
-                    class="form-check-input"
-                    type="checkbox"
                     v-model="$isFullscreen"
                     :id="`switch-fullscreen-${id}`"
                     :true-value="true"
                     :false-value="false"
-                    draggable="false"
                     :title="`${!$isFullscreen ? 'Modo pantalla completa' : 'Modo pantalla normal'}`"
                     :aria-checked="$isFullscreen"
-                  />
+                    class="form-check-input"
+                    type="checkbox"
+                    draggable="false"
+                  >
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="tab-pane p-3 fade" role="tabpanel" :id="`v-pills-themes-${id}`" :aria-labelledby="`v-pills-themes-tab-${id}`">
+        <div
+          :id="`v-pills-themes-${id}`"
+          :aria-labelledby="`v-pills-themes-tab-${id}`"
+          class="tab-pane p-3 fade"
+          role="tabpanel"
+        >
           <h4>Temas</h4>
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Escoger tema</h5>
+              <h5 class="card-title">
+                Escoger tema
+              </h5>
               <div class="d-flex flex-wrap mt-5">
                 <div class="theme-selector theme-1 p-3 my-2">
                   <div class="form-check fw-bold text-light">
-                    <input class="form-check-input" type="radio" value="theme-2" v-model="$themeSelected" :id="`rdb-theme-2-${id}`" :name="`selector-theme-${id}`" draggable="false" />
+                    <input
+                      v-model="$themeSelected"
+                      :id="`rdb-theme-2-${id}`"
+                      :name="`selector-theme-${id}`"
+                      class="form-check-input"
+                      type="radio"
+                      value="theme-2"
+                      draggable="false"
+                    >
                     <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
-                    <label class="form-check-label" :for="`rdb-theme-2-${id}`">Tema azul oscuro</label>
+                    <label
+                      :for="`rdb-theme-2-${id}`"
+                      class="form-check-label"
+                    >Tema azul oscuro</label>
                   </div>
                 </div>
                 <div class="theme-selector theme-2 p-3 my-2">
                   <div class="form-check fw-bold text-dark">
-                    <input class="form-check-input" type="radio" value="theme-1" v-model="$themeSelected" :id="`rdb-theme-1-${id}`" :name="`selector-theme-${id}`" draggable="false" />
+                    <input
+                      v-model="$themeSelected"
+                      :id="`rdb-theme-1-${id}`"
+                      :name="`selector-theme-${id}`"
+                      class="form-check-input"
+                      type="radio"
+                      value="theme-1"
+                      draggable="false"
+                    >
                     <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
-                    <label class="form-check-label" :for="`rdb-theme-1-${id}`">Tema morado claro</label>
+                    <label
+                      :for="`rdb-theme-1-${id}`"
+                      class="form-check-label"
+                    >Tema morado claro</label>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="tab-pane p-3 fade" role="tabpanel" :id="`v-pills-about-${id}`" :aria-labelledby="`v-pills-about-tab-${id}`">
+        <div
+          :id="`v-pills-about-${id}`"
+          :aria-labelledby="`v-pills-about-tab-${id}`"
+          class="tab-pane p-3 fade"
+          role="tabpanel"
+        >
           <h4>Acerca de</h4>
           <div class="card">
             <div class="card-body">
-              <h5 class="card-title">Especificaciones del sistema</h5>
+              <h5 class="card-title">
+                Especificaciones del sistema
+              </h5>
               <table class="table table-borderless mt-4">
                 <tr>
-                  <td class="fw-bold label">Edición</td>
+                  <td class="fw-bold label">
+                    Edición
+                  </td>
                   <td>XiaoDev OS</td>
                 </tr>
                 <tr>
-                  <td class="fw-bold label">Versión</td>
+                  <td class="fw-bold label">
+                    Versión
+                  </td>
                   <td>{{ getVersion }}</td>
                 </tr>
                 <tr>
-                  <td class="fw-bold label">Fecha de compilación</td>
+                  <td class="fw-bold label">
+                    Fecha de compilación
+                  </td>
                   <td>{{ getDateVersion }}</td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td></td>
+                  <td />
+                  <td />
                 </tr>
                 <tr>
-                  <td class="fw-bold label">Creado por</td>
+                  <td class="fw-bold label">
+                    Creado por
+                  </td>
                   <td>Xiaolin Jin Lin</td>
                 </tr>
                 <tr>
-                  <td class="fw-bold label">Github</td>
+                  <td class="fw-bold label">
+                    Github
+                  </td>
                   <td>
-                    <a class="p-0" href="https://github.com/x140l1n/portfolio" target="_blank">https://github.com/x140l1n/portfolio</a>
+                    <a
+                      class="p-0"
+                      href="https://github.com/x140l1n/portfolio"
+                      target="_blank"
+                    >https://github.com/x140l1n/portfolio</a>
                   </td>
                 </tr>
                 <tr>
-                  <td></td>
-                  <td></td>
+                  <td />
+                  <td />
                 </tr>
                 <tr>
-                  <td class="fw-bold label pe-4">Desarrollado con</td>
+                  <td class="fw-bold label pe-4">
+                    Desarrollado con
+                  </td>
                   <td>
                     <div class="d-inline-block text-center">
-                      <img src="@assets/icons/vue.png" title="Vue" alt="Vue" draggable="false" />
+                      <img
+                        src="@assets/icons/vue.png"
+                        title="Vue"
+                        alt="Vue"
+                        draggable="false"
+                      >
                       <figcaption>Vue 2</figcaption>
                     </div>
                     <div class="d-inline-block text-center">
-                      <img src="@assets/icons/bootstrap.png" title="Bootstrap" alt="Bootstrap" width="85" draggable="false" />
+                      <img
+                        src="@assets/icons/bootstrap.png"
+                        title="Bootstrap"
+                        alt="Bootstrap"
+                        width="85"
+                        draggable="false"
+                      >
                       <figcaption>Bootstrap 5</figcaption>
                     </div>
                   </td>

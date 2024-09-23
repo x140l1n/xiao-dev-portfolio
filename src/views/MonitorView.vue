@@ -1,28 +1,52 @@
 <template>
-  <div class="monitor" ref="monitor">
+  <div
+    ref="monitor"
+    class="monitor"
+  >
     <div class="monitor-inner">
-      <div :class="`layer-on-off ${!isFirstTime && isMonitorOn ? 'layer-on' : ''}`"></div>
-      <div class="presentation d-flex flex-column flex-xxl-row justify-content-center align-items-center gap-5 text-center text-xxl-start text-light overflow-auto" v-if="!isMonitorOn">
+      <div :class="`layer-on-off ${!isFirstTime && isMonitorOn ? 'layer-on' : ''}`" />
+      <div
+        v-if="!isMonitorOn"
+        class="presentation d-flex flex-column flex-xxl-row justify-content-center align-items-center gap-5 text-center text-xxl-start text-light overflow-auto"
+      >
         <div class="typewriter">
-          <h1 class="title fw-bold lh-lg" ref="title">¡Bienvenido a mi portfolio! 🖥️</h1>
-          <br />
+          <h1
+            ref="title"
+            class="title fw-bold lh-lg"
+          >
+            ¡Bienvenido a mi portfolio! 🖥️
+          </h1>
+          <br>
           <div class="fs-3">
-            <span class="description" ref="description">Para comenzar a explorar solo tienes que hacer clic en el siguiente botón</span>
-            <span :class="`pointer ${isFinishedTyping ? 'visible animated' : 'invisible'}`"></span>
+            <span
+              ref="description"
+              class="description"
+            >Para comenzar a explorar solo tienes que hacer clic en el siguiente botón</span>
+            <span :class="`pointer ${isFinishedTyping ? 'visible animated' : 'invisible'}`" />
           </div>
         </div>
         <button
+          :class="`btn-on rounded-circle mt-xxl-5 mt-0 ${isFinishedTyping ? 'visible animated' : 'invisible'}`"
+          @click="isMonitorOn = true"
           type="button"
           title="Encender monitor"
           aria-label="Encender monitor"
-          :class="`btn-on rounded-circle mt-xxl-5 mt-0 ${isFinishedTyping ? 'visible animated' : 'invisible'}`"
-          @click="isMonitorOn = true"
         >
-          <i class="fa-solid fa-power-off"></i>
+          <i class="fa-solid fa-power-off" />
         </button>
       </div>
-      <img class="image-greet" src="@assets/img/greet.png" title="Saludo" alt="Saludo" v-show="!isMonitorOn" draggable="false" />
-      <ScreenView v-show="isMonitorOn" ref="screenView" />
+      <img
+        v-show="!isMonitorOn"
+        class="image-greet"
+        src="@assets/img/greet.png"
+        title="Saludo"
+        alt="Saludo"
+        draggable="false"
+      >
+      <ScreenView
+        ref="screenView"
+        v-show="isMonitorOn"
+      />
     </div>
   </div>
 </template>
@@ -38,6 +62,39 @@ export default {
       isFirstTime: true,
       isFinishedTyping: false
     };
+  },
+  watch: {
+    $isFullscreen(value) {
+      try {
+        if (value) {
+          if (document.documentElement.requestFullscreen) {
+            document.documentElement.requestFullscreen();
+          } else if (document.documentElement.mozRequestFullscreen) {
+            document.documentElement.mozRequestFullscreen();
+          } else if (document.documentElement.webkitRequestFullscreen) {
+            document.documentElement.webkitRequestFullscreen();
+          } else if (document.documentElement.msRequestFullscreen) {
+            document.documentElement.msRequestFullscreen();
+          }
+        } else if (document.fullscreenElement || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement) {
+          if (document.exitFullscreen) {
+            document.exitFullscreen();
+          } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+          } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+          } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+          }
+        }
+        // eslint-disable-next-line no-empty
+      } catch {}
+    },
+    isMonitorOn() {
+      if (this.isFirstTime) {
+        this.isFirstTime = false;
+      }
+    }
   },
   mounted() {
     this.init();
@@ -104,39 +161,6 @@ export default {
           this.$isFullscreen = false;
         }
       });
-    }
-  },
-  watch: {
-    $isFullscreen(value) {
-      try {
-        if (value) {
-          if (document.documentElement.requestFullscreen) {
-            document.documentElement.requestFullscreen();
-          } else if (document.documentElement.mozRequestFullscreen) {
-            document.documentElement.mozRequestFullscreen();
-          } else if (document.documentElement.webkitRequestFullscreen) {
-            document.documentElement.webkitRequestFullscreen();
-          } else if (document.documentElement.msRequestFullscreen) {
-            document.documentElement.msRequestFullscreen();
-          }
-        } else if (document.fullscreenElement || document.webkitIsFullScreen || document.mozFullScreen || document.msFullscreenElement) {
-          if (document.exitFullscreen) {
-            document.exitFullscreen();
-          } else if (document.webkitExitFullscreen) {
-            document.webkitExitFullscreen();
-          } else if (document.mozCancelFullScreen) {
-            document.mozCancelFullScreen();
-          } else if (document.msExitFullscreen) {
-            document.msExitFullscreen();
-          }
-        }
-        // eslint-disable-next-line no-empty
-      } catch {}
-    },
-    isMonitorOn() {
-      if (this.isFirstTime) {
-        this.isFirstTime = false;
-      }
     }
   }
 };

@@ -1,61 +1,206 @@
 <template>
-  <div class="screen user-none-select" v-resize="onScreenResize" ref="screen">
-    <div class="screen-content" role="presentation" aria-label="Escritorio" ref="screenContent" @click.self="onRemoveProgramActive">
+  <div
+    ref="screen"
+    v-resize="onScreenResize"
+    class="screen user-none-select"
+  >
+    <div
+      ref="screenContent"
+      @click.self="onRemoveProgramActive"
+      class="screen-content"
+      role="presentation"
+      aria-label="Escritorio"
+    >
       <div class="program p-2">
-        <button class="program-inner program-knowledge p-2" type="button" title="Ajustes" alt="Ajustes" @click="onOpenProgram('Settings')">
-          <img id="program-settings" src="@assets/icons/settings.png" alt="Logo ajustes" draggable="false" />
-          <span class="text-light" for="program-settings">Ajustes</span>
+        <button
+          @click="onOpenProgram('Settings')"
+          class="program-inner program-knowledge p-2"
+          type="button"
+          title="Ajustes"
+          alt="Ajustes"
+        >
+          <img
+            id="program-settings"
+            src="@assets/icons/settings.png"
+            alt="Logo ajustes"
+            draggable="false"
+          >
+          <span
+            class="text-light"
+            for="program-settings"
+          >Ajustes</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner p-2" type="button" title="Sobre mi" alt="Sobre mi" @click="onOpenProgram('AboutMe')">
-          <img id="program-about-me" src="@assets/icons/about-me.png" alt="Logo sobre mi" draggable="false" />
-          <span class="text-light" for="program-about-me">Sobre mi</span>
+        <button
+          @click="onOpenProgram('AboutMe')"
+          class="program-inner p-2"
+          type="button"
+          title="Sobre mi"
+          alt="Sobre mi"
+        >
+          <img
+            id="program-about-me"
+            src="@assets/icons/about-me.png"
+            alt="Logo sobre mi"
+            draggable="false"
+          >
+          <span
+            class="text-light"
+            for="program-about-me"
+          >Sobre mi</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-knowledge p-2" type="button" title="Conocimientos" alt="Conocimientos" @click="onOpenProgram('Knowledge')">
-          <img id="program-knowledge" src="@assets/icons/knowledge.png" alt="Logo mis conocimientos" draggable="false" />
-          <span class="text-light" for="program-knowledge">Conocimientos</span>
+        <button
+          @click="onOpenProgram('Knowledge')"
+          class="program-inner program-knowledge p-2"
+          type="button"
+          title="Conocimientos"
+          alt="Conocimientos"
+        >
+          <img
+            id="program-knowledge"
+            src="@assets/icons/knowledge.png"
+            alt="Logo mis conocimientos"
+            draggable="false"
+          >
+          <span
+            class="text-light"
+            for="program-knowledge"
+          >Conocimientos</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-experiences-studies p-2" type="button" title="Estudios y Experiencias" alt="Estudios y Experiencias" @click="onOpenProgram('StudiesExperiences')">
-          <img id="program-experiences-studies" src="@assets/icons/experiences-studies.png" alt="Logo estudios y experiencias" draggable="false" />
-          <span class="text-light" for="program-experiences-studies">Estudios y Experiencias</span>
+        <button
+          @click="onOpenProgram('StudiesExperiences')"
+          class="program-inner program-experiences-studies p-2"
+          type="button"
+          title="Estudios y Experiencias"
+          alt="Estudios y Experiencias"
+        >
+          <img
+            id="program-experiences-studies"
+            src="@assets/icons/experiences-studies.png"
+            alt="Logo estudios y experiencias"
+            draggable="false"
+          >
+          <span
+            class="text-light"
+            for="program-experiences-studies"
+          >Estudios y Experiencias</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-projects p-2" type="button" title="Proyectos" alt="Proyectos" @click="onOpenProgram('Projects')">
-          <img id="program-projects" src="@assets/icons/projects.png" alt="Logo mis proyectos" draggable="false" />
-          <span class="text-light" for="program-projects">Proyectos</span>
+        <button
+          @click="onOpenProgram('Projects')"
+          class="program-inner program-projects p-2"
+          type="button"
+          title="Proyectos"
+          alt="Proyectos"
+        >
+          <img
+            id="program-projects"
+            src="@assets/icons/projects.png"
+            alt="Logo mis proyectos"
+            draggable="false"
+          >
+          <span
+            class="text-light"
+            for="program-projects"
+          >Proyectos</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-contactme p-2" type="button" title="Contáctame" alt="Contáctame" @click="onOpenProgram('ContactMe')">
-          <img id="program-contactme" src="@assets/icons/email.png" alt="Logo contáctame" draggable="false" />
-          <span class="text-light" for="program-contactme">Contáctame</span>
+        <button
+          @click="onOpenProgram('ContactMe')"
+          class="program-inner program-contactme p-2"
+          type="button"
+          title="Contáctame"
+          alt="Contáctame"
+        >
+          <img
+            id="program-contactme"
+            src="@assets/icons/email.png"
+            alt="Logo contáctame"
+            draggable="false"
+          >
+          <span
+            class="text-light"
+            for="program-contactme"
+          >Contáctame</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-browser p-2" type="button" title="Navegador" alt="Navegador" @click="onOpenProgram('Browser')">
-          <img id="program-browser" src="@assets/icons/browser.png" alt="Logo navegador" draggable="false" />
-          <span class="text-light" for="program-browser">Navegador</span>
+        <button
+          @click="onOpenProgram('Browser')"
+          class="program-inner program-browser p-2"
+          type="button"
+          title="Navegador"
+          alt="Navegador"
+        >
+          <img
+            id="program-browser"
+            src="@assets/icons/browser.png"
+            alt="Logo navegador"
+            draggable="false"
+          >
+          <span
+            class="text-light"
+            for="program-browser"
+          >Navegador</span>
         </button>
       </div>
       <div class="program p-2">
-        <button class="program-inner program-cv p-2" type="button" title="Currículum Vitae" alt="Currículum Vitae" @click="onOpenProgram('CV')">
-          <img id="program-cv" src="@assets/icons/pdf.png" alt="Logo currículum vitae" draggable="false" />
-          <span class="text-light" for="program-cv">Currículum Vitae</span>
+        <button
+          @click="onOpenProgram('CV')"
+          class="program-inner program-cv p-2"
+          type="button"
+          title="Currículum Vitae"
+          alt="Currículum Vitae"
+        >
+          <img
+            id="program-cv"
+            src="@assets/icons/pdf.png"
+            alt="Logo currículum vitae"
+            draggable="false"
+          >
+          <span
+            class="text-light"
+            for="program-cv"
+          >Currículum Vitae</span>
         </button>
       </div>
     </div>
-    <TaskBarView ref="taskBarView" draggable="false" />
-    <div class="toast show" role="alert" v-if="!isClosedToast" ref="tipFullscreen" draggable="false" tabindex="-1">
+    <TaskBarView
+      ref="taskBarView"
+      draggable="false"
+    />
+    <div
+      ref="tipFullscreen"
+      v-if="!isClosedToast"
+      class="toast show"
+      role="alert"
+      draggable="false"
+      tabindex="-1"
+    >
       <div class="toast-header">
-        <img class="rounded me-2" src="@assets/icons/tips.png" title="Icono tips" alt="Icono tips" width="30px" draggable="false" />
+        <img
+          class="rounded me-2"
+          src="@assets/icons/tips.png"
+          title="Icono tips"
+          alt="Icono tips"
+          width="30px"
+          draggable="false"
+        >
         <strong class="me-auto">Modo pantalla completa</strong>
-        <button class="btn-close" type="button" title="Cerrar tips" aria-label="Cerrar tips" @click="isClosedToast = true"></button>
+        <button
+          @click="isClosedToast = true"
+          class="btn-close"
+          type="button"
+          title="Cerrar tips"
+          aria-label="Cerrar tips"
+        />
       </div>
       <div class="toast-body">
         Habilita la pantalla completa para tener una mejor experiencia de navegación. Para habilitar entra en
@@ -78,6 +223,38 @@ export default {
       idTimeoutOpenNextProgram: null,
       isClosedToast: false
     };
+  },
+  watch: {
+    $isFullscreen(value) {
+      this.isClosedToast = value;
+    },
+    $themeSelected(value) {
+      switch (value) {
+        case 'theme-1':
+          this.$refs.screen.classList.add('theme-1');
+          this.$refs.screen.classList.remove('theme-2');
+
+          break;
+
+        case 'theme-2':
+          this.$refs.screen.classList.add('theme-2');
+          this.$refs.screen.classList.remove('theme-1');
+
+          break;
+
+        default:
+          this.$themeSelected = 'theme-2';
+      }
+
+      sessionStorage.setItem('theme', this.$themeSelected);
+    },
+    $urlToOpen(value) {
+      if (value) {
+        this.onOpenProgram('Browser', { urlDefault: value });
+
+        this.$urlToOpen = null;
+      }
+    }
   },
   mounted() {
     this.init();
@@ -155,38 +332,6 @@ export default {
     },
     async getProgram(program) {
       return (await import(`@programs/${program}.vue`)).default;
-    }
-  },
-  watch: {
-    $isFullscreen(value) {
-      this.isClosedToast = value;
-    },
-    $themeSelected(value) {
-      switch (value) {
-        case 'theme-1':
-          this.$refs.screen.classList.add('theme-1');
-          this.$refs.screen.classList.remove('theme-2');
-
-          break;
-
-        case 'theme-2':
-          this.$refs.screen.classList.add('theme-2');
-          this.$refs.screen.classList.remove('theme-1');
-
-          break;
-
-        default:
-          this.$themeSelected = 'theme-2';
-      }
-
-      sessionStorage.setItem('theme', this.$themeSelected);
-    },
-    $urlToOpen(value) {
-      if (value) {
-        this.onOpenProgram('Browser', { urlDefault: value });
-
-        this.$urlToOpen = null;
-      }
     }
   }
 };

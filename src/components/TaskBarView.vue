@@ -2,7 +2,6 @@
   <div class="taskbar bg-primary">
     <div class="taskbar-programs d-flex gap-2 justify-content-start align-items-center flex-shrink-1 mx-auto overflow-y-hidden overflow-x-auto">
       <button
-        type="button"
         v-for="(program, index) in $programs"
         :id="`program-${program.id}`"
         :key="program.id"
@@ -11,17 +10,24 @@
         :title="program.title"
         @click="onSelectProgram(program)"
         :aria-label="program.title"
+        type="button"
       >
-        <img class="img-fluid" :src="program.iconSrc" :title="program.title" :alt="program.title" draggable="false" />
+        <img
+          :src="program.iconSrc"
+          :title="program.title"
+          :alt="program.title"
+          class="img-fluid"
+          draggable="false"
+        >
       </button>
     </div>
     <Clock class="taskbar-item clock flex-shrink-0" />
     <button
+      @click="onMinimizeAllPrograms"
       class="taskbar-item taskbar-item-minimize-all border border-dark border-end-0 border-top-0 border-bottom-0 flex-shrink-0"
       type="button"
       title="Minimizar todos los programas"
-      @click="onMinimizeAllPrograms"
-    ></button>
+    />
   </div>
 </template>
 
@@ -29,6 +35,11 @@
 export default {
   components: {
     Clock: () => import('@components/Clock.vue')
+  },
+  computed: {
+    getProgramActiveId() {
+      return this.$currentProgramActive ? this.$currentProgramActive.id : null;
+    }
   },
   methods: {
     onSelectProgram(program) {
@@ -40,11 +51,6 @@ export default {
     },
     onMinimizeAllPrograms() {
       this.$programs.forEach((program) => program.window.minimize());
-    }
-  },
-  computed: {
-    getProgramActiveId() {
-      return this.$currentProgramActive ? this.$currentProgramActive.id : null;
     }
   }
 };

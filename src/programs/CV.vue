@@ -1,7 +1,18 @@
 <template>
   <div class="w-100 h-100 overflow-hidden">
-    <iframe title="Currículum Vitae" v-show="!isMinimized && isLoadedCV" :src="$env.CV_URL" @load="onLoadCV" width="100%" height="100%" draggable="false"></iframe>
-    <div class="h-100 d-flex justify-content-center align-items-center" v-if="!isLoadedCV">
+    <iframe
+      v-show="!isMinimized && isLoadedCV"
+      :src="$env.CV_URL"
+      @load="onLoadCV"
+      title="Currículum Vitae"
+      width="100%"
+      height="100%"
+      draggable="false"
+    />
+    <div
+      v-if="!isLoadedCV"
+      class="h-100 d-flex justify-content-center align-items-center"
+    >
       <h4>Cargando currículum...</h4>
     </div>
   </div>

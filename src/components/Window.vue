@@ -1,41 +1,73 @@
 <template>
-  <div class="window resizers border border-2 border-dark bg-light" role="presentation" aria-label="Ventana" v-resize="onResize" @click="onSelectedProgram" ref="window" :style="cssRootVars">
+  <div
+    ref="window"
+    v-resize="onResize"
+    @click="onSelectedProgram"
+    :style="cssRootVars"
+    class="window resizers border border-2 border-dark bg-light"
+    role="presentation"
+    aria-label="Ventana"
+  >
     <div
+      ref="windowTitleBar"
+      @click="onClickWindowTitleBar"
       class="window-title-bar bg-primary text-light d-flex justify-content-between align-items-center border-bottom border-2 border-dark user-select-none"
       role="presentation"
       aria-label="Barra de título"
-      ref="windowTitleBar"
-      @click="onClickWindowTitleBar"
     >
-      <img class="program-icon" :src="program.iconSrc" :alt="`Icono ${program.title}`" draggable="false" />
+      <img
+        :src="program.iconSrc"
+        :alt="`Icono ${program.title}`"
+        class="program-icon"
+        draggable="false"
+      >
       <span class="m-auto ms-2 text-truncate">{{ title }}</span>
-      <div class="h-100 d-flex align-items-center" ref="windowTitleBarActions">
-        <button class="title-bar-item" data-action="minimize" type="button" title="Minimizar ventana" aria-label="Minimizar ventana">
-          <i class="fa-solid fa-minus fa-fw"></i>
+      <div
+        ref="windowTitleBarActions"
+        class="h-100 d-flex align-items-center"
+      >
+        <button
+          class="title-bar-item"
+          data-action="minimize"
+          type="button"
+          title="Minimizar ventana"
+          aria-label="Minimizar ventana"
+        >
+          <i class="fa-solid fa-minus fa-fw" />
         </button>
         <button
+          :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`"
           class="title-bar-item"
           data-action="toggleMaximized"
           type="button"
           aria-label="Maximizar tamaño ventana"
-          :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`"
         >
-          <i :class="`fa-solid ${isMaximized ? 'fa-compress' : 'fa-expand'}`"></i>
+          <i :class="`fa-solid ${isMaximized ? 'fa-compress' : 'fa-expand'}`" />
         </button>
-        <button class="title-bar-item" data-action="close" type="button" title="Cerrar ventana" aria-label="Cerrar ventana">
-          <i class="fa-solid fa-xmark fa-fw"></i>
+        <button
+          class="title-bar-item"
+          data-action="close"
+          type="button"
+          title="Cerrar ventana"
+          aria-label="Cerrar ventana"
+        >
+          <i class="fa-solid fa-xmark fa-fw" />
         </button>
       </div>
     </div>
-    <div class="window-content bg-light overflow-hidden" ref="windowContent" @scroll="onScroll"></div>
-    <span class="resizer top-left"></span>
-    <span class="resizer top"></span>
-    <span class="resizer top-right"></span>
-    <span class="resizer right"></span>
-    <span class="resizer bottom-right"></span>
-    <span class="resizer bottom"></span>
-    <span class="resizer bottom-left"></span>
-    <span class="resizer left"></span>
+    <div
+      ref="windowContent"
+      @scroll="onScroll"
+      class="window-content bg-light overflow-hidden"
+    />
+    <span class="resizer top-left" />
+    <span class="resizer top" />
+    <span class="resizer top-right" />
+    <span class="resizer right" />
+    <span class="resizer bottom-right" />
+    <span class="resizer bottom" />
+    <span class="resizer bottom-left" />
+    <span class="resizer left" />
   </div>
 </template>
 
@@ -96,6 +128,62 @@ export default {
       isResizing: false,
       isDragging: false
     };
+  },
+  computed: {
+    cssRootVars() {
+      return {
+        '--width': this.size.width + 'px',
+        '--height': this.size.height + 'px',
+        '--x': this.position.x + 'px',
+        '--y': this.position.y + 'px',
+        '--heightTileBar': '32px',
+        '--minHeight': '100px',
+        '--maxHeight': this.$heightScreenContent + 'px'
+      };
+    }
+  },
+  watch: {
+    isMaximized(value) {
+      if (value) {
+        this.$refs.window.classList.remove('resizers');
+
+        this.sizePrev = { ...this.size };
+        this.size = { width: this.$widthScreenContent, height: this.$heightScreenContent };
+
+        this.positionPrev = { ...this.position };
+        this.position = { x: 0, y: 0 };
+      } else {
+        this.$refs.window.classList.add('resizers');
+
+        if (!this.isDragging) {
+          this.position = { ...this.positionPrev };
+        } else {
+          const widthDifference = this.$widthScreenContent - this.sizePrev.width;
+          const isInsideWindowTitleBarActions = this.positionIniDrag.x >= this.$widthScreenContent - this.$refs.windowTitleBarActions.clientWidth;
+
+          if (isInsideWindowTitleBarActions) {
+            this.position.x = this.$widthScreenContent - this.$refs.windowTitleBarActions.clientWidth;
+          } else {
+            const adjustedOffsetX = this.positionIniDrag.x > this.sizePrev.width ? this.sizePrev.width : this.positionIniDrag.x;
+
+            this.position.x = this.positionIniDrag.x - widthDifference * (adjustedOffsetX / this.$widthScreenContent);
+          }
+
+          const windowWidth = this.sizePrev.width;
+          const screenWidth = this.$widthScreenContent;
+
+          if (this.position.x + windowWidth > screenWidth) {
+            this.position.x = screenWidth - windowWidth;
+          }
+
+          if (this.position.x < 0) {
+            this.position.x = 0;
+          }
+        }
+
+        this.size = { ...this.sizePrev };
+      }
+    }
   },
   mounted() {
     this.init();
@@ -465,62 +553,6 @@ export default {
     },
     appendWindowNode(node) {
       this.$refs.windowContent.appendChild(node);
-    }
-  },
-  computed: {
-    cssRootVars() {
-      return {
-        '--width': this.size.width + 'px',
-        '--height': this.size.height + 'px',
-        '--x': this.position.x + 'px',
-        '--y': this.position.y + 'px',
-        '--heightTileBar': '32px',
-        '--minHeight': '100px',
-        '--maxHeight': this.$heightScreenContent + 'px'
-      };
-    }
-  },
-  watch: {
-    isMaximized(value) {
-      if (value) {
-        this.$refs.window.classList.remove('resizers');
-
-        this.sizePrev = { ...this.size };
-        this.size = { width: this.$widthScreenContent, height: this.$heightScreenContent };
-
-        this.positionPrev = { ...this.position };
-        this.position = { x: 0, y: 0 };
-      } else {
-        this.$refs.window.classList.add('resizers');
-
-        if (!this.isDragging) {
-          this.position = { ...this.positionPrev };
-        } else {
-          const widthDifference = this.$widthScreenContent - this.sizePrev.width;
-          const isInsideWindowTitleBarActions = this.positionIniDrag.x >= this.$widthScreenContent - this.$refs.windowTitleBarActions.clientWidth;
-
-          if (isInsideWindowTitleBarActions) {
-            this.position.x = this.$widthScreenContent - this.$refs.windowTitleBarActions.clientWidth;
-          } else {
-            const adjustedOffsetX = this.positionIniDrag.x > this.sizePrev.width ? this.sizePrev.width : this.positionIniDrag.x;
-
-            this.position.x = this.positionIniDrag.x - widthDifference * (adjustedOffsetX / this.$widthScreenContent);
-          }
-
-          const windowWidth = this.sizePrev.width;
-          const screenWidth = this.$widthScreenContent;
-
-          if (this.position.x + windowWidth > screenWidth) {
-            this.position.x = screenWidth - windowWidth;
-          }
-
-          if (this.position.x < 0) {
-            this.position.x = 0;
-          }
-        }
-
-        this.size = { ...this.sizePrev };
-      }
     }
   }
 };

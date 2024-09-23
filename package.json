@@ -10,8 +10,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "format": "npx prettier --write \"src/**/*.{js,vue}\""
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^6.6.0",
@@ -34,7 +33,6 @@
     "copy-webpack-plugin": "^5.0.0",
     "eslint-plugin-vue": "^5.0.0",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
-    "prettier-plugin-organize-attributes": "^1.0.0",
     "sass": "~1.32.6",
     "sass-loader": "^10.5.2",
     "vue-template-compiler": "^2.6.14"

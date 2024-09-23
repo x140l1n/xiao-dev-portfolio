@@ -1,53 +1,83 @@
 <template>
-  <div class="w-100 h-100 d-flex flex-column" ref="content">
-    <ul class="nav nav-pills nav-fill bg-light shadow gap-2" role="tablist" aria-orientation="horizontal" ref="navbar">
+  <div
+    ref="content"
+    class="w-100 h-100 d-flex flex-column"
+  >
+    <ul
+      ref="navbar"
+      class="nav nav-pills nav-fill bg-light shadow gap-2"
+      role="tablist"
+      aria-orientation="horizontal"
+    >
       <li class="nav-item">
         <button
+          :data-bs-target="`#studies-${id}`"
+          @click="onChangeTab"
+          :href="`#studies-${id}`"
+          :aria-controls="`studies-${id}`"
           class="nav-link active"
           data-bs-toggle="tab"
           type="button"
           title="Estudios"
           role="tab"
           aria-selected="true"
-          :data-bs-target="`#studies-${id}`"
-          @click="onChangeTab"
-          :href="`#studies-${id}`"
-          :aria-controls="`studies-${id}`"
         >
-          <i class="fa-solid fa-graduation-cap me-2 fa-fw"></i>
+          <i class="fa-solid fa-graduation-cap me-2 fa-fw" />
           Estudios
         </button>
       </li>
       <li class="nav-item">
         <button
+          :data-bs-target="`#experiences-${id}`"
+          @click="onChangeTab"
+          :href="`#experiences-${id}`"
+          :aria-controls="`experiences-${id}`"
           class="nav-link"
           data-bs-toggle="tab"
           type="button"
           title="Experiencias laboral"
           role="tab"
           aria-selected="false"
-          :data-bs-target="`#experiences-${id}`"
-          @click="onChangeTab"
-          :href="`#experiences-${id}`"
-          :aria-controls="`experiences-${id}`"
         >
-          <i class="fa-solid fa-briefcase me-2 fa-fw"></i>
+          <i class="fa-solid fa-briefcase me-2 fa-fw" />
           Experiencias laboral
         </button>
       </li>
     </ul>
-    <div class="tab-content border-top flex-fill overflow-x-hidden overflow-y-auto" v-init-animation ref="tabContent">
-      <div class="tab-pane fade active show" :aria-labelledby="`studies-${id}`" :id="`studies-${id}`">
-        <div class="timeline text-light" ref="timelineStudies">
+    <div
+      ref="tabContent"
+      v-init-animation
+      class="tab-content border-top flex-fill overflow-x-hidden overflow-y-auto"
+    >
+      <div
+        :aria-labelledby="`studies-${id}`"
+        :id="`studies-${id}`"
+        class="tab-pane fade active show"
+      >
+        <div
+          ref="timelineStudies"
+          class="timeline text-light"
+        >
           <div class="timeline-row">
-            <div class="timeline-time" data-animation="slide-left">
-              <a href="https://politecnics.barcelona/" target="_blank">Centre d'Estudis Politècnics</a>
+            <div
+              class="timeline-time"
+              data-animation="slide-left"
+            >
+              <a
+                href="https://politecnics.barcelona/"
+                target="_blank"
+              >Centre d'Estudis Politècnics</a>
               <small>2021 - 2022</small>
               <small>Barcelona (España)</small>
             </div>
-            <div class="timeline-content" data-animation="slide-right">
-              <i class="timeline-icon fa-solid fa-code"></i>
-              <h5 class="fw-bold text-center">DESARROLLO APLICACIONES WEB (DAW)</h5>
+            <div
+              class="timeline-content"
+              data-animation="slide-right"
+            >
+              <i class="timeline-icon fa-solid fa-code" />
+              <h5 class="fw-bold text-center">
+                DESARROLLO APLICACIONES WEB (DAW)
+              </h5>
               <ul>
                 <li>Desarrollar aplicaciones web con distintos frameworks tanto el frontend como el backend.</li>
                 <li>Manipulación de base de datos.</li>
@@ -69,20 +99,31 @@
                 <span class="badge badge-pill">MySQL</span>
               </div>
               <span class="grade">
-                <i class="fa-solid fa-star fa-fw"></i>
+                <i class="fa-solid fa-star fa-fw" />
                 Calificación: 9
               </span>
             </div>
           </div>
           <div class="timeline-row">
-            <div class="timeline-time" data-animation="slide-right">
-              <a href="https://politecnics.barcelona/" target="_blank">Centre d'Estudis Politècnics</a>
+            <div
+              class="timeline-time"
+              data-animation="slide-right"
+            >
+              <a
+                href="https://politecnics.barcelona/"
+                target="_blank"
+              >Centre d'Estudis Politècnics</a>
               <small>2019 - 2021</small>
               <small>Barcelona (España)</small>
             </div>
-            <div class="timeline-content" data-animation="slide-left">
-              <i class="timeline-icon fa-solid fa-code"></i>
-              <h5 class="fw-bold text-center">DESARROLLO APLICACIONES MULTIPLATAFORMA (DAM)</h5>
+            <div
+              class="timeline-content"
+              data-animation="slide-left"
+            >
+              <i class="timeline-icon fa-solid fa-code" />
+              <h5 class="fw-bold text-center">
+                DESARROLLO APLICACIONES MULTIPLATAFORMA (DAM)
+              </h5>
               <ul>
                 <li> Desarrollar aplicaciones multiplataforma con distintos lenguajes de programación.</li>
                 <li>Desarrollo de programas para escritorio y Android.</li>
@@ -103,23 +144,30 @@
                 <span class="badge badge-pill">MySQL</span>
               </div>
               <span class="grade">
-                <i class="fa-solid fa-star fa-fw"></i>
+                <i class="fa-solid fa-star fa-fw" />
                 Calificación: 9
               </span>
             </div>
           </div>
           <div class="timeline-row">
-            <div class="timeline-time" data-animation="slide-left">
+            <div
+              class="timeline-time"
+              data-animation="slide-left"
+            >
               <a
                 href="https://serveiocupacio.gencat.cat/es/Formacio-i-qualificacio/centres-propis-de-formacio/centres-dinnovacio-i-formacio-ocupacional-cifo/CIFO-de-Barcelona-La-Violeta/"
                 target="_blank"
-                >SOC CIFO VIOLETA</a
-              ><small>2018-2019</small>
+              >SOC CIFO VIOLETA</a><small>2018-2019</small>
               <small>Barcelona (España)</small>
             </div>
-            <div class="timeline-content" data-animation="slide-right">
-              <i class="timeline-icon fa-solid fa-code"></i>
-              <h5 class="fw-bold text-center">CERTIFICADO DE PROFESIONALIDAD EN POO (630H)</h5>
+            <div
+              class="timeline-content"
+              data-animation="slide-right"
+            >
+              <i class="timeline-icon fa-solid fa-code" />
+              <h5 class="fw-bold text-center">
+                CERTIFICADO DE PROFESIONALIDAD EN POO (630H)
+              </h5>
               <ul>
                 <li>Sistemas operativos y aplicaciones informáticas.</li>
                 <li>Programación orientada a objetos.</li>
@@ -135,46 +183,86 @@
                 <span class="badge badge-pill">Sistemas operativos</span>
               </div>
               <span class="grade">
-                <i class="fa-solid fa-star fa-fw"></i>
+                <i class="fa-solid fa-star fa-fw" />
                 Calificación: 10
               </span>
             </div>
           </div>
           <div class="timeline-row">
-            <div class="timeline-time" data-animation="slide-right">
-              <a href="https://institutxxvolimpiada.cat/" target="_blank">Instituto XXV Olimpiada</a>
+            <div
+              class="timeline-time"
+              data-animation="slide-right"
+            >
+              <a
+                href="https://institutxxvolimpiada.cat/"
+                target="_blank"
+              >Instituto XXV Olimpiada</a>
               <small>2014-2016</small>
               <small>Barcelona (España)</small>
             </div>
-            <div class="timeline-content" data-animation="slide-left">
-              <i class="timeline-icon fa-solid fa-school"></i>
-              <h5 class="fw-bold text-center">BACHILLERATO TECNOLÓGICO</h5>
+            <div
+              class="timeline-content"
+              data-animation="slide-left"
+            >
+              <i class="timeline-icon fa-solid fa-school" />
+              <h5 class="fw-bold text-center">
+                BACHILLERATO TECNOLÓGICO
+              </h5>
             </div>
           </div>
           <div class="timeline-row">
-            <div class="timeline-time" data-animation="slide-left">
-              <a href="https://institutxxvolimpiada.cat/" target="_blank">Instituto XXV Olimpiada</a>
+            <div
+              class="timeline-time"
+              data-animation="slide-left"
+            >
+              <a
+                href="https://institutxxvolimpiada.cat/"
+                target="_blank"
+              >Instituto XXV Olimpiada</a>
               <small>2010-2014</small>
               <small>Barcelona (España)</small>
             </div>
-            <div class="timeline-content" data-animation="slide-right">
-              <i class="timeline-icon fa-solid fa-school"></i>
-              <h5 class="fw-bold text-center">ESO</h5>
+            <div
+              class="timeline-content"
+              data-animation="slide-right"
+            >
+              <i class="timeline-icon fa-solid fa-school" />
+              <h5 class="fw-bold text-center">
+                ESO
+              </h5>
             </div>
           </div>
         </div>
       </div>
-      <div class="tab-pane fade" :aria-labelledby="`experiences-${id}`" :id="`experiences-${id}`">
-        <div class="timeline text-light" ref="timelineExperiences">
+      <div
+        :aria-labelledby="`experiences-${id}`"
+        :id="`experiences-${id}`"
+        class="tab-pane fade"
+      >
+        <div
+          ref="timelineExperiences"
+          class="timeline text-light"
+        >
           <div class="timeline-row">
-            <div class="timeline-time" data-animation="slide-left">
-              <a href="https://tkmservicios.com" target="_blank">TKM Consultores S.L.</a>
+            <div
+              class="timeline-time"
+              data-animation="slide-left"
+            >
+              <a
+                href="https://tkmservicios.com"
+                target="_blank"
+              >TKM Consultores S.L.</a>
               <small>2019 - Presente</small>
               <small>Barcelona (España)</small>
             </div>
-            <div class="timeline-content" data-animation="slide-right">
-              <i class="timeline-icon fa-solid fa-code"></i>
-              <h5 class="fw-bold text-center">DEVELOPER FULLSTACK / HELPDESK</h5>
+            <div
+              class="timeline-content"
+              data-animation="slide-right"
+            >
+              <i class="timeline-icon fa-solid fa-code" />
+              <h5 class="fw-bold text-center">
+                DEVELOPER FULLSTACK / HELPDESK
+              </h5>
               <ul>
                 <li>Planificación, documentación y desarrollo de proyectos.</li>
                 <li>Creación y mantenimiento aplicaciones web con: HTML, CSS, JavaScript, PHP, Ruby On Rails, Wordpress.</li>

@@ -1,5 +1,8 @@
 <template>
-  <small class="text-light px-2 d-flex flex-column justify-content-center align-items-end" :title="getFullDate">
+  <small
+    :title="getFullDate"
+    class="text-light px-2 d-flex flex-column justify-content-center align-items-end"
+  >
     <span>
       {{ datetime.time }}
     </span>
@@ -19,6 +22,11 @@ export default {
       }
     };
   },
+  computed: {
+    getFullDate() {
+      return `${this.$moment().format('dddd, LL | h:mm')} (Hora local)`;
+    }
+  },
   mounted() {
     this.init();
   },
@@ -36,11 +44,6 @@ export default {
     updateDateTime() {
       this.datetime.time = this.$moment().format('H:mm');
       this.datetime.date = this.$moment().format('DD/MM/YYYY');
-    }
-  },
-  computed: {
-    getFullDate() {
-      return `${this.$moment().format('dddd, LL | h:mm')} (Hora local)`;
     }
   }
 };

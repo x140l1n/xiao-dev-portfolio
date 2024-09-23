@@ -1,28 +1,67 @@
 <template>
-  <div class="w-100 h-100 overflow-auto p-4" ref="content">
-    <div class="card flip back shadow-lg" ref="card">
+  <div
+    ref="content"
+    class="w-100 h-100 overflow-auto p-4"
+  >
+    <div
+      ref="card"
+      class="card flip back shadow-lg"
+    >
       <div class="flip-card-front">
         <header class="text-light d-flex gap-4 justify-content-between align-items-center">
-          <img src="@assets/icons/coding.png" title="Icono fullstack developer" alt="Icono fullstack developer" ref="iconFullStackDeveloper" draggable="false" />
-          <h4 class="m-0">FULLSTACK DEVELOPER</h4>
-          <button class="btn btn-transparent btn-flip text-light" type="button" title="Voltear la targeta" aria-label="Voltear la targeta" @click="flip">
-            <i class="fa-solid fa-repeat fa-fw"></i>
+          <img
+            ref="iconFullStackDeveloper"
+            src="@assets/icons/coding.png"
+            title="Icono fullstack developer"
+            alt="Icono fullstack developer"
+            draggable="false"
+          >
+          <h4 class="m-0">
+            FULLSTACK DEVELOPER
+          </h4>
+          <button
+            @click="flip"
+            class="btn btn-transparent btn-flip text-light"
+            type="button"
+            title="Voltear la targeta"
+            aria-label="Voltear la targeta"
+          >
+            <i class="fa-solid fa-repeat fa-fw" />
           </button>
         </header>
         <div class="card-body p-0">
-          <div class="d-flex gap-4 overflow-hidden p-4" ref="contentFront">
-            <div class="photo" ref="photo">
-              <img class="img-fluid" src="@assets/img/me.jpg" title="Yo" alt="Yo" />
+          <div
+            ref="contentFront"
+            class="d-flex gap-4 overflow-hidden p-4"
+          >
+            <div
+              ref="photo"
+              class="photo"
+            >
+              <img
+                class="img-fluid"
+                src="@assets/img/me.jpg"
+                title="Yo"
+                alt="Yo"
+              >
             </div>
-            <div class="flex-grow-1 presentation" ref="presentationFront">
-              <h6 class="fw-bold my-2">Presentación</h6>
+            <div
+              ref="presentationFront"
+              class="flex-grow-1 presentation"
+            >
+              <h6 class="fw-bold my-2">
+                Presentación
+              </h6>
               <p>
                 ¡Hola! Soy Xiaolin Jin Lin y tengo {{ getYearsOld }} años. Desde pequeño siempre me ha atraído el mundo de la tecnología, y a los 19 decidí meterme de lleno en la informática,
                 eligiendo la programación como mi camino.
               </p>
               <p>
                 Estudié DAM (Desarrollo de Aplicaciones Multiplataforma) y luego DAW (Desarrollo de Aplicaciones Web) en el
-                <a href="https://politecnics.barcelona/" target="_blank">Centro de Estudios Politécnicos</a>. A lo largo de estos años, he aprendido un montón y cada día me gusta más este mundo. Tengo
+                <a
+                  href="https://politecnics.barcelona/"
+                  target="_blank"
+                >Centro de Estudios Politécnicos</a>. A lo largo de estos años, he aprendido un montón y cada día me gusta más este mundo. Tengo
                 muchas ganas de seguir mejorando y aprendiendo nuevas cosas.
               </p>
               <p>
@@ -33,9 +72,13 @@
                 Me encanta trabajar en equipo, proponer ideas y soluciones, y siempre busco compartir lo que sé con los demás. Disfruto de crear un buen ambiente y colaborar para sacar los proyectos
                 adelante.
               </p>
-              <h6 class="fw-bold">Idiomas</h6>
+              <h6 class="fw-bold">
+                Idiomas
+              </h6>
               <p>Español (Nativo), Catalán (Nativo), Inglés (Intermedio), Chino (Intermedio). </p>
-              <h6 class="fw-bold">Hobbies</h6>
+              <h6 class="fw-bold">
+                Hobbies
+              </h6>
               <p>Danza.</p>
             </div>
           </div>
@@ -43,23 +86,65 @@
       </div>
       <div class="flip-card-back d-flex flex-column">
         <header class="text-light d-flex justify-content-end align-items-center">
-          <button class="btn btn-transparent btn-flip text-light align-self-end" type="button" title="Voltear la targeta" aria-label="Voltear la targeta" @click="flip">
-            <i class="fa-solid fa-repeat fa-fw"></i>
+          <button
+            @click="flip"
+            class="btn btn-transparent btn-flip text-light align-self-end"
+            type="button"
+            title="Voltear la targeta"
+            aria-label="Voltear la targeta"
+          >
+            <i class="fa-solid fa-repeat fa-fw" />
           </button>
         </header>
         <div class="card-body flex-grow-1">
-          <div class="d-flex flex-column justify-content-center align-items-center h-100 p-4" ref="contentBack">
-            <img class="logo img-fluid" src="@svg/xiao-theme-2.svg" title="Logo Xiao" alt="Logo Xiao" ref="logo" draggable="false" />
-            <p class="fw-bold text-center my-2">Redes sociales</p>
+          <div
+            ref="contentBack"
+            class="d-flex flex-column justify-content-center align-items-center h-100 p-4"
+          >
+            <img
+              ref="logo"
+              class="logo img-fluid"
+              src="@svg/xiao-theme-2.svg"
+              title="Logo Xiao"
+              alt="Logo Xiao"
+              draggable="false"
+            >
+            <p class="fw-bold text-center my-2">
+              Redes sociales
+            </p>
             <div class="d-flex justify-content-center">
-              <a href="https://www.instagram.com/_xiao_97_/" title="Instgram" target="_blank">
-                <img src="@assets/icons/instagram.png" alt="instagram" draggable="false" />
+              <a
+                href="https://www.instagram.com/_xiao_97_/"
+                title="Instgram"
+                target="_blank"
+              >
+                <img
+                  src="@assets/icons/instagram.png"
+                  alt="instagram"
+                  draggable="false"
+                >
               </a>
-              <a href="https://www.linkedin.com/in/xiaolin-jin-lin-017287173/" title="Linkedin" target="_blank">
-                <img src="@assets/icons/linkedin.png" alt="linkedin" draggable="false" />
+              <a
+                href="https://www.linkedin.com/in/xiaolin-jin-lin-017287173/"
+                title="Linkedin"
+                target="_blank"
+              >
+                <img
+                  src="@assets/icons/linkedin.png"
+                  alt="linkedin"
+                  draggable="false"
+                >
               </a>
-              <a href="https://github.com/x140l1n" title="GitHub" target="_blank">
-                <img src="@assets/icons/github.png" alt="github" draggable="false" />
+              <a
+                href="https://github.com/x140l1n"
+                title="GitHub"
+                target="_blank"
+              >
+                <img
+                  src="@assets/icons/github.png"
+                  alt="github"
+                  draggable="false"
+                >
               </a>
             </div>
           </div>
