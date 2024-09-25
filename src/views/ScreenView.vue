@@ -261,7 +261,7 @@ export default {
   },
   methods: {
     init() {
-      this.$themeSelected = sessionStorage.getItem('theme') || 'theme-2';
+      this.$themeSelected = sessionStorage.getItem('theme') ?? 'theme-2';
 
       this.onScreenResize();
     },

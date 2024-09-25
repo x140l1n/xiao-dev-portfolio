@@ -203,7 +203,7 @@ export default {
     onClickWindowTitleBar(evt) {
       evt.stopPropagation();
 
-      const action = evt.target?.dataset.action || evt.currentTarget?.dataset.action || evt.target?.parentElement?.dataset.action;
+      const action = evt.target?.dataset.action ?? evt.currentTarget?.dataset.action ?? evt.target?.parentElement?.dataset.action;
 
       if (action) {
         this.handleClickTitleBar(evt);
@@ -227,7 +227,7 @@ export default {
 
       this.$refs.window.classList.remove('no-transition');
 
-      const action = evt.target?.dataset.action || evt.currentTarget?.dataset.action || evt.target?.parentElement?.dataset.action;
+      const action = evt.target?.dataset.action ?? evt.currentTarget?.dataset.action ?? evt.target?.parentElement?.dataset.action;
 
       switch (action) {
         case 'close':
@@ -248,7 +248,7 @@ export default {
 
       this.$refs.window.classList.remove('no-transition');
 
-      const action = evt.target?.dataset.action || evt.currentTarget?.dataset.action || evt.target?.parentElement?.dataset.action;
+      const action = evt.target?.dataset.action ?? evt.currentTarget?.dataset.action ?? evt.target?.parentElement?.dataset.action;
 
       if (!action) this.toggleMaximized();
     },
@@ -261,7 +261,7 @@ export default {
 
         evt.stopPropagation();
 
-        const action = evt.target?.dataset.action || evt.currentTarget?.dataset.action || evt.target?.parentElement?.dataset.action;
+        const action = evt.target?.dataset.action ?? evt.currentTarget?.dataset.action ?? evt.target?.parentElement?.dataset.action;
 
         if (!action) {
           self.pos3 = evt.touches ? evt.touches[0].clientX : evt.clientX;
