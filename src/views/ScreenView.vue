@@ -62,7 +62,7 @@
           <img
             id="program-knowledge"
             src="@assets/icons/knowledge.png"
-            alt="Logo mis conocimientos"
+            alt="Logo conocimientos"
             draggable="false"
           >
           <span
