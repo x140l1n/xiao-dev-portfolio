@@ -246,7 +246,7 @@ export default {
           this.$themeSelected = 'theme-2';
       }
 
-      sessionStorage.setItem('theme', this.$themeSelected);
+      localStorage.setItem('theme', this.$themeSelected);
     },
     $urlToOpen(value) {
       if (value) {
@@ -261,7 +261,7 @@ export default {
   },
   methods: {
     init() {
-      this.$themeSelected = sessionStorage.getItem('theme') ?? 'theme-2';
+      this.$themeSelected = localStorage.getItem('theme') ?? 'theme-2';
 
       this.onScreenResize();
     },
