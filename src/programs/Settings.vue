@@ -94,7 +94,7 @@
                   <small
                     class="fst-italic text-danger"
                   ><strong>Nota:</strong>
-                    Si lo habilitas en el propio navegador puede que no funcione esta opción.
+                    Si lo habilitas en las opciones del navegador, puede que esta opción no funcione correctamente.
                   </small>
                 </div>
                 <div class="form-check form-switch">
