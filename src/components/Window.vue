@@ -74,16 +74,16 @@
 <script>
 export default {
   props: {
+    title: {
+      type: String,
+      required: true
+    },
     width: {
       type: Number,
       required: true
     },
     height: {
       type: Number,
-      required: true
-    },
-    title: {
-      type: String,
       required: true
     },
     x: {
@@ -557,6 +557,7 @@ export default {
     },
     onAnimationClosingEnd() {
       this.program.$destroy();
+
       this.$destroy();
 
       this.$el.remove();

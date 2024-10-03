@@ -203,8 +203,10 @@
         />
       </div>
       <div class="toast-body">
-        Habilita la pantalla completa para tener una mejor experiencia de navegación. Para habilitar entra en
-        <span class="fw-bold fst-italic"> Ajustes > General > Habilitar modo pantalla completa</span>
+        Habilita la pantalla completa para tener una mejor experiencia de
+        navegación. Para habilitar entra en
+        <span class="fw-bold fst-italic">
+          Ajustes > General > Habilitar modo pantalla completa</span>
       </div>
     </div>
   </div>
@@ -279,53 +281,61 @@ export default {
     onOpenProgram(programName, defaultProps = {}) {
       if (this.idTimeoutOpenNextProgram) return;
 
-      this.idTimeoutOpenNextProgram = setTimeout(() => (this.idTimeoutOpenNextProgram = null), 1000);
+      this.idTimeoutOpenNextProgram = setTimeout(
+        () => (this.idTimeoutOpenNextProgram = null),
+        1000
+      );
 
-      this.getProgram(programName).then((result) => {
-        const ProgramClass = Vue.extend(result);
+      this.getWindow().then(async (windowComponent) => {
+        let windowObject = null;
+
+        const programComponent = await this.getProgram(programName);
+        const ProgramClass = Vue.extend(programComponent);
+
         const programObject = new ProgramClass({
+          parent: windowObject,
           propsData: { id: v4(), ...defaultProps }
         });
 
-        programObject.$mount();
+        const width = programObject.widthDefault === 0 ? this.$widthScreenContent : programObject.widthDefault;
+        const height = programObject.heightDefault === 0 ? this.$heightScreenContent : programObject.heightDefault;
+        const x = programObject.xDefault === 0 ? 0 : programObject.xDefault;
+        const y = programObject.yDefault === 0 ? 0 : programObject.yDefault;
+        
+        const WindowClass = Vue.extend(windowComponent);
 
-        this.addWindow(programObject);
+        windowObject = new WindowClass({
+          parent: this,
+          propsData: {
+            title: programName,
+            width,
+            height,
+            x,
+            y
+          },
+          methods: {
+            openProgram: (programName, defaultProps = {}) => this.onOpenProgram(programName, defaultProps)
+          }
+        });
+
+        this.mountWindowProgram(windowObject, programObject);
       });
-
-      // eslint-disable-next-line camelcase
-      this.$gtag?.event('open_program', { event_category: 'program', event_label: programName });
     },
-    async addWindow(programObject) {
-      const width = programObject.widthDefault == 0 ? this.$widthScreenContent : programObject.widthDefault;
-      const height = programObject.heightDefault == 0 ? this.$heightScreenContent : programObject.heightDefault;
-      const x = programObject.xDefault == 0 ? 0 : programObject.xDefault;
-      const y = programObject.yDefault == 0 ? 0 : programObject.yDefault;
-
-      const WindowClass = Vue.extend(await this.getWindow());
-
-      const windowObject = new WindowClass({
-        propsData: {
-          title: programObject.title,
-          width: parseInt(width),
-          height: parseInt(height),
-          x: parseInt(x),
-          y: parseInt(y)
-        },
-        methods: {
-          openProgram: (programName, defaultProps = {}) => this.onOpenProgram(programName, defaultProps)
-        }
-      });
+    mountWindowProgram(windowObject, programObject) {
+      programObject.window = windowObject;
+      programObject.$mount();
 
       windowObject.program = programObject;
       windowObject.$mount();
 
-      this.$refs.screenContent.appendChild(windowObject.$el);
-
-      programObject.window = windowObject;
-
       windowObject.appendWindowNode(programObject.$el);
 
+      this.$refs.screenContent.appendChild(windowObject.$el);
+
       this.$programs.push(programObject);
+
+      // eslint-disable-next-line camelcase
+      this.$gtag?.event('open_program', { event_category: 'program', event_label: programObject.title });
     },
     async getWindow() {
       return (await import('@components/Window.vue')).default;
@@ -348,12 +358,12 @@ export default {
 
   &.theme-1 {
     background-color: rgb(149, 190, 195);
-    background-image: url('~@svg/xiao-theme-2.svg');
+    background-image: url("~@svg/xiao-theme-2.svg");
   }
 
   &.theme-2 {
     background-color: rgb(33, 37, 41);
-    background-image: url('~@svg/xiao-theme-1.svg');
+    background-image: url("~@svg/xiao-theme-1.svg");
   }
 
   > .screen-content {
