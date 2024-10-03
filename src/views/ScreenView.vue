@@ -307,7 +307,7 @@ export default {
         windowObject = new WindowClass({
           parent: this,
           propsData: {
-            title: programName,
+            title: programObject.title,
             width,
             height,
             x,
