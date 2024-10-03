@@ -556,10 +556,10 @@ export default {
       this.$refs.windowContent.appendChild(node);
     },
     onAnimationClosingEnd() {
-      this.$destroy();
       this.program.$destroy();
+      this.$destroy();
 
-      this.$el.parentNode.removeChild(this.$el);
+      this.$el.remove();
 
       this.$el.removeEventListener('animationend', this.onAnimationClosingEnd);
     }

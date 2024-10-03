@@ -199,10 +199,6 @@
                   <td>{{ getDateVersion }}</td>
                 </tr>
                 <tr>
-                  <td />
-                  <td />
-                </tr>
-                <tr>
                   <td class="fw-bold label">
                     Creado por
                   </td>
@@ -219,10 +215,6 @@
                       target="_blank"
                     >https://github.com/x140l1n/portfolio</a>
                   </td>
-                </tr>
-                <tr>
-                  <td />
-                  <td />
                 </tr>
                 <tr>
                   <td class="fw-bold label pe-4">
