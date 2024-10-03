@@ -179,7 +179,10 @@
               <h5 class="card-title">
                 Especificaciones del sistema
               </h5>
-              <table ref="tableSpecs" class="table table-borderless mt-4">
+              <table
+                ref="tableSpecs"
+                class="table table-borderless mt-4"
+              >
                 <tr>
                   <td class="fw-bold label">
                     Edición
