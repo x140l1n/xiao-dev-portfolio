@@ -256,10 +256,10 @@ export default {
       const element = this.$refs.windowTitleBar;
       const self = this;
 
-      element.addEventListener('mousedown', startDrag);
-      element.addEventListener('touchstart', startDrag, { passive: true });
+      element.addEventListener('mousedown', onStartDrag);
+      element.addEventListener('touchstart', onStartDrag, { passive: true });
 
-      function startDrag(evt) {
+      function onStartDrag(evt) {
         if (self.isResizing) return;
 
         evt.stopPropagation();
@@ -272,13 +272,13 @@ export default {
 
           self.positionIniDrag = { x: self.pos3, y: self.pos4 };
 
-          self.$refs.window.parentElement.addEventListener('mouseup', endDrag);
-          self.$refs.window.parentElement.addEventListener('mouseleave', endDrag);
+          self.$refs.window.parentElement.addEventListener('mouseup', onEndDrag);
+          self.$refs.window.parentElement.addEventListener('mouseleave', onEndDrag);
           self.$refs.window.parentElement.addEventListener('mousemove', onDragging);
 
-          self.$refs.window.parentElement.addEventListener('touchcancel', endDrag, { passive: true });
-          self.$refs.window.parentElement.addEventListener('touchend', endDrag, { passive: true });
-          self.$refs.window.parentElement.addEventListener('touchleave', endDrag, { passive: true });
+          self.$refs.window.parentElement.addEventListener('touchcancel', onEndDrag, { passive: true });
+          self.$refs.window.parentElement.addEventListener('touchend', onEndDrag, { passive: true });
+          self.$refs.window.parentElement.addEventListener('touchleave', onEndDrag, { passive: true });
           self.$refs.window.parentElement.addEventListener('touchmove', onDragging, { passive: true });
 
           self.bringFront();
@@ -302,18 +302,18 @@ export default {
         self.isDragging = true;
       }
 
-      function endDrag(evt) {
+      function onEndDrag(evt) {
         evt.stopPropagation();
 
         self.$refs.window.classList.remove('no-transition');
 
-        self.$refs.window.parentElement.removeEventListener('mouseup', endDrag);
-        self.$refs.window.parentElement.removeEventListener('mouseleave', endDrag);
+        self.$refs.window.parentElement.removeEventListener('mouseup', onEndDrag);
+        self.$refs.window.parentElement.removeEventListener('mouseleave', onEndDrag);
         self.$refs.window.parentElement.removeEventListener('mousemove', onDragging);
 
-        self.$refs.window.parentElement.removeEventListener('touchcancel', endDrag, { passive: true });
-        self.$refs.window.parentElement.removeEventListener('touchend', endDrag, { passive: true });
-        self.$refs.window.parentElement.removeEventListener('touchleave', endDrag, { passive: true });
+        self.$refs.window.parentElement.removeEventListener('touchcancel', onEndDrag, { passive: true });
+        self.$refs.window.parentElement.removeEventListener('touchend', onEndDrag, { passive: true });
+        self.$refs.window.parentElement.removeEventListener('touchleave', onEndDrag, { passive: true });
         self.$refs.window.parentElement.removeEventListener('touchmove', onDragging, { passive: true });
 
         self.isDragging = false;
@@ -337,10 +337,10 @@ export default {
       for (let i = 0; i < resizers.length; i++) {
         const resizer = resizers[i];
 
-        resizer.addEventListener('touchstart', startResize, { passive: true });
-        resizer.addEventListener('mousedown', startResize);
+        resizer.addEventListener('touchstart', onStartResize, { passive: true });
+        resizer.addEventListener('mousedown', onStartResize);
 
-        function startResize(evt) {
+        function onStartResize(evt) {
           if (self.isMaximized) return;
 
           originalWidth = parseFloat(getComputedStyle(element, null).getPropertyValue('max-width').replace('px', ''));
@@ -353,12 +353,12 @@ export default {
           originalMouseY = evt.touches ? evt.touches[0].pageY : evt.pageY;
 
           window.addEventListener('touchmove', onResizing, { passive: true });
-          window.addEventListener('touchcancel', endResize, { passive: true });
-          window.addEventListener('touchleave', endResize, { passive: true });
-          window.addEventListener('touchend', endResize, { passive: true });
+          window.addEventListener('touchcancel', onEndResize, { passive: true });
+          window.addEventListener('touchleave', onEndResize, { passive: true });
+          window.addEventListener('touchend', onEndResize, { passive: true });
 
           window.addEventListener('mousemove', onResizing);
-          window.addEventListener('mouseup', endResize);
+          window.addEventListener('mouseup', onEndResize);
         }
 
         function onResizing(evt) {
@@ -451,16 +451,16 @@ export default {
           self.isResizing = true;
         }
 
-        function endResize() {
+        function onEndResize() {
           self.$refs.window.classList.remove('no-transition');
 
           window.removeEventListener('touchmove', onResizing, { passive: true });
-          window.removeEventListener('touchcancel', endResize, { passive: true });
-          window.removeEventListener('touchleave', endResize, { passive: true });
-          window.removeEventListener('touchend', endResize, { passive: true });
+          window.removeEventListener('touchcancel', onEndResize, { passive: true });
+          window.removeEventListener('touchleave', onEndResize, { passive: true });
+          window.removeEventListener('touchend', onEndResize, { passive: true });
 
           window.removeEventListener('mousemove', onResizing);
-          window.removeEventListener('mouseup', endResize);
+          window.removeEventListener('mouseup', onEndResize);
 
           self.isResizing = false;
         }
