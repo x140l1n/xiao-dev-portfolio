@@ -1,7 +1,9 @@
 {
     "name": "XiaoDev Portfolio",
     "short_name": "Portfolio",
+    "description": "My professional portfolio of fullstack developer.",
     "start_url" : "/",
+    "orientation": "portrait",   
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
