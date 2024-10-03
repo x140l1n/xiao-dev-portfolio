@@ -179,7 +179,7 @@
               <h5 class="card-title">
                 Especificaciones del sistema
               </h5>
-              <table class="table table-borderless mt-4">
+              <table ref="tableSpecs" class="table table-borderless mt-4">
                 <tr>
                   <td class="fw-bold label">
                     Edición
@@ -279,9 +279,11 @@ import { date, version } from '@root/package';
       if (this.$el.clientWidth < 600) {
         this.$refs.nav.classList.add('nav-small');
         this.$refs.tabContent.classList.add('tab-content-small');
+        this.$refs.tableSpecs.classList.add('table-small');
       } else {
         this.$refs.nav.classList.remove('nav-small');
         this.$refs.tabContent.classList.remove('tab-content-small');
+        this.$refs.tableSpecs.classList.remove('table-small');
       }
     }
   },
@@ -334,6 +336,14 @@ export default class Settings extends Program {
 
   &.label {
     width: 200px;
+  }
+}
+
+.table.table-small td {
+  display: block;
+
+  &.label {
+    width: 100%;
   }
 }
 
