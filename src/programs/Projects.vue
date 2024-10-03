@@ -85,7 +85,8 @@
               IBroggi 112
             </h5>
             <p>
-              El proyecto es para el cliente Institut Moisès Broggi. Consiste en un simulador de llamadas de emergencia para técnicos en proceso de formación del 112, sistema de emergencias de
+              El proyecto es para el cliente Institut Moisès Broggi. Consiste en un simulador de llamadas de emergencia
+              para técnicos en proceso de formación del 112, sistema de emergencias de
               Cataluña.
             </p>
             <div class="d-flex flex-wrap my-4">
@@ -171,18 +172,23 @@
               EcoArts
             </h5>
             <p>
-              EcoArts es un juego de trivia sobre el medio ambiente para niños. El objetivo del juego es ayudar a los niños a comprender la importancia de cuidar el medio ambiente de una forma
+              EcoArts es un juego de trivia sobre el medio ambiente para niños. El objetivo del juego es ayudar a los
+              niños a comprender la importancia de cuidar el medio ambiente de una forma
               divertida y entretenida.
             </p>
             <br>
             <p>
-              El jugador tiene que recorrer un mapa donde cada punto hay un monstruo, y para derrotarlo tendrá que responder las preguntas de manera correcta. ¡OJO, si respondes mal, se te quitará una
+              El jugador tiene que recorrer un mapa donde cada punto hay un monstruo, y para derrotarlo tendrá que
+              responder las preguntas de manera correcta. ¡OJO, si respondes mal, se te quitará una
               vida!
             </p>
             <br>
             <p>El proyecto consta de 2 partes: escritorio y android.</p>
             <br>
-            <p>La parte de escritorio es donde gestionaremos las preguntas y los personajes del juego. La parte de android es el juego en sí.</p>
+            <p>
+              La parte de escritorio es donde gestionaremos las preguntas y los personajes del juego. La parte de
+              android es el juego en sí.
+            </p>
             <div class="d-flex flex-wrap my-4">
               <a
                 class="mx-2"
@@ -279,10 +285,16 @@
             <h5 class="fw-bold">
               Chrysallis
             </h5>
-            <p>Chrysallis es una ONG que ayuda a familias de niños y adolescentes transexuales. Este proyecto se ha creado para ayudarles a gestionar eventos sociales de la asociación.</p>
+            <p>
+              Chrysallis es una ONG que ayuda a familias de niños y adolescentes transexuales. Este proyecto se ha
+              creado para ayudarles a gestionar eventos sociales de la asociación.
+            </p>
             <br>
             <p>El proyecto consta de 2 partes: escritorio y android.</p>
-            <p>La parte de escritorio es donde van a gestionar los socios y los eventos de la asociación. La parte de android lo usarán los socios donde podrán consultar y apuntarse a eventos.</p>
+            <p>
+              La parte de escritorio es donde van a gestionar los socios y los eventos de la asociación. La parte de
+              android lo usarán los socios donde podrán consultar y apuntarse a eventos.
+            </p>
             <div class="d-flex flex-wrap my-4">
               <a
                 class="mx-2"
@@ -402,7 +414,7 @@
             Para ver más proyectos, visita mi perfil de GitHub 😎
           </p>
           <a
-            href="https://github.com/x140l1n/"
+            href="https://github.com/x140l1n"
             title="GitHub"
             aria-label="Mi perfil GitHub"
             target="_blank"
@@ -440,7 +452,7 @@ import IconProjects from '@assets/icons/projects.png';
     this.init();
   },
   methods: {
-    init() {},
+    init() { },
     onResize() {
       if (this.$el.clientWidth < 576) {
         this.$refs.content.querySelectorAll('.card:not(.more) > .card-body').forEach((element) => element.classList.add('flex-column'));
@@ -473,28 +485,28 @@ export default class Projects extends Program {
   width: 100%;
   height: 100%;
 
-  > .card-body {
+  >.card-body {
     width: 100%;
     height: 100%;
 
-    > .logo {
+    >.logo {
       width: 100%;
       min-width: 150px;
       max-width: 200px;
     }
 
-    > .description p {
+    >.description p {
       margin: 0;
       font-size: 0.8rem;
     }
 
-    > .description a {
+    >.description a {
       color: #1a233a;
       font-size: 0.9rem;
       text-decoration: none;
     }
 
-    > .description button {
+    >.description button {
       color: #1a233a;
       font-size: 0.9rem;
       background-color: transparent;
@@ -502,7 +514,7 @@ export default class Projects extends Program {
       padding: 0;
     }
 
-    > .description .badge {
+    >.description .badge {
       color: #fff;
       background: linear-gradient(120deg, #00b5fd 0%, #0047b1 100%);
     }

@@ -24,7 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
             "Content-Type: text/plain; charset=UTF-8",
             "From: $from",
             "Reply-To: $from",
-            "X-Mailer: PHP/" . phpversion()
+            "X-Mailer: PHP" . phpversion()
         ];
 
         $body = "Nombre: $firstname\r\n";

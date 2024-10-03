@@ -1,7 +1,7 @@
 <template>
   <div
     ref="content"
-    class="w-100 h-100 overflow-auto p-4"
+    class="w-100 h-100 overflow-auto p-2"
   >
     <div
       ref="card"
@@ -53,23 +53,28 @@
                 Presentación
               </h6>
               <p>
-                ¡Hola! Soy Xiaolin Jin Lin y tengo {{ getYearsOld }} años. Desde pequeño siempre me ha atraído el mundo de la tecnología, y a los 19 decidí meterme de lleno en la informática,
+                ¡Hola! Soy Xiaolin Jin Lin y tengo {{ getYearsOld }} años. Desde pequeño siempre me ha atraído el mundo
+                de la tecnología, y a los 19 decidí meterme de lleno en la informática,
                 eligiendo la programación como mi camino.
               </p>
               <p>
-                Estudié DAM (Desarrollo de Aplicaciones Multiplataforma) y luego DAW (Desarrollo de Aplicaciones Web) en el
+                Estudié DAM (Desarrollo de Aplicaciones Multiplataforma) y luego DAW (Desarrollo de Aplicaciones Web) en
+                el
                 <a
-                  href="https://politecnics.barcelona/"
+                  href="https://politecnics.barcelona"
                   target="_blank"
-                >Centro de Estudios Politécnicos</a>. A lo largo de estos años, he aprendido un montón y cada día me gusta más este mundo. Tengo
+                >Centro de Estudios Politécnicos</a>. A lo largo
+                de estos años, he aprendido un montón y cada día me gusta más este mundo. Tengo
                 muchas ganas de seguir mejorando y aprendiendo nuevas cosas.
               </p>
               <p>
-                Aparte de la programación, también me gusta la danza, y eso me ha ayudado a ser más constante, disciplinado y a fijarme en todos los detalles, algo que aplico tanto en mi vida personal
+                Aparte de la programación, también me gusta la danza, y eso me ha ayudado a ser más constante,
+                disciplinado y a fijarme en todos los detalles, algo que aplico tanto en mi vida personal
                 como en la profesional.
               </p>
               <p>
-                Me encanta trabajar en equipo, proponer ideas y soluciones, y siempre busco compartir lo que sé con los demás. Disfruto de crear un buen ambiente y colaborar para sacar los proyectos
+                Me encanta trabajar en equipo, proponer ideas y soluciones, y siempre busco compartir lo que sé con los
+                demás. Disfruto de crear un buen ambiente y colaborar para sacar los proyectos
                 adelante.
               </p>
               <h6 class="fw-bold">
@@ -116,7 +121,7 @@
             </p>
             <div class="d-flex justify-content-center">
               <a
-                href="https://www.instagram.com/_xiao_97_/"
+                href="https://www.instagram.com/_xiao_97_"
                 title="Instgram"
                 target="_blank"
               >
@@ -127,7 +132,7 @@
                 >
               </a>
               <a
-                href="https://www.linkedin.com/in/xiaolin-jin-lin-017287173/"
+                href="https://www.linkedin.com/in/xiaolin-jin-lin-017287173"
                 title="Linkedin"
                 target="_blank"
               >
@@ -249,7 +254,7 @@ export default class AboutMe extends Program {
   width: 100%;
   max-width: 250px;
 
-  > img {
+  >img {
     object-fit: cover;
   }
 }
@@ -267,14 +272,14 @@ export default class AboutMe extends Program {
       transform: rotateY(180deg);
     }
 
-    > .flip-card-front,
-    > .flip-card-back {
+    >.flip-card-front,
+    >.flip-card-back {
       width: 100%;
       height: 100%;
       backface-visibility: hidden;
       transform: rotateX(0deg);
 
-      > header {
+      >header {
         background: rgb(var(--bs-primary-rgb));
         width: 100%;
         padding: 4rem 1.5rem 1.5rem;
@@ -301,7 +306,7 @@ export default class AboutMe extends Program {
             0 1px 2px rgb(0 0 0 / 40%);
         }
 
-        > .btn-flip {
+        >.btn-flip {
           border: none;
           animation-name: glowing;
           animation-timing-function: ease-in-out;
@@ -311,7 +316,7 @@ export default class AboutMe extends Program {
         }
       }
 
-      > .card-body {
+      >.card-body {
         font-size: 0.9rem;
 
         .photo {
@@ -324,30 +329,30 @@ export default class AboutMe extends Program {
             max-width: 100%;
             height: 500px;
 
-            > img {
+            >img {
               width: 100%;
               object-fit: cover;
             }
           }
 
-          > img {
+          >img {
             object-fit: cover;
             border-radius: 15px;
             height: 100%;
           }
 
-          &.photo-sm > img {
+          &.photo-sm>img {
             object-position: 0px -100px;
           }
 
-          &.photo-xs > img {
+          &.photo-xs>img {
             object-position: 0px 0px;
           }
         }
       }
     }
 
-    > .flip-card-back {
+    >.flip-card-back {
       position: absolute;
       transform: rotateY(180deg);
     }
@@ -392,18 +397,22 @@ export default class AboutMe extends Program {
     background-color: rgb(var(--bs-primary-light-rgb));
     box-shadow: 0 0 15px rgb(var(--bs-primary-light-rgb));
   }
+
   25% {
     background-color: rgb(var(--bs-primary-dark-rgb));
     box-shadow: 0 0 15px rgb(var(--bs-primary-dark-rgb));
   }
+
   50% {
     background-color: rgb(var(--bs-primary-light-rgb));
     box-shadow: 0 0 15px rgb(var(--bs-primary-light-rgb));
   }
+
   75% {
     background-color: rgb(var(--bs-primary-dark-rgb));
     box-shadow: 0 0 15px rgb(var(--bs-primary-dark-rgb));
   }
+
   100% {
     background-color: rgb(var(--bs-primary-light-rgb));
     box-shadow: 0 0 15px rgb(var(--bs-primary-light-rgb));

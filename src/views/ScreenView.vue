@@ -249,6 +249,8 @@ export default {
       }
 
       localStorage.setItem('theme', this.$themeSelected);
+
+      this.checkMetaThemeColor();
     },
     $urlToOpen(value) {
       if (value) {
@@ -266,6 +268,19 @@ export default {
       this.$themeSelected = localStorage.getItem('theme') ?? 'theme-2';
 
       this.onScreenResize();
+    },
+    checkMetaThemeColor() {
+      const metaThemeColor = document.querySelector('meta[name=theme-color]');
+
+      if (metaThemeColor) {
+        metaThemeColor.setAttribute('content', this.$themeSelected === 'theme-1' ? '#5d4595' : '#13748e');
+      } else {
+        const meta = document.createElement('meta');
+        meta.name = 'theme-color';
+        meta.content = this.$themeSelected === 'theme-1' ? '#5d4595' : '#13748e';
+
+        document.head.appendChild(meta);
+      }
     },
     onRemoveProgramActive() {
       if (this.$currentProgramActive) {

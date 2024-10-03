@@ -64,7 +64,7 @@
               data-animation="slide-left"
             >
               <a
-                href="https://politecnics.barcelona/"
+                href="https://politecnics.barcelona"
                 target="_blank"
               >Centre d'Estudis Politècnics</a>
               <small>2021 - 2022</small>
@@ -99,7 +99,7 @@
                 <span class="badge badge-pill">MySQL</span>
               </div>
               <span class="grade">
-                <i class="fa-solid fa-star fa-fw" />
+                <i class="fa-solid fa-star fa-fw text-warning" />
                 Calificación: 9
               </span>
             </div>
@@ -110,7 +110,7 @@
               data-animation="slide-right"
             >
               <a
-                href="https://politecnics.barcelona/"
+                href="https://politecnics.barcelona"
                 target="_blank"
               >Centre d'Estudis Politècnics</a>
               <small>2019 - 2021</small>
@@ -144,7 +144,7 @@
                 <span class="badge badge-pill">MySQL</span>
               </div>
               <span class="grade">
-                <i class="fa-solid fa-star fa-fw" />
+                <i class="fa-solid fa-star fa-fw text-warning" />
                 Calificación: 9
               </span>
             </div>
@@ -155,7 +155,7 @@
               data-animation="slide-left"
             >
               <a
-                href="https://serveiocupacio.gencat.cat/es/Formacio-i-qualificacio/centres-propis-de-formacio/centres-dinnovacio-i-formacio-ocupacional-cifo/CIFO-de-Barcelona-La-Violeta/"
+                href="https://serveiocupacio.gencat.cat/es/Formacio-i-qualificacio/centres-propis-de-formacio/centres-dinnovacio-i-formacio-ocupacional-cifo/CIFO-de-Barcelona-La-Violeta"
                 target="_blank"
               >SOC CIFO VIOLETA</a><small>2018-2019</small>
               <small>Barcelona (España)</small>
@@ -183,7 +183,7 @@
                 <span class="badge badge-pill">Sistemas operativos</span>
               </div>
               <span class="grade">
-                <i class="fa-solid fa-star fa-fw" />
+                <i class="fa-solid fa-star fa-fw text-warning" />
                 Calificación: 10
               </span>
             </div>
@@ -194,7 +194,7 @@
               data-animation="slide-right"
             >
               <a
-                href="https://institutxxvolimpiada.cat/"
+                href="https://institutxxvolimpiada.cat"
                 target="_blank"
               >Instituto XXV Olimpiada</a>
               <small>2014-2016</small>
@@ -216,7 +216,7 @@
               data-animation="slide-left"
             >
               <a
-                href="https://institutxxvolimpiada.cat/"
+                href="https://institutxxvolimpiada.cat"
                 target="_blank"
               >Instituto XXV Olimpiada</a>
               <small>2010-2014</small>
