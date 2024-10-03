@@ -3,7 +3,7 @@
     "short_name": "Portfolio",
     "description": "My professional portfolio of fullstack developer.",
     "start_url" : "/",
-    "orientation": "portrait",   
+    "orientation": "any",   
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
