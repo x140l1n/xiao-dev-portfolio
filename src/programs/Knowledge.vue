@@ -1,6 +1,6 @@
 <template>
-  <div class="w-100 h-100 overflow-auto p-2">
-    <div class="row row-cols-1 g-2">
+  <div class="w-100 h-100 overflow-auto p-4">
+    <div class="row row-cols-1 g-4">
       <div class="col">
         <div class="card shadow-lg mx-auto w-100">
           <div class="card-header bg-primary text-light">
