@@ -540,19 +540,22 @@ export default {
     close() {
       this.$el.classList.add('closing');
 
+      this.$el.addEventListener('animationend', this.animationClosingEnd, { once: true });
+      
       this.$programs = this.$programs.filter((program) => program.id !== this.program.id);
-
-      setTimeout(() => {
-        this.$destroy();
-        this.program.$destroy();
-
-        this.$el.parentNode.removeChild(this.$el);
-      }, 500);
-
+      
       this.bringFrontLastProgram();
     },
     appendWindowNode(node) {
       this.$refs.windowContent.appendChild(node);
+    },
+    animationClosingEnd() {
+      this.$destroy();
+      this.program.$destroy();
+
+      this.$el.parentNode.removeChild(this.$el);
+
+      this.$el.removeEventListener('animationend', this.animationClosingEnd);
     }
   }
 };
