@@ -2,7 +2,7 @@
   <div
     ref="content"
     v-init-animation
-    class="row row-cols-1 g-4 overflow-x-hidden overflow-y-auto h-100 m-0 p-2"
+    class="row row-cols-1 g-4 overflow-x-hidden overflow-y-auto h-100 m-0 px-2"
   >
     <div
       class="col"

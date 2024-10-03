@@ -559,6 +559,7 @@ export default class StudiesExperiences extends Program {
         top: 0;
         left: 0;
         right: 0;
+        margin-bottom: 5px;
         margin-left: 0 !important;
         margin-right: 0 !important;
       }
