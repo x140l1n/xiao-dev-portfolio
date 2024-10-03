@@ -192,8 +192,8 @@ export default {
     init() {
       this.isMaximized = this.program.maximizedDefault;
 
-      this.initDrag(this.$refs.windowTitleBar, this);
-      this.initResize(this.$refs.window, this);
+      this.initDrag();
+      this.initResize();
 
       this.bringFront();
     },
@@ -252,7 +252,10 @@ export default {
 
       if (!action) this.toggleMaximized();
     },
-    initDrag(element, self) {
+    initDrag() {
+      const element = this.$refs.windowTitleBar;
+      const self = this;
+
       element.addEventListener('mousedown', startDrag);
       element.addEventListener('touchstart', startDrag, { passive: true });
 
@@ -316,7 +319,10 @@ export default {
         self.isDragging = false;
       }
     },
-    initResize(element, self) {
+    initResize() {
+      const element = this.$refs.window;
+      const self = this;
+
       const resizers = element.querySelectorAll('.resizer');
 
       const minimumSize = 20;
