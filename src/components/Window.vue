@@ -21,7 +21,9 @@
         class="program-icon"
         draggable="false"
       >
-      <span class="m-auto ms-2 text-truncate">{{ title }}</span>
+      <h1 class="m-auto ms-2 text-truncate">
+        {{ title }}
+      </h1>
       <div
         ref="windowTitleBarActions"
         class="h-100 d-flex align-items-center"
@@ -569,6 +571,10 @@ export default {
 </script>
 
 <style lang="css" scoped>
+h1 {
+  font-size: 1rem;
+}
+
 .window {
   width: 100%;
   height: 100%;

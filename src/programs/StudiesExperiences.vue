@@ -3,7 +3,7 @@
     ref="content"
     class="w-100 h-100 d-flex flex-column"
   >
-    <ul
+    <nav
       ref="navbar"
       class="nav nav-pills nav-fill bg-light shadow gap-2"
       role="tablist"
@@ -43,7 +43,7 @@
           Experiencias laboral
         </button>
       </li>
-    </ul>
+    </nav>
     <div
       ref="tabContent"
       v-init-animation

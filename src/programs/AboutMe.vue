@@ -16,9 +16,9 @@
             alt="Icono fullstack developer"
             draggable="false"
           >
-          <h4 class="m-0">
+          <h2 class="m-0">
             FULLSTACK DEVELOPER
-          </h4>
+          </h2>
           <button
             @click="flip"
             class="btn btn-transparent btn-flip text-light"
