@@ -13,13 +13,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
     define('MAILTO', 'info@xiaojl.dev');
 
-    $_POST['from'] = isset($_POST['from']) ? $_POST['from'] : '';
-    $_POST['firstname'] = isset($_POST['firstname']) ? $_POST['firstname'] : '';
-    $_POST['lastname'] = isset($_POST['lastname']) ? $_POST['lastname'] : '';
-    $_POST['subject'] = isset($_POST['subject']) ? $_POST['subject'] : '';
-    $_POST['message'] = isset($_POST['message']) ? $_POST['message'] : '';
+    $from = isset($_POST['from']) ? $_POST['from'] : '';
+    $firstname = isset($_POST['firstname']) ? $_POST['firstname'] : '';
+    $lastname = isset($_POST['lastname']) ? $_POST['lastname'] : '';
+    $subject = isset($_POST['subject']) ? $_POST['subject'] : '';
+    $message = isset($_POST['message']) ? $_POST['message'] : '';
 
-    if (strlen($_POST['from']) === 0 || strlen($_POST['firstname']) === 0 || strlen($_POST['lastname']) === 0 || strlen($_POST['subject']) === 0 || strlen($_POST['message']) === 0) {
+    if (strlen($from) === 0 || strlen($firstname) === 0 || strlen($lastname) === 0 || strlen($subject) === 0 || strlen($message) === 0) {
         http_response_code(422);
         echo json_encode(['status' => -1, 'msg' => 'Hay campos vacíos o inválidos.']);
 
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
     $subject = htmlspecialchars($subject, ENT_QUOTES, 'UTF-8');
     $message = htmlspecialchars($message, ENT_QUOTES, 'UTF-8');
 
-    if (!($from = filter_input(INPUT_POST, $from, FILTER_VALIDATE_EMAIL))) {
+    if (!($from = filter_var($from, FILTER_VALIDATE_EMAIL))) {
         http_response_code(422);
         echo json_encode(['status' => -1, 'msg' => 'El correo electrónico no es válido.']);
 
@@ -46,9 +46,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
         "X-Mailer: PHP" . phpversion()
     ];
 
-    $body = "Nombre: $firstname\r\n";
-    $body .= "Apellidos: $lastname\r\n";
-    $body .= "Mensaje: " . mb_convert_encoding($message, 'UTF-8', 'auto');
+    $body = "Firstname: $firstname\r\n";
+    $body .= "Lastname: $lastname\r\n";
+    $body .= "Message: " . mb_convert_encoding($message, 'UTF-8', 'auto');
+    $body .= "\r\n\r\n";
+    $body .= "This message was sent from the '" . $_SERVER['HTTP_HOST'] . "' contact form.";
 
     if (@mail(MAILTO, $subject, $body, implode("\r\n", $headers))) {
         http_response_code(200);
