@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100 h-100 d-flex flex-column">
+  <section class="w-100 h-100 d-flex flex-column">
     <div class="flex-grow-1">
       <div class="d-flex flex-column h-100">
         <div class="p-2">
@@ -39,7 +39,7 @@
         />
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -48,6 +48,7 @@ import Program from '@programs/Program';
 import IconBrowser from '@assets/icons/browser.png';
 
 @Component({
+  name: 'Browser',
   props: {
     id: {
       type: String,

@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100 h-100">
+  <section class="w-100 h-100">
     <form
       v-if="!showSuccess"
       @submit.prevent="onSubmit"
@@ -145,7 +145,7 @@
         Volver al formulario de contacto
       </button>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -154,6 +154,7 @@ import Program from '@programs/Program';
 import IconEmail from '@assets/icons/email.png';
 
 @Component({
+  name: 'ContactMe',
   props: {
     id: {
       type: String,

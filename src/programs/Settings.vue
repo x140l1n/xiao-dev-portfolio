@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100 h-100">
+  <section class="w-100 h-100">
     <div
       ref="content"
       class="h-100 d-flex align-items-start overflow-auto"
@@ -82,7 +82,7 @@
           role="tabpanel"
         >
           <h4>General</h4>
-          <div class="card">
+          <article class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-center gap-2">
                 <div class="d-flex flex-column gap-2">
@@ -112,7 +112,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </article>
         </div>
         <div
           :id="`v-pills-themes-${id}`"
@@ -121,7 +121,7 @@
           role="tabpanel"
         >
           <h4>Temas</h4>
-          <div class="card">
+          <article class="card">
             <div class="card-body">
               <h5 class="card-title">
                 Escoger tema
@@ -165,7 +165,7 @@
                 </div>
               </div>
             </div>
-          </div>
+          </article>
         </div>
         <div
           :id="`v-pills-about-${id}`"
@@ -174,7 +174,7 @@
           role="tabpanel"
         >
           <h4>Acerca de</h4>
-          <div class="card">
+          <article class="card">
             <div class="card-body">
               <h5 class="card-title">
                 Especificaciones del sistema
@@ -247,11 +247,11 @@
                 </tr>
               </table>
             </div>
-          </div>
+          </article>
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -261,6 +261,7 @@ import IconSettings from '@assets/icons/settings.png';
 import { date, version } from '@root/package';
 
 @Component({
+  name: 'Settings',
   props: {
     id: {
       type: String,

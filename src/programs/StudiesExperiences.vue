@@ -1,5 +1,5 @@
 <template>
-  <div
+  <section
     ref="content"
     class="w-100 h-100 d-flex flex-column"
   >
@@ -54,11 +54,11 @@
         :id="`studies-${id}`"
         class="tab-pane fade active show"
       >
-        <div
+        <section
           ref="timelineStudies"
           class="timeline text-light"
         >
-          <div class="timeline-row">
+          <article class="timeline-row">
             <div
               class="timeline-time"
               data-animation="slide-left"
@@ -103,8 +103,8 @@
                 Calificación: 9
               </span>
             </div>
-          </div>
-          <div class="timeline-row">
+          </article>
+          <article class="timeline-row">
             <div
               class="timeline-time"
               data-animation="slide-right"
@@ -148,8 +148,8 @@
                 Calificación: 9
               </span>
             </div>
-          </div>
-          <div class="timeline-row">
+          </article>
+          <article class="timeline-row">
             <div
               class="timeline-time"
               data-animation="slide-left"
@@ -187,8 +187,8 @@
                 Calificación: 10
               </span>
             </div>
-          </div>
-          <div class="timeline-row">
+          </article>
+          <article class="timeline-row">
             <div
               class="timeline-time"
               data-animation="slide-right"
@@ -209,8 +209,8 @@
                 BACHILLERATO TECNOLÓGICO
               </h5>
             </div>
-          </div>
-          <div class="timeline-row">
+          </article>
+          <article class="timeline-row">
             <div
               class="timeline-time"
               data-animation="slide-left"
@@ -231,19 +231,19 @@
                 ESO
               </h5>
             </div>
-          </div>
-        </div>
+          </article>
+        </section>
       </div>
       <div
         :aria-labelledby="`experiences-${id}`"
         :id="`experiences-${id}`"
         class="tab-pane fade"
       >
-        <div
+        <section
           ref="timelineExperiences"
           class="timeline text-light"
         >
-          <div class="timeline-row">
+          <article class="timeline-row">
             <div
               class="timeline-time"
               data-animation="slide-left"
@@ -300,11 +300,11 @@
                 <span class="badge badge-pill">Windows Server</span>
               </div>
             </div>
-          </div>
-        </div>
+          </article>
+        </section>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -313,6 +313,7 @@ import Program from '@programs/Program';
 import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
 
 @Component({
+  name: 'StudiesExperiences',
   props: {
     id: {
       type: String,

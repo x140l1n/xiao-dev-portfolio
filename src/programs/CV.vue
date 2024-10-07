@@ -1,5 +1,5 @@
 <template>
-  <div class="w-100 h-100 overflow-hidden">
+  <section class="w-100 h-100 overflow-hidden">
     <iframe
       v-show="!isMinimized && isLoadedCV"
       :src="$env.CV_URL"
@@ -15,7 +15,7 @@
     >
       <h4>Cargando currículum...</h4>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -24,6 +24,7 @@ import Program from '@programs/Program';
 import IconPdf from '@assets/icons/pdf.png';
 
 @Component({
+  name: 'CV',
   props: {
     id: {
       type: String,
@@ -52,7 +53,7 @@ import IconPdf from '@assets/icons/pdf.png';
     }
   }
 })
-export default class Knowledge extends Program {
+export default class CV extends Program {
   created() {
     this.title = 'Currículum Vitae';
     this.widthDefault = 400;

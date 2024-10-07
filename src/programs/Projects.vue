@@ -1,5 +1,5 @@
 <template>
-  <div
+  <section
     ref="content"
     v-init-animation
     class="row row-cols-1 g-4 overflow-x-hidden overflow-y-auto h-100 m-0 px-2"
@@ -8,7 +8,7 @@
       class="col"
       data-animation="slide-right"
     >
-      <div class="card mx-auto shadow">
+      <article class="card mx-auto shadow">
         <div class="card-body d-flex">
           <div class="logo m-auto">
             <img
@@ -63,13 +63,13 @@
             </div>
           </div>
         </div>
-      </div>
+      </article>
     </div>
     <div
       class="col"
       data-animation="slide-left"
     >
-      <div class="card mx-auto shadow">
+      <article class="card mx-auto shadow">
         <div class="card-body d-flex">
           <div class="logo m-auto">
             <img
@@ -150,13 +150,13 @@
             </div>
           </div>
         </div>
-      </div>
+      </article>
     </div>
     <div
       class="col"
       data-animation="slide-right"
     >
-      <div class="card mx-auto shadow">
+      <article class="card mx-auto shadow">
         <div class="card-body d-flex">
           <div class="logo m-auto">
             <img
@@ -264,13 +264,13 @@
             </div>
           </div>
         </div>
-      </div>
+      </article>
     </div>
     <div
       class="col"
       data-animation="slide-left"
     >
-      <div class="card mx-auto shadow">
+      <article class="card mx-auto shadow">
         <div class="card-body d-flex">
           <div class="logo m-auto">
             <img
@@ -339,13 +339,13 @@
             </div>
           </div>
         </div>
-      </div>
+      </article>
     </div>
     <div
       class="col"
       data-animation="slide-right"
     >
-      <div class="card mx-auto shadow">
+      <article class="card mx-auto shadow">
         <div class="card-body d-flex">
           <div class="logo m-auto">
             <img
@@ -402,13 +402,13 @@
             </div>
           </div>
         </div>
-      </div>
+      </article>
     </div>
     <div
       class="col"
       data-animation="zoom-out"
     >
-      <div class="card more mx-auto border-0 bg-transparent">
+      <article class="card more mx-auto border-0 bg-transparent">
         <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
           <p class="fs-4">
             Para ver más proyectos, visita mi perfil de GitHub 😎
@@ -428,9 +428,9 @@
             >
           </a>
         </div>
-      </div>
+      </article>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -439,6 +439,7 @@ import Program from '@programs/Program';
 import IconProjects from '@assets/icons/projects.png';
 
 @Component({
+  name: 'Projects',
   props: {
     id: {
       type: String,

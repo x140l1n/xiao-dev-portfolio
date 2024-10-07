@@ -172,7 +172,7 @@
         </button>
       </div>
     </div>
-    <TaskBarView
+    <TaskBar
       ref="taskBarView"
       draggable="false"
     />
@@ -218,7 +218,7 @@ import { v4 } from 'uuid';
 
 export default {
   components: {
-    TaskBarView: () => import('@components/TaskBarView.vue')
+    TaskBar: () => import('@components/TaskBar.vue')
   },
   data() {
     return {

@@ -52,9 +52,11 @@
 </template>
 
 <script>
+import ScreenView from '@views/ScreenView.vue';
+
 export default {
   components: {
-    ScreenView: () => import('@views/ScreenView.vue')
+    ScreenView
   },
   data() {
     return {

@@ -1,5 +1,5 @@
 <template>
-  <div class="taskbar bg-primary">
+  <section class="taskbar bg-primary">
     <div class="taskbar-programs d-flex gap-2 justify-content-start align-items-center flex-shrink-1 mx-auto overflow-y-hidden overflow-x-auto">
       <button
         v-for="(program, index) in $programs"
@@ -24,15 +24,16 @@
     <Clock class="taskbar-item clock flex-shrink-0" />
     <button
       @click="onMinimizeAllPrograms"
-      class="taskbar-item taskbar-item-minimize-all border border-dark border-end-0 border-top-0 border-bottom-0 flex-shrink-0"
       type="button"
+      class="taskbar-item taskbar-item-minimize-all border border-dark border-end-0 border-top-0 border-bottom-0 flex-shrink-0"
       title="Minimizar todos los programas"
     />
-  </div>
+  </section>
 </template>
 
 <script>
 export default {
+  name: 'TaskBar',
   components: {
     Clock: () => import('@components/Clock.vue')
   },

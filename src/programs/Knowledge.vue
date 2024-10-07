@@ -1,8 +1,8 @@
 <template>
-  <div class="w-100 h-100 overflow-auto p-4">
+  <section class="w-100 h-100 overflow-auto p-4">
     <div class="row row-cols-1 g-4">
       <div class="col">
-        <div class="card shadow-lg mx-auto w-100">
+        <article class="card shadow-lg mx-auto w-100">
           <div class="card-header bg-primary text-light">
             <span class="fw-bold">Lenguajes de programación y frameworks</span>
           </div>
@@ -159,10 +159,10 @@
               >
             </div>
           </div>
-        </div>
+        </article>
       </div>
       <div class="col">
-        <div class="card shadow-lg mx-auto w-100">
+        <article class="card shadow-lg mx-auto w-100">
           <div class="card-header bg-primary text-light">
             <span class="fw-bold">Bases de datos</span>
           </div>
@@ -191,10 +191,10 @@
               >
             </div>
           </div>
-        </div>
+        </article>
       </div>
       <div class="col">
-        <div class="card shadow-lg mx-auto w-100">
+        <article class="card shadow-lg mx-auto w-100">
           <div class="card-header bg-primary text-light">
             <span class="fw-bold">Otros</span>
           </div>
@@ -230,10 +230,10 @@
               >
             </div>
           </div>
-        </div>
+        </article>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -242,6 +242,7 @@ import Program from '@programs/Program';
 import IconKnowledge from '@assets/icons/knowledge.png';
 
 @Component({
+  name: 'Knowledge',
   props: {
     id: {
       type: String,

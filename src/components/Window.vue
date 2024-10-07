@@ -1,5 +1,5 @@
 <template>
-  <div
+  <section
     ref="window"
     v-resize="onResize"
     @click="onSelectedProgram"
@@ -70,11 +70,12 @@
     <span class="resizer bottom" />
     <span class="resizer bottom-left" />
     <span class="resizer left" />
-  </div>
+  </section>
 </template>
 
 <script>
 export default {
+  name: 'Window',
   props: {
     title: {
       type: String,

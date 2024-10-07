@@ -1,5 +1,5 @@
 <template>
-  <div
+  <section
     ref="content"
     class="w-100 h-100 overflow-auto p-2"
   >
@@ -158,7 +158,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -168,6 +168,7 @@ import IconAboutMe from '@assets/icons/about-me.png';
 import { author } from '@root/package';
 
 @Component({
+  name: 'AboutMe',
   props: {
     id: {
       type: String,
