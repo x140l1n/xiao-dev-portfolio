@@ -4,7 +4,7 @@
     class="monitor"
   >
     <div class="monitor-inner">
-      <div :class="`layer-on-off ${!isFirstTime && isMonitorOn ? 'layer-on' : ''}`" />
+      <div ref="layerOnOff" :class="`layer-on-off ${!isFirstTime && isMonitorOn ? 'layer-on' : ''}`" />
       <div
         v-if="!isMonitorOn"
         class="presentation d-flex flex-column flex-xxl-row justify-content-center align-items-center gap-5 text-center text-xxl-start text-light overflow-auto"
@@ -105,6 +105,8 @@ export default {
     init() {
       this.startTypeWriter();
       this.startFullscreenListener();
+
+      this.$refs.layerOnOff.addEventListener('animationend', this.onAnimationLayerOnEnd);
     },
     async startTypeWriter() {
       const title = this.$refs.title.textContent;
@@ -163,6 +165,11 @@ export default {
           this.$isFullscreen = false;
         }
       });
+    },
+    onAnimationLayerOnEnd() {
+      this.$refs.layerOnOff.removeEventListener('animationend', this.onAnimationLayerOnEnd);
+
+      this.$refs.layerOnOff.remove();
     }
   }
 };
