@@ -25,6 +25,11 @@ module.exports = {
           from: path.resolve(__dirname, 'api/'),
           to: path.resolve(__dirname, 'dist/api/'),
           noErrorOnMissing: false
+        },
+        {
+          from: path.resolve(__dirname, 'src/logs/'),
+          to: path.resolve(__dirname, 'dist/logs/'),
+          noErrorOnMissing: false
         }
       ]),
       new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es/)
