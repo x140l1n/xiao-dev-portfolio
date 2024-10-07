@@ -36,7 +36,7 @@
         </button>
       </div>
       <img
-        v-show="!isMonitorOn"
+        v-if="!isMonitorOn"
         class="image-greet"
         src="@assets/img/greet.png"
         title="Saludo"
@@ -45,7 +45,7 @@
       >
       <ScreenView
         ref="screenView"
-        v-show="isMonitorOn"
+        v-if="isMonitorOn"
       />
     </div>
   </div>

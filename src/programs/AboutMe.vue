@@ -263,7 +263,7 @@ export default class AboutMe extends Program {
   position: relative;
   border-radius: 25px;
   max-width: 1200px;
-  margin: 30px auto;
+  margin: 40px auto;
   transition: transform 0.6s;
   transform-style: preserve-3d;
 
@@ -295,7 +295,7 @@ export default class AboutMe extends Program {
           position: absolute;
           z-index: 1;
           left: 50%;
-          top: 20px;
+          top: 25px;
           margin: 0 0 0 -50px;
           height: 15px;
           width: 100px;
@@ -363,7 +363,7 @@ export default class AboutMe extends Program {
     z-index: 2;
     content: '';
     left: 50%;
-    top: -60px;
+    top: -55px;
     margin: 0 0 0 -40px;
     height: 90px;
     width: 80px;
