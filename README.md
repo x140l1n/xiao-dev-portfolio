@@ -45,7 +45,6 @@ The portfolio is built with the following stack:
 - **Vue 2**: Frontend framework.
 - **SASS**: For styling and animations.
 - **Bootstrap**: For styles and UI components.
-- **Fontawesome**: For icons.
 - **PHP**: Handles server-side logic for processing email submissions through the `email.php` file in the `api/` folder.
 
 ## 🗂️ Project Structure
