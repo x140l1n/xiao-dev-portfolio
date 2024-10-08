@@ -17,7 +17,7 @@
             ref="title"
             class="title fw-bold lh-lg"
           >
-            Welcome to my portfolio! 🖥️
+            Welcome to my portfolio!
           </h1>
           <br>
           <div class="fs-3">
