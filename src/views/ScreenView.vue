@@ -311,17 +311,6 @@ export default {
             services: {
               ga: {
                 label: 'Google Analytics',
-                onAccept: () => {
-                  if (process.env.VUE_APP_GA_ID) {
-                    startGtag().catch((error) => {
-                      // eslint-disable-next-line no-console
-                      console.error(error);
-                    });
-                  }
-                },
-                onReject: () => {
-
-                },
                 cookies: [
                   {
                     name: /^(_ga|_gid)/
