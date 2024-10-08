@@ -77,7 +77,7 @@ VUE_APP_RECAPTCHA_V3_SITE_KEY=
 ```
 
 - `VUE_APP_PORT`: Set the port of development server (default: 3000).
-- `VUE_APP_API_ENDPOINT_URL`: The API endpoint URL for making requests (default: `http://localhost:8000/api/`).
+- `VUE_APP_API_ENDPOINT_URL`: The API endpoint URL for making requests (default: `http://localhost:8000`).
 - `VUE_APP_CV_URL`: The URL of CV.
 - `VUE_APP_GA_ID`: The Google Analytics ID (not required).
 - `VUE_APP_RECAPTCHA_V3_SITE_KEY`: The reCAPTCHA v3 site key (required if using the contact form).
@@ -106,10 +106,10 @@ CONTACT_MAIL_PORT=
 CONTACT_MAIL_SECURE=
 CONTACT_MAIL_TO=
 
-RECAPTCHA_URL_VERIFY=https://www.google.com/recaptcha/api/siteverify # The URL for verifying reCAPTCHA v3 responses
-RECAPTCHA_V3_SECRET_KEY= # The secret key for reCAPTCHA v3 validation
+RECAPTCHA_URL_VERIFY=https://www.google.com/recaptcha/api/siteverify
+RECAPTCHA_V3_SECRET_KEY=
 
-ACCESS_CONTROL_ALLOW_ORIGIN=http://localhost:3000 # Specifies which origins are allowed to access the API (CORS)
+ACCESS_CONTROL_ALLOW_ORIGIN=http://localhost:3000
 ```
 
 - `APP_NAME`: The name of the application.
@@ -121,8 +121,9 @@ ACCESS_CONTROL_ALLOW_ORIGIN=http://localhost:3000 # Specifies which origins are 
 - `CONTACT_MAIL_PORT`: The port of the email server (e.g., 587).
 - `CONTACT_MAIL_SECURE`: The security method for the email server (tls/ssl).
 - `CONTACT_MAIL_TO`: The email address to which the contact form submissions are sent.
+- `RECAPTCHA_URL_VERIFY`: It's the default Google URL used to validate reCAPTCHA responses (default: `https://www.google.com/recaptcha/api/siteverify`).
 - `RECAPTCHA_V3_SECRET_KEY`: The secret key for reCAPTCHA v3 validation.
-- `ACCESS_CONTROL_ALLOW_ORIGIN`: Specifies which origins are allowed to access the API (CORS).
+- `ACCESS_CONTROL_ALLOW_ORIGIN`: Specifies which origins are allowed to access the API (CORS) (default: `http://localhost:3000`)
 
 Once the environment variables are set, you can start the PHP server by running:
 
