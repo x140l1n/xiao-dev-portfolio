@@ -4,46 +4,47 @@
       <div class="col">
         <article class="card shadow-lg mx-auto w-100">
           <div class="card-header bg-primary text-light">
-            <span class="fw-bold">Lenguajes de programación y frameworks</span>
+            <span class="fw-bold">Programming Languages and Frameworks</span>
           </div>
           <div class="card-body">
-            <h6 class="fw-bold">
+            <h4 class="fw-bold">
               Frontend
-            </h6>
+            </h4>
+            <hr class="mb-2">
             <div class="d-flex justify-content-center flex-wrap">
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/html.png"
                 title="HTML 5"
-                alt="Logo HTML"
+                alt="HTML Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/css.png"
                 title="CSS"
-                alt="Logo CSS"
+                alt="CSS Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/javascript.png"
                 title="JavaScript"
-                alt="Logo JavaScript"
+                alt="JavaScript Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/typescript.png"
                 title="TypeScript"
-                alt="Logo TypeScript"
+                alt="TypeScript Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/bootstrap.png"
                 title="Bootstrap"
-                alt="Logo Bootstrap"
+                alt="Bootstrap Logo"
                 width="75"
                 draggable="false"
               >
@@ -51,110 +52,111 @@
                 class="mx-2 my-auto"
                 src="@assets/icons/sass.png"
                 title="Sass"
-                alt="Logo Sass"
+                alt="Sass Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/tailwind.png"
                 title="Tailwind"
-                alt="Logo Tailwind"
+                alt="Tailwind Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/vue.png"
                 title="Vue"
-                alt="Logo Vue"
+                alt="Vue Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/react.png"
                 title="React"
-                alt="Logo React"
+                alt="React Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/ionic.png"
                 title="Ionic"
-                alt="Logo Ionic"
+                alt="Ionic Logo"
                 draggable="false"
               >
             </div>
-            <h6 class="fw-bold">
+            <h4 class="mt-5 fw-bold">
               Backend
-            </h6>
+            </h4>
+            <hr class="mb-4">
             <div class="d-flex justify-content-center flex-wrap">
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/java.png"
                 title="Java"
-                alt="Logo Java"
+                alt="Java Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/vb.net.png"
                 title="Visual Basic"
-                alt="Logo Visual Basic"
+                alt="Visual Basic Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/csharp.png"
                 title="C#"
-                alt="Logo C#"
+                alt="C# Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/php.png"
                 title="PHP"
-                alt="Logo PHP"
+                alt="PHP Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/express.png"
                 title="Express"
-                alt="Logo Express"
+                alt="Express Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/nodejs.png"
                 title="NodeJS"
-                alt="Logo NodeJS"
+                alt="NodeJS Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/laravel.png"
                 title="Laravel"
-                alt="Logo Laravel"
+                alt="Laravel Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/codeigniter.png"
                 title="Codeigniter"
-                alt="Logo Codeigniter"
+                alt="Codeigniter Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/ado.net.png"
                 title="ADO.NET"
-                alt="Logo ADO.NET"
+                alt="ADO.NET Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/.net.png"
                 title=".NET Core"
-                alt="Logo .NET Core"
+                alt=".NET Core Logo"
                 draggable="false"
               >
             </div>
@@ -164,7 +166,7 @@
       <div class="col">
         <article class="card shadow-lg mx-auto w-100">
           <div class="card-header bg-primary text-light">
-            <span class="fw-bold">Bases de datos</span>
+            <span class="fw-bold">Databases</span>
           </div>
           <div class="card-body">
             <div class="d-flex justify-content-center flex-wrap">
@@ -172,21 +174,21 @@
                 class="mx-2 my-auto"
                 src="@assets/icons/mysql.png"
                 title="MySQL"
-                alt="Logo MySQL"
+                alt="MySQL Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/sql-server.png"
                 title="SQL Server"
-                alt="Logo SQL Server"
+                alt="SQL Server Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/postgresql.png"
                 title="PostgreSQL"
-                alt="Logo PostgreSQL"
+                alt="PostgreSQL Logo"
                 draggable="false"
               >
             </div>
@@ -196,7 +198,7 @@
       <div class="col">
         <article class="card shadow-lg mx-auto w-100">
           <div class="card-header bg-primary text-light">
-            <span class="fw-bold">Otros</span>
+            <span class="fw-bold">Others</span>
           </div>
           <div class="card-body">
             <div class="d-flex justify-content-center flex-wrap">
@@ -204,28 +206,28 @@
                 class="mx-2 my-auto"
                 src="@assets/icons/git.png"
                 title="Git"
-                alt="Logo Git"
+                alt="Git Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/github_96px.png"
                 title="GitHub"
-                alt="Logo GitHub"
+                alt="GitHub Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/android_studio.png"
                 title="Android Studio"
-                alt="Logo Android Studio"
+                alt="Android Studio Logo"
                 draggable="false"
               >
               <img
                 class="mx-2 my-auto"
                 src="@assets/icons/wordpress.png"
                 title="Wordpress"
-                alt="Logo Wordpress"
+                alt="Wordpress Logo"
                 draggable="false"
               >
             </div>
@@ -261,7 +263,7 @@ import IconKnowledge from '@assets/icons/knowledge.png';
 })
 export default class Knowledge extends Program {
   created() {
-    this.title = 'Conocimientos';
+    this.title = 'Knowledge';
     this.widthDefault = 550;
     this.heightDefault = 400;
     this.maximizedDefault = true;

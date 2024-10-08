@@ -9,26 +9,26 @@
       @click.self="onRemoveProgramActive"
       class="screen-content"
       role="presentation"
-      aria-label="Escritorio"
+      aria-label="Desktop"
     >
       <div class="program p-2">
         <button
           @click="onOpenProgram('Settings')"
           class="program-inner program-knowledge p-2"
           type="button"
-          title="Ajustes"
-          alt="Ajustes"
+          title="Settings"
+          alt="Settings"
         >
           <img
             id="program-settings"
             src="@assets/icons/settings.png"
-            alt="Logo ajustes"
+            alt="Settings logo"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-settings"
-          >Ajustes</span>
+          >Settings</span>
         </button>
       </div>
       <div class="program p-2">
@@ -36,19 +36,19 @@
           @click="onOpenProgram('AboutMe')"
           class="program-inner p-2"
           type="button"
-          title="Sobre mi"
-          alt="Sobre mi"
+          title="About Me"
+          alt="About Me"
         >
           <img
             id="program-about-me"
             src="@assets/icons/about-me.png"
-            alt="Logo sobre mi"
+            alt="About Me logo"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-about-me"
-          >Sobre mi</span>
+          >About Me</span>
         </button>
       </div>
       <div class="program p-2">
@@ -56,19 +56,19 @@
           @click="onOpenProgram('Knowledge')"
           class="program-inner program-knowledge p-2"
           type="button"
-          title="Conocimientos"
-          alt="Conocimientos"
+          title="Knowledge"
+          alt="Knowledge"
         >
           <img
             id="program-knowledge"
             src="@assets/icons/knowledge.png"
-            alt="Logo conocimientos"
+            alt="Knowledge logo"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-knowledge"
-          >Conocimientos</span>
+          >Knowledge</span>
         </button>
       </div>
       <div class="program p-2">
@@ -76,19 +76,19 @@
           @click="onOpenProgram('StudiesExperiences')"
           class="program-inner program-experiences-studies p-2"
           type="button"
-          title="Estudios y Experiencias"
-          alt="Estudios y Experiencias"
+          title="Studies & Experiences"
+          alt="Studies & Experiences"
         >
           <img
             id="program-experiences-studies"
             src="@assets/icons/experiences-studies.png"
-            alt="Logo estudios y experiencias"
+            alt="Studies and experiences logo"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-experiences-studies"
-          >Estudios y Experiencias</span>
+          >Studies & Experiences</span>
         </button>
       </div>
       <div class="program p-2">
@@ -96,19 +96,19 @@
           @click="onOpenProgram('Projects')"
           class="program-inner program-projects p-2"
           type="button"
-          title="Proyectos"
-          alt="Proyectos"
+          title="Projects"
+          alt="Projects"
         >
           <img
             id="program-projects"
             src="@assets/icons/projects.png"
-            alt="Logo mis proyectos"
+            alt="Projects logo"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-projects"
-          >Proyectos</span>
+          >Projects</span>
         </button>
       </div>
       <div class="program p-2">
@@ -116,19 +116,19 @@
           @click="onOpenProgram('ContactMe')"
           class="program-inner program-contactme p-2"
           type="button"
-          title="Contáctame"
-          alt="Contáctame"
+          title="Contact Me"
+          alt="Contact Me"
         >
           <img
             id="program-contactme"
             src="@assets/icons/email.png"
-            alt="Logo contáctame"
+            alt="Contact me logo"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-contactme"
-          >Contáctame</span>
+          >Contact Me</span>
         </button>
       </div>
       <div class="program p-2">
@@ -136,19 +136,19 @@
           @click="onOpenProgram('Browser')"
           class="program-inner program-browser p-2"
           type="button"
-          title="Navegador"
-          alt="Navegador"
+          title="Browser"
+          alt="Browser"
         >
           <img
             id="program-browser"
             src="@assets/icons/browser.png"
-            alt="Logo navegador"
+            alt="Browser logo"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-browser"
-          >Navegador</span>
+          >Browser</span>
         </button>
       </div>
       <div class="program p-2">
@@ -156,19 +156,19 @@
           @click="onOpenProgram('CV')"
           class="program-inner program-cv p-2"
           type="button"
-          title="Currículum Vitae"
-          alt="Currículum Vitae"
+          title="Curriculum Vitae"
+          alt="Curriculum Vitae"
         >
           <img
             id="program-cv"
             src="@assets/icons/pdf.png"
-            alt="Logo currículum vitae"
+            alt="Curriculum vitae logo"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-cv"
-          >Currículum Vitae</span>
+          >Curriculum Vitae</span>
         </button>
       </div>
     </div>
@@ -188,25 +188,24 @@
         <img
           class="rounded me-2"
           src="@assets/icons/tips.png"
-          title="Icono tips"
-          alt="Icono tips"
+          title="Tips icon"
+          alt="Tips icon"
           width="30px"
           draggable="false"
         >
-        <strong class="me-auto">Modo pantalla completa</strong>
+        <strong class="me-auto">Fullscreen mode</strong>
         <button
           @click="isClosedToast = true"
           class="btn-close"
           type="button"
-          title="Cerrar tips"
-          aria-label="Cerrar tips"
+          title="Close tips"
+          aria-label="Close tips"
         />
       </div>
       <div class="toast-body">
-        Habilita la pantalla completa para tener una mejor experiencia de
-        navegación. Para habilitar entra en
+        Enable fullscreen mode for a better browsing experience. To enable, go to
         <span class="fw-bold fst-italic">
-          Ajustes > General > Habilitar modo pantalla completa</span>
+          Settings > General > Enable fullscreen mode</span>
       </div>
     </div>
   </div>
@@ -316,7 +315,7 @@ export default {
         const height = programObject.heightDefault === 0 ? this.$heightScreenContent : programObject.heightDefault;
         const x = programObject.xDefault === 0 ? 0 : programObject.xDefault;
         const y = programObject.yDefault === 0 ? 0 : programObject.yDefault;
-        
+
         const WindowClass = Vue.extend(windowComponent);
 
         windowObject = new WindowClass({
@@ -381,7 +380,7 @@ export default {
     background-image: url("~@svg/xiao-theme-1.svg");
   }
 
-  > .screen-content {
+  >.screen-content {
     height: calc(100% - 3rem);
     position: relative;
     padding: 5px;
@@ -390,11 +389,11 @@ export default {
     grid-template-rows: repeat(auto-fit, 110px);
     grid-auto-flow: column;
 
-    > .program {
+    >.program {
       user-select: none;
       width: 100%;
 
-      > .program-inner {
+      >.program-inner {
         width: 100%;
         background-color: transparent;
         border: none;
@@ -409,12 +408,12 @@ export default {
           background-color: #ffffff48;
         }
 
-        > img {
+        >img {
           width: 50px;
           height: 50px;
         }
 
-        > span {
+        >span {
           text-align: center;
           text-shadow: 1px 1px 4px #000;
           font-size: 0.9em;
@@ -426,7 +425,7 @@ export default {
     }
   }
 
-  > .toast {
+  >.toast {
     position: fixed;
     bottom: 56px;
     right: 5px;

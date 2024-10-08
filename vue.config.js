@@ -1,5 +1,4 @@
 const path = require('path');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 
 module.exports = {
@@ -20,16 +19,6 @@ module.exports = {
       }
     },
     plugins: [
-      new CopyWebpackPlugin([
-        {
-          from: path.resolve(__dirname, 'api/'),
-          to: path.resolve(__dirname, 'dist/api/')
-        },
-        {
-          from: path.resolve(__dirname, 'logs/'),
-          to: path.resolve(__dirname, 'dist/logs/')
-        }
-      ]),
       new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es/)
     ],
     optimization: {

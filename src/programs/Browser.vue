@@ -16,15 +16,15 @@
                 class="form-control form-control-sm rounded-pill"
                 name="input-search"
                 type="text"
-                placeholder="Escribe para buscar"
+                placeholder="Type to search"
               >
             </div>
             <button
               ref="btnSubmit"
               class="btn bg-primary text-light btn-sm rounded-circle border border-1"
               type="submit"
-              title="Buscar"
-              aria-label="Buscar"
+              title="Search"
+              aria-label="Search"
             >
               <i class="fa-solid fa-magnifying-glass" />
             </button>
@@ -33,7 +33,7 @@
         <iframe
           ref="iframe"
           class="flex-grow-1"
-          title="Contenido navegador"
+          title="Browser content"
           frameborder="0"
           scrolling="auto"
         />
@@ -106,7 +106,7 @@ import IconBrowser from '@assets/icons/browser.png';
 })
 export default class Browser extends Program {
   created() {
-    this.title = 'Navegador';
+    this.title = 'Browser';
     this.widthDefault = 600;
     this.heightDefault = 400;
     this.maximizedDefault = true;

@@ -12,8 +12,8 @@
           <img
             ref="iconFullStackDeveloper"
             src="@assets/icons/coding.png"
-            title="Icono fullstack developer"
-            alt="Icono fullstack developer"
+            title="Fullstack Developer Icon"
+            alt="Fullstack Developer Icon"
             draggable="false"
           >
           <h2 class="m-0">
@@ -23,8 +23,8 @@
             @click="flip"
             class="btn btn-transparent btn-flip text-light"
             type="button"
-            title="Voltear la targeta"
-            aria-label="Voltear la targeta"
+            title="Flip the card"
+            aria-label="Flip the card"
           >
             <i class="fa-solid fa-repeat fa-fw" />
           </button>
@@ -41,8 +41,8 @@
               <img
                 class="img-fluid"
                 src="@assets/img/me.jpg"
-                title="Yo"
-                alt="Yo"
+                title="Me"
+                alt="Me"
               >
             </div>
             <div
@@ -50,42 +50,40 @@
               class="flex-grow-1 presentation"
             >
               <h6 class="fw-bold my-2">
-                Presentación
+                Presentation
               </h6>
               <p>
-                ¡Hola! Soy Xiaolin Jin Lin y tengo {{ getYearsOld }} años. Desde pequeño siempre me ha atraído el mundo
-                de la tecnología, y a los 19 decidí meterme de lleno en la informática,
-                eligiendo la programación como mi camino.
+                Hi! I'm Xiaolin Jin Lin, and I am {{ getYearsOld }} years old. From a young age,
+                I've always been drawn to the world of technology, and at 19, I decided to fully dive into computer
+                science, choosing programming as my path.
               </p>
               <p>
-                Estudié DAM (Desarrollo de Aplicaciones Multiplataforma) y luego DAW (Desarrollo de Aplicaciones Web) en
-                el
+                I studied DAM (Multiplatform Application Development) and then DAW (Web Application Development) at the
                 <a
                   href="https://politecnics.barcelona"
                   target="_blank"
-                >Centro de Estudios Politécnicos</a>. A lo largo
-                de estos años, he aprendido un montón y cada día me gusta más este mundo. Tengo
-                muchas ganas de seguir mejorando y aprendiendo nuevas cosas.
+                >Polytechnic Studies Center</a>. Over the years,
+                I’ve learned a lot, and every day I become more passionate about this field. I'm eager to keep improving
+                and learning new things.
               </p>
               <p>
-                Aparte de la programación, también me gusta la danza, y eso me ha ayudado a ser más constante,
-                disciplinado y a fijarme en todos los detalles, algo que aplico tanto en mi vida personal
-                como en la profesional.
+                Besides programming, I also enjoy dancing, which has helped me to be more consistent, disciplined, and
+                detail-oriented—qualities that I apply in both my personal and professional life.
               </p>
               <p>
-                Me encanta trabajar en equipo, proponer ideas y soluciones, y siempre busco compartir lo que sé con los
-                demás. Disfruto de crear un buen ambiente y colaborar para sacar los proyectos
-                adelante.
+                I love working in teams, proposing ideas and solutions, and I always aim to share my knowledge with
+                others.
+                I enjoy creating a positive atmosphere and collaborating to move projects forward.
               </p>
               <h6 class="fw-bold">
-                Idiomas
+                Languages
               </h6>
-              <p>Español (Nativo), Catalán (Nativo), Inglés (Intermedio), Chino (Intermedio). </p>
+              <p>Spanish (Native), Catalan (Native), English (Intermediate), Chinese (Intermediate).</p>
               <h6 class="fw-bold">
                 Hobbies
               </h6>
               <p class="mb-0">
-                Danza.
+                Dance.
               </p>
             </div>
           </div>
@@ -97,8 +95,8 @@
             @click="flip"
             class="btn btn-transparent btn-flip text-light align-self-end"
             type="button"
-            title="Voltear la targeta"
-            aria-label="Voltear la targeta"
+            title="Flip the card"
+            aria-label="Flip the card"
           >
             <i class="fa-solid fa-repeat fa-fw" />
           </button>
@@ -112,33 +110,33 @@
               ref="logo"
               class="logo img-fluid"
               src="@svg/xiao-theme-2.svg"
-              title="Logo Xiao"
-              alt="Logo Xiao"
+              title="Xiao Logo"
+              alt="Xiao Logo"
               draggable="false"
             >
             <p class="fw-bold text-center my-2">
-              Redes sociales
+              Social Networks
             </p>
             <div class="d-flex justify-content-center">
               <a
                 href="https://www.instagram.com/_xiao_97_"
-                title="Instgram"
+                title="Instagram"
                 target="_blank"
               >
                 <img
                   src="@assets/icons/instagram.png"
-                  alt="instagram"
+                  alt="Instagram"
                   draggable="false"
                 >
               </a>
               <a
                 href="https://www.linkedin.com/in/xiaolin-jin-lin-017287173"
-                title="Linkedin"
+                title="LinkedIn"
                 target="_blank"
               >
                 <img
                   src="@assets/icons/linkedin.png"
-                  alt="linkedin"
+                  alt="LinkedIn"
                   draggable="false"
                 >
               </a>
@@ -149,7 +147,7 @@
               >
                 <img
                   src="@assets/icons/github.png"
-                  alt="github"
+                  alt="GitHub"
                   draggable="false"
                 >
               </a>
@@ -238,7 +236,7 @@ import { author } from '@root/package';
 })
 export default class AboutMe extends Program {
   created() {
-    this.title = 'Sobre mi';
+    this.title = 'About Me';
     this.widthDefault = 550;
     this.heightDefault = 400;
     this.maximizedDefault = true;

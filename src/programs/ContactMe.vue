@@ -7,7 +7,7 @@
     >
       <div class="mb-3 mx-2">
         <h5 class="fw-bold">
-          Si tienes alguna duda no dudes en enviarme un correo ;)
+          If you have any questions, feel free to send me an email. 😁
         </h5>
       </div>
       <hr>
@@ -19,6 +19,7 @@
         >Email *</label>
         <input
           :id="`input-email-${id}`"
+          :disabled="isSending"
           class="form-control"
           name="from"
           type="email"
@@ -31,9 +32,10 @@
           <label
             :for="`input-firstname-${id}`"
             class="form-label"
-          >Nombre *</label>
+          >First Name *</label>
           <input
             :id="`input-firstname-${id}`"
+            :disabled="isSending"
             class="form-control"
             name="firstname"
             type="text"
@@ -45,9 +47,10 @@
           <label
             :for="`input-lastname-${id}`"
             class="form-label"
-          >Apellidos *</label>
+          >Last Name *</label>
           <input
             :id="`input-lastname-${id}`"
+            :disabled="isSending"
             class="form-control"
             name="lastname"
             type="text"
@@ -60,9 +63,10 @@
         <label
           :for="`input-subject-${id}`"
           class="form-label"
-        >Asunto *</label>
+        >Subject *</label>
         <input
           :id="`input-subject-${id}`"
+          :disabled="isSending"
           class="form-control"
           name="subject"
           type="text"
@@ -74,9 +78,10 @@
         <label
           :for="`input-message-${id}`"
           class="form-label"
-        >Mensaje *</label>
+        >Message *</label>
         <textarea
           :id="`input-message-${id}`"
+          :disabled="isSending"
           class="form-control"
           name="message"
           rows="5"
@@ -107,7 +112,7 @@
         <button
           class="btn bg-primary text-light w-100"
           type="submit"
-          title="Enviar"
+          title="Send"
         >
           <i
             v-if="isSending"
@@ -117,7 +122,7 @@
             v-else
             class="fa-solid fa-paper-plane fa-fw me-2"
           />
-          Enviar
+          Send
         </button>
       </div>
     </form>
@@ -128,21 +133,21 @@
       <img
         class="img-fluid mt-auto mx-auto"
         src="@assets/img/contactme.png"
-        title="Contáctame"
-        alt="Contáctame"
+        title="Contact Me"
+        alt="Contact Me"
         draggable="false"
       >
       <h3 class="mx-auto fw-bold my-4">
-        ¡Muchas gracias por contactar conmigo!
+        Thank you so much for contacting me!
       </h3>
       <button
         @click="showSuccess = false"
         class="btn-go-back mb-auto"
         type="button"
-        title="Volver al formulario de contacto"
+        title="Go back to the contact form"
       >
         <i class="fa-solid fa-angle-left me-3" />
-        Volver al formulario de contacto
+        Go back to the contact form
       </button>
     </div>
   </section>
@@ -175,54 +180,54 @@ import IconEmail from '@assets/icons/email.png';
   },
   methods: {
     init() {},
-    onSubmit(evt) {
+    async onSubmit(evt) {
       const form = evt.target;
+
       const formData = new FormData(form);
       formData.append('send', true);
 
-      const self = this;
-
-      form.querySelectorAll('input, textarea, button').forEach((element) => (element.disabled = true));
-
       this.resultMessage = null;
-
       this.isSending = true;
 
-      fetch(`${this.$env.API_ENDPOINT_URL}email.php`, {
-        method: 'POST',
-        body: formData
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (data.status == 1) {
-            self.showSuccess = true;
-            self.statusMessage = 1;
-          } else {
-            self.showSuccess = false;
-            self.statusMessage = data.status;
-            self.resultMessage = data.msg;
-          }
-        })
-        .catch(() => {
-          self.showSuccess = false;
-          self.statusMessage = 0;
-          self.resultMessage = 'Error al enviar el formulario.';
-        })
-        .finally(() => {
-          form.querySelectorAll('input, textarea, button').forEach((element) => (element.disabled = false));
+      try {
+        await this.$recaptchaLoaded();
 
-          if (self.statusMessage == 1) {
-            form.reset();
-          }
+        const token = await this.$recaptcha('contactme');
 
-          self.isSending = false;
+        formData.append('g-recaptcha-response', token);
+
+        const response = await fetch(`${this.$env.API_ENDPOINT_URL}email.php`, {
+          method: 'POST',
+          body: formData
         });
+    
+        const data = await response.json();
+
+        if (data.status == 1) {
+          this.showSuccess = true;
+          this.statusMessage = 1;
+        } else {
+          this.showSuccess = false;
+          this.statusMessage = data.status;
+          this.resultMessage = data.message;
+        }
+      } catch (error) {
+        this.showSuccess = false;
+        this.statusMessage = 0;
+        this.resultMessage = error.message;
+      } finally {
+        if (this.statusMessage == 1) {
+          form.reset();
+        }
+
+        this.isSending = false;
+      }
     }
   }
 })
 export default class ContactMe extends Program {
   created() {
-    this.title = 'Contáctame';
+    this.title = 'Contact Me';
     this.widthDefault = 550;
     this.heightDefault = 400;
     this.maximizedDefault = true;

@@ -1,1 +1,0 @@
-This file exists to ensure the 'logs' directory is copied during the build process from CopyWebpackPlugin.

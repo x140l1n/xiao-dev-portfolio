@@ -18,12 +18,12 @@
           class="nav-link active"
           data-bs-toggle="tab"
           type="button"
-          title="Estudios"
+          title="Studies"
           role="tab"
           aria-selected="true"
         >
           <i class="fa-solid fa-graduation-cap me-2 fa-fw" />
-          Estudios
+          Studies
         </button>
       </li>
       <li class="nav-item">
@@ -35,12 +35,12 @@
           class="nav-link"
           data-bs-toggle="tab"
           type="button"
-          title="Experiencias laboral"
+          title="Work Experiences"
           role="tab"
           aria-selected="false"
         >
           <i class="fa-solid fa-briefcase me-2 fa-fw" />
-          Experiencias laboral
+          Work Experiences
         </button>
       </li>
     </nav>
@@ -68,7 +68,7 @@
                 target="_blank"
               >Centre d'Estudis Politècnics</a>
               <small>2021 - 2022</small>
-              <small>Barcelona (España)</small>
+              <small>Barcelona (Spain)</small>
             </div>
             <div
               class="timeline-content"
@@ -76,13 +76,13 @@
             >
               <i class="timeline-icon fa-solid fa-code" />
               <h5 class="fw-bold text-center">
-                DESARROLLO APLICACIONES WEB (DAW)
+                WEB APPLICATION DEVELOPMENT (DAW)
               </h5>
               <ul>
-                <li>Desarrollar aplicaciones web con distintos frameworks tanto el frontend como el backend.</li>
-                <li>Manipulación de base de datos.</li>
-                <li>Configurar servidores web en Ubuntu.</li>
-                <li>Aprendizaje basado en proyectos.</li>
+                <li>Develop web applications with various frameworks for both frontend and backend.</li>
+                <li>Database manipulation.</li>
+                <li>Configure web servers on Ubuntu.</li>
+                <li>Project-based learning.</li>
               </ul>
               <div class="d-flex flex-wrap justify-content-center gap-2">
                 <span class="badge badge-pill">HTML</span>
@@ -100,7 +100,7 @@
               </div>
               <span class="grade">
                 <i class="fa-solid fa-star fa-fw text-warning" />
-                Calificación: 9
+                Grade: 9
               </span>
             </div>
           </article>
@@ -114,7 +114,7 @@
                 target="_blank"
               >Centre d'Estudis Politècnics</a>
               <small>2019 - 2021</small>
-              <small>Barcelona (España)</small>
+              <small>Barcelona (Spain)</small>
             </div>
             <div
               class="timeline-content"
@@ -122,15 +122,15 @@
             >
               <i class="timeline-icon fa-solid fa-code" />
               <h5 class="fw-bold text-center">
-                DESARROLLO APLICACIONES MULTIPLATAFORMA (DAM)
+                MULTIPLATFORM APPLICATION DEVELOPMENT (DAM)
               </h5>
               <ul>
-                <li> Desarrollar aplicaciones multiplataforma con distintos lenguajes de programación.</li>
-                <li>Desarrollo de programas para escritorio y Android.</li>
-                <li>Manipulación de base de datos.</li>
-                <li>Programación de videojuegos.</li>
-                <li>Programación en BASH.</li>
-                <li>Aprendizaje basado en proyectos.</li>
+                <li>Develop multiplatform applications using various programming languages.</li>
+                <li>Development of desktop and Android applications.</li>
+                <li>Database manipulation.</li>
+                <li>Game programming.</li>
+                <li>BASH programming.</li>
+                <li>Project-based learning.</li>
               </ul>
               <div class="d-flex flex-wrap justify-content-center gap-2">
                 <span class="badge badge-pill">Java</span>
@@ -145,7 +145,7 @@
               </div>
               <span class="grade">
                 <i class="fa-solid fa-star fa-fw text-warning" />
-                Calificación: 9
+                Grade: 9
               </span>
             </div>
           </article>
@@ -158,7 +158,7 @@
                 href="https://serveiocupacio.gencat.cat/es/Formacio-i-qualificacio/centres-propis-de-formacio/centres-dinnovacio-i-formacio-ocupacional-cifo/CIFO-de-Barcelona-La-Violeta"
                 target="_blank"
               >SOC CIFO VIOLETA</a><small>2018-2019</small>
-              <small>Barcelona (España)</small>
+              <small>Barcelona (Spain)</small>
             </div>
             <div
               class="timeline-content"
@@ -166,12 +166,12 @@
             >
               <i class="timeline-icon fa-solid fa-code" />
               <h5 class="fw-bold text-center">
-                CERTIFICADO DE PROFESIONALIDAD EN POO (630H)
+                OBJECT-ORIENTED PROGRAMMING CERTIFICATION (630H)
               </h5>
               <ul>
-                <li>Sistemas operativos y aplicaciones informáticas.</li>
-                <li>Programación orientada a objetos.</li>
-                <li>Base de datos relacionales.</li>
+                <li>Operating systems and software applications.</li>
+                <li>Object-oriented programming.</li>
+                <li>Relational databases.</li>
               </ul>
               <div class="d-flex flex-wrap justify-content-center gap-2">
                 <span class="badge badge-pill">Java</span>
@@ -180,11 +180,11 @@
                 <span class="badge badge-pill">PHP</span>
                 <span class="badge badge-pill">MySQL</span>
                 <span class="badge badge-pill">SQL Server</span>
-                <span class="badge badge-pill">Sistemas operativos</span>
+                <span class="badge badge-pill">Operating systems</span>
               </div>
               <span class="grade">
                 <i class="fa-solid fa-star fa-fw text-warning" />
-                Calificación: 10
+                Grade: 10
               </span>
             </div>
           </article>
@@ -198,7 +198,7 @@
                 target="_blank"
               >Instituto XXV Olimpiada</a>
               <small>2014-2016</small>
-              <small>Barcelona (España)</small>
+              <small>Barcelona (Spain)</small>
             </div>
             <div
               class="timeline-content"
@@ -206,7 +206,7 @@
             >
               <i class="timeline-icon fa-solid fa-school" />
               <h5 class="fw-bold text-center">
-                BACHILLERATO TECNOLÓGICO
+                TECHNOLOGICAL BACCALAUREATE
               </h5>
             </div>
           </article>
@@ -220,7 +220,7 @@
                 target="_blank"
               >Instituto XXV Olimpiada</a>
               <small>2010-2014</small>
-              <small>Barcelona (España)</small>
+              <small>Barcelona (Spain)</small>
             </div>
             <div
               class="timeline-content"
@@ -252,8 +252,8 @@
                 href="https://tkmservicios.com"
                 target="_blank"
               >TKM Consultores S.L.</a>
-              <small>2019 - Presente</small>
-              <small>Barcelona (España)</small>
+              <small>2019 - Present</small>
+              <small>Barcelona (Spain)</small>
             </div>
             <div
               class="timeline-content"
@@ -261,19 +261,19 @@
             >
               <i class="timeline-icon fa-solid fa-code" />
               <h5 class="fw-bold text-center">
-                DEVELOPER FULLSTACK / HELPDESK
+                FULLSTACK DEVELOPER / HELPDESK
               </h5>
               <ul>
-                <li>Planificación, documentación y desarrollo de proyectos.</li>
-                <li>Creación y mantenimiento aplicaciones web con: HTML, CSS, JavaScript, PHP, Ruby On Rails, Wordpress.</li>
-                <li>Creación y mantenimiento de programas WinForms: .NET, .NET Core.</li>
-                <li>Creación y mantenimiento de base de datos: Microsoft SQL Server, MySQL, PostgreSQL.</li>
-                <li>Mantenimiento de servidores webs y hosting: Arsys, Axarnet, Guebs, CDMON.</li>
-                <li>Técnico de sistemas: Windows Server, Active Directory, Microsoft Exchange, Virtualización.</li>
-                <li>Técnico en redes: Análisis de redes, configuración de routers, switches, firewalls.</li>
-                <li>Helpdesk: Soporte técnico a usuarios finales, mantenimiento de equipos, instalación de software.</li>
-                <li>Desarollo a medida de programas para ERP.</li>
-                <li>Manejo de programas ERP: A3ERP.</li>
+                <li>Project planning, documentation, and development.</li>
+                <li>Creation and maintenance of web applications using: HTML, CSS, JavaScript, PHP, Ruby On Rails, WordPress.</li>
+                <li>Creation and maintenance of WinForms programs: .NET, .NET Core.</li>
+                <li>Database creation and maintenance: Microsoft SQL Server, MySQL, PostgreSQL.</li>
+                <li>Web server and hosting maintenance: Arsys, Axarnet, Guebs, CDMON.</li>
+                <li>Systems technician: Windows Server, Active Directory, Microsoft Exchange, Virtualization.</li>
+                <li>Network technician: Network analysis, router, switch, and firewall configuration.</li>
+                <li>Helpdesk: Technical support for end users, equipment maintenance, software installation.</li>
+                <li>Custom ERP program development.</li>
+                <li>ERP program management: A3ERP.</li>
               </ul>
               <div class="d-flex flex-wrap justify-content-center gap-2">
                 <span class="badge badge-pill">HTML</span>
@@ -344,7 +344,7 @@ import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
 })
 export default class StudiesExperiences extends Program {
   created() {
-    this.title = 'Estudios y Experiencias';
+    this.title = 'Studies & Experiences';
     this.widthDefault = 550;
     this.heightDefault = 400;
     this.maximizedDefault = true;

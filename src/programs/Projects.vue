@@ -15,7 +15,7 @@
               class="img-fluid"
               src="@assets/icons/logo_arkanoid.png"
               title="Arkanoid"
-              alt="Logo Arkanoid"
+              alt="Arkanoid Logo"
               draggable="false"
             >
           </div>
@@ -23,7 +23,7 @@
             <h5 class="fw-bold">
               Arkanoid
             </h5>
-            <p>Juego arcade de plataforma para las puertas abiertas del Centre D'Estudis Politècnics.</p>
+            <p>Platform arcade game created for the open doors event at Centre D'Estudis Politècnics.</p>
             <div class="d-flex flex-wrap my-4">
               <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events -->
               <button
@@ -76,7 +76,7 @@
               class="img-fluid"
               src="@assets/icons/logo_ibroggi.png"
               title="IBroggi"
-              alt="Logo IBroggi"
+              alt="IBroggi Logo"
               draggable="false"
             >
           </div>
@@ -85,42 +85,41 @@
               IBroggi 112
             </h5>
             <p>
-              El proyecto es para el cliente Institut Moisès Broggi. Consiste en un simulador de llamadas de emergencia
-              para técnicos en proceso de formación del 112, sistema de emergencias de
-              Cataluña.
+              This project is for the client Institut Moisès Broggi. It is a call simulator for emergency technicians
+              in training for 112, the emergency system in Catalonia.
             </p>
             <div class="d-flex flex-wrap my-4">
               <a
                 class="mx-2"
                 href="https://youtu.be/kF6py0E8ma0"
-                title="Vídeo IBroggi 1"
-                alt="Vídeo IBroggi 1"
+                title="IBroggi Video 1"
+                alt="IBroggi Video 1"
                 role="button"
               >
                 <img
                   class="me-2"
                   src="@assets/icons/youtube.png"
-                  title="Vídeo IBroggi 1"
-                  alt="Vídeo IBroggi 1"
+                  title="IBroggi Video 1"
+                  alt="IBroggi Video 1"
                   draggable="false"
                 >
-                Vídeo IBroggi 1
+                IBroggi Video 1
               </a>
               <a
                 class="mx-2"
                 href="https://youtu.be/VhKQIjMSxzg"
-                title="Vídeo IBroggi 2"
-                alt="Vídeo IBroggi 2"
+                title="IBroggi Video 2"
+                alt="IBroggi Video 2"
                 role="button"
               >
                 <img
                   class="me-2"
                   src="@assets/icons/youtube.png"
-                  title="Vídeo IBroggi 2"
-                  alt="Vídeo IBroggi 2"
+                  title="IBroggi Video 2"
+                  alt="IBroggi Video 2"
                   draggable="false"
                 >
-                Vídeo IBroggi 2
+                IBroggi Video 2
               </a>
               <a
                 class="mx-2"
@@ -163,7 +162,7 @@
               class="img-fluid"
               src="@assets/icons/logo_ecoarts.png"
               title="ECOARTS"
-              alt="Logo ECOARTS"
+              alt="ECOARTS Logo"
               draggable="false"
             >
           </div>
@@ -172,55 +171,53 @@
               EcoArts
             </h5>
             <p>
-              EcoArts es un juego de trivia sobre el medio ambiente para niños. El objetivo del juego es ayudar a los
-              niños a comprender la importancia de cuidar el medio ambiente de una forma
-              divertida y entretenida.
+              EcoArts is an environmental trivia game for children. The goal of the game is to help kids understand
+              the importance of taking care of the environment in a fun and entertaining way.
             </p>
             <br>
             <p>
-              El jugador tiene que recorrer un mapa donde cada punto hay un monstruo, y para derrotarlo tendrá que
-              responder las preguntas de manera correcta. ¡OJO, si respondes mal, se te quitará una
-              vida!
+              The player moves across a map, and at each point, there is a monster. To defeat it, the player has to
+              answer questions correctly. Be careful, if you answer wrong, you will lose a life!
             </p>
             <br>
-            <p>El proyecto consta de 2 partes: escritorio y android.</p>
+            <p>The project consists of 2 parts: desktop and android.</p>
             <br>
             <p>
-              La parte de escritorio es donde gestionaremos las preguntas y los personajes del juego. La parte de
-              android es el juego en sí.
+              The desktop part is where you manage the game's questions and characters. The android part is the game
+              itself.
             </p>
             <div class="d-flex flex-wrap my-4">
               <a
                 class="mx-2"
                 href="https://www.youtube.com/watch?v=wfosd7CLt9s&ab_channel=DevinSchlippe"
-                title="Vídeo EcoArts android"
-                alt="Vídeo EcoArts android"
+                title="EcoArts android video"
+                alt="EcoArts android video"
                 role="button"
               >
                 <img
                   class="me-2"
                   src="@assets/icons/youtube.png"
-                  title="Vídeo EcoArts android"
-                  alt="Vídeo EcoArts android"
+                  title="EcoArts android video"
+                  alt="EcoArts android video"
                   draggable="false"
                 >
-                Vídeo EcoArts android
+                EcoArts android video
               </a>
               <a
                 class="mx-2"
                 href="https://www.youtube.com/watch?v=b-FnBSv8TRY&ab_channel=DevinSchlippe"
-                title="Vídeo EcoArts escritorio"
-                alt="Vídeo EcoArts escritorio"
+                title="EcoArts desktop video"
+                alt="EcoArts desktop video"
                 role="button"
               >
                 <img
                   class="me-2"
                   src="@assets/icons/youtube.png"
-                  title="Vídeo EcoArts escritorio"
-                  alt="Vídeo EcoArts escritorio"
+                  title="EcoArts desktop video"
+                  alt="EcoArts desktop video"
                   draggable="false"
                 >
-                Vídeo EcoArts escritorio
+                EcoArts desktop video
               </a>
               <a
                 class="mx-2"
@@ -241,18 +238,18 @@
               <a
                 class="mx-2"
                 href="https://github.com/x140l1n/ECOARTS-DESKTOP"
-                title="GitHub EcoArts android"
-                alt="GitHub EcoArts android"
+                title="GitHub EcoArts desktop"
+                alt="GitHub EcoArts desktop"
                 role="button"
               >
                 <img
                   class="me-2"
                   src="@assets/icons/github.png"
-                  title="GitHub EcoArts escritorio"
-                  alt="GitHub EcoArts escritorio"
+                  title="GitHub EcoArts desktop"
+                  alt="GitHub EcoArts desktop"
                   draggable="false"
                 >
-                GitHub EcoArts escritorio
+                GitHub EcoArts desktop
               </a>
             </div>
             <div class="d-flex flex-wrap justify-content-end gap-2">
@@ -277,7 +274,7 @@
               class="img-fluid"
               src="@assets/icons/logo_chrysallis.png"
               title="Chrysallis"
-              alt="Logo Chrysallis"
+              alt="Chrysallis Logo"
               draggable="false"
             >
           </div>
@@ -286,47 +283,47 @@
               Chrysallis
             </h5>
             <p>
-              Chrysallis es una ONG que ayuda a familias de niños y adolescentes transexuales. Este proyecto se ha
-              creado para ayudarles a gestionar eventos sociales de la asociación.
+              Chrysallis is an NGO that helps families of transgender children and teenagers. This project was created
+              to help them manage social events for the association.
             </p>
             <br>
-            <p>El proyecto consta de 2 partes: escritorio y android.</p>
+            <p>The project consists of 2 parts: desktop and android.</p>
             <p>
-              La parte de escritorio es donde van a gestionar los socios y los eventos de la asociación. La parte de
-              android lo usarán los socios donde podrán consultar y apuntarse a eventos.
+              The desktop part is where they manage members and events for the association. The android part will be
+              used by members to consult and sign up for events.
             </p>
             <div class="d-flex flex-wrap my-4">
               <a
                 class="mx-2"
                 href="https://www.youtube.com/watch?v=O_hz8wCR060&ab_channel=DanielSorianoBarber%C3%A1n"
-                title="Vídeo Chrysallis android"
-                alt="Vídeo Chrysallis android"
+                title="Chrysallis android video"
+                alt="Chrysallis android video"
                 role="button"
               >
                 <img
                   class="me-2"
                   src="@assets/icons/youtube.png"
-                  title="Vídeo Chrysallis android"
-                  alt="Vídeo Chrysallis android"
+                  title="Chrysallis android video"
+                  alt="Chrysallis android video"
                   draggable="false"
                 >
-                Vídeo Chrysallis android
+                Chrysallis android video
               </a>
               <a
                 class="mx-2"
                 href="https://www.youtube.com/watch?v=l6Po2-P1JEg&ab_channel=DanielSorianoBarber%C3%A1n"
-                title="Vídeo Chrysallis android"
-                alt="Vídeo Chrysallis android"
+                title="Chrysallis desktop video"
+                alt="Chrysallis desktop video"
                 role="button"
               >
                 <img
                   class="me-2"
                   src="@assets/icons/youtube.png"
-                  title="Vídeo Chrysallis escritorio"
-                  alt="Vídeo Chrysallis escritorio"
+                  title="Chrysallis desktop video"
+                  alt="Chrysallis desktop video"
                   draggable="false"
                 >
-                Vídeo Chrysallis escritorio
+                Chrysallis desktop video
               </a>
             </div>
             <div class="d-flex flex-wrap justify-content-end gap-2">
@@ -352,7 +349,7 @@
               class="img-fluid"
               src="@assets/icons/logo_space_invaders.png"
               title="Space Invaders"
-              alt="Logo Space Invaders"
+              alt="Space Invaders Logo"
               draggable="false"
             >
           </div>
@@ -360,24 +357,24 @@
             <h5 class="fw-bold">
               Space Invaders
             </h5>
-            <p>Juego de batallas de naves creado por mí usando la librería libGDX.</p>
-            <p>El juego es compatible con Android y Windows.</p>
+            <p>Spaceship battle game created by me using the libGDX library.</p>
+            <p>The game is compatible with Android and Windows.</p>
             <div class="d-flex flex-wrap my-4">
               <a
                 class="mx-2"
                 href="https://www.youtube.com/watch?v=LxX2LFaD8xw&ab_channel=XiaolinJinLin"
-                title="Vídeo Space Invaders"
-                alt="Vídeo Space Invaders"
+                title="Space Invaders video"
+                alt="Space Invaders video"
                 role="button"
               >
                 <img
                   class="me-2"
                   src="@assets/icons/youtube.png"
-                  title="Vídeo Space Invaders"
-                  alt="Vídeo Space Invaders"
+                  title="Space Invaders video"
+                  alt="Space Invaders video"
                   draggable="false"
                 >
-                Vídeo Space Invaders
+                Space Invaders video
               </a>
               <a
                 class="mx-2"
@@ -411,12 +408,12 @@
       <article class="card more mx-auto border-0 bg-transparent">
         <div class="card-body d-flex flex-column justify-content-center align-items-center text-center">
           <p class="fs-4">
-            Para ver más proyectos, visita mi perfil de GitHub 😎
+            To see more projects, visit my GitHub profile 😎
           </p>
           <a
             href="https://github.com/x140l1n"
             title="GitHub"
-            aria-label="Mi perfil GitHub"
+            aria-label="My GitHub profile"
             target="_blank"
             draggable="false"
           >
@@ -468,7 +465,7 @@ import IconProjects from '@assets/icons/projects.png';
 })
 export default class Projects extends Program {
   created() {
-    this.title = 'Proyectos';
+    this.title = 'Projects';
     this.widthDefault = 550;
     this.heightDefault = 400;
     this.maximizedDefault = true;

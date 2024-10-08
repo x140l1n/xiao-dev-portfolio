@@ -6,14 +6,14 @@
     :style="cssRootVars"
     class="window resizers border border-2 border-dark bg-light"
     role="presentation"
-    aria-label="Ventana"
+    aria-label="Window"
   >
     <div
       ref="windowTitleBar"
       @click="onClickWindowTitleBar"
       class="window-title-bar bg-primary text-light d-flex justify-content-between align-items-center border-bottom border-2 border-dark user-select-none"
       role="presentation"
-      aria-label="Barra de título"
+      aria-label="Title bar"
     >
       <img
         :src="program.iconSrc"
@@ -32,17 +32,17 @@
           class="title-bar-item"
           data-action="minimize"
           type="button"
-          title="Minimizar ventana"
-          aria-label="Minimizar ventana"
+          title="Minimize window"
+          aria-label="Minimize window"
         >
           <i class="fa-solid fa-minus fa-fw" />
         </button>
         <button
-          :title="`${isMaximized ? 'Minimizar tamaño ventana' : 'Maximizar tamaño ventana'}`"
+          :title="`${isMaximized ? 'Minimize window size' : 'Maximize window size'}`"
+          :aria-label="`${isMaximized ? 'Minimize window size' : 'Maximize window size'}`"
           class="title-bar-item"
           data-action="toggleMaximized"
           type="button"
-          aria-label="Maximizar tamaño ventana"
         >
           <i :class="`fa-solid ${isMaximized ? 'fa-compress' : 'fa-expand'}`" />
         </button>
@@ -50,8 +50,8 @@
           class="title-bar-item"
           data-action="close"
           type="button"
-          title="Cerrar ventana"
-          aria-label="Cerrar ventana"
+          title="Close window"
+          aria-label="Close window"
         >
           <i class="fa-solid fa-xmark fa-fw" />
         </button>

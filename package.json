@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "date": "19/09/2024",
   "author": {
-    "name": "Xiao",
+    "name": "Xiaolin Jin Lin",
     "email": "dev@xiaojl.dev"
   },
   "private": true,
@@ -20,6 +20,7 @@
     "vue-class-component": "^7.2.6",
     "vue-gtag": "^1.16.1",
     "vue-moment": "^4.1.0",
+    "vue-recaptcha-v3": "^1.9.0",
     "vue-resize-directive": "^1.2.0"
   },
   "devDependencies": {
@@ -29,7 +30,6 @@
     "@vue/cli-plugin-eslint": "^4.5.19",
     "@vue/cli-service": "^4.5.19",
     "babel-eslint": "^10.0.1",
-    "copy-webpack-plugin": "^5.0.0",
     "eslint-plugin-vue": "^5.0.0",
     "eslint-plugin-vuejs-accessibility": "^2.4.1",
     "sass": "~1.32.6",

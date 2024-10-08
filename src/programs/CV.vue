@@ -13,7 +13,7 @@
       v-if="!isLoadedCV"
       class="h-100 d-flex justify-content-center align-items-center"
     >
-      <h4>Cargando currículum...</h4>
+      <h4>Loading CV...</h4>
     </div>
   </section>
 </template>
@@ -55,7 +55,7 @@ import IconPdf from '@assets/icons/pdf.png';
 })
 export default class CV extends Program {
   created() {
-    this.title = 'Currículum Vitae';
+    this.title = 'Curriculum Vitae';
     this.widthDefault = 400;
     this.heightDefault = 600;
     this.maximizedDefault = true;

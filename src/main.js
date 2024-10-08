@@ -4,6 +4,7 @@ import moment from 'moment';
 import VueMoment from 'vue-moment';
 import resize from 'vue-resize-directive';
 import VueGtag from 'vue-gtag';
+import { VueReCaptcha } from 'vue-recaptcha-v3';
 import 'bootstrap/dist/js/bootstrap';
 import 'moment/locale/es';
 import '@src/assets/scss/styles.scss';
@@ -16,6 +17,16 @@ if (process.env.NODE_ENV === 'production' && process.env.VUE_APP_GA_ID) {
         // eslint-disable-next-line camelcase
         send_page_view: false
       }
+    }
+  });
+}
+
+if (process.env.VUE_APP_RECAPTCHA_V3_SITE_KEY) {
+  Vue.use(VueReCaptcha, {
+    siteKey: process.env.VUE_APP_RECAPTCHA_V3_SITE_KEY,
+    loaderOptions: {
+      useRecaptchaNet: true,
+      autoHideBadge: true
     }
   });
 }

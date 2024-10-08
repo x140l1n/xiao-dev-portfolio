@@ -4,7 +4,10 @@
     class="monitor"
   >
     <div class="monitor-inner">
-      <div ref="layerOnOff" :class="`layer-on-off ${!isFirstTime && isMonitorOn ? 'layer-on' : ''}`" />
+      <div
+        ref="layerOnOff"
+        :class="`layer-on-off ${!isFirstTime && isMonitorOn ? 'layer-on' : ''}`"
+      />
       <div
         v-if="!isMonitorOn"
         class="presentation d-flex flex-column flex-xxl-row justify-content-center align-items-center gap-5 text-center text-xxl-start text-light overflow-auto"
@@ -14,14 +17,14 @@
             ref="title"
             class="title fw-bold lh-lg"
           >
-            ¡Bienvenido a mi portfolio! 🖥️
+            Welcome to my portfolio! 🖥️
           </h1>
           <br>
           <div class="fs-3">
             <span
               ref="description"
               class="description"
-            >Para comenzar a explorar solo tienes que hacer clic en el siguiente botón</span>
+            >To start exploring, just click the next button</span>
             <span :class="`pointer ${isFinishedTyping ? 'visible animated' : 'invisible'}`" />
           </div>
         </div>
@@ -29,8 +32,8 @@
           :class="`btn-on rounded-circle mt-xxl-5 mt-0 ${isFinishedTyping ? 'visible animated' : 'invisible'}`"
           @click="isMonitorOn = true"
           type="button"
-          title="Encender monitor"
-          aria-label="Encender monitor"
+          title="Turn on monitor"
+          aria-label="Turn on monitor"
         >
           <i class="fa-solid fa-power-off" />
         </button>
@@ -39,8 +42,8 @@
         v-if="!isMonitorOn"
         class="image-greet"
         src="@assets/img/greet.png"
-        title="Saludo"
-        alt="Saludo"
+        title="Greeting"
+        alt="Greeting"
         draggable="false"
       >
       <ScreenView
@@ -167,9 +170,9 @@ export default {
       });
     },
     onAnimationLayerOnEnd() {
-      this.$refs.layerOnOff.removeEventListener('animationend', this.onAnimationLayerOnEnd);
-
       this.$refs.layerOnOff.remove();
+    
+      this.$refs.layerOnOff.removeEventListener('animationend', this.onAnimationLayerOnEnd);
     }
   }
 };

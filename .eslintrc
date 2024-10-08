@@ -20,6 +20,7 @@
       "warn",
       { "code": 200, "ignoreComments": true, "ignoreUrls": true }
     ],
+    "semi": ["warn", "always"],
     "comma-dangle": ["warn", "never"]
   },
   "plugins": [

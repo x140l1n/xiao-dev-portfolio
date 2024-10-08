@@ -26,7 +26,7 @@
       @click="onMinimizeAllPrograms"
       type="button"
       class="taskbar-item taskbar-item-minimize-all border border-dark border-end-0 border-top-0 border-bottom-0 flex-shrink-0"
-      title="Minimizar todos los programas"
+      title="Minimize all programs"
     />
   </section>
 </template>

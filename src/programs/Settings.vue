@@ -6,7 +6,7 @@
     >
       <div
         ref="nav"
-        class="nav justify-content-stretch flex-nowrap flex-column nav-pills me-3 shadow text-trucante bg-light overflow-y-auto"
+        class="nav justify-content-stretch flex-nowrap flex-column nav-pills me-3 shadow text-truncate bg-light overflow-y-auto"
         role="tablist"
         aria-orientation="vertical"
       >
@@ -38,17 +38,17 @@
           class="nav-link rounded-0"
           data-bs-toggle="pill"
           type="button"
-          title="Temas"
+          title="Themes"
           role="tab"
           aria-selected="false"
         >
           <img
             class="icon"
             src="@assets/icons/theme.png"
-            alt="Temas"
+            alt="Themes"
             draggable="false"
           >
-          <span>Temas</span>
+          <span>Themes</span>
         </button>
         <button
           @click="onChangeTab"
@@ -58,17 +58,17 @@
           class="nav-link rounded-0"
           data-bs-toggle="pill"
           type="button"
-          title="Acerca de"
+          title="About"
           role="tab"
           aria-selected="false"
         >
           <img
             class="icon"
             src="@assets/icons/info.png"
-            alt="Acerca de"
+            alt="About"
             draggable="false"
           >
-          <span>Acerca de</span>
+          <span>About</span>
         </button>
       </div>
       <div
@@ -90,11 +90,11 @@
                   <label
                     :for="`switch-fullscreen-${id}`"
                     class="fw-bold"
-                  >Habilitar modo pantalla completa</label>
+                  >Enable fullscreen mode</label>
                   <small
                     class="fst-italic text-danger"
-                  ><strong>Nota:</strong>
-                    Si lo habilitas en las opciones del navegador, puede que esta opción no funcione correctamente.
+                  ><strong>Note:</strong>
+                    If you enable it in browser options, this feature may not work correctly.
                   </small>
                 </div>
                 <div class="form-check form-switch">
@@ -103,7 +103,7 @@
                     :id="`switch-fullscreen-${id}`"
                     :true-value="true"
                     :false-value="false"
-                    :title="`${!$isFullscreen ? 'Modo pantalla completa' : 'Modo pantalla normal'}`"
+                    :title="`${!$isFullscreen ? 'Fullscreen mode' : 'Normal screen mode'}`"
                     :aria-checked="$isFullscreen"
                     class="form-check-input"
                     type="checkbox"
@@ -120,11 +120,11 @@
           class="tab-pane p-3 fade"
           role="tabpanel"
         >
-          <h4>Temas</h4>
+          <h4>Themes</h4>
           <article class="card">
             <div class="card-body">
               <h5 class="card-title">
-                Escoger tema
+                Choose theme
               </h5>
               <div class="d-flex flex-wrap mt-5">
                 <div class="theme-selector theme-1 p-3 my-2">
@@ -142,7 +142,7 @@
                     <label
                       :for="`rdb-theme-2-${id}`"
                       class="form-check-label"
-                    >Tema azul oscuro</label>
+                    >Dark blue theme</label>
                   </div>
                 </div>
                 <div class="theme-selector theme-2 p-3 my-2">
@@ -160,7 +160,7 @@
                     <label
                       :for="`rdb-theme-1-${id}`"
                       class="form-check-label"
-                    >Tema morado claro</label>
+                    >Light purple theme</label>
                   </div>
                 </div>
               </div>
@@ -173,11 +173,11 @@
           class="tab-pane p-3 fade"
           role="tabpanel"
         >
-          <h4>Acerca de</h4>
+          <h4>About</h4>
           <article class="card">
             <div class="card-body">
               <h5 class="card-title">
-                Especificaciones del sistema
+                System Specifications
               </h5>
               <table
                 ref="tableSpecs"
@@ -185,25 +185,25 @@
               >
                 <tr>
                   <td class="fw-bold label">
-                    Edición
+                    Edition
                   </td>
                   <td>XiaoDev OS</td>
                 </tr>
                 <tr>
                   <td class="fw-bold label">
-                    Versión
+                    Version
                   </td>
                   <td>{{ getVersion }}</td>
                 </tr>
                 <tr>
                   <td class="fw-bold label">
-                    Fecha de compilación
+                    Build Date
                   </td>
                   <td>{{ getDateVersion }}</td>
                 </tr>
                 <tr>
                   <td class="fw-bold label">
-                    Creado por
+                    Created by
                   </td>
                   <td>Xiaolin Jin Lin</td>
                 </tr>
@@ -221,14 +221,14 @@
                 </tr>
                 <tr>
                   <td class="fw-bold label pe-4">
-                    Desarrollado con
+                    Developed with
                   </td>
                   <td>
                     <div class="d-inline-block text-center">
                       <img
                         src="@assets/icons/vue.png"
-                        title="Vue"
-                        alt="Vue"
+                        title="Vue 2"
+                        alt="Vue 2"
                         draggable="false"
                       >
                       <figcaption>Vue 2</figcaption>
@@ -236,12 +236,21 @@
                     <div class="d-inline-block text-center">
                       <img
                         src="@assets/icons/bootstrap.png"
-                        title="Bootstrap"
-                        alt="Bootstrap"
+                        title="Bootstrap 5"
+                        alt="Bootstrap 5"
                         width="85"
                         draggable="false"
                       >
                       <figcaption>Bootstrap 5</figcaption>
+                    </div>
+                    <div class="d-inline-block text-center">
+                      <img
+                        src="@assets/icons/sass.png"
+                        title="Sass"
+                        alt="Sass"
+                        draggable="false"
+                      >
+                      <figcaption>Sass</figcaption>
                     </div>
                   </td>
                 </tr>
@@ -302,7 +311,7 @@ import { date, version } from '@root/package';
 })
 export default class Settings extends Program {
   created() {
-    this.title = 'Ajustes';
+    this.title = 'Settings';
     this.widthDefault = 550;
     this.heightDefault = 400;
     this.maximizedDefault = true;
@@ -345,6 +354,10 @@ export default class Settings extends Program {
 
 .table.table-small td {
   display: block;
+
+  &:first-child {
+    margin-top: 10px;
+  }
 
   &.label {
     width: 100%;
