@@ -159,8 +159,20 @@ function sendEmail(): array
     $recaptcha_url = $_ENV['RECAPTCHA_URL_VERIFY'];
     $recaptcha_secret = $_ENV['RECAPTCHA_V3_SECRET_KEY'];
 
-    $recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $g_recaptcha_response);
-    $recaptcha = json_decode($recaptcha);
+    $recaptcha_url = $recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $g_recaptcha_response;
+    
+    $ch = curl_init();
+
+    curl_setopt($ch, CURLOPT_URL, $recaptcha_url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+
+    $recaptcha_response = curl_exec($ch);
+
+    curl_close($ch);
+
+    $recaptcha = json_decode($recaptcha_response);
 
     if (!$recaptcha->success) {
         return RESPONSES['invalid_recaptcha'];
@@ -193,7 +205,7 @@ function sendEmail(): array
                 <p style=\'font-family: Arial, sans-serif; font-size: 14px;\'><strong>Last name:</strong><br>' . $lastname . '</p>
                 <p style=\'font-family: Arial, sans-serif; font-size: 14px;\'><strong>Email:</strong><br>' . $from . '</p>
                 <p style=\'font-family: Arial, sans-serif; font-size: 14px;\'><strong>Message:</strong><br>' . nl2br(mb_convert_encoding($message, 'UTF-8', 'auto')) . '</p>
-                <p style=\'font-family: Arial, sans-serif; font-size: 14px;\'><em>This message was sent from the website \'' . $_SERVER['HTTP_HOST'] . '\'.</em></p>
+                <p style=\'font-family: Arial, sans-serif; font-size: 14px;\'><em>This message was sent from the website \'<a href=\'' . $_SERVER['HTTP_HOST'] . '\'>' . $_SERVER['HTTP_HOST'] . '</a>\'.</em></p>
             </body>
             </html>
         ';
