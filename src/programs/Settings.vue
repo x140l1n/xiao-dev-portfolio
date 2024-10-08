@@ -252,6 +252,15 @@
                       >
                       <figcaption>Sass</figcaption>
                     </div>
+                    <div class="d-inline-block text-center">
+                      <img
+                        src="@assets/icons/php.png"
+                        title="PHP"
+                        alt="PHP"
+                        draggable="false"
+                      >
+                      <figcaption>PHP</figcaption>
+                    </div>
                   </td>
                 </tr>
               </table>
