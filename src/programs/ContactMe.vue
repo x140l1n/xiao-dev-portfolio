@@ -181,19 +181,16 @@ import IconEmail from '@assets/icons/email.png';
   methods: {
     init() {},
     async onSubmit(evt) {
-      const form = evt.target;
-
-      const formData = new FormData(form);
-      formData.append('send', true);
-
-      this.resultMessage = null;
       this.isSending = true;
+      this.resultMessage = null;
 
       try {
         await this.$recaptchaLoaded();
 
         const token = await this.$recaptcha('contactme');
 
+        const formData = new FormData(evt.target);
+        formData.append('send', true);
         formData.append('g-recaptcha-response', token);
 
         const response = await fetch(`${this.$env.API_ENDPOINT_URL}/email.php`, {
@@ -219,11 +216,11 @@ import IconEmail from '@assets/icons/email.png';
         this.statusMessage = 0;
         this.resultMessage = 'An error occurred while sending the email. Please try again later.';
       } finally {
+        this.isSending = false;
+
         if (this.statusMessage == 1) {
           form.reset();
         }
-
-        this.isSending = false;
       }
     }
   }
