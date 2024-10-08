@@ -11,8 +11,8 @@
           <strong>Last updated:</strong> October 8, 2024
         </small>
         <p>
-          This Cookies Policies explains how <strong>xiaojl.dev</strong> ("I", "me", "my") uses cookies and similar
-          technologies to recognize you when you visit my website at <strong>xiaojl.dev</strong> ("Website"). It
+          This Cookies Policies explains how <strong>{{ getHost }}</strong> ("I", "me", "my") uses cookies and similar
+          technologies to recognize you when you visit my website at <strong>{{ getHost }}</strong> ("Website"). It
           explains
           what these technologies are and why I use them, as well as your rights to control my use of them.
         </p>
@@ -100,7 +100,7 @@ import IconCookies from '@assets/icons/cookies.png';
     }
   },
   computed: {
-    getCurrentHost() {
+    getHost() {
       return window.location.hostname;
     }
   },
