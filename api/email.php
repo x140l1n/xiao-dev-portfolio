@@ -80,6 +80,17 @@ const RESPONSES = [
     ]
 ];
 
+$settings_logger = [
+    'name' => $_ENV['APP_NAME'],
+    'path' => __DIR__ . '/logs/app.log',
+    'maxFiles' => 5,
+    'level' => $_ENV['APP_ENV'] === 'local' ? Logger::DEBUG : Logger::ERROR
+];
+
+$GLOBALS['logger'] = new Logger($settings_logger['name']);
+$GLOBALS['logger']->pushProcessor(new UidProcessor());
+$GLOBALS['logger']->pushHandler(new RotatingFileHandler($settings_logger['path'], $settings_logger['maxFiles'], $settings_logger['level']));
+
 set_error_handler(function($errno, $errstr, $errfile, $errline) {
 	return handleErrorException($errno, 'From error handler: ' . $errstr, $errfile, $errline);
 });
@@ -94,11 +105,7 @@ function handleErrorException($errno, $errstr, $errfile, $errline)
 		ob_end_clean();
 	}
 
-    global $logger;
-
-    if (isset($logger)) {
-        $logger->error('Error: ' . $errstr, ['file' => $errfile, 'line' => $errline]);
-    }
+    $GLOBALS['logger']->error('Error: ' . $errstr, ['file' => $errfile, 'line' => $errline]);
     
     http_response_code(RESPONSES['error']['http_code']);
 
@@ -106,19 +113,6 @@ function handleErrorException($errno, $errstr, $errfile, $errline)
 
     exit();
 }
-
-global $logger;
-
-$settings_logger = [
-    'name' => $_ENV['APP_NAME'],
-    'path' => __DIR__ . '/logs/app.log',
-    'maxFiles' => 5,
-    'level' => $_ENV['APP_ENV'] === 'local' ? Logger::DEBUG : Logger::ERROR
-];
-
-$logger = new Logger($settings_logger['name']);
-$logger->pushProcessor(new UidProcessor());
-$logger->pushHandler(new RotatingFileHandler($settings_logger['path'], $settings_logger['maxFiles'], $settings_logger['level']));
 
 $response = null;
 
@@ -135,8 +129,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
  */
 function sendEmail(): array
 {
-    global $logger;
-
     $from = $_POST['from'] ?? '';
     $firstname = $_POST['firstname'] ?? '';
     $lastname = $_POST['lastname'] ?? '';
@@ -213,13 +205,13 @@ function sendEmail(): array
         if (!$mail->send()) {
             throw new Exception($mail->ErrorInfo);
         }
-
-        return RESPONSES['success'];
     } catch (Exception $e) {
-        $logger->error('Error: ' . $e->getMessage());
-
+        $GLOBALS['logger']->error('Error: ' . $e->getMessage());
+    
         return RESPONSES['error'];
     }
+
+    return RESPONSES['success'];
 }
 
 http_response_code($response['http_code']);

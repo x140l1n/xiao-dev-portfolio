@@ -107,6 +107,7 @@ export default {
   methods: {
     init() {
       this.startTypeWriter();
+
       this.startFullscreenListener();
 
       this.$refs.layerOnOff.addEventListener('animationend', this.onAnimationLayerOnEnd);

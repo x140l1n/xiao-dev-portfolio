@@ -5,6 +5,7 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 @import '~bootstrap/scss/bootstrap';
 @import 'fonts.scss';
 @import 'animations.scss';
+@import '~vanilla-cookieconsent/dist/cookieconsent.css';
 
 * {
   font-family: 'Ubuntu', sans-serif;
@@ -25,6 +26,16 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 
   --bs-form-switch-focus-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='rgb(155, 130, 211)'/></svg>");
   --bs-form-switch-focus-bg-checked: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='rgb(255, 255, 255)'/></svg>");
+
+  & #cc-main {
+    --cc-btn-primary-bg: rgb(93, 69, 149) !important;
+    --cc-btn-primary-border-color: rgb(93, 69, 149) !important;
+
+    --cc-btn-primary-hover-bg: rgb(123, 99, 179) !important;
+    --cc-btn-primary-hover-border-color: rgb(123, 99, 179) !important;
+
+    --cc-toggle-on-bg: rgb(93, 69, 149) !important;
+  }
 }
 
 .screen.theme-2 {
@@ -41,6 +52,20 @@ $fa-font-path: "~@fortawesome/fontawesome-free/webfonts";
 
   --bs-form-switch-focus-bg: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='rgb(81, 179, 195)'/></svg>");
   --bs-form-switch-focus-bg-checked: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-4 -4 8 8'><circle r='3' fill='rgb(255, 255, 255)'/></svg>");
+
+  & #cc-main {
+    --cc-btn-primary-bg: rgb(19, 116, 142) !important;
+    --cc-btn-primary-border-color: rgb(19, 116, 142) !important;
+  
+    --cc-btn-primary-hover-bg: rgb(49, 146, 172) !important;
+    --cc-btn-primary-hover-border-color: rgb(49, 146, 172) !important;
+  
+    --cc-toggle-on-bg: rgb(19, 116, 142) !important;
+  }
+}
+
+#cc-main {
+  --cc-font-family: Ubuntu, sans-serif;
 }
 
 body {

@@ -4,13 +4,15 @@
       <div class="col">
         <article class="card shadow-lg mx-auto w-100">
           <div class="card-header bg-primary text-light">
-            <span class="fw-bold">Programming Languages and Frameworks</span>
+            <h5 class="fw-bold mb-0">
+              Languages and Frameworks
+            </h5>
           </div>
           <div class="card-body">
-            <h4 class="fw-bold">
+            <h6 class="fw-bold">
               Frontend
-            </h4>
-            <hr class="mb-2">
+            </h6>
+            <hr class="mt-0 mb-2">
             <div class="d-flex justify-content-center flex-wrap">
               <img
                 class="mx-2 my-auto"
@@ -84,10 +86,10 @@
                 draggable="false"
               >
             </div>
-            <h4 class="mt-5 fw-bold">
+            <h6 class="fw-bold mt-5">
               Backend
-            </h4>
-            <hr class="mb-4">
+            </h6>
+            <hr class="mt-0 mb-4">
             <div class="d-flex justify-content-center flex-wrap">
               <img
                 class="mx-2 my-auto"
@@ -166,7 +168,9 @@
       <div class="col">
         <article class="card shadow-lg mx-auto w-100">
           <div class="card-header bg-primary text-light">
-            <span class="fw-bold">Databases</span>
+            <h5 class="fw-bold mb-0">
+              Databases
+            </h5>
           </div>
           <div class="card-body">
             <div class="d-flex justify-content-center flex-wrap">
@@ -198,7 +202,9 @@
       <div class="col">
         <article class="card shadow-lg mx-auto w-100">
           <div class="card-header bg-primary text-light">
-            <span class="fw-bold">Others</span>
+            <h5 class="fw-bold mb-0">
+              Others
+            </h5>
           </div>
           <div class="card-body">
             <div class="d-flex justify-content-center flex-wrap">
@@ -241,10 +247,10 @@
 <script>
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
-import IconKnowledge from '@assets/icons/knowledge.png';
+import IconKnowledges from '@assets/icons/knowledge.png';
 
 @Component({
-  name: 'Knowledge',
+  name: 'Knowledges',
   props: {
     id: {
       type: String,
@@ -261,15 +267,15 @@ import IconKnowledge from '@assets/icons/knowledge.png';
     init() {}
   }
 })
-export default class Knowledge extends Program {
+export default class Knowledges extends Program {
   created() {
-    this.title = 'Knowledge';
+    this.title = 'Knowledges';
     this.widthDefault = 550;
     this.heightDefault = 400;
     this.maximizedDefault = true;
     this.xDefault = this.$widthScreenContent / 2 - this.widthDefault / 2;
     this.yDefault = this.$heightScreenContent / 2 - this.heightDefault / 2;
-    this.iconSrc = IconKnowledge;
+    this.iconSrc = IconKnowledges;
     this.window = null;
   }
 }

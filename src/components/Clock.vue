@@ -1,6 +1,6 @@
 <template>
   <small
-    :title="getFullDate"
+    :title="datetime.fullDate"
     class="text-light px-2 d-flex flex-column justify-content-center align-items-end"
   >
     <span>
@@ -19,20 +19,18 @@ export default {
     return {
       datetime: {
         time: null,
-        date: null
+        date: null,
+        fullDate: null
       }
     };
-  },
-  computed: {
-    getFullDate() {
-      return `${this.$moment().format('dddd, LL | h:mm')} (Hora local)`;
-    }
   },
   mounted() {
     this.init();
   },
   methods: {
     init() {
+      this.updateDateTime();
+
       const remainingMilliseconds = 1000 - this.$moment().milliseconds();
 
       setTimeout(() => {
@@ -45,6 +43,7 @@ export default {
     updateDateTime() {
       this.datetime.time = this.$moment().format('H:mm');
       this.datetime.date = this.$moment().format('DD/MM/YYYY');
+      this.datetime.fullDate = `${this.$moment().format('dddd, LL | hh:mm')} (Hora local)`;
     }
   }
 };

@@ -212,9 +212,12 @@ import IconEmail from '@assets/icons/email.png';
           this.resultMessage = data.message;
         }
       } catch (error) {
+        // eslint-disable-next-line no-console
+        console.error(error);
+
         this.showSuccess = false;
         this.statusMessage = 0;
-        this.resultMessage = error.message;
+        this.resultMessage = 'An error occurred while sending the email. Please try again later.';
       } finally {
         if (this.statusMessage == 1) {
           form.reset();

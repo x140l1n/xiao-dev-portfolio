@@ -21,6 +21,19 @@
         >
       </button>
     </div>
+    <button
+      type="button"
+      class="taskbar-item taskbar-item-cookies flex-shrink-0"
+      data-cc="show-preferencesModal"
+    >
+      <img
+        src="@assets/icons/cookies.png"
+        title="Cookies"
+        alt="Cookies"
+        class="img-fluid"
+        draggable="false"
+      >
+    </button>
     <Clock class="taskbar-item clock flex-shrink-0" />
     <button
       @click="onMinimizeAllPrograms"
@@ -32,10 +45,12 @@
 </template>
 
 <script>
+import Clock from '@components/Clock.vue';
+
 export default {
   name: 'TaskBar',
   components: {
-    Clock: () => import('@components/Clock.vue')
+    Clock
   },
   computed: {
     getProgramActiveId() {
@@ -126,6 +141,20 @@ export default {
   > .taskbar-item.taskbar-item-minimize-all {
     cursor: default;
     width: 6px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+
+    &:hover {
+      background-color: #ffffff48;
+    }
+  }
+
+  > .taskbar-item.taskbar-item-cookies {
+    cursor: default;
+    width: 25px;
+    height: 25px;
+    margin: auto 10px;
     background-color: transparent;
     border: none;
     padding: 0;

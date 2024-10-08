@@ -9,17 +9,7 @@ import 'bootstrap/dist/js/bootstrap';
 import 'moment/locale/es';
 import '@src/assets/scss/styles.scss';
 
-if (process.env.NODE_ENV === 'production' && process.env.VUE_APP_GA_ID) {
-  Vue.use(VueGtag, {
-    config: {
-      id: process.env.VUE_APP_GA_ID,
-      params: {
-        // eslint-disable-next-line camelcase
-        send_page_view: false
-      }
-    }
-  });
-}
+Vue.config.productionTip = process.env.NODE_ENV === 'production';
 
 if (process.env.VUE_APP_RECAPTCHA_V3_SITE_KEY) {
   Vue.use(VueReCaptcha, {
@@ -31,7 +21,18 @@ if (process.env.VUE_APP_RECAPTCHA_V3_SITE_KEY) {
   });
 }
 
-Vue.config.productionTip = process.env.NODE_ENV === 'production';
+if (process.env.VUE_APP_GA_ID) {
+  Vue.use(VueGtag, {
+    config: {
+      id: process.env.VUE_APP_GA_ID,
+      params: {
+        // eslint-disable-next-line camelcase
+        send_page_view: false
+      }
+    },
+    bootstrap: false
+  });
+}
 
 Vue.prototype.$env = {
   API_ENDPOINT_URL: process.env.VUE_APP_API_ENDPOINT_URL,
