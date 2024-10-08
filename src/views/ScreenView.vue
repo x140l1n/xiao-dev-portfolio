@@ -291,12 +291,12 @@ export default {
             enabled: true,
             readonly: true,
             label: 'Strictly Necessary Cookies',
-            description: 'These cookies are essential for the proper functioning of my website. Without these cookies, the website would not work properly.'
+            description: 'These cookies are essential for the proper functioning of this website. Without these cookies, the website would not work properly.'
           },
           analytics: {
             readonly: false,
             label: 'Performance and Analytics Cookies',
-            description: 'These cookies allow the website to remember the choices you have made in the past and to help us improve my website.',
+            description: 'These cookies allow the website to remember the choices you have made in the past and to help improve this website.',
             autoClear: {
               cookies: [
                 {
@@ -325,7 +325,7 @@ export default {
             'en': {
               consentModal: {
                 title: 'Cookie Consent',
-                description: 'We use cookies to enhance your browsing experience and to analyze my website traffic. Please consent to our use of cookies.',
+                description: 'Cookies are used to enhance browsing experience and to analyze the traffic of this website. Please consent to the use of cookies.',
                 acceptAllBtn: 'Accept all',
                 acceptNecessaryBtn: 'Reject all',
                 showPreferencesBtn: 'Manage preferences'
@@ -339,17 +339,17 @@ export default {
                 sections: [
                   {
                     title: 'Cookie Usage',
-                    description: `We use cookies to ensure the basic functionalities of the website and to enhance your online experience. 
-                            This includes the use of Google Analytics for tracking page visits and reCAPTCHA v3 for security.`
+                    description: `Cookies are used to ensure the basic functionalities of the website and to enhance online experience. 
+                                    This includes the use of Google Analytics for tracking page visits and reCAPTCHA v3 for security.`
                   },
                   {
                     title: 'Strictly Necessary Cookies',
-                    description: 'These cookies are essential for the proper functioning of my website. Without these cookies, the website would not work properly.',
+                    description: 'These cookies are essential for the proper functioning of this website. Without these cookies, the website would not work properly.',
                     linkedCategory: 'necessary'
                   },
                   {
                     title: 'Performance and Analytics Cookies',
-                    description: 'These cookies allow the website to remember the choices you have made in the past and to help us improve my website.',
+                    description: 'These cookies allow the website to remember the choices made in the past and to help improve this website.',
                     linkedCategory: 'analytics',
                     cookieTable: {
                       headers: {
@@ -376,8 +376,8 @@ export default {
                   },
                   {
                     title: 'More Information',
-                    description: `For any queries regarding our cookie policy and your choices, 
-                                  please contact me at the contact form on the website or you click <a href="#cookies">here</a> to learn more.`
+                    description: `For any queries regarding the cookie policy and choices, 
+                                          please use the contact form on this website or click <a href="#cookies">here</a> to learn more.`
                   }
                 ]
               }
