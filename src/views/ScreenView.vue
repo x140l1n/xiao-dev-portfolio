@@ -463,6 +463,7 @@ export default {
       this.onScreenResize();
     },
     onCookiesConsented(cookie) {
+      console.log(cookie);
       if (cookie.categories.includes('analytics')) {
         startGtag().catch((error) => {
           // eslint-disable-next-line no-console
