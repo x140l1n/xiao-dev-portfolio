@@ -3,7 +3,7 @@
     <article class="card shadow-lg mx-auto w-100">
       <div class="card-header bg-primary text-light">
         <h5 class="fw-bold mb-0">
-          Cookies Policies
+          Cookies Policy
         </h5>
       </div>
       <div class="card-body">
@@ -76,7 +76,7 @@ import Program from '@programs/Program';
 import IconCookies from '@assets/icons/cookies.png';
 
 @Component({
-  name: 'CookiesPolicies',
+  name: 'CookiesPolicy',
   props: {
     id: {
       type: String,
@@ -95,9 +95,9 @@ import IconCookies from '@assets/icons/cookies.png';
     init() { }
   }
 })
-export default class CookiesPolicies extends Program {
+export default class CookiesPolicy extends Program {
   created() {
-    this.title = 'Cookies Policies';
+    this.title = 'Cookies Policy';
     this.widthDefault = 400;
     this.heightDefault = 600;
     this.maximizedDefault = true;

@@ -451,7 +451,7 @@ export default {
 
       window.addEventListener('hashchange', () => {
         if (window.location.hash === '#cookies') {
-          this.onOpenProgram('CookiesPolicies');
+          this.onOpenProgram('CookiesPolicy');
 
           CookieConsent.hidePreferences();
 
