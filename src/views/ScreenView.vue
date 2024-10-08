@@ -271,7 +271,6 @@
 
 <script>
 import * as CookieConsent from 'vanilla-cookieconsent';
-import { bootstrap as startGtag } from 'vue-gtag';
 import TaskBar from '@components/TaskBar.vue';
 import Vue from 'vue';
 import { v4 } from 'uuid';
@@ -464,10 +463,9 @@ export default {
     },
     onCookiesConsented(cookie) {
       if (cookie.categories.includes('analytics')) {
-        startGtag().catch((error) => {
-          // eslint-disable-next-line no-console
-          console.error(error);
-        });
+        this.$gtag?.optIn();
+      } else {
+        this.$gtag?.optOut();
       }
 
       this.isClosedCookies = true;

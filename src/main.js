@@ -30,7 +30,7 @@ if (process.env.VUE_APP_GA_ID) {
         send_page_view: false
       }
     },
-    bootstrap: false
+    enabled: true
   });
 }
 
