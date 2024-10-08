@@ -23,7 +23,7 @@
             <h5 class="fw-bold">
               Arkanoid
             </h5>
-            <p>Platform arcade game created for the open doors event at Centre D'Estudis Politècnics.</p>
+            <p>Platform arcade game created for the open doors event at Centre d'Estudis Politècnics.</p>
             <div class="d-flex flex-wrap my-4">
               <!-- eslint-disable-next-line vuejs-accessibility/click-events-have-key-events -->
               <button

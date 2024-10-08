@@ -197,7 +197,7 @@
                 </tr>
                 <tr>
                   <td class="fw-bold label">
-                    Build Date
+                    Build date
                   </td>
                   <td>{{ getDateVersion }}</td>
                 </tr>

@@ -62,7 +62,7 @@
                 <a
                   href="https://politecnics.barcelona"
                   target="_blank"
-                >Polytechnic Studies Center</a>. Over the years,
+                >Centre d'Estudis Politècnics</a>. Over the years,
                 I’ve learned a lot, and every day I become more passionate about this field. I'm eager to keep improving
                 and learning new things.
               </p>
