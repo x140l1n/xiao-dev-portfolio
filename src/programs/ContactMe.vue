@@ -196,7 +196,7 @@ import IconEmail from '@assets/icons/email.png';
 
         formData.append('g-recaptcha-response', token);
 
-        const response = await fetch(`${this.$env.API_ENDPOINT_URL}email.php`, {
+        const response = await fetch(`${this.$env.API_ENDPOINT_URL}/email.php`, {
           method: 'POST',
           body: formData
         });
