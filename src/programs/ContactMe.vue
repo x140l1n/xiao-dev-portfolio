@@ -189,7 +189,7 @@ import IconEmail from '@assets/icons/email.png';
 
         const token = await this.$recaptcha('contactme');
 
-        const formData = new FormData(evt.target);
+        const formData = new FormData(evt.currentTarget);
         formData.append('send', true);
         formData.append('g-recaptcha-response', token);
 
