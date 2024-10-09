@@ -7,35 +7,35 @@
         </h5>
       </div>
       <div class="card-body">
-        <small class="text-muted text-end">
-          <strong>Last updated:</strong> October 8, 2024
-        </small>
-        <p class="mt-4">
+        <p class=" text-muted text-end mb-3">
+          <small><strong>Last updated:</strong> October 8, 2024</small>
+        </p>
+        <p>
           This Cookies Policy explains how <strong>{{ getHost }}</strong> uses cookies and similar technologies to recognize users 
           when they visit this website at <strong>{{ getHost }}</strong> ("Website"). 
           It explains what these technologies are and why they are used, as well as users' rights to control the use of them.
         </p>
-        <h5 class="fw-bold mt-4 mb-3">
+        <h5 class="fw-bold">
           What are Cookies?
         </h5>
         <p>
           Cookies are small data files that are placed on your computer or mobile device when you visit a website. 
           Cookies are widely used by website owners to make their websites work or to work more efficiently, as well as to provide reporting information.
         </p>
-        <h5 class="fw-bold mt-4 mb-3">
+        <h5 class="fw-bold">
           Types of Cookies Used
         </h5>
         <p>This website uses the following types of cookies:</p>
         <div class="bg-white p-3 rounded border mb-3">
-          <h5 class="fw-bold mt-4 mb-3">
+          <h6>
             1. Essential Cookies
-          </h5>
+          </h6>
           <p>
             These cookies are necessary to provide users with services available through this website and to use some of its features, such as access to secure areas.
           </p>
         </div>
         <div class="bg-white p-3 rounded border mb-3">
-          <h6 class="mt-2">
+          <h6>
             2. Analytics Cookies
           </h6>
           <p>
@@ -45,7 +45,7 @@
           </p>
         </div>
         <div class="bg-white p-3 rounded border mb-3">
-          <h6 class="mt-2">
+          <h6>
             3. Security Cookies
           </h6>
           <p>
@@ -53,24 +53,24 @@
             reCAPTCHA sets cookies to ensure proper functionality and user verification.
           </p>
         </div>
-        <h5 class="fw-bold mt-4 mb-3">
+        <h5 class="fw-bold">
           Managing Cookies
         </h5>
         <p>
           Users have the right to accept or reject cookies. Cookie preferences can be exercised by modifying browser settings. 
           Please note that if cookies are disabled, some parts of this website may not function properly.
         </p>
-        <h5 class="fw-bold mt-4 mb-3">
+        <h5 class="fw-bold">
           Changes to This Cookies Policy
         </h5>
         <p>
           This Cookies Policy may be updated from time to time to reflect changes to the cookies used or for other operational, legal, or regulatory reasons. 
           Please revisit this Cookies Policy regularly to stay informed about the use of cookies.
         </p>
-        <h5 class="fw-bold mt-4 mb-3">
+        <h5 class="fw-bold">
           Contact Information
         </h5>
-        <p>
+        <p class="mb-0">
           If there are any questions about the use of cookies or other technologies, please email at <a href="mailto:info@xiaojl.dev">info@xiaojl.dev</a>.
         </p>
       </div>
