@@ -30,7 +30,7 @@
           <h6>
             1. Essential Cookies
           </h6>
-          <p>
+          <p class="mb-0"></p>
             These cookies are necessary to provide users with services available through this website and to use some of its features, such as access to secure areas.
           </p>
         </div>
@@ -38,7 +38,7 @@
           <h6>
             2. Analytics Cookies
           </h6>
-          <p>
+          <p class="mb-0">
             Google Analytics is used to collect information about how this website is used. 
             These cookies help understand which pages are visited, how long users stay, and other metrics that help improve the overall user experience. 
             Information collected by these cookies is anonymized and does not include personal data.
@@ -48,7 +48,7 @@
           <h6>
             3. Security Cookies
           </h6>
-          <p>
+          <p class="mb-0">
             reCAPTCHA v3 is used to protect this website from fraudulent activity and ensure it is being accessed by humans and not bots. 
             reCAPTCHA sets cookies to ensure proper functionality and user verification.
           </p>
