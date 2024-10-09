@@ -185,8 +185,8 @@ function sendEmail(): array
         $mail->isHTML(true);
         $mail->setFrom($_ENV['CONTACT_MAIL_FROM'], $_ENV['APP_NAME']);
 
-        foreach (explode(';', $_ENV['CONTACT_MAIL_TO']) as $to) {
-            $mail->addAddress($to);
+        foreach (explode(';', $_ENV['CONTACT_MAIL_TO']) as $email) {
+            $mail->addAddress($email);
         }
 
         $mail->Subject = $subject;
