@@ -181,6 +181,11 @@ import IconEmail from '@assets/icons/email.png';
   methods: {
     init() {},
     async onSubmit(evt) {
+      const form = evt.target;
+
+      const formData = new FormData(form);
+      formData.append('send', true);
+
       this.isSending = true;
       this.resultMessage = null;
 
@@ -189,8 +194,6 @@ import IconEmail from '@assets/icons/email.png';
 
         const token = await this.$recaptcha('contactme');
 
-        const formData = new FormData(evt.currentTarget);
-        formData.append('send', true);
         formData.append('g-recaptcha-response', token);
 
         const response = await fetch(`${this.$env.API_ENDPOINT_URL}/email.php`, {
