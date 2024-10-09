@@ -3,6 +3,7 @@ const webpack = require('webpack');
 
 module.exports = {
   devServer: {
+    host: 'localhost',
     port: process.env.VUE_APP_PORT || 3000
   },
   productionSourceMap: false,
