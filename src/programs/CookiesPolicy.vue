@@ -30,7 +30,7 @@
           <h6>
             1. Essential Cookies
           </h6>
-          <p class="mb-0"></p>
+          <p class="mb-0">
             These cookies are necessary to provide users with services available through this website and to use some of its features, such as access to secure areas.
           </p>
         </div>
