@@ -1,7 +1,7 @@
 <template>
   <section
     ref="window"
-    v-resize="onResize"
+    v-resize="onWindowResize"
     @click="onSelectedProgram"
     :style="cssRootVars"
     class="window resizers border border-2 border-dark bg-light"
@@ -508,8 +508,8 @@ export default {
         this.position.y = 0;
       }
     },
-    onResize() {
-      if (this.program && typeof this.program.onResize === 'function') this.program.onResize();
+    onWindowResize() {
+      if (this.program && typeof this.program.onWindowResize === 'function') this.program.onWindowResize();
     },
     onMinimize() {
       if (this.program && typeof this.program.onMinimize === 'function') this.program.onMinimize();

@@ -183,7 +183,7 @@ import { author } from '@root/package';
     init() {
       setTimeout(() => this.flip(), 100);
     },
-    onResize() {
+    onWindowResize() {
       if (this.$el.clientWidth < 800) {
         this.$refs.iconFullStackDeveloper.classList.add('d-none');
         this.$refs.contentFront.classList.remove('gap-4');

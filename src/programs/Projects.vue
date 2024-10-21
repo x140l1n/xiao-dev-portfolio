@@ -451,7 +451,7 @@ import IconProjects from '@assets/icons/projects.png';
   },
   methods: {
     init() { },
-    onResize() {
+    onWindowResize() {
       if (this.$el.clientWidth < 576) {
         this.$refs.content.querySelectorAll('.card:not(.more) > .card-body').forEach((element) => element.classList.add('flex-column'));
       } else {

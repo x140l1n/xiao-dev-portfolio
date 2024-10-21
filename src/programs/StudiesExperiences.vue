@@ -331,7 +331,7 @@ import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
     onChangeTab() {
       this.$refs.tabContent.scrollTop = 0;
     },
-    onResize() {
+    onWindowResize() {
       if (this.$refs.content.clientWidth < 992) {
         this.$refs.timelineStudies.classList.add('small');
         this.$refs.timelineExperiences.classList.add('small');

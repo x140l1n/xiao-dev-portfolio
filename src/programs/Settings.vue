@@ -297,7 +297,7 @@ import { date, version } from '@root/package';
     onChangeTab() {
       this.$refs.content.scrollTop = 0;
     },
-    onResize() {
+    onWindowResize() {
       if (this.$el.clientWidth < 600) {
         this.$refs.nav.classList.add('nav-small');
         this.$refs.tabContent.classList.add('tab-content-small');
