@@ -1,10 +1,14 @@
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
   devServer: {
     host: 'localhost',
-    port: process.env.VUE_APP_PORT || 3000
+    port: process.env.VUE_APP_PORT || 3000,
+    headers: {
+      'Content-Security-Policy': ''
+    }
   },
   productionSourceMap: false,
   configureWebpack: {
@@ -20,7 +24,27 @@ module.exports = {
       }
     },
     plugins: [
-      new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es/)
+      new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es/),
+      new HtmlWebpackPlugin({
+        inject: true,
+        templateParameters: {
+          cspMetaTag: `
+            ${ process.env.NODE_ENV === 'production' ? `<meta http-equiv="Content-Security-Policy" content="
+                default-src 'none';
+                style-src 'self' 'unsafe-inline';
+                script-src 'self' 'unsafe-inline' 'unsafe-eval' recaptcha.net *.google.com www.gstatic.com www.googletagmanager.com;
+                connect-src 'self' *.google-analytics.com recaptcha.net;
+                img-src 'self' data:;
+                font-src 'self' gstatic.com;
+                frame-src *;
+                base-uri 'self';
+                form-action 'self';
+                manifest-src 'self';
+              ">` : '' }
+          `
+        },
+        template: 'public/index.html'
+      })
     ],
     optimization: {
       splitChunks: {
