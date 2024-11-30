@@ -1,12 +1,10 @@
 services:
   php:
     build:
-      context: ./api # Path to Dockerfile.
-    env_file:
-      - .env # Path to .env file.
+      context: ./ # Path to Dockerfile.
     ports:
       - "8000:80" # Port binding.
     volumes:
-      - ./api:/var/www/html # The volume to bind.
+      - .:/var/www/html # The volume to bind.
     command: >
       bash -c "composer install --no-dev --optimize-autoloader && php -S 0.0.0.0:80"
