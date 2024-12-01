@@ -84,7 +84,7 @@ VUE_APP_RECAPTCHA_V3_SITE_KEY=
 
 Make sure to copy the .env.example file to .env and replace the values with your actual settings before running the project.
 
-## 🐘 Running the PHP Server for sending emails (Only if PHP is already installed in your computer)
+## 🐘 Running the PHP Server for sending emails (Only if you have PHP installed on your computer)
 
 To start the PHP server for sending emails, ensure that PHP is installed on your machine and that the required environment variables are properly set. First, navigate to the `/api/` directory and install the necessary dependencies by running:
 
