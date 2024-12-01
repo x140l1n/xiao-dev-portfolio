@@ -84,7 +84,7 @@ VUE_APP_RECAPTCHA_V3_SITE_KEY=
 
 Make sure to copy the .env.example file to .env and replace the values with your actual settings before running the project.
 
-## 🐘 Running the PHP Server for sending emails
+## 🐘 Running the PHP Server for sending emails (Only if PHP is already installed in your computer)
 
 To start the PHP server for sending emails, ensure that PHP is installed on your machine and that the required environment variables are properly set. First, navigate to the `/api/` directory and install the necessary dependencies by running:
 
@@ -130,6 +130,27 @@ Once the environment variables are set, you can start the PHP server by running:
 ```bash
 php -S localhost:8000
 ```
+
+## 🐳 Running the PHP Server for sending emails with Docker (Only if you don't have PHP installed on your computer)
+
+If you don't have PHP installed on your computer, you can easily run the PHP server using Docker. The required Docker configuration is already set up. To start the server, follow these steps:
+
+1. **Install Docker**:  
+  If you haven't installed Docker yet, download and install it from [Docker's official website](https://www.docker.com/get-started).
+
+2. **Run Docker Compose**:  
+  Once Docker is installed, navigate to the `/api/` directory where the Docker configuration files are located and run the following command to start the PHP server:
+
+    ```bash
+    docker-compose up
+    ```
+    This will start the necessary containers, including PHP, and the server will be accessible at http://localhost:8000.
+
+3. **Set Up Environment Variables**:  
+  Ensure that the .env file is properly configured with the required environment variables, as described above. The server running inside Docker will use these variables to handle email sending and reCAPTCHA validation.
+
+4. **Access the PHP Server**:  
+  After running docker-compose up, the PHP server should be running on http://localhost:8000.
 
 ## 🛠️ Build and Deployment
 
