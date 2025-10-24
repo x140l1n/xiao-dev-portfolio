@@ -11,20 +11,20 @@
         <header class="text-light d-flex gap-4 justify-content-between align-items-center">
           <img
             ref="iconFullStackDeveloper"
+            :title="$t('aboutMe.subtitle')"
+            :alt="$t('aboutMe.subtitle')"
             src="@assets/icons/coding.png"
-            title="Fullstack Developer Icon"
-            alt="Fullstack Developer Icon"
             draggable="false"
           >
           <h2 class="m-0">
-            FULLSTACK DEVELOPER
+            {{ $t('aboutMe.subtitle') }}
           </h2>
           <button
             @click="flip"
+            :title="$t('aboutMe.flipCard')"
+            :aria-label="$t('aboutMe.flipCard')"
             class="btn btn-transparent btn-flip text-light"
             type="button"
-            title="Flip the card"
-            aria-label="Flip the card"
           >
             <i class="fa-solid fa-repeat fa-fw" />
           </button>
@@ -39,10 +39,10 @@
               class="photo"
             >
               <img
+                :title="$t('aboutMe.meAlt')"
+                :alt="$t('aboutMe.meAlt')"
                 class="img-fluid"
                 src="@assets/img/me.jpg"
-                title="Me"
-                alt="Me"
               >
             </div>
             <div
@@ -50,37 +50,23 @@
               class="flex-grow-1 presentation"
             >
               <h6 class="fw-bold my-2">
-                Presentation
+                {{ $t('aboutMe.sections.presentation') }}
               </h6>
-              <p>
-                Hi! I'm Xiaolin Jin Lin, and I am {{ getYearsOld }} years old. From a young age,
-                I've always been drawn to the world of technology, and at 19, I decided to fully dive into computer
-                science, choosing programming as my path.
-              </p>
-              <p>
-                I studied DAM (Multiplatform Application Development) and then DAW (Web Application Development) at the
-                <a
-                  href="https://politecnics.barcelona"
-                  target="_blank"
-                >Centre d'Estudis Politècnics</a>. Over the years,
-                I’ve learned a lot, and every day I become more passionate about this field. I'm eager to keep improving
-                and learning new things.
-              </p>
-              <p>
-                Besides programming, I also enjoy dancing, which has helped me to be more consistent, disciplined, and
-                detail-oriented—qualities that I apply in both my personal and professional life.
-              </p>
-              <p>
-                I love working in teams, proposing ideas and solutions, and I always aim to share my knowledge with
-                others.
-                I enjoy creating a positive atmosphere and collaborating to move projects forward.
-              </p>
+              <div
+                v-html="$t ? $t('aboutMe.personalPresentation', { age: getYearsOld }) : 
+                  `Hi! I'm Xiaolin Jin Lin, and I am ${getYearsOld} years old. From a young age, I've always been drawn to the world of ` +
+                  `technology, and at 19, I decided to fully dive into computer science, choosing programming as my path. I studied DAM ` +
+                  `(Multiplatform Application Development) and then DAW (Web Application Development) at the Centre d'Estudis Politècnics. ` +
+                  `Over the years, I've learned a lot, and every day I become more passionate about this field. I'm eager to keep improving ` +
+                  `and learning new things. Besides programming, I also enjoy dancing, which has helped me to be more consistent, disciplined, ` +
+                  `and self-confident. I love anime and manga, video games, technology, and, of course, programming.`"
+              />
               <h6 class="fw-bold">
-                Languages
+                {{ $t('aboutMe.sections.languages') }}
               </h6>
               <p>Spanish (Native), Catalan (Native), English (Intermediate), Chinese (Intermediate).</p>
               <h6 class="fw-bold">
-                Hobbies
+                {{ $t('aboutMe.sections.hobbies') }}
               </h6>
               <p class="mb-0">
                 Dance.
@@ -93,10 +79,10 @@
         <header class="text-light d-flex justify-content-end align-items-center">
           <button
             @click="flip"
+            :title="$t('aboutMe.flipCard')"
+            :aria-label="$t('aboutMe.flipCard')"
             class="btn btn-transparent btn-flip text-light align-self-end"
             type="button"
-            title="Flip the card"
-            aria-label="Flip the card"
           >
             <i class="fa-solid fa-repeat fa-fw" />
           </button>
@@ -115,7 +101,7 @@
               draggable="false"
             >
             <p class="fw-bold text-center my-2">
-              Social Networks
+              {{ $t('aboutMe.socialNetworks') }}
             </p>
             <div class="d-flex justify-content-center">
               <a

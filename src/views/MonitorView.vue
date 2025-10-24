@@ -17,33 +17,33 @@
             ref="title"
             class="title fw-bold lh-lg"
           >
-            Welcome to my portfolio!
+            {{ $t('screen.welcome') }}
           </h1>
           <br>
           <div class="fs-3">
             <span
               ref="description"
               class="description"
-            >To start exploring, just click the next button</span>
+            >{{ $t('screen.startExploring') }}</span>
             <span :class="`pointer ${isFinishedTyping ? 'visible animated' : 'invisible'}`" />
           </div>
         </div>
         <button
           :class="`btn-on rounded-circle mt-xxl-5 mt-0 ${isFinishedTyping ? 'visible animated' : 'invisible'}`"
           @click="isMonitorOn = true"
+          :title="$t('screen.turnOnMonitor')"
+          :aria-label="$t('screen.turnOnMonitor')"
           type="button"
-          title="Turn on monitor"
-          aria-label="Turn on monitor"
         >
           <i class="fa-solid fa-power-off" />
         </button>
       </div>
       <img
         v-if="!isMonitorOn"
+        :title="$t('screen.greeting')"
+        :alt="$t('screen.greeting')"
         class="image-greet"
         src="@assets/img/greet.png"
-        title="Greeting"
-        alt="Greeting"
         draggable="false"
       >
       <ScreenView
@@ -113,10 +113,10 @@ export default {
       this.$refs.layerOnOff.addEventListener('animationend', this.onAnimationLayerOnEnd);
     },
     async startTypeWriter() {
-      const title = this.$refs.title.textContent;
+      const title = this.$t ? this.$t('screen.welcome') : 'Welcome to my portfolio!';
       this.$refs.title.textContent = '';
 
-      const description = this.$refs.description.textContent;
+      const description = this.$t ? this.$t('screen.startExploring') : 'To start exploring, just click the next button';
       this.$refs.description.textContent = '';
 
       this.$refs.title.classList.add('typewriter-start');

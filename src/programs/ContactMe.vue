@@ -7,7 +7,7 @@
     >
       <div class="mb-3 mx-2">
         <h5 class="fw-bold">
-          If you have any questions, feel free to send me an email. 😁
+          {{ $t('contactMe.description') }}
         </h5>
       </div>
       <hr>
@@ -16,7 +16,7 @@
         <label
           :for="`input-email-${id}`"
           class="form-label"
-        >Email *</label>
+        >{{ $t('contactMe.form.email') }} *</label>
         <input
           :id="`input-email-${id}`"
           :disabled="isSending"
@@ -32,7 +32,7 @@
           <label
             :for="`input-firstname-${id}`"
             class="form-label"
-          >First Name *</label>
+          >{{ $t('contactMe.form.firstName') }} *</label>
           <input
             :id="`input-firstname-${id}`"
             :disabled="isSending"
@@ -47,7 +47,7 @@
           <label
             :for="`input-lastname-${id}`"
             class="form-label"
-          >Last Name *</label>
+          >{{ $t('contactMe.form.lastName') }} *</label>
           <input
             :id="`input-lastname-${id}`"
             :disabled="isSending"
@@ -63,7 +63,7 @@
         <label
           :for="`input-subject-${id}`"
           class="form-label"
-        >Subject *</label>
+        >{{ $t('contactMe.form.subject') }} *</label>
         <input
           :id="`input-subject-${id}`"
           :disabled="isSending"
@@ -78,7 +78,7 @@
         <label
           :for="`input-message-${id}`"
           class="form-label"
-        >Message *</label>
+        >{{ $t('contactMe.form.message') }} *</label>
         <textarea
           :id="`input-message-${id}`"
           :disabled="isSending"
@@ -110,9 +110,9 @@
       </div>
       <div class="mb-3 mx-2">
         <button
+          :title="$t('contactMe.form.send')"
           class="btn bg-primary text-light w-100"
           type="submit"
-          title="Send"
         >
           <i
             v-if="isSending"
@@ -122,7 +122,7 @@
             v-else
             class="fa-solid fa-paper-plane fa-fw me-2"
           />
-          Send
+          {{ $t('contactMe.form.send') }}
         </button>
       </div>
     </form>
@@ -131,23 +131,23 @@
       class="d-flex flex-column text-center h-100 p-4 overflow-auto"
     >
       <img
+        :title="$t('contactMe.title')"
+        :alt="$t('contactMe.title')"
         class="img-fluid mt-auto mx-auto"
         src="@assets/img/contactme.png"
-        title="Contact Me"
-        alt="Contact Me"
         draggable="false"
       >
       <h3 class="mx-auto fw-bold my-4">
-        Thank you so much for contacting me!
+        {{ $t('contactMe.thankYou') }}
       </h3>
       <button
         @click="showSuccess = false"
+        :title="$t('contactMe.goBack')"
         class="btn-go-back mb-auto"
         type="button"
-        title="Go back to the contact form"
       >
         <i class="fa-solid fa-angle-left me-3" />
-        Go back to the contact form
+        {{ $t('contactMe.goBack') }}
       </button>
     </div>
   </section>
@@ -180,6 +180,34 @@ import IconEmail from '@assets/icons/email.png';
   },
   methods: {
     init() {},
+    getTranslatedMessage(status, message) {
+      if (!this.$t) {
+        return message;
+      }
+
+      switch (status) {
+        case 1:
+          return this.$t('contactMe.messages.success');
+        case 0:
+          // Error genérico
+          return this.$t('contactMe.messages.error');
+        case -1:
+          // Error de validación
+          return this.$t('contactMe.messages.validationError');
+        case -2:
+          // Error de reCAPTCHA
+          return this.$t('contactMe.messages.recaptchaError');
+        case -3:
+          // Error del servidor
+          return this.$t('contactMe.messages.serverError');
+        case -4:
+          // Error de red
+          return this.$t('contactMe.messages.networkError');
+        default:
+          // Si hay un mensaje específico del servidor, úsalo, sino usa el genérico
+          return message || this.$t('contactMe.messages.error');
+      }
+    },
     async onSubmit(evt) {
       const form = evt.target;
 
@@ -187,7 +215,7 @@ import IconEmail from '@assets/icons/email.png';
       formData.append('send', true);
 
       this.isSending = true;
-      this.resultMessage = null;
+      this.resultMessage = this.$t ? this.$t('contactMe.messages.sending') : 'Sending message...';
 
       try {
         await this.$recaptchaLoaded();
@@ -206,18 +234,20 @@ import IconEmail from '@assets/icons/email.png';
         if (data.status == 1) {
           this.showSuccess = true;
           this.statusMessage = 1;
+          this.resultMessage = this.getTranslatedMessage(1);
         } else {
           this.showSuccess = false;
           this.statusMessage = data.status;
-          this.resultMessage = data.message;
+          this.resultMessage = this.getTranslatedMessage(data.status, data.message);
         }
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error);
 
         this.showSuccess = false;
-        this.statusMessage = 0;
-        this.resultMessage = 'An error occurred while sending the email. Please try again later.';
+        // Error de red/conexión
+        this.statusMessage = -4;
+        this.resultMessage = this.getTranslatedMessage(-4);
       } finally {
         this.isSending = false;
 

@@ -318,7 +318,7 @@ export default {
           }
         },
         language: {
-          default: 'en',
+          default: this.$i18n?.locale || 'en',
           translations: {
             'en': {
               consentModal: {
@@ -376,6 +376,66 @@ export default {
                     title: 'More Information',
                     description: `For any queries regarding the cookie policy and choices, 
                                           please use the contact form on this website or click <a href="#cookies">here</a> to learn more.`
+                  }
+                ]
+              }
+            },
+            'es': {
+              consentModal: {
+                title: 'Consentimiento de Cookies',
+                description: 'Se utilizan cookies para mejorar la experiencia de navegación y analizar el tráfico de este sitio web. Por favor, acepta el uso de cookies.',
+                acceptAllBtn: 'Aceptar todas',
+                acceptNecessaryBtn: 'Rechazar todas',
+                showPreferencesBtn: 'Gestionar preferencias'
+              },
+              preferencesModal: {
+                title: 'Preferencias de Cookies',
+                acceptAllBtn: 'Aceptar todas',
+                acceptNecessaryBtn: 'Rechazar todas',
+                savePreferencesBtn: 'Guardar preferencias',
+                closeIconLabel: 'Cerrar',
+                sections: [
+                  {
+                    title: 'Uso de Cookies',
+                    description: `Las cookies se utilizan para garantizar las funcionalidades básicas del sitio web y mejorar la experiencia online. 
+                                    Esto incluye el uso de Google Analytics para rastrear visitas de páginas y reCAPTCHA v3 para seguridad.`
+                  },
+                  {
+                    title: 'Cookies Estrictamente Necesarias',
+                    description: 'Estas cookies son esenciales para el correcto funcionamiento de este sitio web. Sin estas cookies, el sitio web no funcionaría correctamente.',
+                    linkedCategory: 'necessary'
+                  },
+                  {
+                    title: 'Cookies de Rendimiento y Análisis',
+                    description: 'Estas cookies permiten al sitio web recordar las decisiones que has tomado en el pasado y ayudar a mejorar este sitio web.',
+                    linkedCategory: 'analytics',
+                    cookieTable: {
+                      headers: {
+                        name: 'Nombre',
+                        domain: 'Servicio',
+                        description: 'Descripción',
+                        expiration: 'Expiración'
+                      },
+                      body: [
+                        {
+                          name: '_ga',
+                          domain: 'Google Analytics',
+                          description: 'Cookie establecida por <a href="#das">Google Analytics</a> para rastrear interacciones del usuario.',
+                          expiration: 'Expira después de 12 meses'
+                        },
+                        {
+                          name: '_gid',
+                          domain: 'Google Analytics',
+                          description: 'Cookie establecida por <a href="#das">Google Analytics</a> para rastreo de sesión.',
+                          expiration: 'Expira después de 24 horas'
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    title: 'Más Información',
+                    description: `Para cualquier consulta sobre la política de cookies y opciones, 
+                                          por favor usa el formulario de contacto en este sitio web o haz clic <a href="#cookies">aquí</a> para obtener más información.`
                   }
                 ]
               }
