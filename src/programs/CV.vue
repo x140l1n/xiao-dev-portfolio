@@ -37,6 +37,11 @@ import IconPdf from '@assets/icons/pdf.png';
       isLoadedCV: false
     };
   },
+  watch: {
+    '$i18n.locale'() {
+      this.title = this.$t ? this.$t('cv.title') : 'Curriculum Vitae';
+    }
+  },
   mounted() {
     this.init();
   },

@@ -175,6 +175,11 @@ import IconEmail from '@assets/icons/email.png';
       showSuccess: false
     };
   },
+  watch: {
+    '$i18n.locale'() {
+      this.title = this.$t ? this.$t('contactMe.title') : 'Contact Me';
+    }
+  },
   mounted() {
     this.init();
   },

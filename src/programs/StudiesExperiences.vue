@@ -377,6 +377,11 @@ import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
   data() {
     return {};
   },
+  watch: {
+    '$i18n.locale'() {
+      this.title = this.$t ? this.$t('studiesExperiences.title') : 'Studies & Experiences';
+    }
+  },
   mounted() {
     this.init();
   },

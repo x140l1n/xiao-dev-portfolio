@@ -96,6 +96,11 @@ import IconCookies from '@assets/icons/cookies.png';
       return window.location.hostname;
     }
   },
+  watch: {
+    '$i18n.locale'() {
+      this.title = this.$t ? this.$t('cookiesPolicy.title') : 'Cookies Policy';
+    }
+  },
   mounted() {
     this.init();
   },

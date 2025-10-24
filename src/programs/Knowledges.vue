@@ -260,6 +260,11 @@ import IconKnowledges from '@assets/icons/knowledge.png';
   data() {
     return {};
   },
+  watch: {
+    '$i18n.locale'() {
+      this.title = this.$t ? this.$t('knowledges.title') : 'Knowledges';
+    }
+  },
   mounted() {
     this.init();
   },

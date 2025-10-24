@@ -445,6 +445,11 @@ import IconProjects from '@assets/icons/projects.png';
   data() {
     return {};
   },
+  watch: {
+    '$i18n.locale'() {
+      this.title = this.$t ? this.$t('projects.title') : 'Projects';
+    }
+  },
   mounted() {
     this.init();
   },

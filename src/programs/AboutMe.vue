@@ -162,6 +162,11 @@ import { author } from '@root/package';
   data() {
     return {};
   },
+  watch: {
+    '$i18n.locale'() {
+      this.title = this.$t ? this.$t('aboutMe.title') : 'About Me';
+    }
+  },
   mounted() {
     this.init();
   },

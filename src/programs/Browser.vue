@@ -63,6 +63,11 @@ import IconBrowser from '@assets/icons/browser.png';
   data() {
     return {};
   },
+  watch: {
+    '$i18n.locale'() {
+      this.title = this.$t ? this.$t('browser.title') : 'Browser';
+    }
+  },
   mounted() {
     this.init();
   },
