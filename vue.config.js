@@ -1,6 +1,12 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const webpack = require('webpack');
+const fs = require('fs');
+const dotenv = require('dotenv');
+
+if (process.env.NODE_ENV === 'production' && fs.existsSync('.env.pro')) {
+  dotenv.config({ path: '.env.pro' });
+}
 
 module.exports = {
   devServer: {
