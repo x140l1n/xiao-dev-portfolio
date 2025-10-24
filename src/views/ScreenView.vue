@@ -14,161 +14,161 @@
       <div class="program p-2">
         <button
           @click="onOpenProgram('Settings')"
+          :title="$t('settings.title')"
+          :alt="$t('settings.title')"
           class="program-inner program-knowledge p-2"
           type="button"
-          title="Settings"
-          alt="Settings"
         >
           <img
             id="program-settings"
+            :alt="$t('settings.title') + ' logo'"
             src="@assets/icons/settings.png"
-            alt="Settings logo"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-settings"
-          >Settings</span>
+          >{{ $t('settings.title') }}</span>
         </button>
       </div>
       <div class="program p-2">
         <button
           @click="onOpenProgram('AboutMe')"
+          :title="$t('aboutMe.title')"
+          :alt="$t('aboutMe.title')"
           class="program-inner p-2"
           type="button"
-          title="About Me"
-          alt="About Me"
         >
           <img
             id="program-about-me"
+            :alt="$t('aboutMe.title') + ' logo'"
             src="@assets/icons/about-me.png"
-            alt="About Me logo"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-about-me"
-          >About Me</span>
+          >{{ $t('aboutMe.title') }}</span>
         </button>
       </div>
       <div class="program p-2">
         <button
           @click="onOpenProgram('Knowledges')"
+          :title="$t('knowledges.title')"
+          :alt="$t('knowledges.title')"
           class="program-inner program-knowledge p-2"
           type="button"
-          title="Knowledges"
-          alt="Knowledges"
         >
           <img
             id="program-knowledge"
+            :alt="$t('knowledges.title') + ' logo'"
             src="@assets/icons/knowledge.png"
-            alt="Knowledges logo"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-knowledge"
-          >Knowledges</span>
+          >{{ $t('knowledges.title') }}</span>
         </button>
       </div>
       <div class="program p-2">
         <button
           @click="onOpenProgram('StudiesExperiences')"
+          :title="$t('studiesExperiences.title')"
+          :alt="$t('studiesExperiences.title')"
           class="program-inner program-experiences-studies p-2"
           type="button"
-          title="Studies & Experiences"
-          alt="Studies & Experiences"
         >
           <img
             id="program-experiences-studies"
+            :alt="$t('studiesExperiences.title') + ' logo'"
             src="@assets/icons/experiences-studies.png"
-            alt="Studies and experiences logo"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-experiences-studies"
-          >Studies & Experiences</span>
+          >{{ $t('studiesExperiences.title') }}</span>
         </button>
       </div>
       <div class="program p-2">
         <button
           @click="onOpenProgram('Projects')"
+          :title="$t('projects.title')"
+          :alt="$t('projects.title')"
           class="program-inner program-projects p-2"
           type="button"
-          title="Projects"
-          alt="Projects"
         >
           <img
             id="program-projects"
+            :alt="$t('projects.title') + ' logo'"
             src="@assets/icons/projects.png"
-            alt="Projects logo"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-projects"
-          >Projects</span>
+          >{{ $t('projects.title') }}</span>
         </button>
       </div>
       <div class="program p-2">
         <button
           @click="onOpenProgram('ContactMe')"
+          :title="$t('contactMe.title')"
+          :alt="$t('contactMe.title')"
           class="program-inner program-contactme p-2"
           type="button"
-          title="Contact Me"
-          alt="Contact Me"
         >
           <img
             id="program-contactme"
+            :alt="$t('contactMe.title') + ' logo'"
             src="@assets/icons/email.png"
-            alt="Contact me logo"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-contactme"
-          >Contact Me</span>
+          >{{ $t('contactMe.title') }}</span>
         </button>
       </div>
       <div class="program p-2">
         <button
           @click="onOpenProgram('Browser')"
+          :title="$t('browser.title')"
+          :alt="$t('browser.title')"
           class="program-inner program-browser p-2"
           type="button"
-          title="Browser"
-          alt="Browser"
         >
           <img
             id="program-browser"
+            :alt="$t('browser.title') + ' logo'"
             src="@assets/icons/browser.png"
-            alt="Browser logo"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-browser"
-          >Browser</span>
+          >{{ $t('browser.title') }}</span>
         </button>
       </div>
       <div class="program p-2">
         <button
           @click="onOpenProgram('CV')"
+          :title="$t('cv.title')"
+          :alt="$t('cv.title')"
           class="program-inner program-cv p-2"
           type="button"
-          title="Curriculum Vitae"
-          alt="Curriculum Vitae"
         >
           <img
             id="program-cv"
+            :alt="$t('cv.title') + ' logo'"
             src="@assets/icons/pdf.png"
-            alt="Curriculum vitae logo"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-cv"
-          >Curriculum Vitae</span>
+          >{{ $t('cv.title') }}</span>
         </button>
       </div>
     </div>
@@ -194,19 +194,17 @@
             width="30px"
             draggable="false"
           >
-          <strong class="me-auto">Fullscreen mode</strong>
+          <strong class="me-auto">{{ $t('screen.fullscreenMode') }}</strong>
           <button
             @click="isClosedToast = true"
+            :title="$t('common.close') + ' tips'"
+            :aria-label="$t('common.close') + ' tips'"
             class="btn-close"
             type="button"
-            title="Close tips"
-            aria-label="Close tips"
           />
         </div>
         <div class="toast-body">
-          Enable fullscreen mode for a better browsing experience. To enable, go to
-          <span class="fw-bold fst-italic">
-            Settings > General > Enable fullscreen mode</span>
+          {{ $t('screen.fullscreenMessage') }}
         </div>
       </div>
       <div
@@ -320,7 +318,7 @@ export default {
           }
         },
         language: {
-          default: 'en',
+          default: this.$i18n?.locale || 'en',
           translations: {
             'en': {
               consentModal: {
@@ -381,6 +379,66 @@ export default {
                   }
                 ]
               }
+            },
+            'es': {
+              consentModal: {
+                title: 'Consentimiento de Cookies',
+                description: 'Se utilizan cookies para mejorar la experiencia de navegación y analizar el tráfico de este sitio web. Por favor, acepta el uso de cookies.',
+                acceptAllBtn: 'Aceptar todas',
+                acceptNecessaryBtn: 'Rechazar todas',
+                showPreferencesBtn: 'Gestionar preferencias'
+              },
+              preferencesModal: {
+                title: 'Preferencias de Cookies',
+                acceptAllBtn: 'Aceptar todas',
+                acceptNecessaryBtn: 'Rechazar todas',
+                savePreferencesBtn: 'Guardar preferencias',
+                closeIconLabel: 'Cerrar',
+                sections: [
+                  {
+                    title: 'Uso de Cookies',
+                    description: `Las cookies se utilizan para garantizar las funcionalidades básicas del sitio web y mejorar la experiencia online. 
+                                    Esto incluye el uso de Google Analytics para rastrear visitas de páginas y reCAPTCHA v3 para seguridad.`
+                  },
+                  {
+                    title: 'Cookies Estrictamente Necesarias',
+                    description: 'Estas cookies son esenciales para el correcto funcionamiento de este sitio web. Sin estas cookies, el sitio web no funcionaría correctamente.',
+                    linkedCategory: 'necessary'
+                  },
+                  {
+                    title: 'Cookies de Rendimiento y Análisis',
+                    description: 'Estas cookies permiten al sitio web recordar las decisiones que has tomado en el pasado y ayudar a mejorar este sitio web.',
+                    linkedCategory: 'analytics',
+                    cookieTable: {
+                      headers: {
+                        name: 'Nombre',
+                        domain: 'Servicio',
+                        description: 'Descripción',
+                        expiration: 'Expiración'
+                      },
+                      body: [
+                        {
+                          name: '_ga',
+                          domain: 'Google Analytics',
+                          description: 'Cookie establecida por <a href="#das">Google Analytics</a> para rastrear interacciones del usuario.',
+                          expiration: 'Expira después de 12 meses'
+                        },
+                        {
+                          name: '_gid',
+                          domain: 'Google Analytics',
+                          description: 'Cookie establecida por <a href="#das">Google Analytics</a> para rastreo de sesión.',
+                          expiration: 'Expira después de 24 horas'
+                        }
+                      ]
+                    }
+                  },
+                  {
+                    title: 'Más Información',
+                    description: `Para cualquier consulta sobre la política de cookies y opciones, 
+                                          por favor usa el formulario de contacto en este sitio web o haz clic <a href="#cookies">aquí</a> para obtener más información.`
+                  }
+                ]
+              }
             }
           }
         },
@@ -438,6 +496,9 @@ export default {
 
         this.$urlToOpen = null;
       }
+    },
+    '$i18n.locale'(newLocale) {
+      this.updateCookiesLanguage(newLocale);
     }
   },
   mounted() {
@@ -447,7 +508,7 @@ export default {
     init() {
       this.$themeSelected = localStorage.getItem('theme') ?? 'theme-2';
       
-      CookieConsent.run({ root: this.$refs.screen, ...this.cookiesConsentSettings });
+      this.initCookiesConsent();
 
       window.addEventListener('hashchange', () => {
         if (window.location.hash === '#cookies') {
@@ -460,6 +521,20 @@ export default {
       });
 
       this.onScreenResize();
+    },
+    initCookiesConsent() {
+      this.cookiesConsentSettings.language.default = this.$i18n?.locale || 'en';
+      CookieConsent.run({ root: this.$refs.screen, ...this.cookiesConsentSettings });
+    },
+    updateCookiesLanguage(newLocale) {
+      this.cookiesConsentSettings.language.default = newLocale;
+      
+      // Reinitialize cookie consent with new language
+      CookieConsent.reset(true);
+      this.initCookiesConsent();
+      
+      // Force update of computed properties for the custom toast
+      this.$forceUpdate();
     },
     onCookiesConsented(cookie) {
       if (cookie.categories.includes('analytics')) {
@@ -510,7 +585,8 @@ export default {
 
         const programObject = new ProgramClass({
           parent: windowObject,
-          propsData: { id: v4(), ...defaultProps }
+          propsData: { id: v4(), ...defaultProps },
+          i18n: this.$i18n
         });
 
         const width = programObject.widthDefault === 0 ? this.$widthScreenContent : programObject.widthDefault;
@@ -531,7 +607,8 @@ export default {
           },
           methods: {
             openProgram: (programName, defaultProps = {}) => this.onOpenProgram(programName, defaultProps)
-          }
+          },
+          i18n: this.$i18n
         });
 
         this.mountWindowProgram(windowObject, programObject);
@@ -631,7 +708,7 @@ export default {
     position: fixed;
     bottom: 56px;
     right: 5px;
-    z-index: 1;
+    z-index: 9999;
     user-select: none;
     display: flex;
     flex-direction: column;

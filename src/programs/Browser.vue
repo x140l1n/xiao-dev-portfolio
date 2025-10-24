@@ -13,18 +13,18 @@
               <!-- eslint-disable-next-line vuejs-accessibility/form-control-has-label -->
               <input
                 ref="inputSearch"
+                :placeholder="$t ? $t('browser.placeholder') : 'Type to search'"
                 class="form-control form-control-sm rounded-pill"
                 name="input-search"
                 type="text"
-                placeholder="Type to search"
               >
             </div>
             <button
               ref="btnSubmit"
+              :title="$t ? $t('browser.search') : 'Search'"
+              :aria-label="$t ? $t('browser.search') : 'Search'"
               class="btn bg-primary text-light btn-sm rounded-circle border border-1"
               type="submit"
-              title="Search"
-              aria-label="Search"
             >
               <i class="fa-solid fa-magnifying-glass" />
             </button>
@@ -32,8 +32,8 @@
         </div>
         <iframe
           ref="iframe"
+          :title="$t ? $t('browser.contentTitle') : 'Browser content'"
           class="flex-grow-1"
-          title="Browser content"
           frameborder="0"
           scrolling="auto"
         />
@@ -62,6 +62,11 @@ import IconBrowser from '@assets/icons/browser.png';
   },
   data() {
     return {};
+  },
+  watch: {
+    '$i18n.locale'() {
+      this.title = this.$t ? this.$t('browser.title') : 'Browser';
+    }
   },
   mounted() {
     this.init();
@@ -106,7 +111,7 @@ import IconBrowser from '@assets/icons/browser.png';
 })
 export default class Browser extends Program {
   created() {
-    this.title = 'Browser';
+    this.title = this.$t ? this.$t('browser.title') : 'Browser';
     this.widthDefault = 600;
     this.heightDefault = 400;
     this.maximizedDefault = true;

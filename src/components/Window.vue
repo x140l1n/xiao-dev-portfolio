@@ -4,20 +4,20 @@
     v-resize="onWindowResize"
     @click="onSelectedProgram"
     :style="cssRootVars"
+    :aria-label="$t ? $t('window.window') || 'Window' : 'Window'"
     class="window resizers border border-2 border-dark bg-light"
     role="presentation"
-    aria-label="Window"
   >
     <div
       ref="windowTitleBar"
       @click="onClickWindowTitleBar"
+      :aria-label="$t ? $t('window.titleBar') || 'Title bar' : 'Title bar'"
       class="window-title-bar bg-primary text-light d-flex justify-content-between align-items-center border-bottom border-2 border-dark user-select-none"
       role="presentation"
-      aria-label="Title bar"
     >
       <img
         :src="program.iconSrc"
-        :alt="`Icono ${program.title}`"
+        :alt="$t('window.iconAlt', { title: program.title })"
         class="program-icon"
         draggable="false"
       >
@@ -29,17 +29,17 @@
         class="h-100 d-flex align-items-center"
       >
         <button
+          :title="$t('window.minimize')"
+          :aria-label="$t('window.minimize')"
           class="title-bar-item"
           data-action="minimize"
           type="button"
-          title="Minimize window"
-          aria-label="Minimize window"
         >
           <i class="fa-solid fa-minus fa-fw" />
         </button>
         <button
-          :title="`${isMaximized ? 'Minimize window size' : 'Maximize window size'}`"
-          :aria-label="`${isMaximized ? 'Minimize window size' : 'Maximize window size'}`"
+          :title="isMaximized ? $t('window.restore') : $t('window.maximize')"
+          :aria-label="isMaximized ? $t('window.restore') : $t('window.maximize')"
           class="title-bar-item"
           data-action="toggleMaximized"
           type="button"
@@ -47,11 +47,11 @@
           <i :class="`fa-solid ${isMaximized ? 'fa-compress' : 'fa-expand'}`" />
         </button>
         <button
+          :title="$t('window.close')"
+          :aria-label="$t('window.close')"
           class="title-bar-item"
           data-action="close"
           type="button"
-          title="Close window"
-          aria-label="Close window"
         >
           <i class="fa-solid fa-xmark fa-fw" />
         </button>
@@ -79,23 +79,23 @@ export default {
   props: {
     title: {
       type: String,
-      required: true
+      default: ''
     },
     width: {
       type: Number,
-      required: true
+      default: 800
     },
     height: {
       type: Number,
-      required: true
+      default: 600
     },
     x: {
       type: Number,
-      required: true
+      default: 100
     },
     y: {
       type: Number,
-      required: true
+      default: 100
     }
   },
   data() {

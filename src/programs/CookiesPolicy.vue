@@ -96,6 +96,11 @@ import IconCookies from '@assets/icons/cookies.png';
       return window.location.hostname;
     }
   },
+  watch: {
+    '$i18n.locale'() {
+      this.title = this.$t ? this.$t('cookiesPolicy.title') : 'Cookies Policy';
+    }
+  },
   mounted() {
     this.init();
   },
@@ -105,7 +110,7 @@ import IconCookies from '@assets/icons/cookies.png';
 })
 export default class CookiesPolicy extends Program {
   created() {
-    this.title = 'Cookies Policy';
+    this.title = this.$t ? this.$t('cookiesPolicy.title') : 'Cookies Policy';
     this.widthDefault = 400;
     this.heightDefault = 600;
     this.maximizedDefault = true;

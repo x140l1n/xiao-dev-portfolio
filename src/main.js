@@ -5,6 +5,7 @@ import VueMoment from 'vue-moment';
 import resize from 'vue-resize-directive';
 import VueGtag from 'vue-gtag';
 import { VueReCaptcha } from 'vue-recaptcha-v3';
+import i18n from '@src/locales';
 import 'bootstrap/dist/js/bootstrap';
 import 'moment/locale/es';
 import '@src/assets/scss/styles.scss';
@@ -165,5 +166,6 @@ Object.defineProperty(Vue.prototype, '$urlToOpen', {
 });
 
 new Vue({
+  i18n,
   render: (h) => h(App)
 }).$mount('#app');

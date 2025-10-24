@@ -68,7 +68,7 @@
                 target="_blank"
               >Centre d'Estudis Politècnics</a>
               <small>2021 - 2022</small>
-              <small>Barcelona (Spain)</small>
+              <small>{{ $t ? $t('studiesExperiences.location') : 'Barcelona (Spain)' }}</small>
             </div>
             <div
               class="timeline-content"
@@ -79,10 +79,10 @@
                 WEB APPLICATION DEVELOPMENT (DAW)
               </h5>
               <ul>
-                <li>Develop web applications with various frameworks for both frontend and backend.</li>
-                <li>Database manipulation.</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.webDevelopment') : 'Develop web applications with various frameworks for both frontend and backend.' }}</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.databaseManipulation') : 'Database manipulation.' }}</li>
                 <li>Configure web servers on Ubuntu.</li>
-                <li>Project-based learning.</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.projectBasedLearning') : 'Project-based learning.' }}</li>
               </ul>
               <div class="d-flex flex-wrap justify-content-center gap-2">
                 <span class="badge badge-pill">HTML</span>
@@ -114,7 +114,7 @@
                 target="_blank"
               >Centre d'Estudis Politècnics</a>
               <small>2019 - 2021</small>
-              <small>Barcelona (Spain)</small>
+              <small>{{ $t ? $t('studiesExperiences.location') : 'Barcelona (Spain)' }}</small>
             </div>
             <div
               class="timeline-content"
@@ -127,10 +127,10 @@
               <ul>
                 <li>Develop multiplatform applications using various programming languages.</li>
                 <li>Development of desktop and Android applications.</li>
-                <li>Database manipulation.</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.databaseManipulation') : 'Database manipulation.' }}</li>
                 <li>Game programming.</li>
                 <li>BASH programming.</li>
-                <li>Project-based learning.</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.projectBasedLearning') : 'Project-based learning.' }}</li>
               </ul>
               <div class="d-flex flex-wrap justify-content-center gap-2">
                 <span class="badge badge-pill">Java</span>
@@ -158,7 +158,7 @@
                 href="https://serveiocupacio.gencat.cat/es/Formacio-i-qualificacio/centres-propis-de-formacio/centres-dinnovacio-i-formacio-ocupacional-cifo/CIFO-de-Barcelona-La-Violeta"
                 target="_blank"
               >SOC CIFO VIOLETA</a><small>2018-2019</small>
-              <small>Barcelona (Spain)</small>
+              <small>{{ $t ? $t('studiesExperiences.location') : 'Barcelona (Spain)' }}</small>
             </div>
             <div
               class="timeline-content"
@@ -198,7 +198,7 @@
                 target="_blank"
               >Instituto XXV Olimpiada</a>
               <small>2014-2016</small>
-              <small>Barcelona (Spain)</small>
+              <small>{{ $t ? $t('studiesExperiences.location') : 'Barcelona (Spain)' }}</small>
             </div>
             <div
               class="timeline-content"
@@ -220,7 +220,7 @@
                 target="_blank"
               >Instituto XXV Olimpiada</a>
               <small>2010-2014</small>
-              <small>Barcelona (Spain)</small>
+              <small>{{ $t ? $t('studiesExperiences.location') : 'Barcelona (Spain)' }}</small>
             </div>
             <div
               class="timeline-content"
@@ -249,11 +249,65 @@
               data-animation="slide-left"
             >
               <a
+                href="https://www.uxland.es"
+                target="_blank"
+              >UXLand</a>
+              <small>Nov 2024 - {{ $t ? $t('studiesExperiences.present') : 'Present' }}</small>
+              <small>{{ $t ? $t('studiesExperiences.location') : 'Barcelona (Spain)' }}</small>
+            </div>
+            <div
+              class="timeline-content"
+              data-animation="slide-right"
+            >
+              <i class="timeline-icon fa-solid fa-code" />
+              <h5 class="fw-bold text-center">
+                FRONTEND DEVELOPER
+              </h5>
+              <ul>
+                <li>{{ $t ? $t('studiesExperiences.skills.frontendArchitecture') : 'Development of frontend architecture and components.' }}</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.designSystems') : 'Contribution to design systems and microfrontends.' }}</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.sapTechnologies') : 'Worked with SAP, ABAP, Lit, React, Redux, Vite, Web Components, and more.' }}</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.cicdIntegration') : 'Integration with CI/CD, cloud, and enterprise solutions.' }}</li>
+              </ul>
+              <div class="d-flex flex-wrap justify-content-center gap-2">
+                <span class="badge badge-pill">Lit</span>
+                <span class="badge badge-pill">TypeScript</span>
+                <span class="badge badge-pill">Microfrontends</span>
+                <span class="badge badge-pill">SAP</span>
+                <span class="badge badge-pill">ABAP</span>
+                <span class="badge badge-pill">Node.js</span>
+                <span class="badge badge-pill">React</span>
+                <span class="badge badge-pill">Redux</span>
+                <span class="badge badge-pill">MUI</span>
+                <span class="badge badge-pill">Vite</span>
+                <span class="badge badge-pill">Web Components</span>
+                <span class="badge badge-pill">Java</span>
+                <span class="badge badge-pill">Express</span>
+                <span class="badge badge-pill">Lerna</span>
+                <span class="badge badge-pill">TypeORM</span>
+                <span class="badge badge-pill">MongoDB</span>
+                <span class="badge badge-pill">PostgreSQL</span>
+                <span class="badge badge-pill">OpenShift</span>
+                <span class="badge badge-pill">AWS</span>
+                <span class="badge badge-pill">Google Cloud</span>
+                <span class="badge badge-pill">Azure</span>
+                <span class="badge badge-pill">Firebase</span>
+                <span class="badge badge-pill">Jenkins</span>
+                <span class="badge badge-pill">Grafana</span>
+              </div>
+            </div>
+          </article>
+          <article class="timeline-row">
+            <div
+              class="timeline-time"
+              data-animation="slide-left"
+            >
+              <a
                 href="https://tkmservicios.com"
                 target="_blank"
               >TKM Consultores S.L.</a>
-              <small>2019 - Present</small>
-              <small>Barcelona (Spain)</small>
+              <small>2019 - Nov 2024</small>
+              <small>{{ $t ? $t('studiesExperiences.location') : 'Barcelona (Spain)' }}</small>
             </div>
             <div
               class="timeline-content"
@@ -264,16 +318,16 @@
                 FULLSTACK DEVELOPER / HELPDESK
               </h5>
               <ul>
-                <li>Project planning, documentation, and development.</li>
-                <li>Creation and maintenance of web applications using: HTML, CSS, JavaScript, PHP, Ruby On Rails, WordPress.</li>
-                <li>Creation and maintenance of WinForms programs: .NET, .NET Core.</li>
-                <li>Database creation and maintenance: Microsoft SQL Server, MySQL, PostgreSQL.</li>
-                <li>Web server and hosting maintenance: Arsys, Axarnet, Guebs, CDMON.</li>
-                <li>Systems technician: Windows Server, Active Directory, Microsoft Exchange, Virtualization.</li>
-                <li>Network technician: Network analysis, router, switch, and firewall configuration.</li>
-                <li>Helpdesk: Technical support for end users, equipment maintenance, software installation.</li>
-                <li>Custom ERP program development.</li>
-                <li>ERP program management: A3ERP.</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.projectPlanning') : 'Project planning, documentation, and development.' }}</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.webApplications') : 'Creation and maintenance of web applications using: HTML, CSS, JavaScript, PHP, Ruby On Rails, WordPress.' }}</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.winFormsPrograms') : 'Creation and maintenance of WinForms programs: .NET, .NET Core.' }}</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.databaseCreation') : 'Database creation and maintenance: Microsoft SQL Server, MySQL, PostgreSQL.' }}</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.webServerMaintenance') : 'Web server and hosting maintenance: Arsys, Axarnet, Guebs, CDMON.' }}</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.systemsTechnician') : 'Systems technician: Windows Server, Active Directory, Microsoft Exchange, Virtualization.' }}</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.networkTechnician') : 'Network technician: Network analysis, router, switch, and firewall configuration.' }}</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.helpdesk') : 'Helpdesk: Technical support for end users, equipment maintenance, software installation.' }}</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.customERPDevelopment') : 'Custom ERP program development.' }}</li>
+                <li>{{ $t ? $t('studiesExperiences.skills.erpManagement') : 'ERP program management: A3ERP.' }}</li>
               </ul>
               <div class="d-flex flex-wrap justify-content-center gap-2">
                 <span class="badge badge-pill">HTML</span>
@@ -323,6 +377,11 @@ import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
   data() {
     return {};
   },
+  watch: {
+    '$i18n.locale'() {
+      this.title = this.$t ? this.$t('studiesExperiences.title') : 'Studies & Experiences';
+    }
+  },
   mounted() {
     this.init();
   },
@@ -332,6 +391,10 @@ import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
       this.$refs.tabContent.scrollTop = 0;
     },
     onWindowResize() {
+      if (!this.$refs.timelineStudies || !this.$refs.timelineExperiences) {
+        return;
+      }
+
       if (this.$refs.content.clientWidth < 992) {
         this.$refs.timelineStudies.classList.add('small');
         this.$refs.timelineExperiences.classList.add('small');
@@ -344,7 +407,7 @@ import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
 })
 export default class StudiesExperiences extends Program {
   created() {
-    this.title = 'Studies & Experiences';
+    this.title = this.$t ? this.$t('studiesExperiences.title') : 'Studies & Experiences';
     this.widthDefault = 550;
     this.heightDefault = 400;
     this.maximizedDefault = true;

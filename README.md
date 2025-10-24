@@ -29,6 +29,9 @@ Here are some screenshots of the portfolio:
 - **Responsive design**: The portfolio is designed to work seamlessly on various devices and screen sizes.
 - **Smooth animations**: Utilizes animations for a more engaging user experience.
 - **Showcase projects**: Highlights various projects and skills, demonstrating my abilities as a developer.
+- **🌍 Internationalization (i18n)**: Full support for multiple languages (English/Spanish) with instant language switching.
+- **📱 Real-time translations**: All UI elements, error messages, and content update immediately when changing languages.
+- **🍪 Smart cookie consent**: Dynamic cookie consent with multi-language support and automatic updates.
 
 ## ⚙️ Stack
 
@@ -43,9 +46,11 @@ The portfolio is built with the following stack:
 <br/>
 
 - **Vue 2**: Frontend framework.
+- **Vue I18n**: Internationalization plugin for multi-language support.
 - **SASS**: For styling and animations.
 - **Bootstrap**: For styles and UI components.
 - **PHP**: Handles server-side logic for processing email submissions through the `email.php` file in the `api/` folder.
+- **Vanilla Cookie Consent**: Cookie consent management with multi-language support.
 
 ## 🗂️ Project Structure
 
@@ -54,6 +59,10 @@ The portfolio is built with the following stack:
 - `screenshots/`: Contains screenshots showcasing the user interface and functionalities of the portfolio.
 - `public/`: Static files and the `index.html`.
 - `src/`: Contains the main components, views, and project files.
+  - `src/locales/`: Translation files for internationalization (en.js, es.js).
+  - `src/programs/`: Individual application windows/programs.
+  - `src/components/`: Reusable Vue components.
+  - `src/views/`: Main application views.
 
 ## 📜 Scripts
 
@@ -83,6 +92,39 @@ VUE_APP_RECAPTCHA_V3_SITE_KEY=
 - `VUE_APP_RECAPTCHA_V3_SITE_KEY`: The reCAPTCHA v3 site key (required if using the contact form).
 
 Make sure to copy the .env.example file to .env and replace the values with your actual settings before running the project.
+
+## 🌍 Internationalization (i18n)
+
+This portfolio features comprehensive internationalization support with the following capabilities:
+
+### 🚀 Features
+- **Instant language switching**: Switch between English and Spanish without page refresh
+- **Comprehensive translations**: All UI elements, program titles, error messages, and content are translated
+- **Real-time updates**: Program titles, cookie consent, and all interface elements update immediately when changing languages
+- **Smart cookie consent**: Cookie consent modal adapts to the selected language dynamically
+- **Professional work experience**: Detailed translations of work experiences, skills, and project descriptions
+
+### 🔧 Implementation Details
+- **Vue I18n integration**: Uses Vue I18n plugin for robust internationalization
+- **Dynamic title updates**: Program windows automatically update their titles when language changes
+- **Defensive programming**: Fallback to English if translations are missing
+- **Toast notifications**: Multi-language support for system notifications
+- **Type-safe error handling**: Error messages are categorized and translated based on error types
+
+### 🗂️ Translation Files
+- `src/locales/en.js`: English translations
+- `src/locales/es.js`: Spanish translations
+
+The translation system covers:
+- Navigation and UI elements
+- Program titles and content
+- Work experiences and project descriptions
+- Error messages and notifications
+- Cookie consent and privacy information
+- Form labels and validation messages
+
+### 💡 Usage
+Users can change the language through the Settings program, and all open windows and interface elements will update instantly without requiring a page refresh or program restart.
 
 ## 🐘 Running the PHP Server for sending emails (Only if you have PHP installed on your computer)
 
@@ -174,7 +216,25 @@ To deploy the project to a web server, simply upload the contents of the `dist` 
 >
 > There is no need to upload any other files from the project.
 
-## 🚀 Future Improvements
+## 🚀 Recent Updates
+
+### 🌍 Internationalization Implementation (2024)
+- **Complete multi-language support**: Full Spanish and English translations across all components
+- **Real-time language switching**: Instant updates without page refresh
+- **Dynamic program titles**: Window titles update automatically when language changes
+- **Smart cookie consent**: Multi-language cookie consent with automatic language detection
+- **Type-safe error handling**: Categorized error messages with proper translations
+- **Enhanced user experience**: Toast notifications always appear above windows
+- **Professional content**: Comprehensive work experience translations including new UXLand position
+
+### 🔧 Technical Improvements
+- **Vue I18n integration**: Robust internationalization architecture
+- **Defensive programming patterns**: Fallback mechanisms for missing translations  
+- **ESLint compliance**: Fixed all linting warnings and code style issues
+- **Component lifecycle optimization**: Proper i18n context passing to dynamic components
+- **Z-index management**: Improved layering system for UI elements
+
+## 🎯 Future Improvements
 
 I am committed to continuously enhancing this portfolio project by adding more features and functionalities, as well as improving the code quality. Stay tuned for updates as I strive to improve the user experience and showcase my skills as a fullstack developer!
 

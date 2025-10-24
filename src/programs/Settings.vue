@@ -28,47 +28,67 @@
             alt="General"
             draggable="false"
           >
-          <span>General</span>
+          <span>{{ $t('settings.tabs.general') }}</span>
         </button>
         <button
           @click="onChangeTab"
           :id="`v-pills-themes-tab-${id}`"
           :data-bs-target="`#v-pills-themes-${id}`"
           :aria-controls="`v-pills-themes-${id}`"
+          :title="$t('settings.tabs.themes')"
           class="nav-link rounded-0"
           data-bs-toggle="pill"
           type="button"
-          title="Themes"
           role="tab"
           aria-selected="false"
         >
           <img
+            :alt="$t('settings.tabs.themes')"
             class="icon"
             src="@assets/icons/theme.png"
-            alt="Themes"
             draggable="false"
           >
-          <span>Themes</span>
+          <span>{{ $t('settings.tabs.themes') }}</span>
+        </button>
+        <button
+          @click="onChangeTab"
+          :id="`v-pills-language-tab-${id}`"
+          :data-bs-target="`#v-pills-language-${id}`"
+          :aria-controls="`v-pills-language-${id}`"
+          :title="$t('settings.tabs.language')"
+          class="nav-link rounded-0"
+          data-bs-toggle="pill"
+          type="button"
+          role="tab"
+          aria-selected="false"
+        >
+          <img
+            :alt="$t('settings.tabs.language')"
+            class="icon"
+            src="@assets/icons/language.png"
+            draggable="false"
+          >
+          <span>{{ $t('settings.tabs.language') }}</span>
         </button>
         <button
           @click="onChangeTab"
           :id="`v-pills-about-tab-${id}`"
           :data-bs-target="`#v-pills-about-${id}`"
           :aria-controls="`v-pills-about-${id}`"
+          :title="$t('settings.tabs.about')"
           class="nav-link rounded-0"
           data-bs-toggle="pill"
           type="button"
-          title="About"
           role="tab"
           aria-selected="false"
         >
           <img
+            :alt="$t('settings.tabs.about')"
             class="icon"
             src="@assets/icons/info.png"
-            alt="About"
             draggable="false"
           >
-          <span>About</span>
+          <span>{{ $t('settings.tabs.about') }}</span>
         </button>
       </div>
       <div
@@ -81,7 +101,7 @@
           class="tab-pane p-3 fade show active"
           role="tabpanel"
         >
-          <h4>General</h4>
+          <h4>{{ $t('settings.general.title') }}</h4>
           <article class="card">
             <div class="card-body">
               <div class="d-flex justify-content-between align-items-center gap-2">
@@ -90,11 +110,11 @@
                   <label
                     :for="`switch-fullscreen-${id}`"
                     class="fw-bold"
-                  >Enable fullscreen mode</label>
+                  >{{ $t('settings.general.fullscreenMode') }}</label>
                   <small
                     class="fst-italic text-danger"
-                  ><strong>Note:</strong>
-                    If you enable it in browser options, this feature may not work correctly.
+                  ><strong>{{ $t('settings.general.fullscreenNote') }}</strong>
+                    {{ $t('settings.general.fullscreenWarning') }}
                   </small>
                 </div>
                 <div class="form-check form-switch">
@@ -103,7 +123,7 @@
                     :id="`switch-fullscreen-${id}`"
                     :true-value="true"
                     :false-value="false"
-                    :title="`${!$isFullscreen ? 'Fullscreen mode' : 'Normal screen mode'}`"
+                    :title="`${!$isFullscreen ? $t('settings.general.fullscreenModeTitle') : $t('settings.general.normalScreenModeTitle')}`"
                     :aria-checked="$isFullscreen"
                     class="form-check-input"
                     type="checkbox"
@@ -120,11 +140,11 @@
           class="tab-pane p-3 fade"
           role="tabpanel"
         >
-          <h4>Themes</h4>
+          <h4>{{ $t('settings.themes.title') }}</h4>
           <article class="card">
             <div class="card-body">
               <h5 class="card-title">
-                Choose theme
+                {{ $t('settings.themes.chooseTheme') }}
               </h5>
               <div class="d-flex flex-wrap mt-5">
                 <div class="theme-selector theme-1 p-3 my-2">
@@ -142,7 +162,7 @@
                     <label
                       :for="`rdb-theme-2-${id}`"
                       class="form-check-label"
-                    >Dark blue theme</label>
+                    >{{ $t('settings.themes.darkBlueTheme') }}</label>
                   </div>
                 </div>
                 <div class="theme-selector theme-2 p-3 my-2">
@@ -160,8 +180,59 @@
                     <label
                       :for="`rdb-theme-1-${id}`"
                       class="form-check-label"
-                    >Light purple theme</label>
+                    >{{ $t('settings.themes.lightPurpleTheme') }}</label>
                   </div>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+        <div
+          :id="`v-pills-language-${id}`"
+          :aria-labelledby="`v-pills-language-tab-${id}`"
+          class="tab-pane p-3 fade"
+          role="tabpanel"
+        >
+          <h4>{{ $t('settings.language.title') }}</h4>
+          <article class="card">
+            <div class="card-body">
+              <h5 class="card-title">
+                {{ $t('settings.language.chooseLanguage') }}
+              </h5>
+              <div class="d-flex flex-column gap-3 mt-4">
+                <div class="form-check">
+                  <input
+                    v-model="currentLocale"
+                    :id="`rdb-lang-es-${id}`"
+                    :name="`selector-language-${id}`"
+                    @change="onChangeLanguage"
+                    class="form-check-input"
+                    type="radio"
+                    value="es"
+                    draggable="false"
+                  >
+                  <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
+                  <label
+                    :for="`rdb-lang-es-${id}`"
+                    class="form-check-label fw-bold"
+                  >{{ $t('settings.language.spanish') }}</label>
+                </div>
+                <div class="form-check">
+                  <input
+                    v-model="currentLocale"
+                    :id="`rdb-lang-en-${id}`"
+                    :name="`selector-language-${id}`"
+                    @change="onChangeLanguage"
+                    class="form-check-input"
+                    type="radio"
+                    value="en"
+                    draggable="false"
+                  >
+                  <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
+                  <label
+                    :for="`rdb-lang-en-${id}`"
+                    class="form-check-label fw-bold"
+                  >{{ $t('settings.language.english') }}</label>
                 </div>
               </div>
             </div>
@@ -173,11 +244,11 @@
           class="tab-pane p-3 fade"
           role="tabpanel"
         >
-          <h4>About</h4>
+          <h4>{{ $t('settings.about.title') }}</h4>
           <article class="card">
             <div class="card-body">
               <h5 class="card-title">
-                System Specifications
+                {{ $t('settings.about.systemSpecs') }}
               </h5>
               <table
                 ref="tableSpecs"
@@ -185,31 +256,31 @@
               >
                 <tr>
                   <td class="fw-bold label">
-                    Edition
+                    {{ $t('settings.about.edition') }}
                   </td>
                   <td>XiaoDev OS</td>
                 </tr>
                 <tr>
                   <td class="fw-bold label">
-                    Version
+                    {{ $t('settings.about.version') }}
                   </td>
                   <td>{{ getVersion }}</td>
                 </tr>
                 <tr>
                   <td class="fw-bold label">
-                    Build date
+                    {{ $t('settings.about.buildDate') }}
                   </td>
                   <td>{{ getDateVersion }}</td>
                 </tr>
                 <tr>
                   <td class="fw-bold label">
-                    Created by
+                    {{ $t('settings.about.createdBy') }}
                   </td>
                   <td>Xiaolin Jin Lin</td>
                 </tr>
                 <tr>
                   <td class="fw-bold label">
-                    Github
+                    {{ $t('settings.about.github') }}
                   </td>
                   <td>
                     <a
@@ -221,7 +292,7 @@
                 </tr>
                 <tr>
                   <td class="fw-bold label pe-4">
-                    Developed with
+                    {{ $t('settings.about.developedWith') }}
                   </td>
                   <td>
                     <div class="d-inline-block text-center">
@@ -287,17 +358,34 @@ import { date, version } from '@root/package';
     }
   },
   data() {
-    return {};
+    return {
+      currentLocale: 'en'
+    };
   },
   mounted() {
     this.init();
   },
   methods: {
-    init() {},
+    init() {
+      if (this.$i18n) {
+        this.currentLocale = this.$i18n.locale;
+      }
+    },
     onChangeTab() {
       this.$refs.content.scrollTop = 0;
     },
+    onChangeLanguage() {
+      if (this.$i18n) {
+        this.$i18n.locale = this.currentLocale;
+        localStorage.setItem('locale', this.currentLocale);
+        this.title = this.$t('settings.title');
+      }
+    },
     onWindowResize() {
+      if (!this.$refs.nav || !this.$refs.tabContent || !this.$refs.tableSpecs) {
+        return;
+      }
+      
       if (this.$el.clientWidth < 600) {
         this.$refs.nav.classList.add('nav-small');
         this.$refs.tabContent.classList.add('tab-content-small');
@@ -320,7 +408,7 @@ import { date, version } from '@root/package';
 })
 export default class Settings extends Program {
   created() {
-    this.title = 'Settings';
+    this.title = this.$t ? this.$t('settings.title') : 'Settings';
     this.widthDefault = 550;
     this.heightDefault = 400;
     this.maximizedDefault = true;

@@ -5,12 +5,12 @@
         <article class="card shadow-lg mx-auto w-100">
           <div class="card-header bg-primary text-light">
             <h5 class="fw-bold mb-0">
-              Languages and Frameworks
+              {{ $t('knowledges.categories.languagesFrameworks') }}
             </h5>
           </div>
           <div class="card-body">
             <h6 class="fw-bold">
-              Frontend
+              {{ $t('knowledges.categories.frontend') }}
             </h6>
             <hr class="mt-0 mb-2">
             <div class="d-flex justify-content-center flex-wrap">
@@ -87,7 +87,7 @@
               >
             </div>
             <h6 class="fw-bold mt-5">
-              Backend
+              {{ $t('knowledges.categories.backend') }}
             </h6>
             <hr class="mt-0 mb-4">
             <div class="d-flex justify-content-center flex-wrap">
@@ -169,7 +169,7 @@
         <article class="card shadow-lg mx-auto w-100">
           <div class="card-header bg-primary text-light">
             <h5 class="fw-bold mb-0">
-              Databases
+              {{ $t('knowledges.categories.databases') }}
             </h5>
           </div>
           <div class="card-body">
@@ -203,7 +203,7 @@
         <article class="card shadow-lg mx-auto w-100">
           <div class="card-header bg-primary text-light">
             <h5 class="fw-bold mb-0">
-              Others
+              {{ $t('knowledges.categories.others') }}
             </h5>
           </div>
           <div class="card-body">
@@ -260,6 +260,11 @@ import IconKnowledges from '@assets/icons/knowledge.png';
   data() {
     return {};
   },
+  watch: {
+    '$i18n.locale'() {
+      this.title = this.$t ? this.$t('knowledges.title') : 'Knowledges';
+    }
+  },
   mounted() {
     this.init();
   },
@@ -269,7 +274,7 @@ import IconKnowledges from '@assets/icons/knowledge.png';
 })
 export default class Knowledges extends Program {
   created() {
-    this.title = 'Knowledges';
+    this.title = this.$t ? this.$t('knowledges.title') : 'Knowledges';
     this.widthDefault = 550;
     this.heightDefault = 400;
     this.maximizedDefault = true;
