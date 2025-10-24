@@ -35,17 +35,17 @@
           :id="`v-pills-themes-tab-${id}`"
           :data-bs-target="`#v-pills-themes-${id}`"
           :aria-controls="`v-pills-themes-${id}`"
+          :title="$t('settings.tabs.themes')"
           class="nav-link rounded-0"
           data-bs-toggle="pill"
           type="button"
-          :title="$t('settings.tabs.themes')"
           role="tab"
           aria-selected="false"
         >
           <img
+            :alt="$t('settings.tabs.themes')"
             class="icon"
             src="@assets/icons/theme.png"
-            :alt="$t('settings.tabs.themes')"
             draggable="false"
           >
           <span>{{ $t('settings.tabs.themes') }}</span>
@@ -55,17 +55,17 @@
           :id="`v-pills-language-tab-${id}`"
           :data-bs-target="`#v-pills-language-${id}`"
           :aria-controls="`v-pills-language-${id}`"
+          :title="$t('settings.tabs.language')"
           class="nav-link rounded-0"
           data-bs-toggle="pill"
           type="button"
-          :title="$t('settings.tabs.language')"
           role="tab"
           aria-selected="false"
         >
           <img
+            :alt="$t('settings.tabs.language')"
             class="icon"
             src="@assets/icons/language.png"
-            :alt="$t('settings.tabs.language')"
             draggable="false"
           >
           <span>{{ $t('settings.tabs.language') }}</span>
@@ -75,17 +75,17 @@
           :id="`v-pills-about-tab-${id}`"
           :data-bs-target="`#v-pills-about-${id}`"
           :aria-controls="`v-pills-about-${id}`"
+          :title="$t('settings.tabs.about')"
           class="nav-link rounded-0"
           data-bs-toggle="pill"
           type="button"
-          :title="$t('settings.tabs.about')"
           role="tab"
           aria-selected="false"
         >
           <img
+            :alt="$t('settings.tabs.about')"
             class="icon"
             src="@assets/icons/info.png"
-            :alt="$t('settings.tabs.about')"
             draggable="false"
           >
           <span>{{ $t('settings.tabs.about') }}</span>
@@ -205,11 +205,11 @@
                     v-model="currentLocale"
                     :id="`rdb-lang-es-${id}`"
                     :name="`selector-language-${id}`"
+                    @change="onChangeLanguage"
                     class="form-check-input"
                     type="radio"
                     value="es"
                     draggable="false"
-                    @change="onChangeLanguage"
                   >
                   <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
                   <label
@@ -222,11 +222,11 @@
                     v-model="currentLocale"
                     :id="`rdb-lang-en-${id}`"
                     :name="`selector-language-${id}`"
+                    @change="onChangeLanguage"
                     class="form-check-input"
                     type="radio"
                     value="en"
                     draggable="false"
-                    @change="onChangeLanguage"
                   >
                   <!-- eslint-disable-next-line vuejs-accessibility/label-has-for -->
                   <label

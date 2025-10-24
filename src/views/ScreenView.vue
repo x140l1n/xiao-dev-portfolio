@@ -14,15 +14,15 @@
       <div class="program p-2">
         <button
           @click="onOpenProgram('Settings')"
-          class="program-inner program-knowledge p-2"
-          type="button"
           :title="$t('settings.title')"
           :alt="$t('settings.title')"
+          class="program-inner program-knowledge p-2"
+          type="button"
         >
           <img
             id="program-settings"
-            src="@assets/icons/settings.png"
             :alt="$t('settings.title') + ' logo'"
+            src="@assets/icons/settings.png"
             draggable="false"
           >
           <span
@@ -34,15 +34,15 @@
       <div class="program p-2">
         <button
           @click="onOpenProgram('AboutMe')"
-          class="program-inner p-2"
-          type="button"
           :title="$t('aboutMe.title')"
           :alt="$t('aboutMe.title')"
+          class="program-inner p-2"
+          type="button"
         >
           <img
             id="program-about-me"
-            src="@assets/icons/about-me.png"
             :alt="$t('aboutMe.title') + ' logo'"
+            src="@assets/icons/about-me.png"
             draggable="false"
           >
           <span
@@ -54,15 +54,15 @@
       <div class="program p-2">
         <button
           @click="onOpenProgram('Knowledges')"
-          class="program-inner program-knowledge p-2"
-          type="button"
           :title="$t('knowledges.title')"
           :alt="$t('knowledges.title')"
+          class="program-inner program-knowledge p-2"
+          type="button"
         >
           <img
             id="program-knowledge"
-            src="@assets/icons/knowledge.png"
             :alt="$t('knowledges.title') + ' logo'"
+            src="@assets/icons/knowledge.png"
             draggable="false"
           >
           <span
@@ -74,15 +74,15 @@
       <div class="program p-2">
         <button
           @click="onOpenProgram('StudiesExperiences')"
-          class="program-inner program-experiences-studies p-2"
-          type="button"
           :title="$t('studiesExperiences.title')"
           :alt="$t('studiesExperiences.title')"
+          class="program-inner program-experiences-studies p-2"
+          type="button"
         >
           <img
             id="program-experiences-studies"
-            src="@assets/icons/experiences-studies.png"
             :alt="$t('studiesExperiences.title') + ' logo'"
+            src="@assets/icons/experiences-studies.png"
             draggable="false"
           >
           <span
@@ -94,15 +94,15 @@
       <div class="program p-2">
         <button
           @click="onOpenProgram('Projects')"
-          class="program-inner program-projects p-2"
-          type="button"
           :title="$t('projects.title')"
           :alt="$t('projects.title')"
+          class="program-inner program-projects p-2"
+          type="button"
         >
           <img
             id="program-projects"
-            src="@assets/icons/projects.png"
             :alt="$t('projects.title') + ' logo'"
+            src="@assets/icons/projects.png"
             draggable="false"
           >
           <span
@@ -114,15 +114,15 @@
       <div class="program p-2">
         <button
           @click="onOpenProgram('ContactMe')"
-          class="program-inner program-contactme p-2"
-          type="button"
           :title="$t('contactMe.title')"
           :alt="$t('contactMe.title')"
+          class="program-inner program-contactme p-2"
+          type="button"
         >
           <img
             id="program-contactme"
-            src="@assets/icons/email.png"
             :alt="$t('contactMe.title') + ' logo'"
+            src="@assets/icons/email.png"
             draggable="false"
           >
           <span
@@ -134,15 +134,15 @@
       <div class="program p-2">
         <button
           @click="onOpenProgram('Browser')"
-          class="program-inner program-browser p-2"
-          type="button"
           :title="$t('browser.title')"
           :alt="$t('browser.title')"
+          class="program-inner program-browser p-2"
+          type="button"
         >
           <img
             id="program-browser"
-            src="@assets/icons/browser.png"
             :alt="$t('browser.title') + ' logo'"
+            src="@assets/icons/browser.png"
             draggable="false"
           >
           <span
@@ -154,15 +154,15 @@
       <div class="program p-2">
         <button
           @click="onOpenProgram('CV')"
-          class="program-inner program-cv p-2"
-          type="button"
           :title="$t('cv.title')"
           :alt="$t('cv.title')"
+          class="program-inner program-cv p-2"
+          type="button"
         >
           <img
             id="program-cv"
-            src="@assets/icons/pdf.png"
             :alt="$t('cv.title') + ' logo'"
+            src="@assets/icons/pdf.png"
             draggable="false"
           >
           <span
@@ -197,10 +197,10 @@
           <strong class="me-auto">{{ $t('screen.fullscreenMode') }}</strong>
           <button
             @click="isClosedToast = true"
-            class="btn-close"
-            type="button"
             :title="$t('common.close') + ' tips'"
             :aria-label="$t('common.close') + ' tips'"
+            class="btn-close"
+            type="button"
           />
         </div>
         <div class="toast-body">
