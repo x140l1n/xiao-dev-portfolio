@@ -376,6 +376,10 @@ import { date, version } from '@root/package';
       this.title = this.$t('settings.title');
     },
     onWindowResize() {
+      if (!this.$refs.nav || !this.$refs.tabContent || !this.$refs.tableSpecs) {
+        return;
+      }
+      
       if (this.$el.clientWidth < 600) {
         this.$refs.nav.classList.add('nav-small');
         this.$refs.tabContent.classList.add('tab-content-small');

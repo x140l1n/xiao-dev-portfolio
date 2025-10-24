@@ -332,6 +332,10 @@ import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
       this.$refs.tabContent.scrollTop = 0;
     },
     onWindowResize() {
+      if (!this.$refs.timelineStudies || !this.$refs.timelineExperiences) {
+        return;
+      }
+
       if (this.$refs.content.clientWidth < 992) {
         this.$refs.timelineStudies.classList.add('small');
         this.$refs.timelineExperiences.classList.add('small');

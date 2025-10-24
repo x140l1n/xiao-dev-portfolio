@@ -184,6 +184,10 @@ import { author } from '@root/package';
       setTimeout(() => this.flip(), 100);
     },
     onWindowResize() {
+      if (!this.$refs.iconFullStackDeveloper || !this.$refs.contentFront || !this.$refs.photo) {
+        return;
+      }
+
       if (this.$el.clientWidth < 800) {
         this.$refs.iconFullStackDeveloper.classList.add('d-none');
         this.$refs.contentFront.classList.remove('gap-4');
