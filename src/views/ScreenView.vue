@@ -708,7 +708,7 @@ export default {
     position: fixed;
     bottom: 56px;
     right: 5px;
-    z-index: 1;
+    z-index: 9999;
     user-select: none;
     display: flex;
     flex-direction: column;
