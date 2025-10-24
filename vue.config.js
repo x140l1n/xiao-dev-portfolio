@@ -4,8 +4,15 @@ const webpack = require('webpack');
 const fs = require('fs');
 const dotenv = require('dotenv');
 
+// Cargar .env.pro para builds de producción
+let envVars = {};
 if (process.env.NODE_ENV === 'production' && fs.existsSync('.env.pro')) {
-  dotenv.config({ path: '.env.pro' });
+  const envConfig = dotenv.parse(fs.readFileSync('.env.pro'));
+  Object.keys(envConfig).forEach(key => {
+    if (key.startsWith('VUE_APP_')) {
+      envVars[`process.env.${key}`] = JSON.stringify(envConfig[key]);
+    }
+  });
 }
 
 module.exports = {
@@ -31,6 +38,7 @@ module.exports = {
     },
     plugins: [
       new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es/),
+      ...(Object.keys(envVars).length > 0 ? [new webpack.DefinePlugin(envVars)] : []),
       new HtmlWebpackPlugin({
         inject: true,
         templateParameters: {
