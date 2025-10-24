@@ -16,19 +16,19 @@
           @click="onOpenProgram('Settings')"
           class="program-inner program-knowledge p-2"
           type="button"
-          title="Settings"
-          alt="Settings"
+          :title="$t('settings.title')"
+          :alt="$t('settings.title')"
         >
           <img
             id="program-settings"
             src="@assets/icons/settings.png"
-            alt="Settings logo"
+            :alt="$t('settings.title') + ' logo'"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-settings"
-          >Settings</span>
+          >{{ $t('settings.title') }}</span>
         </button>
       </div>
       <div class="program p-2">
@@ -36,19 +36,19 @@
           @click="onOpenProgram('AboutMe')"
           class="program-inner p-2"
           type="button"
-          title="About Me"
-          alt="About Me"
+          :title="$t('aboutMe.title')"
+          :alt="$t('aboutMe.title')"
         >
           <img
             id="program-about-me"
             src="@assets/icons/about-me.png"
-            alt="About Me logo"
+            :alt="$t('aboutMe.title') + ' logo'"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-about-me"
-          >About Me</span>
+          >{{ $t('aboutMe.title') }}</span>
         </button>
       </div>
       <div class="program p-2">
@@ -56,19 +56,19 @@
           @click="onOpenProgram('Knowledges')"
           class="program-inner program-knowledge p-2"
           type="button"
-          title="Knowledges"
-          alt="Knowledges"
+          :title="$t('knowledges.title')"
+          :alt="$t('knowledges.title')"
         >
           <img
             id="program-knowledge"
             src="@assets/icons/knowledge.png"
-            alt="Knowledges logo"
+            :alt="$t('knowledges.title') + ' logo'"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-knowledge"
-          >Knowledges</span>
+          >{{ $t('knowledges.title') }}</span>
         </button>
       </div>
       <div class="program p-2">
@@ -76,19 +76,19 @@
           @click="onOpenProgram('StudiesExperiences')"
           class="program-inner program-experiences-studies p-2"
           type="button"
-          title="Studies & Experiences"
-          alt="Studies & Experiences"
+          :title="$t('studiesExperiences.title')"
+          :alt="$t('studiesExperiences.title')"
         >
           <img
             id="program-experiences-studies"
             src="@assets/icons/experiences-studies.png"
-            alt="Studies and experiences logo"
+            :alt="$t('studiesExperiences.title') + ' logo'"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-experiences-studies"
-          >Studies & Experiences</span>
+          >{{ $t('studiesExperiences.title') }}</span>
         </button>
       </div>
       <div class="program p-2">
@@ -96,19 +96,19 @@
           @click="onOpenProgram('Projects')"
           class="program-inner program-projects p-2"
           type="button"
-          title="Projects"
-          alt="Projects"
+          :title="$t('projects.title')"
+          :alt="$t('projects.title')"
         >
           <img
             id="program-projects"
             src="@assets/icons/projects.png"
-            alt="Projects logo"
+            :alt="$t('projects.title') + ' logo'"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-projects"
-          >Projects</span>
+          >{{ $t('projects.title') }}</span>
         </button>
       </div>
       <div class="program p-2">
@@ -116,19 +116,19 @@
           @click="onOpenProgram('ContactMe')"
           class="program-inner program-contactme p-2"
           type="button"
-          title="Contact Me"
-          alt="Contact Me"
+          :title="$t('contactMe.title')"
+          :alt="$t('contactMe.title')"
         >
           <img
             id="program-contactme"
             src="@assets/icons/email.png"
-            alt="Contact me logo"
+            :alt="$t('contactMe.title') + ' logo'"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-contactme"
-          >Contact Me</span>
+          >{{ $t('contactMe.title') }}</span>
         </button>
       </div>
       <div class="program p-2">
@@ -136,19 +136,19 @@
           @click="onOpenProgram('Browser')"
           class="program-inner program-browser p-2"
           type="button"
-          title="Browser"
-          alt="Browser"
+          :title="$t('browser.title')"
+          :alt="$t('browser.title')"
         >
           <img
             id="program-browser"
             src="@assets/icons/browser.png"
-            alt="Browser logo"
+            :alt="$t('browser.title') + ' logo'"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-browser"
-          >Browser</span>
+          >{{ $t('browser.title') }}</span>
         </button>
       </div>
       <div class="program p-2">
@@ -156,19 +156,19 @@
           @click="onOpenProgram('CV')"
           class="program-inner program-cv p-2"
           type="button"
-          title="Curriculum Vitae"
-          alt="Curriculum Vitae"
+          :title="$t('cv.title')"
+          :alt="$t('cv.title')"
         >
           <img
             id="program-cv"
             src="@assets/icons/pdf.png"
-            alt="Curriculum vitae logo"
+            :alt="$t('cv.title') + ' logo'"
             draggable="false"
           >
           <span
             class="text-light"
             for="program-cv"
-          >Curriculum Vitae</span>
+          >{{ $t('cv.title') }}</span>
         </button>
       </div>
     </div>
@@ -194,19 +194,17 @@
             width="30px"
             draggable="false"
           >
-          <strong class="me-auto">Fullscreen mode</strong>
+          <strong class="me-auto">{{ $t('screen.fullscreenMode') }}</strong>
           <button
             @click="isClosedToast = true"
             class="btn-close"
             type="button"
-            title="Close tips"
-            aria-label="Close tips"
+            :title="$t('common.close') + ' tips'"
+            :aria-label="$t('common.close') + ' tips'"
           />
         </div>
         <div class="toast-body">
-          Enable fullscreen mode for a better browsing experience. To enable, go to
-          <span class="fw-bold fst-italic">
-            Settings > General > Enable fullscreen mode</span>
+          {{ $t('screen.fullscreenMessage') }}
         </div>
       </div>
       <div
