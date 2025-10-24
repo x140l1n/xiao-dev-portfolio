@@ -4,13 +4,11 @@ const webpack = require('webpack');
 const fs = require('fs');
 const dotenv = require('dotenv');
 
-// Cargar .env.pro para builds de producción
-let envVars = {};
 if (process.env.NODE_ENV === 'production' && fs.existsSync('.env.pro')) {
   const envConfig = dotenv.parse(fs.readFileSync('.env.pro'));
   Object.keys(envConfig).forEach(key => {
     if (key.startsWith('VUE_APP_')) {
-      envVars[`process.env.${key}`] = JSON.stringify(envConfig[key]);
+      process.env[key] = envConfig[key];
     }
   });
 }
@@ -38,7 +36,6 @@ module.exports = {
     },
     plugins: [
       new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es/),
-      ...(Object.keys(envVars).length > 0 ? [new webpack.DefinePlugin(envVars)] : []),
       new HtmlWebpackPlugin({
         inject: true,
         templateParameters: {
@@ -47,7 +44,7 @@ module.exports = {
                 default-src 'none';
                 style-src 'self' 'unsafe-inline';
                 script-src 'self' 'unsafe-inline' 'unsafe-eval' recaptcha.net *.google.com www.gstatic.com www.googletagmanager.com;
-                connect-src 'self' *.google-analytics.com recaptcha.net;
+                connect-src 'self' *.google-analytics.com recaptcha.net xiaojl.dev;
                 img-src 'self' data:;
                 font-src 'self' gstatic.com;
                 frame-src *;
