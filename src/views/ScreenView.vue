@@ -496,6 +496,9 @@ export default {
 
         this.$urlToOpen = null;
       }
+    },
+    '$i18n.locale'(newLocale) {
+      this.updateCookiesLanguage(newLocale);
     }
   },
   mounted() {
@@ -505,7 +508,7 @@ export default {
     init() {
       this.$themeSelected = localStorage.getItem('theme') ?? 'theme-2';
       
-      CookieConsent.run({ root: this.$refs.screen, ...this.cookiesConsentSettings });
+      this.initCookiesConsent();
 
       window.addEventListener('hashchange', () => {
         if (window.location.hash === '#cookies') {
@@ -518,6 +521,20 @@ export default {
       });
 
       this.onScreenResize();
+    },
+    initCookiesConsent() {
+      this.cookiesConsentSettings.language.default = this.$i18n?.locale || 'en';
+      CookieConsent.run({ root: this.$refs.screen, ...this.cookiesConsentSettings });
+    },
+    updateCookiesLanguage(newLocale) {
+      this.cookiesConsentSettings.language.default = newLocale;
+      
+      // Reinitialize cookie consent with new language
+      CookieConsent.reset(true);
+      this.initCookiesConsent();
+      
+      // Force update of computed properties for the custom toast
+      this.$forceUpdate();
     },
     onCookiesConsented(cookie) {
       if (cookie.categories.includes('analytics')) {
