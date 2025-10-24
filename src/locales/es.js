@@ -55,7 +55,11 @@ export default {
       languages: 'Idiomas',
       hobbies: 'Aficiones'
     },
-    presentation: 'Hola! Soy Xiaolin Jin Lin, y tengo {age} años. Soy <strong>Ingeniero de Software</strong> con amplia experiencia en desarrollo <strong>Backend</strong> usando <strong>C#, .NET y PHP</strong>, y en desarrollo <strong>Frontend</strong> con <strong>Vue.js, Angular y Bootstrap</strong>. Actualmente estoy ampliando mis habilidades aprendiendo <strong>prácticas DevOps</strong> y trabajando con <strong>Docker, Kubernetes y pipelines CI/CD</strong>. Mi objetivo es convertirme en un <strong>desarrollador versátil</strong> capaz de contribuir en cada etapa del ciclo de vida del desarrollo de software, desde la infraestructura hasta la experiencia de usuario.',
+    presentation: 'Hola! Soy Xiaolin Jin Lin, y tengo {age} años. Soy <strong>Ingeniero de Software</strong> con amplia experiencia en desarrollo ' +
+      '<strong>Backend</strong> usando <strong>C#, .NET y PHP</strong>, y en desarrollo <strong>Frontend</strong> con ' +
+      '<strong>Vue.js, Angular y Bootstrap</strong>. Actualmente estoy ampliando mis habilidades aprendiendo <strong>prácticas DevOps</strong> y ' +
+      'trabajando con <strong>Docker, Kubernetes y pipelines CI/CD</strong>. Mi objetivo es convertirme en un <strong>desarrollador versátil</strong> ' +
+      'capaz de contribuir en cada etapa del ciclo de vida del desarrollo de software, desde la infraestructura hasta la experiencia de usuario.',
     languages: {
       spanish: 'Español',
       catalan: 'Catalán',

@@ -55,7 +55,11 @@ export default {
       languages: 'Languages',
       hobbies: 'Hobbies'
     },
-    presentation: 'Hi! I\'m Xiaolin Jin Lin, and I am {age} years old. I\'m a <strong>Software Engineer</strong> with extensive experience in <strong>Backend</strong> development using <strong>C#, .NET, and PHP</strong>, and in <strong>Frontend</strong> development with <strong>Vue.js, Angular, and Bootstrap</strong>. I\'m currently expanding my skill set by learning <strong>DevOps practices</strong> and working with <strong>Docker, Kubernetes, and CI/CD pipelines</strong>. My goal is to become a <strong>versatile developer</strong> capable of contributing to every stage of the software development lifecycle, from infrastructure to user experience.',
+    presentation: 'Hi! I\'m Xiaolin Jin Lin, and I am {age} years old. I\'m a <strong>Software Engineer</strong> with extensive experience in ' +
+      '<strong>Backend</strong> development using <strong>C#, .NET, and PHP</strong>, and in <strong>Frontend</strong> development with ' +
+      '<strong>Vue.js, Angular, and Bootstrap</strong>. I\'m currently expanding my skill set by learning <strong>DevOps practices</strong> and ' +
+      'working with <strong>Docker, Kubernetes, and CI/CD pipelines</strong>. My goal is to become a <strong>versatile developer</strong> ' +
+      'capable of contributing to every stage of the software development lifecycle, from infrastructure to user experience.',
     languages: {
       spanish: 'Spanish',
       catalan: 'Catalan',
