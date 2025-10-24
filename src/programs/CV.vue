@@ -55,7 +55,7 @@ import IconPdf from '@assets/icons/pdf.png';
 })
 export default class CV extends Program {
   created() {
-    this.title = 'Curriculum Vitae';
+    this.title = this.$t ? this.$t('cv.title') : 'Curriculum Vitae';
     this.widthDefault = 400;
     this.heightDefault = 600;
     this.maximizedDefault = true;

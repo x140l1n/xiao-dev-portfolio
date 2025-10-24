@@ -240,7 +240,7 @@ import { author } from '@root/package';
 })
 export default class AboutMe extends Program {
   created() {
-    this.title = 'About Me';
+    this.title = this.$t ? this.$t('aboutMe.title') : 'About Me';
     this.widthDefault = 550;
     this.heightDefault = 400;
     this.maximizedDefault = true;

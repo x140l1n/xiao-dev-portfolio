@@ -359,21 +359,27 @@ import { date, version } from '@root/package';
   },
   data() {
     return {
-      currentLocale: this.$i18n.locale
+      currentLocale: 'en'
     };
   },
   mounted() {
     this.init();
   },
   methods: {
-    init() {},
+    init() {
+      if (this.$i18n) {
+        this.currentLocale = this.$i18n.locale;
+      }
+    },
     onChangeTab() {
       this.$refs.content.scrollTop = 0;
     },
     onChangeLanguage() {
-      this.$i18n.locale = this.currentLocale;
-      localStorage.setItem('locale', this.currentLocale);
-      this.title = this.$t('settings.title');
+      if (this.$i18n) {
+        this.$i18n.locale = this.currentLocale;
+        localStorage.setItem('locale', this.currentLocale);
+        this.title = this.$t('settings.title');
+      }
     },
     onWindowResize() {
       if (!this.$refs.nav || !this.$refs.tabContent || !this.$refs.tableSpecs) {
@@ -402,7 +408,7 @@ import { date, version } from '@root/package';
 })
 export default class Settings extends Program {
   created() {
-    this.title = this.$t('settings.title');
+    this.title = this.$t ? this.$t('settings.title') : 'Settings';
     this.widthDefault = 550;
     this.heightDefault = 400;
     this.maximizedDefault = true;

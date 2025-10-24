@@ -230,7 +230,7 @@ import IconEmail from '@assets/icons/email.png';
 })
 export default class ContactMe extends Program {
   created() {
-    this.title = 'Contact Me';
+    this.title = this.$t ? this.$t('contactMe.title') : 'Contact Me';
     this.widthDefault = 550;
     this.heightDefault = 400;
     this.maximizedDefault = true;

@@ -79,23 +79,23 @@ export default {
   props: {
     title: {
       type: String,
-      required: true
+      default: ''
     },
     width: {
       type: Number,
-      required: true
+      default: 800
     },
     height: {
       type: Number,
-      required: true
+      default: 600
     },
     x: {
       type: Number,
-      required: true
+      default: 100
     },
     y: {
       type: Number,
-      required: true
+      default: 100
     }
   },
   data() {

@@ -106,7 +106,7 @@ import IconBrowser from '@assets/icons/browser.png';
 })
 export default class Browser extends Program {
   created() {
-    this.title = 'Browser';
+    this.title = this.$t ? this.$t('browser.title') : 'Browser';
     this.widthDefault = 600;
     this.heightDefault = 400;
     this.maximizedDefault = true;

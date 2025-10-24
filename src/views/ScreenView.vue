@@ -508,7 +508,8 @@ export default {
 
         const programObject = new ProgramClass({
           parent: windowObject,
-          propsData: { id: v4(), ...defaultProps }
+          propsData: { id: v4(), ...defaultProps },
+          i18n: this.$i18n
         });
 
         const width = programObject.widthDefault === 0 ? this.$widthScreenContent : programObject.widthDefault;
@@ -529,7 +530,8 @@ export default {
           },
           methods: {
             openProgram: (programName, defaultProps = {}) => this.onOpenProgram(programName, defaultProps)
-          }
+          },
+          i18n: this.$i18n
         });
 
         this.mountWindowProgram(windowObject, programObject);
