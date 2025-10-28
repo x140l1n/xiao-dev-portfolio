@@ -300,7 +300,7 @@
           <article class="timeline-row">
             <div
               class="timeline-time"
-              data-animation="slide-left"
+              data-animation="slide-right"
             >
               <a
                 href="https://tkmservicios.com"
@@ -311,7 +311,7 @@
             </div>
             <div
               class="timeline-content"
-              data-animation="slide-right"
+              data-animation="slide-left"
             >
               <i class="timeline-icon fa-solid fa-code" />
               <h5 class="fw-bold text-center">
