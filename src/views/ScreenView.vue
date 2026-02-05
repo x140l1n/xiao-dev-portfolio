@@ -572,6 +572,14 @@ export default {
     onOpenProgram(programName, defaultProps = {}) {
       if (this.idTimeoutOpenNextProgram) return;
 
+      if (programName === 'Settings') {
+        const existingSettings = this.$programs.find((program) => program.$options.name === 'Settings');
+        if (existingSettings) {
+          existingSettings.window.bringFront();
+          return;
+        }
+      }
+
       this.idTimeoutOpenNextProgram = setTimeout(
         () => (this.idTimeoutOpenNextProgram = null),
         1000

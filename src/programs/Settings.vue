@@ -347,7 +347,10 @@
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
 import IconSettings from '@assets/icons/settings.png';
-import { date, version } from '@root/package';
+import packageInfo from '@root/package';
+
+const date = packageInfo.date;
+const version = packageInfo.version;
 
 @Component({
   name: 'Settings',
@@ -378,7 +381,6 @@ import { date, version } from '@root/package';
       if (this.$i18n) {
         this.$i18n.locale = this.currentLocale;
         localStorage.setItem('locale', this.currentLocale);
-        this.title = this.$t('settings.title');
       }
     },
     onWindowResize() {
@@ -408,6 +410,7 @@ import { date, version } from '@root/package';
 })
 export default class Settings extends Program {
   created() {
+    this.titleKey = 'settings.title';
     this.title = this.$t ? this.$t('settings.title') : 'Settings';
     this.widthDefault = 550;
     this.heightDefault = 400;

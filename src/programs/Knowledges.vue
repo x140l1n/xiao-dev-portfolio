@@ -274,6 +274,7 @@ import IconKnowledges from '@assets/icons/knowledge.png';
 })
 export default class Knowledges extends Program {
   created() {
+    this.titleKey = 'knowledges.title';
     this.title = this.$t ? this.$t('knowledges.title') : 'Knowledges';
     this.widthDefault = 550;
     this.heightDefault = 400;

@@ -18,12 +18,12 @@
           class="nav-link active"
           data-bs-toggle="tab"
           type="button"
-          title="Studies"
+          :title="$t('studiesExperiences.tabs.studies')"
           role="tab"
           aria-selected="true"
         >
           <i class="fa-solid fa-graduation-cap me-2 fa-fw" />
-          Studies
+          {{ $t('studiesExperiences.tabs.studies') }}
         </button>
       </li>
       <li class="nav-item">
@@ -35,12 +35,12 @@
           class="nav-link"
           data-bs-toggle="tab"
           type="button"
-          title="Work Experiences"
+          :title="$t('studiesExperiences.tabs.experiences')"
           role="tab"
           aria-selected="false"
         >
           <i class="fa-solid fa-briefcase me-2 fa-fw" />
-          Work Experiences
+          {{ $t('studiesExperiences.tabs.experiences') }}
         </button>
       </li>
     </nav>
@@ -76,13 +76,13 @@
             >
               <i class="timeline-icon fa-solid fa-code" />
               <h5 class="fw-bold text-center">
-                WEB APPLICATION DEVELOPMENT (DAW)
+                {{ $t('studiesExperiences.degrees.webDevelopment') }}
               </h5>
               <ul>
-                <li>{{ $t ? $t('studiesExperiences.skills.webDevelopment') : 'Develop web applications with various frameworks for both frontend and backend.' }}</li>
-                <li>{{ $t ? $t('studiesExperiences.skills.databaseManipulation') : 'Database manipulation.' }}</li>
-                <li>Configure web servers on Ubuntu.</li>
-                <li>{{ $t ? $t('studiesExperiences.skills.projectBasedLearning') : 'Project-based learning.' }}</li>
+                <li>{{ $t('studiesExperiences.skills.webDevelopment') }}</li>
+                <li>{{ $t('studiesExperiences.skills.databaseManipulation') }}</li>
+                <li>{{ $t('studiesExperiences.skills.serverConfiguration') }}</li>
+                <li>{{ $t('studiesExperiences.skills.projectBasedLearning') }}</li>
               </ul>
               <div class="d-flex flex-wrap justify-content-center gap-2">
                 <span class="badge badge-pill">HTML</span>
@@ -100,7 +100,7 @@
               </div>
               <span class="grade">
                 <i class="fa-solid fa-star fa-fw text-warning" />
-                Grade: 9
+                {{ $t('studiesExperiences.grade') }}: 9
               </span>
             </div>
           </article>
@@ -122,15 +122,15 @@
             >
               <i class="timeline-icon fa-solid fa-code" />
               <h5 class="fw-bold text-center">
-                MULTIPLATFORM APPLICATION DEVELOPMENT (DAM)
+                {{ $t('studiesExperiences.degrees.multiplatformDevelopment') }}
               </h5>
               <ul>
-                <li>Develop multiplatform applications using various programming languages.</li>
-                <li>Development of desktop and Android applications.</li>
-                <li>{{ $t ? $t('studiesExperiences.skills.databaseManipulation') : 'Database manipulation.' }}</li>
-                <li>Game programming.</li>
-                <li>BASH programming.</li>
-                <li>{{ $t ? $t('studiesExperiences.skills.projectBasedLearning') : 'Project-based learning.' }}</li>
+                <li>{{ $t('studiesExperiences.skills.multiplatformDevelopment') }}</li>
+                <li>{{ $t('studiesExperiences.skills.desktopAndroidDevelopment') }}</li>
+                <li>{{ $t('studiesExperiences.skills.databaseManipulation') }}</li>
+                <li>{{ $t('studiesExperiences.skills.gameProgramming') }}</li>
+                <li>{{ $t('studiesExperiences.skills.bashProgramming') }}</li>
+                <li>{{ $t('studiesExperiences.skills.projectBasedLearning') }}</li>
               </ul>
               <div class="d-flex flex-wrap justify-content-center gap-2">
                 <span class="badge badge-pill">Java</span>
@@ -145,7 +145,7 @@
               </div>
               <span class="grade">
                 <i class="fa-solid fa-star fa-fw text-warning" />
-                Grade: 9
+                {{ $t('studiesExperiences.grade') }}: 9
               </span>
             </div>
           </article>
@@ -166,12 +166,12 @@
             >
               <i class="timeline-icon fa-solid fa-code" />
               <h5 class="fw-bold text-center">
-                OBJECT-ORIENTED PROGRAMMING CERTIFICATION (630H)
+                {{ $t('studiesExperiences.degrees.oopCertification') }}
               </h5>
               <ul>
-                <li>Operating systems and software applications.</li>
-                <li>Object-oriented programming.</li>
-                <li>Relational databases.</li>
+                <li>{{ $t('studiesExperiences.skills.operatingSystems') }}</li>
+                <li>{{ $t('studiesExperiences.skills.objectOrientedProgramming') }}</li>
+                <li>{{ $t('studiesExperiences.skills.relationalDatabases') }}</li>
               </ul>
               <div class="d-flex flex-wrap justify-content-center gap-2">
                 <span class="badge badge-pill">Java</span>
@@ -184,7 +184,7 @@
               </div>
               <span class="grade">
                 <i class="fa-solid fa-star fa-fw text-warning" />
-                Grade: 10
+                {{ $t('studiesExperiences.grade') }}: 10
               </span>
             </div>
           </article>
@@ -206,7 +206,7 @@
             >
               <i class="timeline-icon fa-solid fa-school" />
               <h5 class="fw-bold text-center">
-                TECHNOLOGICAL BACCALAUREATE
+                {{ $t('studiesExperiences.degrees.technologicalBaccalaureate') }}
               </h5>
             </div>
           </article>
@@ -228,7 +228,7 @@
             >
               <i class="timeline-icon fa-solid fa-school" />
               <h5 class="fw-bold text-center">
-                ESO
+                {{ $t('studiesExperiences.degrees.eso') }}
               </h5>
             </div>
           </article>
@@ -261,13 +261,13 @@
             >
               <i class="timeline-icon fa-solid fa-code" />
               <h5 class="fw-bold text-center">
-                FRONTEND DEVELOPER
+                {{ $t('studiesExperiences.positions.frontendDeveloper') }}
               </h5>
               <ul>
-                <li>{{ $t ? $t('studiesExperiences.skills.frontendArchitecture') : 'Development of frontend architecture and components.' }}</li>
-                <li>{{ $t ? $t('studiesExperiences.skills.designSystems') : 'Contribution to design systems and microfrontends.' }}</li>
-                <li>{{ $t ? $t('studiesExperiences.skills.sapTechnologies') : 'Worked with SAP, ABAP, Lit, React, Redux, Vite, Web Components, and more.' }}</li>
-                <li>{{ $t ? $t('studiesExperiences.skills.cicdIntegration') : 'Integration with CI/CD, cloud, and enterprise solutions.' }}</li>
+                <li>{{ $t('studiesExperiences.skills.frontendArchitecture') }}</li>
+                <li>{{ $t('studiesExperiences.skills.designSystems') }}</li>
+                <li>{{ $t('studiesExperiences.skills.sapTechnologies') }}</li>
+                <li>{{ $t('studiesExperiences.skills.cicdIntegration') }}</li>
               </ul>
               <div class="d-flex flex-wrap justify-content-center gap-2">
                 <span class="badge badge-pill">Lit</span>
@@ -315,19 +315,19 @@
             >
               <i class="timeline-icon fa-solid fa-code" />
               <h5 class="fw-bold text-center">
-                FULLSTACK DEVELOPER / HELPDESK
+                {{ $t('studiesExperiences.positions.fullstackDeveloperHelpdesk') }}
               </h5>
               <ul>
-                <li>{{ $t ? $t('studiesExperiences.skills.projectPlanning') : 'Project planning, documentation, and development.' }}</li>
-                <li>{{ $t ? $t('studiesExperiences.skills.webApplications') : 'Creation and maintenance of web applications using: HTML, CSS, JavaScript, PHP, Ruby On Rails, WordPress.' }}</li>
-                <li>{{ $t ? $t('studiesExperiences.skills.winFormsPrograms') : 'Creation and maintenance of WinForms programs: .NET, .NET Core.' }}</li>
-                <li>{{ $t ? $t('studiesExperiences.skills.databaseCreation') : 'Database creation and maintenance: Microsoft SQL Server, MySQL, PostgreSQL.' }}</li>
-                <li>{{ $t ? $t('studiesExperiences.skills.webServerMaintenance') : 'Web server and hosting maintenance: Arsys, Axarnet, Guebs, CDMON.' }}</li>
-                <li>{{ $t ? $t('studiesExperiences.skills.systemsTechnician') : 'Systems technician: Windows Server, Active Directory, Microsoft Exchange, Virtualization.' }}</li>
-                <li>{{ $t ? $t('studiesExperiences.skills.networkTechnician') : 'Network technician: Network analysis, router, switch, and firewall configuration.' }}</li>
-                <li>{{ $t ? $t('studiesExperiences.skills.helpdesk') : 'Helpdesk: Technical support for end users, equipment maintenance, software installation.' }}</li>
-                <li>{{ $t ? $t('studiesExperiences.skills.customERPDevelopment') : 'Custom ERP program development.' }}</li>
-                <li>{{ $t ? $t('studiesExperiences.skills.erpManagement') : 'ERP program management: A3ERP.' }}</li>
+                <li>{{ $t('studiesExperiences.skills.projectPlanning') }}</li>
+                <li>{{ $t('studiesExperiences.skills.webApplications') }}</li>
+                <li>{{ $t('studiesExperiences.skills.winFormsPrograms') }}</li>
+                <li>{{ $t('studiesExperiences.skills.databaseCreation') }}</li>
+                <li>{{ $t('studiesExperiences.skills.webServerMaintenance') }}</li>
+                <li>{{ $t('studiesExperiences.skills.systemsTechnician') }}</li>
+                <li>{{ $t('studiesExperiences.skills.networkTechnician') }}</li>
+                <li>{{ $t('studiesExperiences.skills.helpdesk') }}</li>
+                <li>{{ $t('studiesExperiences.skills.customERPDevelopment') }}</li>
+                <li>{{ $t('studiesExperiences.skills.erpManagement') }}</li>
               </ul>
               <div class="d-flex flex-wrap justify-content-center gap-2">
                 <span class="badge badge-pill">HTML</span>
@@ -377,11 +377,6 @@ import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
   data() {
     return {};
   },
-  watch: {
-    '$i18n.locale'() {
-      this.title = this.$t ? this.$t('studiesExperiences.title') : 'Studies & Experiences';
-    }
-  },
   mounted() {
     this.init();
   },
@@ -407,6 +402,7 @@ import IconStudiesExperiences from '@assets/icons/experiences-studies.png';
 })
 export default class StudiesExperiences extends Program {
   created() {
+    this.titleKey = 'studiesExperiences.title';
     this.title = this.$t ? this.$t('studiesExperiences.title') : 'Studies & Experiences';
     this.widthDefault = 550;
     this.heightDefault = 400;

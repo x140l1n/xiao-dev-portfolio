@@ -52,15 +52,15 @@
               <h6 class="fw-bold my-2">
                 {{ $t('aboutMe.sections.presentation') }}
               </h6>
-              <p
-                v-html="$t ? $t('aboutMe.personalPresentation', { age: getYearsOld }) :
+              <p>
+                {{ $t ? $t('aboutMe.personalPresentation', { age: getYearsOld }) :
                   `Hi! I'm Xiaolin Jin Lin, and I am ${getYearsOld} years old. From a young age, I've always been drawn to the world of ` +
                   `technology, and at 19, I decided to fully dive into computer science, choosing programming as my path. I studied DAM ` +
                   `(Multiplatform Application Development) and then DAW (Web Application Development) at the Centre d'Estudis Politècnics. ` +
                   `Over the years, I've learned a lot, and every day I become more passionate about this field. I'm eager to keep improving ` +
                   `and learning new things. Besides programming, I also enjoy dancing, which has helped me to be more consistent, disciplined, ` +
-                  `and self-confident. I love anime and manga, video games, technology, and, of course, programming.`"
-              />
+                  `and self-confident. I love anime and manga, video games, technology, and, of course, programming.` }}
+              </p>
               <h6 class="fw-bold">
                 {{ $t('aboutMe.sections.languages') }}
               </h6>
@@ -149,7 +149,9 @@
 import Component from 'vue-class-component';
 import Program from '@programs/Program';
 import IconAboutMe from '@assets/icons/about-me.png';
-import { author } from '@root/package';
+import packageInfo from '@root/package';
+
+const author = packageInfo.author;
 
 @Component({
   name: 'AboutMe',
@@ -231,6 +233,7 @@ import { author } from '@root/package';
 })
 export default class AboutMe extends Program {
   created() {
+    this.titleKey = 'aboutMe.title';
     this.title = this.$t ? this.$t('aboutMe.title') : 'About Me';
     this.widthDefault = 550;
     this.heightDefault = 400;

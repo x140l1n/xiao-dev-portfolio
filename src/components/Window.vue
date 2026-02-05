@@ -22,7 +22,7 @@
         draggable="false"
       >
       <h1 class="m-auto ms-2 text-truncate">
-        {{ title }}
+        {{ windowTitle }}
       </h1>
       <div
         ref="windowTitleBarActions"
@@ -133,6 +133,9 @@ export default {
     };
   },
   computed: {
+    windowTitle() {
+      return this.program ? this.program.title : this.title;
+    },
     cssRootVars() {
       return {
         '--width': this.size.width + 'px',
@@ -146,6 +149,9 @@ export default {
     }
   },
   watch: {
+    'program.title'() {
+      this.$forceUpdate();
+    },
     isMaximized(value) {
       if (value) {
         this.$refs.window.classList.remove('resizers');

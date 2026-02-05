@@ -19,6 +19,8 @@ export default {
     greeting: 'Greeting'
   },
   window: {
+    window: 'Window',
+    titleBar: 'Title bar',
     minimize: 'Minimize window',
     maximize: 'Maximize window size',
     restore: 'Minimize window size',
@@ -127,6 +129,18 @@ export default {
     },
     present: 'Present',
     location: 'Barcelona (Spain)',
+    grade: 'Grade',
+    degrees: {
+      webDevelopment: 'WEB APPLICATION DEVELOPMENT (DAW)',
+      multiplatformDevelopment: 'MULTIPLATFORM APPLICATION DEVELOPMENT (DAM)',
+      oopCertification: 'OBJECT-ORIENTED PROGRAMMING CERTIFICATION (630H)',
+      technologicalBaccalaureate: 'TECHNOLOGICAL BACCALAUREATE',
+      eso: 'ESO'
+    },
+    positions: {
+      frontendDeveloper: 'FRONTEND DEVELOPER',
+      fullstackDeveloperHelpdesk: 'FULLSTACK DEVELOPER / HELPDESK'
+    },
     skills: {
       webDevelopment: 'Develop web applications with various frameworks for both frontend and backend.',
       databaseManipulation: 'Database manipulation.',

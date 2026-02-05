@@ -473,6 +473,7 @@ import IconProjects from '@assets/icons/projects.png';
 })
 export default class Projects extends Program {
   created() {
+    this.titleKey = 'projects.title';
     this.title = this.$t ? this.$t('projects.title') : 'Projects';
     this.widthDefault = 550;
     this.heightDefault = 400;

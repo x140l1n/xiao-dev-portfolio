@@ -19,6 +19,8 @@ export default {
     greeting: 'Saludo'
   },
   window: {
+    window: 'Ventana',
+    titleBar: 'Barra de título',
     minimize: 'Minimizar ventana',
     maximize: 'Maximizar ventana',
     restore: 'Restaurar ventana',
@@ -128,6 +130,18 @@ export default {
     },
     present: 'Presente',
     location: 'Barcelona (España)',
+    grade: 'Nota',
+    degrees: {
+      webDevelopment: 'DESARROLLO DE APLICACIONES WEB (DAW)',
+      multiplatformDevelopment: 'DESARROLLO DE APLICACIONES MULTIPLATAFORMA (DAM)',
+      oopCertification: 'CERTIFICACIÓN EN PROGRAMACIÓN ORIENTADA A OBJETOS (630H)',
+      technologicalBaccalaureate: 'BACHILLERATO TECNOLÓGICO',
+      eso: 'ESO'
+    },
+    positions: {
+      frontendDeveloper: 'DESARROLLADOR FRONTEND',
+      fullstackDeveloperHelpdesk: 'DESARROLLADOR FULLSTACK / HELPDESK'
+    },
     skills: {
       webDevelopment: 'Desarrollar aplicaciones web con varios frameworks tanto para frontend como backend.',
       databaseManipulation: 'Manipulación de bases de datos.',

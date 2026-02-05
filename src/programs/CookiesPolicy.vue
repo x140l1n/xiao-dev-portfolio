@@ -110,6 +110,7 @@ import IconCookies from '@assets/icons/cookies.png';
 })
 export default class CookiesPolicy extends Program {
   created() {
+    this.titleKey = 'cookiesPolicy.title';
     this.title = this.$t ? this.$t('cookiesPolicy.title') : 'Cookies Policy';
     this.widthDefault = 400;
     this.heightDefault = 600;
