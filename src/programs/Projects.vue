@@ -41,19 +41,19 @@
                 {{ $t ? $t('projects.liveDemo', { name: 'Arkanoid' }) : 'Live demo Arkanoid' }}
               </button>
               <a
-                :title="$t ? $t('projects.githubLinks', { name: 'Arkanoid' }) : 'GitHub Arkanoid'"
+                :title="$t ? $t('projects.githubLinks.arkanoid') : 'GitHub Arkanoid'"
                 class="mx-2"
                 href="https://github.com/x140l1n/arkanoid"
                 role="button"
               >
                 <img
-                  :title="$t ? $t('projects.githubLinks', { name: 'Arkanoid' }) : 'GitHub Arkanoid'"
-                  :alt="$t ? $t('projects.githubLinks', { name: 'Arkanoid' }) : 'GitHub Arkanoid'"
+                  :title="$t ? $t('projects.githubLinks.arkanoid') : 'GitHub Arkanoid'"
+                  :alt="$t ? $t('projects.githubLinks.arkanoid') : 'GitHub Arkanoid'"
                   class="me-2"
                   src="@assets/icons/github.png"
                   draggable="false"
                 >
-                {{ $t ? $t('projects.githubLinks', { name: 'Arkanoid' }) : 'GitHub Arkanoid' }}
+                {{ $t ? $t('projects.githubLinks.arkanoid') : 'GitHub Arkanoid' }}
               </a>
             </div>
             <div class="d-flex flex-wrap justify-content-end gap-2">

@@ -192,6 +192,7 @@ export default {
       spaceInvaders: 'Space Invaders video'
     },
     githubLinks: {
+      arkanoid: 'GitHub Arkanoid',
       ibroggi: 'GitHub IBroggi',
       ecoartsAndroid: 'GitHub EcoArts android',
       ecoartsDesktop: 'GitHub EcoArts desktop',
