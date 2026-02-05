@@ -172,7 +172,6 @@ import IconEmail from '@assets/icons/email.png';
   },
   data() {
     return {
-      // 0: Error, 1: Success, -1: Warning, 2: Sending/Info
       statusMessage: 0,
       statusMessageKey: null,
       isSending: false,

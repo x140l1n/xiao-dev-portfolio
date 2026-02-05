@@ -10,7 +10,6 @@ const messages = {
   es
 };
 
-// Get saved language or default to English
 const savedLocale = localStorage.getItem('locale') || 'en';
 
 const i18n = new VueI18n({

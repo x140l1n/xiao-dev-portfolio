@@ -528,12 +528,11 @@ export default {
     },
     updateCookiesLanguage(newLocale) {
       this.cookiesConsentSettings.language.default = newLocale;
-      
-      // Reinitialize cookie consent with new language
+
       CookieConsent.reset(true);
+
       this.initCookiesConsent();
-      
-      // Force update of computed properties for the custom toast
+
       this.$forceUpdate();
     },
     onCookiesConsented(cookie) {
