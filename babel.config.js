@@ -1,14 +1,9 @@
 module.exports = {
   presets: [
-    '@vue/app',
-    [
-      '@babel/preset-env',
-      {
-        targets: {
-          esmodules: true
-        }
-      }
-    ]
+    '@vue/cli-plugin-babel/preset'
   ],
-  plugins: [['@babel/plugin-proposal-decorators', { legacy: true }], '@babel/plugin-proposal-optional-chaining']
+  plugins: [
+    ['@babel/plugin-proposal-decorators', { legacy: true }],
+    '@babel/plugin-transform-optional-chaining'
+  ]
 };

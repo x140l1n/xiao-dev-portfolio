@@ -1,4 +1,4 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { defineConfig } = require('@vue/cli-service');
 const path = require('path');
 const webpack = require('webpack');
 const fs = require('fs');
@@ -13,7 +13,8 @@ if (process.env.NODE_ENV === 'production' && fs.existsSync('.env.pro')) {
   });
 }
 
-module.exports = {
+module.exports = defineConfig({
+  transpileDependencies: true,
   devServer: {
     host: 'localhost',
     port: process.env.VUE_APP_PORT || 3000,
@@ -22,6 +23,27 @@ module.exports = {
     }
   },
   productionSourceMap: false,
+  chainWebpack: (config) => {
+    config.plugin('html').tap((args) => {
+      args[0].templateParameters = {
+        cspMetaTag: `
+          ${ process.env.NODE_ENV === 'production' ? `<meta http-equiv="Content-Security-Policy" content="
+              default-src 'none';
+              style-src 'self' 'unsafe-inline';
+              script-src 'self' 'unsafe-inline' 'unsafe-eval' recaptcha.net *.google.com www.gstatic.com www.googletagmanager.com;
+              connect-src 'self' *.google-analytics.com recaptcha.net xiaojl.dev;
+              img-src 'self' data:;
+              font-src 'self' gstatic.com;
+              frame-src *;
+              base-uri 'self';
+              form-action 'self';
+              manifest-src 'self';
+            ">` : '' }
+        `
+      };
+      return args;
+    });
+  },
   configureWebpack: {
     resolve: {
       alias: {
@@ -35,28 +57,13 @@ module.exports = {
       }
     },
     plugins: [
-      new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es/),
-      new HtmlWebpackPlugin({
-        inject: true,
-        templateParameters: {
-          cspMetaTag: `
-            ${ process.env.NODE_ENV === 'production' ? `<meta http-equiv="Content-Security-Policy" content="
-                default-src 'none';
-                style-src 'self' 'unsafe-inline';
-                script-src 'self' 'unsafe-inline' 'unsafe-eval' recaptcha.net *.google.com www.gstatic.com www.googletagmanager.com;
-                connect-src 'self' *.google-analytics.com recaptcha.net xiaojl.dev;
-                img-src 'self' data:;
-                font-src 'self' gstatic.com;
-                frame-src *;
-                base-uri 'self';
-                form-action 'self';
-                manifest-src 'self';
-              ">` : '' }
-          `
-        },
-        template: 'public/index.html'
-      })
+      new webpack.ContextReplacementPlugin(/moment[/\\]locale$/, /es/)
     ],
+    performance: {
+      hints: false,
+      maxAssetSize: 512000,
+      maxEntrypointSize: 512000
+    },
     optimization: {
       splitChunks: {
         chunks: 'all',
@@ -64,29 +71,26 @@ module.exports = {
           vendors: {
             test: /[\\/]node_modules[\\/]/,
             name(module) {
-              const packageName = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/)[1];
+              if (!module.context) return 'vendors';
+              const match = module.context.match(/[\\/]node_modules[\\/](.*?)([\\/]|$)/);
+              if (!match) return 'vendors';
+              const packageName = match[1].replace('@', '');
               return `vendor.${packageName}`;
             }
           }
         }
       }
-    },
-    module: {
-      rules: [
-        {
-          test: /\.(sa|sc|c)ss$/,
-          use: [
-            {
-              loader: 'sass-loader',
-              options: {
-                sassOptions: {
-                  quietDeps: true
-                }
-              }
-            }
-          ]
+    }
+  },
+  css: {
+    loaderOptions: {
+      sass: {
+        api: 'modern-compiler',
+        sassOptions: {
+          quietDeps: true,
+          silenceDeprecations: ['legacy-js-api', 'import']
         }
-      ]
+      }
     }
   }
-};
+});

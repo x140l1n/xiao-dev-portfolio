@@ -7,6 +7,9 @@
   },
   "extends": ["eslint:recommended", "plugin:vue/recommended", "plugin:vuejs-accessibility/recommended"],
   "rules": {
+    "vue/multi-word-component-names": "off",
+    "vue/attributes-order": "off",
+    "vue/no-v-html": "warn",
     "no-inline-comments":"warn",
     "no-unused-vars": "warn",
     "no-console": "warn",
@@ -28,11 +31,14 @@
     "vuejs-accessibility"
   ],
   "parserOptions": {
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
     "ecmaVersion": 2020,
     "sourceType": "module",
-    "ecmaFeatures": {
-      "legacyDecorators": true
+    "requireConfigFile": false,
+    "babelOptions": {
+      "plugins": [
+        ["@babel/plugin-proposal-decorators", { "legacy": true }]
+      ]
     }
   }
 }

@@ -180,6 +180,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:map';
 @import '~bootstrap/scss/functions';
 @import '~bootstrap/scss/variables';
 
@@ -280,7 +281,7 @@ export default {
   }
 }
 
-@media (max-width: map-get($grid-breakpoints, 'xxl')) {
+@media (max-width: map.get($grid-breakpoints, 'xxl')) {
   .monitor > .monitor-inner > .presentation > .typewriter .pointer {
     float: none;
     display: block;
