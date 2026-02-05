@@ -52,8 +52,8 @@
               <h6 class="fw-bold my-2">
                 {{ $t('aboutMe.sections.presentation') }}
               </h6>
-              <div
-                v-html="$t ? $t('aboutMe.personalPresentation', { age: getYearsOld }) : 
+              <p
+                v-html="$t ? $t('aboutMe.personalPresentation', { age: getYearsOld }) :
                   `Hi! I'm Xiaolin Jin Lin, and I am ${getYearsOld} years old. From a young age, I've always been drawn to the world of ` +
                   `technology, and at 19, I decided to fully dive into computer science, choosing programming as my path. I studied DAM ` +
                   `(Multiplatform Application Development) and then DAW (Web Application Development) at the Centre d'Estudis Politècnics. ` +
@@ -64,12 +64,12 @@
               <h6 class="fw-bold">
                 {{ $t('aboutMe.sections.languages') }}
               </h6>
-              <p>Spanish (Native), Catalan (Native), English (Intermediate), Chinese (Intermediate).</p>
+              <p>{{ $t('aboutMe.languagesText') }}</p>
               <h6 class="fw-bold">
                 {{ $t('aboutMe.sections.hobbies') }}
               </h6>
               <p class="mb-0">
-                Dance.
+                {{ $t('aboutMe.hobbiesText') }}
               </p>
             </div>
           </div>
