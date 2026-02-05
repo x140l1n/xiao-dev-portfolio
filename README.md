@@ -150,8 +150,6 @@ CONTACT_MAIL_TO=
 
 RECAPTCHA_URL_VERIFY=https://www.google.com/recaptcha/api/siteverify
 RECAPTCHA_V3_SECRET_KEY=
-
-ACCESS_CONTROL_ALLOW_ORIGIN=http://localhost:3000
 ```
 
 - `APP_NAME`: The name of the application.
@@ -165,7 +163,6 @@ ACCESS_CONTROL_ALLOW_ORIGIN=http://localhost:3000
 - `CONTACT_MAIL_TO`: The email address to which the contact form submissions are sent.
 - `RECAPTCHA_URL_VERIFY`: It's the default Google URL used to validate reCAPTCHA responses (default: `https://www.google.com/recaptcha/api/siteverify`).
 - `RECAPTCHA_V3_SECRET_KEY`: The secret key for reCAPTCHA v3 validation.
-- `ACCESS_CONTROL_ALLOW_ORIGIN`: Specifies which origins are allowed to access the API (CORS) (default: `http://localhost:3000`)
 
 Once the environment variables are set, you can start the PHP server by running:
 

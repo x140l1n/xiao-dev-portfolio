@@ -19,27 +19,15 @@ error_reporting($_ENV['APP_ENV'] === 'local' ? E_ALL : E_ERROR & ~E_DEPRECATED &
 
 ini_set('display_errors', 0);
 
-$request_origin = $_SERVER['HTTP_ORIGIN'] ?? null;
+// CORS headers - allow all origins since API returns no sensitive data
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST');
+header('Access-Control-Allow-Headers: Content-Type');
 
-// If the request is from a different origin, set the Access-Control-Allow-Origin header.
-if ($request_origin) {
-	$access_control_allow_origin = $_ENV['ACCESS_CONTROL_ALLOW_ORIGIN'];
-
-	if ($access_control_allow_origin !== '*') {
-		$access_control_allow_origin = explode(';', $access_control_allow_origin);
-	
-		if (in_array($request_origin, $access_control_allow_origin, true)) {
-			header('Access-Control-Allow-Origin: ' . $request_origin);
-		}	
-	}
-
-	header('Access-Control-Allow-Methods: POST');
-	
-	if (isset($_SERVER['REQUEST_METHOD']) && $_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-		http_response_code(204);
-	
-		exit();
-	}
+// Handle preflight OPTIONS request
+if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+	http_response_code(204);
+	exit();
 }
 
 const RESPONSES = [
