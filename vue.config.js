@@ -6,7 +6,7 @@ const dotenv = require('dotenv');
 
 if (process.env.NODE_ENV === 'production' && fs.existsSync('.env.pro')) {
   const envConfig = dotenv.parse(fs.readFileSync('.env.pro'));
-  Object.keys(envConfig).forEach(key => {
+  Object.keys(envConfig).forEach((key) => {
     if (key.startsWith('VUE_APP_')) {
       process.env[key] = envConfig[key];
     }
