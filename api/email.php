@@ -26,8 +26,8 @@ header('Access-Control-Allow-Headers: Content-Type');
 
 // Handle preflight OPTIONS request
 if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
-	http_response_code(204);
-	exit();
+    http_response_code(204);
+    exit();
 }
 
 const RESPONSES = [
@@ -68,33 +68,42 @@ const RESPONSES = [
     ]
 ];
 
+$logs_dir = __DIR__ . '/logs';
+
+// Create logs directory if it doesn't exist
+if (!is_dir($logs_dir)) {
+    mkdir($logs_dir, 0755, true);
+}
+
 $settings_logger = [
     'name' => $_ENV['APP_NAME'],
-    'path' => __DIR__ . '/logs/app.log',
+    'path' => $logs_dir . '/app.log',
     'maxFiles' => 5,
     'level' => $_ENV['APP_ENV'] === 'local' ? Logger::DEBUG : Logger::ERROR
 ];
 
-$GLOBALS['logger'] = new Logger($settings_logger['name']);
-$GLOBALS['logger']->pushProcessor(new UidProcessor());
-$GLOBALS['logger']->pushHandler(new RotatingFileHandler($settings_logger['path'], $settings_logger['maxFiles'], $settings_logger['level']));
+$logger = new Logger($settings_logger['name']);
+$logger->pushProcessor(new UidProcessor());
+$logger->pushHandler(new RotatingFileHandler($settings_logger['path'], $settings_logger['maxFiles'], $settings_logger['level']));
 
-set_error_handler(function($errno, $errstr, $errfile, $errline) {
-	return handleErrorException($errno, 'From error handler: ' . $errstr, $errfile, $errline);
+set_error_handler(function ($errno, $errstr, $errfile, $errline) {
+    return handleErrorException($errno, 'From error handler: ' . $errstr, $errfile, $errline);
 });
 
-set_exception_handler(function($exception) {
-	return handleErrorException($exception->getCode(), 'From exception handler: ' . $exception->getMessage(), $exception->getFile(), $exception->getLine());
+set_exception_handler(function ($exception) {
+    return handleErrorException($exception->getCode(), 'From exception handler: ' . $exception->getMessage(), $exception->getFile(), $exception->getLine());
 });
 
 function handleErrorException($errno, $errstr, $errfile, $errline)
 {
-	while (ob_get_level()) {
-		ob_end_clean();
-	}
+    global $logger;
 
-    $GLOBALS['logger']->error('Error: ' . $errstr, ['file' => $errfile, 'line' => $errline]);
-    
+    while (ob_get_level()) {
+        ob_end_clean();
+    }
+
+    $logger->error('Error: ' . $errstr, ['file' => $errfile, 'line' => $errline]);
+
     http_response_code(RESPONSES['error']['http_code']);
 
     echo json_encode(RESPONSES['error'], JSON_UNESCAPED_UNICODE);
@@ -117,6 +126,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['send'])) {
  */
 function sendEmail(): array
 {
+    global $logger;
+
     $from = $_POST['from'] ?? '';
     $firstname = $_POST['firstname'] ?? '';
     $lastname = $_POST['lastname'] ?? '';
@@ -140,7 +151,7 @@ function sendEmail(): array
     $recaptcha_secret = $_ENV['RECAPTCHA_V3_SECRET_KEY'];
 
     $recaptcha_url = $recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $g_recaptcha_response;
-    
+
     $ch = curl_init();
 
     curl_setopt($ch, CURLOPT_URL, $recaptcha_url);
@@ -194,8 +205,8 @@ function sendEmail(): array
             throw new Exception($mail->ErrorInfo);
         }
     } catch (Exception $e) {
-        $GLOBALS['logger']->error('Error: ' . $e->getMessage());
-    
+        $logger->error('Error: ' . $e->getMessage());
+
         return RESPONSES['error'];
     }
 
