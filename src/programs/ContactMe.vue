@@ -91,11 +91,15 @@
       <div class="mb-3 mx-2">
         <p
           v-if="resultMessage"
-          :class="`${statusMessage == 1 ? 'text-success' : 'text-danger'}`"
+          :class="statusMessage == 1 ? 'text-success' : statusMessage == 2 ? 'text-primary' : statusMessage == -1 ? 'text-warning' : 'text-danger'"
         >
           <i
             v-if="statusMessage == 1"
             class="fa-solid fa-circle-check"
+          />
+          <i
+            v-else-if="statusMessage == 2"
+            class="fas fa-spinner fa-pulse"
           />
           <i
             v-else-if="statusMessage == -1"
@@ -168,16 +172,17 @@ import IconEmail from '@assets/icons/email.png';
   },
   data() {
     return {
-      // 0: Error, 1: Success, -1: Warning
+      // 0: Error, 1: Success, -1: Warning, 2: Sending/Info
       statusMessage: 0,
-      resultMessage: null,
+      statusMessageKey: null,
       isSending: false,
       showSuccess: false
     };
   },
-  watch: {
-    '$i18n.locale'() {
-      this.title = this.$t ? this.$t('contactMe.title') : 'Contact Me';
+  computed: {
+    resultMessage() {
+      if (!this.statusMessageKey) return null;
+      return this.$t ? this.$t(this.statusMessageKey) : null;
     }
   },
   mounted() {
@@ -185,32 +190,22 @@ import IconEmail from '@assets/icons/email.png';
   },
   methods: {
     init() {},
-    getTranslatedMessage(status, message) {
-      if (!this.$t) {
-        return message;
-      }
-
+    getMessageKey(status) {
       switch (status) {
         case 1:
-          return this.$t('contactMe.messages.success');
+          return 'contactMe.messages.success';
         case 0:
-          // Error genérico
-          return this.$t('contactMe.messages.error');
+          return 'contactMe.messages.error';
         case -1:
-          // Error de validación
-          return this.$t('contactMe.messages.validationError');
+          return 'contactMe.messages.validationError';
         case -2:
-          // Error de reCAPTCHA
-          return this.$t('contactMe.messages.recaptchaError');
+          return 'contactMe.messages.recaptchaError';
         case -3:
-          // Error del servidor
-          return this.$t('contactMe.messages.serverError');
+          return 'contactMe.messages.serverError';
         case -4:
-          // Error de red
-          return this.$t('contactMe.messages.networkError');
+          return 'contactMe.messages.networkError';
         default:
-          // Si hay un mensaje específico del servidor, úsalo, sino usa el genérico
-          return message || this.$t('contactMe.messages.error');
+          return 'contactMe.messages.error';
       }
     },
     async onSubmit(evt) {
@@ -220,7 +215,8 @@ import IconEmail from '@assets/icons/email.png';
       formData.append('send', true);
 
       this.isSending = true;
-      this.resultMessage = this.$t ? this.$t('contactMe.messages.sending') : 'Sending message...';
+      this.statusMessage = 2;
+      this.statusMessageKey = 'contactMe.messages.sending';
 
       try {
         await this.$recaptchaLoaded();
@@ -233,26 +229,25 @@ import IconEmail from '@assets/icons/email.png';
           method: 'POST',
           body: formData
         });
-    
+
         const data = await response.json();
 
         if (data.status == 1) {
           this.showSuccess = true;
           this.statusMessage = 1;
-          this.resultMessage = this.getTranslatedMessage(1);
+          this.statusMessageKey = this.getMessageKey(1);
         } else {
           this.showSuccess = false;
           this.statusMessage = data.status;
-          this.resultMessage = this.getTranslatedMessage(data.status, data.message);
+          this.statusMessageKey = this.getMessageKey(data.status);
         }
       } catch (error) {
         // eslint-disable-next-line no-console
         console.error(error);
 
         this.showSuccess = false;
-        // Error de red/conexión
         this.statusMessage = -4;
-        this.resultMessage = this.getTranslatedMessage(-4);
+        this.statusMessageKey = this.getMessageKey(-4);
       } finally {
         this.isSending = false;
 
